@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico?v=2" type="image/x-icon">
+<link rel="shortcut icon" href="/favicon.ico?v=2" type="image/x-icon">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2">
+<meta name="theme-color" content="#5B4FD9">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aslan Teknik — Affiliator Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--cream:#FDF8F2;--charcoal:#1A1A2E;--mid:#4A4A6A;--soft:#8888AA;--accent:#5B4FD9;--accent2:#E8643A;--white:#fff;--border:rgba(0,0,0,0.08);--green:#22C55E;--red:#EF4444;--amber:#F59E0B;--teal:#0EA5E9;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--charcoal);min-height:100vh;}
+
+  /* ── LOGIN ────────────────────────────── */
+  #login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#EDE9FB 0%,#D4F5EC 50%,#FCEEE7 100%);padding:20px;}
+  .login-card{background:var(--white);border-radius:28px;padding:48px 40px;box-shadow:0 24px 80px rgba(0,0,0,0.1);width:100%;max-width:400px;}
+  .login-logo{font-family:'Instrument Serif',serif;font-size:1.8rem;margin-bottom:4px;}
+  .login-logo span{color:var(--accent);}
+  .login-sub{font-size:0.85rem;color:var(--soft);margin-bottom:32px;line-height:1.5;}
+  .login-sub b{color:var(--accent);font-weight:600;}
+  .l-label{font-size:0.8rem;font-weight:600;display:block;margin-bottom:7px;}
+  .l-input{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:12px;font-family:'DM Sans',sans-serif;font-size:0.95rem;background:var(--cream);outline:none;transition:border-color 0.2s;margin-bottom:16px;letter-spacing:0.06em;text-transform:uppercase;}
+  .l-input.pin{text-transform:none;letter-spacing:0.2em;text-align:center;font-size:1.2rem;font-weight:700;}
+  .l-input:focus{border-color:var(--accent);background:#fff;}
+  .l-btn{width:100%;padding:14px;border-radius:14px;background:var(--charcoal);color:#fff;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:600;transition:all 0.2s;margin-top:4px;}
+  .l-btn:hover{background:var(--accent);}
+  .l-btn:disabled{opacity:0.5;cursor:not-allowed;}
+  .l-err{font-size:0.82rem;color:var(--red);margin-top:10px;min-height:18px;text-align:center;}
+
+  /* ── DASHBOARD ────────────────────────── */
+  #dashboard{display:none;}
+  header{background:var(--white);border-bottom:1px solid var(--border);padding:16px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;}
+  .hdr-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;}
+  .hdr-logo span{color:var(--accent);}
+  .hdr-right{display:flex;align-items:center;gap:12px;}
+  .hdr-code{font-family:monospace;font-size:0.85rem;font-weight:700;color:var(--accent);background:#EDE9FB;padding:4px 12px;border-radius:8px;letter-spacing:0.06em;}
+  .logout-btn{padding:7px 18px;border-radius:100px;background:transparent;border:1.5px solid var(--border);font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:500;color:var(--mid);cursor:pointer;transition:all 0.2s;}
+  .logout-btn:hover{border-color:var(--red);color:var(--red);}
+
+  .dash-body{padding:40px;max-width:1000px;margin:0 auto;}
+
+  /* Welcome banner */
+  .welcome-banner{background:linear-gradient(135deg,#5B4FD9 0%,#7C6FFF 100%);border-radius:24px;padding:32px 36px;color:#fff;margin-bottom:28px;position:relative;overflow:hidden;}
+  .welcome-banner::after{content:'';position:absolute;right:-40px;top:-40px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,0.08);}
+  .welcome-banner::before{content:'';position:absolute;right:60px;bottom:-60px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,0.05);}
+  .wb-name{font-family:'Instrument Serif',serif;font-size:1.6rem;margin-bottom:4px;}
+  .wb-sub{font-size:0.85rem;opacity:0.85;}
+  .wb-code{display:inline-block;background:rgba(255,255,255,0.2);padding:6px 16px;border-radius:100px;font-family:monospace;font-size:0.9rem;font-weight:700;letter-spacing:0.08em;margin-top:12px;backdrop-filter:blur(4px);}
+
+  /* Stats */
+  .sect-label{font-size:0.72rem;font-weight:600;color:var(--soft);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;}
+  .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px;}
+  .stat-c{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:22px 24px;transition:box-shadow 0.2s;}
+  .stat-c:hover{box-shadow:0 4px 20px rgba(0,0,0,0.06);}
+  .stat-c .s-icon{font-size:1.3rem;margin-bottom:8px;}
+  .stat-c .s-num{font-family:'Instrument Serif',serif;font-size:1.8rem;}
+  .stat-c .s-lbl{font-size:0.78rem;color:var(--soft);margin-top:3px;}
+  .stat-c.purple .s-num{color:var(--accent);}
+  .stat-c.green .s-num{color:var(--green);}
+  .stat-c.amber .s-num{color:var(--amber);}
+  .stat-c.teal .s-num{color:var(--teal);}
+
+  /* Withdrawal card */
+  .wd-card{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:24px 28px;margin-bottom:28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+  .wd-info h3{font-size:0.95rem;font-weight:600;margin-bottom:4px;}
+  .wd-info p{font-size:0.82rem;color:var(--soft);}
+  .wd-amount{font-family:'Instrument Serif',serif;font-size:1.5rem;color:var(--green);margin-top:6px;}
+  .wd-btn{padding:12px 28px;border-radius:14px;background:var(--green);color:#fff;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;transition:all 0.2s;white-space:nowrap;}
+  .wd-btn:hover{background:#16A34A;transform:translateY(-1px);box-shadow:0 4px 16px rgba(34,197,94,0.3);}
+  .wd-btn:disabled{opacity:0.4;cursor:not-allowed;transform:none;box-shadow:none;background:var(--soft);}
+  .wd-note{font-size:0.75rem;color:var(--soft);margin-top:4px;}
+
+  /* Panel / Table */
+  .panel{background:var(--white);border:1px solid var(--border);border-radius:24px;padding:28px;}
+  .panel-title{font-size:1rem;font-weight:600;margin-bottom:6px;}
+  .panel-sub{font-size:0.82rem;color:var(--soft);margin-bottom:20px;}
+  .tbl-wrap{overflow-x:auto;}
+  table{width:100%;border-collapse:collapse;font-size:0.83rem;}
+  th{text-align:left;padding:10px 12px;font-size:0.72rem;font-weight:600;color:var(--soft);text-transform:uppercase;letter-spacing:0.08em;border-bottom:1px solid var(--border);}
+  td{padding:12px 12px;border-bottom:1px solid var(--border);color:var(--mid);vertical-align:middle;}
+  tr:last-child td{border-bottom:none;}
+  tr:hover td{background:rgba(91,79,217,0.03);}
+  .badge{display:inline-block;padding:3px 10px;border-radius:100px;font-size:0.72rem;font-weight:600;}
+  .badge-green{background:#DCFCE7;color:#166534;}
+  .badge-amber{background:#FEF9C3;color:#854D0E;}
+  .badge-red{background:#FEE2E2;color:#991B1B;}
+  .badge-blue{background:#DBEAFE;color:#1E40AF;}
+  .empty-state{text-align:center;padding:48px 20px;color:var(--soft);font-size:0.88rem;}
+
+  /* Withdrawal history */
+  .wd-history{margin-top:28px;}
+  .wd-item{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border);gap:12px;flex-wrap:wrap;}
+  .wd-item:last-child{border-bottom:none;}
+  .wd-item-amount{font-weight:700;font-size:0.95rem;}
+  .wd-item-date{font-size:0.78rem;color:var(--soft);}
+
+  /* Toast */
+  #toast{position:fixed;bottom:28px;right:28px;background:var(--charcoal);color:#fff;padding:12px 22px;border-radius:14px;font-size:0.85rem;font-weight:500;box-shadow:0 8px 32px rgba(0,0,0,0.2);opacity:0;transform:translateY(10px);transition:all 0.3s;pointer-events:none;z-index:999;}
+  #toast.show{opacity:1;transform:translateY(0);}
+
+  /* Spinner */
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .spinner-sm{display:inline-block;width:12px;height:12px;border:2px solid rgba(255,255,255,0.4);border-top-color:#fff;border-radius:50%;animation:spin 0.7s linear infinite;vertical-align:middle;margin-right:4px;}
+
+  /* Footer */
+  .foot-copy{text-align:center;padding:20px 40px;font-size:0.76rem;color:var(--soft);border-top:1px solid var(--border);background:var(--white);margin-top:40px;}
+
+  /* Responsive */
+  @media(max-width:800px){
+    header{padding:12px 16px}
+    .dash-body{padding:16px}
+    .stat-row{grid-template-columns:repeat(2,1fr);gap:10px}
+    .panel{padding:20px 16px}
+    .welcome-banner{padding:24px 20px}
+    .wb-name{font-size:1.3rem}
+    .wd-card{flex-direction:column;align-items:flex-start}
+    .wd-btn{width:100%;text-align:center}
+    .login-card{padding:36px 24px;border-radius:20px}
+    table{font-size:0.78rem}
+    th,td{padding:8px 8px}
+    #toast{bottom:16px;right:16px;left:16px;text-align:center}
+    .foot-copy{padding:16px}
+  }
+  @media(max-width:480px){
+    .stat-row{grid-template-columns:repeat(2,1fr);gap:8px}
+    .stat-c{padding:16px 14px}
+    .stat-c .s-num{font-size:1.4rem}
+    .welcome-banner::after,.welcome-banner::before{display:none}
+    th{display:none}
+    td{display:block;border:none;padding:4px 8px}
+    td:first-child{padding-top:10px}
+    td:last-child{padding-bottom:10px;border-bottom:1px solid var(--border)}
+    tr:last-child td:last-child{border-bottom:none}
+    td::before{content:attr(data-label);font-size:0.68rem;font-weight:600;color:var(--soft);text-transform:uppercase;display:block;margin-bottom:2px}
+  }
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">Aslan<span>.</span>Teknik</div>
+    <p class="login-sub">Portal <b>Affiliator</b> — Pantau kode referral, komisi, dan pencairan dana kamu.</p>
+    <label class="l-label">Kode Affiliator</label>
+    <input type="text" class="l-input" id="l-code" placeholder="ASLANAFF01" maxlength="20">
+    <label class="l-label">PIN (6 digit)</label>
+    <input type="password" class="l-input pin" id="l-pin" placeholder="••••••" maxlength="6" inputmode="numeric">
+    <button class="l-btn" id="btn-login">Masuk ke Dashboard</button>
+    <p class="l-err" id="l-err"></p>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+  <header>
+    <div class="hdr-logo">Aslan<span>.</span>Teknik <span style="font-family:'DM Sans';font-size:0.75rem;color:var(--soft);font-weight:400;margin-left:8px;">Affiliator</span></div>
+    <div class="hdr-right">
+      <span class="hdr-code" id="hdr-code"></span>
+      <button class="logout-btn" id="btn-logout">Keluar</button>
+    </div>
+  </header>
+
+  <div class="dash-body">
+
+    <!-- Welcome Banner -->
+    <div class="welcome-banner">
+      <div class="wb-name" id="wb-name">Halo, Affiliator! 👋</div>
+      <div class="wb-sub">Berikut ringkasan performa kode referral kamu.</div>
+      <div class="wb-code" id="wb-code">—</div>
+    </div>
+
+    <!-- Stats -->
+    <div class="sect-label">📊 Ringkasan Performa</div>
+    <div class="stat-row">
+      <div class="stat-c purple">
+        <div class="s-icon">🎟️</div>
+        <div class="s-num" id="st-used">0</div>
+        <div class="s-lbl">Kode Dipakai</div>
+      </div>
+      <div class="stat-c green">
+        <div class="s-icon">💰</div>
+        <div class="s-num" id="st-commission">Rp 0</div>
+        <div class="s-lbl">Total Komisi</div>
+      </div>
+      <div class="stat-c teal">
+        <div class="s-icon">✅</div>
+        <div class="s-num" id="st-confirmed">0</div>
+        <div class="s-lbl">Order Dikonfirmasi</div>
+      </div>
+      <div class="stat-c amber">
+        <div class="s-icon">⏳</div>
+        <div class="s-num" id="st-pending">0</div>
+        <div class="s-lbl">Menunggu Konfirmasi</div>
+      </div>
+    </div>
+
+    <!-- Withdrawal Card -->
+    <div class="wd-card">
+      <div class="wd-info">
+        <h3>💸 Saldo Komisi yang Bisa Ditarik</h3>
+        <p>Minimum penarikan Rp 100.000. Hanya komisi dari order yang sudah dikonfirmasi.</p>
+        <div class="wd-amount" id="wd-amount">Rp 0</div>
+        <div class="wd-note" id="wd-note"></div>
+      </div>
+      <button class="wd-btn" id="btn-withdraw" disabled>Ajukan Penarikan</button>
+    </div>
+
+    <!-- Detail Table -->
+    <div class="panel">
+      <div class="panel-title">📋 Riwayat Komisi</div>
+      <div class="panel-sub">Komisi tercatat setiap kali order dengan kode kamu dikonfirmasi admin.</div>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Tanggal</th>
+              <th>ID Order</th>
+              <th>Total Order</th>
+              <th>Rate</th>
+              <th>Komisi Kamu</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="tbl-body">
+            <tr><td colspan="6"><div class="empty-state">Memuat data...</div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Withdrawal History -->
+    <div class="panel wd-history" id="wd-history-panel" style="margin-top:24px;display:none;">
+      <div class="panel-title">🧾 Riwayat Penarikan</div>
+      <div class="panel-sub">Histori semua pengajuan penarikan komisi kamu.</div>
+      <div id="wd-history-list"></div>
+    </div>
+
+  </div>
+
+  <div class="foot-copy" id="aff-copyright"></div>
+</div>
+
+<div id="toast"></div>
+
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getFirestore, collection, doc, getDoc, getDocs, addDoc, query, orderBy, where, onSnapshot, serverTimestamp }
+  from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+const firebaseConfig = {
+  apiKey:"AIzaSyAd_HmgX5djmePrHpYHxsydSErTPSjcBdY",
+  authDomain:"aslan-teknik.firebaseapp.com",
+  projectId:"aslan-teknik",
+  storageBucket:"aslan-teknik.firebasestorage.app",
+  messagingSenderId:"372303552922",
+  appId:"1:372303552922:web:5b61d3cd2c590ff1381a23"
+};
+
+const app = initializeApp(firebaseConfig);
+const db  = getFirestore(app);
+
+let currentAffiliator = null;
+let allOrders    = [];
+let allWithdrawals = [];
+let allCommissions = [];
+let unsubOrders  = null;
+let unsubWd      = null;
+let unsubAff     = null; // live listener pada doc affiliator sendiri
+
+// ── COPYRIGHT ──────────────────────────────────────────
+(function(){
+  const start = 2025;
+  const now   = new Date().getFullYear();
+  const range = now > start ? start + '–' + now : String(start);
+  const el = document.getElementById('aff-copyright');
+  if (el) el.textContent = '© ' + range + ' Aslan Teknik. Semua hak dilindungi.';
+})();
+
+// ── HELPERS ────────────────────────────────────────────
+function fmt(n){ return 'Rp ' + Number(n||0).toLocaleString('id-ID'); }
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ── LOGIN ──────────────────────────────────────────────
+document.getElementById('btn-login').addEventListener('click', doLogin);
+document.getElementById('l-pin').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
+document.getElementById('l-code').addEventListener('keydown', e => { if(e.key==='Enter') document.getElementById('l-pin').focus(); });
+document.getElementById('btn-logout').addEventListener('click', doLogout);
+
+// PIN input — hanya angka
+document.getElementById('l-pin').addEventListener('input', function(){
+  this.value = this.value.replace(/[^0-9]/g,'').slice(0,6);
+});
+
+async function doLogin() {
+  const code  = document.getElementById('l-code').value.trim().toUpperCase();
+  const pin   = document.getElementById('l-pin').value.trim();
+  const errEl = document.getElementById('l-err');
+  const btn   = document.getElementById('btn-login');
+  errEl.textContent = '';
+
+  if (!code || !pin) { errEl.textContent = 'Kode dan PIN wajib diisi.'; return; }
+  if (pin.length !== 6) { errEl.textContent = 'PIN harus 6 digit.'; return; }
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner-sm"></span> Memverifikasi...';
+
+  try {
+    // Query affiliators collection by code
+    const q = query(collection(db, 'affiliators'), where('code', '==', code));
+    const snap = await getDocs(q);
+
+    if (snap.empty) {
+      errEl.textContent = 'Kode affiliator tidak ditemukan.';
+      btn.disabled = false; btn.textContent = 'Masuk ke Dashboard';
+      return;
+    }
+
+    const affDoc = snap.docs[0];
+    const affData = { id: affDoc.id, ...affDoc.data() };
+
+    if (affData.pin !== pin) {
+      errEl.textContent = 'PIN salah. Coba lagi.';
+      btn.disabled = false; btn.textContent = 'Masuk ke Dashboard';
+      return;
+    }
+
+    if (!affData.is_active) {
+      errEl.textContent = 'Akun affiliator kamu sedang dinonaktifkan. Hubungi admin.';
+      btn.disabled = false; btn.textContent = 'Masuk ke Dashboard';
+      return;
+    }
+
+    // Login success
+    currentAffiliator = affData;
+    sessionStorage.setItem('aff_id', affData.id);
+    sessionStorage.setItem('aff_code', affData.code);
+    showDashboard();
+
+  } catch(e) {
+    errEl.textContent = 'Gagal login: ' + e.message;
+  }
+  btn.disabled = false; btn.textContent = 'Masuk ke Dashboard';
+}
+
+function doLogout() {
+  if (unsubOrders)  { unsubOrders();  unsubOrders = null; }
+  if (unsubWd)      { unsubWd();      unsubWd = null; }
+  if (unsubAff)     { unsubAff();     unsubAff = null; }
+  currentAffiliator = null;
+  allOrders = [];
+  allWithdrawals = [];
+  allCommissions = [];
+  sessionStorage.removeItem('aff_id');
+  sessionStorage.removeItem('aff_code');
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('dashboard').style.display = 'none';
+}
+
+// ── AUTO-LOGIN from session ────────────────────────────
+(async function checkSession(){
+  const affId = sessionStorage.getItem('aff_id');
+  if (!affId) return;
+  try {
+    const snap = await getDoc(doc(db, 'affiliators', affId));
+    if (snap.exists()) {
+      currentAffiliator = { id: snap.id, ...snap.data() };
+      if (currentAffiliator.is_active) showDashboard();
+    }
+  } catch(e) { /* ignore */ }
+})();
+
+// ── DASHBOARD ──────────────────────────────────────────
+function showDashboard() {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  document.getElementById('hdr-code').textContent = currentAffiliator.code;
+  document.getElementById('wb-name').textContent = 'Halo, ' + (currentAffiliator.name || 'Affiliator') + '! 👋';
+  document.getElementById('wb-code').textContent = '🎟️ ' + currentAffiliator.code;
+  listenAffiliatorDoc();
+  listenOrders();
+  listenWithdrawals();
+  listenCommissions();
+}
+
+// ── LISTEN AFFILIATOR DOC (real-time) ─────────────────
+// Baca langsung dari dokumen affiliator — field total_earnings,
+// pending_balance, total_orders diupdate oleh admin saat konfirmasi order
+function listenAffiliatorDoc() {
+  if (unsubAff) { unsubAff(); unsubAff = null; }
+  const { onSnapshot: _onSnap, doc: _doc } = { onSnapshot, doc };
+  unsubAff = onSnapshot(doc(db, 'affiliators', currentAffiliator.id), snap => {
+    if (snap.exists()) {
+      // Merge data terbaru ke currentAffiliator
+      currentAffiliator = { id: snap.id, ...snap.data() };
+    }
+    renderStats();
+  });
+}
+
+// ── LISTEN COMMISSIONS ─────────────────────────────────
+function listenCommissions() {
+  const q = query(
+    collection(db, 'affiliate_commissions'),
+    where('affiliator_code', '==', currentAffiliator.code)
+  );
+  onSnapshot(q, snap => {
+    allCommissions = snap.docs
+      .map(d => ({ id: d.id, ...d.data() }))
+      .sort((a,b) => (b.created_at?.seconds||0) - (a.created_at?.seconds||0));
+    renderCommissionsTable();
+  }, err => {
+    console.warn('commissions query error:', err.message);
+  });
+}
+
+// ── LISTEN ORDERS ──────────────────────────────────────
+function listenOrders() {
+  if (unsubOrders) { unsubOrders(); unsubOrders = null; }
+  const q = query(
+    collection(db, 'orders'),
+    where('voucher_code', '==', currentAffiliator.code),
+    orderBy('created_at', 'desc')
+  );
+  unsubOrders = onSnapshot(q, snap => {
+    allOrders = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    renderStats();
+    renderTable();
+  }, err => {
+    // Jika index belum ada, coba fallback tanpa orderBy
+    console.warn('Firestore query error (mungkin perlu composite index):', err.message);
+    fallbackListenOrders();
+  });
+}
+
+function fallbackListenOrders() {
+  if (unsubOrders) { unsubOrders(); unsubOrders = null; }
+  const q = query(
+    collection(db, 'orders'),
+    where('voucher_code', '==', currentAffiliator.code)
+  );
+  unsubOrders = onSnapshot(q, snap => {
+    allOrders = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    // Sort manually
+    allOrders.sort((a,b) => {
+      const ta = a.created_at?.seconds || 0;
+      const tb = b.created_at?.seconds || 0;
+      return tb - ta;
+    });
+    renderStats();
+    renderTable();
+  });
+}
+
+// ── LISTEN WITHDRAWALS ─────────────────────────────────
+function listenWithdrawals() {
+  if (unsubWd) { unsubWd(); unsubWd = null; }
+  const q = query(
+    collection(db, 'affiliate_withdrawals'),
+    where('affiliator_id', '==', currentAffiliator.id),
+    orderBy('created_at', 'desc')
+  );
+  unsubWd = onSnapshot(q, snap => {
+    allWithdrawals = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    renderWithdrawals();
+    renderStats(); // re-render saldo
+  }, err => {
+    console.warn('Withdrawal query error:', err.message);
+    // Fallback
+    const q2 = query(
+      collection(db, 'affiliate_withdrawals'),
+      where('affiliator_id', '==', currentAffiliator.id)
+    );
+    unsubWd = onSnapshot(q2, snap => {
+      allWithdrawals = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      allWithdrawals.sort((a,b) => (b.created_at?.seconds||0) - (a.created_at?.seconds||0));
+      renderWithdrawals();
+      renderStats();
+    });
+  });
+}
+
+// ── RENDER STATS ───────────────────────────────────────
+function renderStats() {
+  // Prioritas: baca dari field yang ditulis admin saat confirmOrder
+  // Fallback ke perhitungan lokal kalau field belum ada (affiliator lama)
+  const totalEarnings   = currentAffiliator.total_earnings   || 0;
+  const totalOrdersAff  = currentAffiliator.total_orders     || 0;
+  const pendingBalance  = currentAffiliator.pending_balance  || 0;
+
+  // Hitung yang sudah ditarik (approved)
+  const totalWithdrawn = allWithdrawals
+    .filter(w => w.status === 'approved' || w.status === 'paid')
+    .reduce((sum, w) => sum + (w.amount || 0), 0);
+
+  // Hitung yang masih pending withdrawal
+  const pendingWithdrawal = allWithdrawals
+    .filter(w => w.status === 'pending')
+    .reduce((sum, w) => sum + (w.amount || 0), 0);
+
+  // Saldo yang bisa ditarik = total earnings - sudah ditarik - pending tarik
+  const withdrawable = Math.max(0, totalEarnings - totalWithdrawn - pendingWithdrawal);
+
+  // Stat cards
+  // "Kode Dipakai" = total order yang pakai kode ini (pakai allOrders untuk akurasi)
+  const confirmedOrders = allOrders.filter(o => o.status === 'confirmed');
+  const pendingOrders   = allOrders.filter(o => o.status === 'pending');
+
+  document.getElementById('st-used').textContent      = allOrders.length;
+  document.getElementById('st-commission').textContent = fmt(totalEarnings);
+  document.getElementById('st-confirmed').textContent  = confirmedOrders.length;
+  document.getElementById('st-pending').textContent    = pendingOrders.length;
+
+  // Withdrawal card
+  document.getElementById('wd-amount').textContent = fmt(withdrawable);
+  const wdBtn  = document.getElementById('btn-withdraw');
+  const noteEl = document.getElementById('wd-note');
+
+  if (withdrawable >= 100000) {
+    wdBtn.disabled = false;
+    wdBtn.textContent = 'Ajukan Penarikan';
+    noteEl.textContent = '✅ Saldo mencukupi untuk ditarik.';
+    noteEl.style.color = 'var(--green)';
+  } else {
+    wdBtn.disabled = true;
+    const kurang = 100000 - withdrawable;
+    noteEl.textContent = `⚠️ Kurang ${fmt(kurang)} lagi untuk minimum penarikan.`;
+    noteEl.style.color = 'var(--amber)';
+  }
+
+  wdBtn.dataset.amount = withdrawable;
+}
+
+// ── RENDER COMMISSIONS TABLE ───────────────────────────
+// Tabel ini baca dari affiliate_commissions — data aktual yang dicatat admin
+function renderCommissionsTable() {
+  const tbody = document.getElementById('tbl-body');
+  if (!allCommissions.length) {
+    // Kalau belum ada komisi tercatat, tetap tampil tabel orders sebagai fallback
+    renderTable();
+    return;
+  }
+  tbody.innerHTML = allCommissions.map(c => {
+    const dateStr = c.created_at
+      ? new Date(c.created_at.seconds * 1000).toLocaleDateString('id-ID', {day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit'})
+      : '—';
+    const statusBadge = c.status === 'paid'
+      ? '<span class="badge badge-blue">💸 Dibayar</span>'
+      : '<span class="badge badge-green">✅ Tercatat</span>';
+    return `<tr>
+      <td data-label="Tanggal">${dateStr}</td>
+      <td data-label="ID Order"><b style="color:var(--charcoal);font-family:monospace">${c.order_id||'—'}</b></td>
+      <td data-label="Total Order" style="white-space:nowrap">${fmt(c.order_total)}</td>
+      <td data-label="Rate Komisi" style="white-space:nowrap">${c.commission_rate||'—'}%</td>
+      <td data-label="Komisi Kamu" style="white-space:nowrap"><span style="color:var(--green);font-weight:700">${fmt(c.commission_amount)}</span></td>
+      <td data-label="Status">${statusBadge}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ── RENDER TABLE (orders fallback) ─────────────────────
+function renderTable() {
+  const tbody = document.getElementById('tbl-body');
+  const rate  = currentAffiliator.commission_rate || 10;
+
+  if (!allOrders.length) {
+    tbody.innerHTML = '<tr><td colspan="6"><div class="empty-state">Belum ada customer yang menggunakan kode kamu. Semangat promosi! 💪</div></td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = allOrders.map(o => {
+    const dateStr = o.created_at
+      ? new Date(o.created_at.seconds * 1000).toLocaleDateString('id-ID', {day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit'})
+      : '—';
+    const services  = Array.isArray(o.services) ? o.services.join(', ') : (o.services || '—');
+    const basePrice = o.total_before || o.total_after || 0;
+    const commission = o.status === 'confirmed' ? Math.round(basePrice * rate / 100) : 0;
+    const statusBadge = o.status === 'confirmed'
+      ? '<span class="badge badge-green">✅ Dikonfirmasi</span>'
+      : o.status === 'rejected'
+      ? '<span class="badge badge-red">❌ Ditolak</span>'
+      : '<span class="badge badge-amber">⏳ Pending</span>';
+    const commDisplay = o.status === 'confirmed'
+      ? `<span style="color:var(--green);font-weight:700">${fmt(commission)}</span>`
+      : o.status === 'rejected'
+      ? '<span style="color:var(--red);font-size:0.8rem">—</span>'
+      : `<span style="color:var(--amber);font-size:0.8rem">${fmt(Math.round(basePrice * rate / 100))}*</span>`;
+
+    const customerName = o.name || '—';
+
+    return `<tr>
+      <td data-label="Tanggal">${dateStr}</td>
+      <td data-label="Customer"><b style="color:var(--charcoal)">${customerName}</b><br><span style="font-size:0.75rem;color:var(--soft)">${o.city||''}</span></td>
+      <td data-label="Jasa">${services}</td>
+      <td data-label="Harga Jasa" style="white-space:nowrap">${fmt(basePrice)}</td>
+      <td data-label="Komisi" style="white-space:nowrap">${commDisplay}</td>
+      <td data-label="Status">${statusBadge}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ── RENDER WITHDRAWALS ─────────────────────────────────
+function renderWithdrawals() {
+  const panel = document.getElementById('wd-history-panel');
+  const list  = document.getElementById('wd-history-list');
+
+  if (!allWithdrawals.length) {
+    panel.style.display = 'none';
+    return;
+  }
+  panel.style.display = 'block';
+
+  list.innerHTML = allWithdrawals.map(w => {
+    const dateStr = w.created_at
+      ? new Date(w.created_at.seconds * 1000).toLocaleDateString('id-ID', {day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit'})
+      : '—';
+    const statusBadge = w.status === 'approved' || w.status === 'paid'
+      ? '<span class="badge badge-green">✅ Disetujui</span>'
+      : w.status === 'rejected'
+      ? '<span class="badge badge-red">❌ Ditolak</span>'
+      : '<span class="badge badge-amber">⏳ Diproses</span>';
+
+    return `<div class="wd-item">
+      <div>
+        <div class="wd-item-amount" style="color:var(--green)">${fmt(w.amount)}</div>
+        <div class="wd-item-date">${dateStr}</div>
+      </div>
+      ${statusBadge}
+    </div>`;
+  }).join('');
+}
+
+// ── WITHDRAWAL REQUEST ─────────────────────────────────
+document.getElementById('btn-withdraw').addEventListener('click', async function() {
+  const amount = parseInt(this.dataset.amount || 0);
+  if (amount < 100000) { showToast('Saldo belum mencukupi minimum penarikan.'); return; }
+  if (!confirm(`Ajukan penarikan komisi sebesar ${fmt(amount)}?\n\nAdmin akan memproses dalam 1-3 hari kerja.`)) return;
+
+  this.disabled = true;
+  this.innerHTML = '<span class="spinner-sm"></span> Mengajukan...';
+
+  try {
+    await addDoc(collection(db, 'affiliate_withdrawals'), {
+      affiliator_id: currentAffiliator.id,
+      affiliator_code: currentAffiliator.code,
+      affiliator_name: currentAffiliator.name || '',
+      amount: amount,
+      status: 'pending',
+      created_at: serverTimestamp()
+    });
+    showToast('Pengajuan penarikan berhasil! Admin akan memprosesnya. 🎉');
+  } catch(e) {
+    showToast('Gagal mengajukan: ' + e.message);
+  }
+  this.disabled = false;
+  this.textContent = 'Ajukan Penarikan';
+});
+</script>
+</body>
+</html>
