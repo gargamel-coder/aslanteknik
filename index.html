@@ -1287,6 +1287,7 @@ function sendWA() {
 
   // 3. Buka WhatsApp LANGSUNG — sinkron, masih dalam konteks klik user
   window.open(waUrl, '_blank');
+  window.location.href = '/terima-kasih.html'; 
 
   // 3. Simpan ke Firestore — dengan unit_count sebagai integer (wajib oleh Firestore rules)
   saveOrder({
