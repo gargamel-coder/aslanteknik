@@ -436,12 +436,6 @@
   }
   .avail-legend span { display:flex; align-items:center; gap:5px; }
   .avail-dot-l { width:10px; height:10px; border-radius:3px; display:inline-block; flex-shrink:0; }
-  .avail-full-note {
-    display:none; margin-top:8px; padding:9px 13px;
-    background:#FEE2E2; border:1px solid #EF4444; border-radius:10px;
-    font-size:0.76rem; color:#991B1B; line-height:1.5;
-  }
-  .avail-full-note.show { display:block; }
   /* Warning banner saat pilih tanggal hampir penuh */
   .avail-warn {
     display:none; margin-top:8px; padding:9px 13px;
@@ -832,10 +826,6 @@ window.dispatchEvent(new Event('fbReady'));
         <div class="avail-warn" id="avail-warn">
           ⚠️ <strong>Jadwal ini hampir penuh.</strong> Konfirmasi akan lebih lama — pertimbangkan tanggal lain jika kamu butuh kepastian cepat.
         </div>
-        <!-- Info banner saat bulan ini ada tanggal full booked -->
-        <div class="avail-full-note" id="avail-full-note">
-          📌 <strong>Tanggal berlabel FULL sudah penuh.</strong> Silakan pilih tanggal lain yang masih tersedia.
-        </div>
       </div>
 
       <div class="fg">
@@ -1177,19 +1167,6 @@ function renderCal() {
     btn.textContent = n;
     grid.appendChild(btn);
   }
-  // Tampilkan keterangan full booked jika bulan ini ada tanggal yang penuh
-  var hasFull = false;
-  for (var k in availabilityMap) {
-    if (availabilityMap[k] === 'full_booked' &&
-        k.indexOf(curYr + '-' + String(curMon+1).padStart(2,'0')) === 0) {
-      var dd = parseInt(k.slice(8,10), 10);
-      var fdt = new Date(curYr, curMon, dd);
-      var t0 = new Date(); t0.setHours(0,0,0,0);
-      if (fdt >= t0 && fdt.getDay() !== 5) { hasFull = true; break; }
-    }
-  }
-  var fullNote = document.getElementById('avail-full-note');
-  if (fullNote) fullNote.classList.toggle('show', hasFull);
 }
 
 function chMon(dir) {
