@@ -30,8 +30,8 @@ messaging.onBackgroundMessage((payload) => {
   const title = notif.title || 'Aslan Teknik — Tugas Baru';
   const options = {
     body:  notif.body || 'Ada tugas baru untuk kamu. Buka app untuk detail.',
-    icon:  '/icon-192.png',
-    badge: '/favicon-32.png',
+    icon:  '/web-app-manifest-192x192.png?v=6',
+    badge: '/favicon-32x32.png?v=6',
     tag:   data.order_id || 'new-task',   // tag sama = notifikasi ditimpa (bukan tumpuk)
     renotify: true,                        // tetap bunyi meski tag sama
     requireInteraction: false,             // auto-dismiss setelah beberapa detik
@@ -71,13 +71,13 @@ self.addEventListener('notificationclick', (event) => {
 });
 
 // ── PWA CACHING (basic offline shell) ───────────────────────
-const CACHE = 'aslan-teknik-v1';
+const CACHE = 'aslan-teknik-v2';
 const ASSETS = [
   '/teknisi',
   '/teknisi.html',
   '/manifest.json',
-  '/icon-192.png',
-  '/icon-512.png',
+  '/web-app-manifest-192x192.png',
+  '/web-app-manifest-512x512.png',
   '/apple-touch-icon.png'
 ];
 
