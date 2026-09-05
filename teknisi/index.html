@@ -723,7 +723,7 @@ async function doLogin() {
       btn.disabled = false; btn.textContent = 'Masuk'; return;
     }
     currentTech = { id: techDoc.id, ...techData };
-    sessionStorage.setItem('aslan_tech', JSON.stringify(currentTech));
+    try { localStorage.setItem('aslan_tech', JSON.stringify(currentTech)); } catch(e){}
     showDashboard();
   } catch(e) {
     errEl.textContent = 'Gagal login: ' + e.message;
@@ -737,7 +737,7 @@ async function doLogout() {
   // Cleanup FCM token dulu (biar HP ini ga dapat notif lagi setelah logout)
   try { await removeFCMToken(); } catch(e){}
 
-  sessionStorage.removeItem('aslan_tech');
+  try { localStorage.removeItem('aslan_tech'); } catch(e){}
   sessionStorage.removeItem('nb_dismissed');
   if (unsubOrders) { unsubOrders(); unsubOrders = null; }
 
@@ -1350,14 +1350,15 @@ document.getElementById('ios-hint').addEventListener('click', (e) => {
   // 3. Init online/offline indicator
   updateOnlineStatus();
 
-  // 4. Auto-login dari session
+  // 4. Auto-login dari penyimpanan lokal (tetap masuk walau tab/browser ditutup)
   try {
-    const saved = sessionStorage.getItem('aslan_tech');
+    const saved = localStorage.getItem('aslan_tech') || sessionStorage.getItem('aslan_tech');
     if (saved) {
       currentTech = JSON.parse(saved);
+      try { localStorage.setItem('aslan_tech', JSON.stringify(currentTech)); } catch(e){}
       showDashboard();
     }
-  } catch(e) { sessionStorage.removeItem('aslan_tech'); }
+  } catch(e) { try { localStorage.removeItem('aslan_tech'); } catch(_){} try { sessionStorage.removeItem('aslan_tech'); } catch(_){} }
 })();
 
 </script>
