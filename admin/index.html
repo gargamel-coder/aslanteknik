@@ -650,7 +650,20 @@
     </div>
     <div class="sched-field">
       <label>🕐 Jam Kedatangan <span style="font-weight:400;color:var(--soft)">(opsional)</span></label>
-      <input type="time" class="sched-input" id="sm-time" placeholder="09:00">
+      <div class="fg fr2">
+        <div>
+          <label class="fl">Jam</label>
+          <select class="fi" id="sm-hour"></select>
+        </div>
+        <div>
+          <label class="fl">Menit</label>
+          <select class="fi" id="sm-minute">
+            <option value="00">00</option>
+            <option value="30">30</option>
+          </select>
+        </div>
+      </div>
+      <input type="hidden" id="sm-time">
     </div>
     <div class="sched-foot">
       <button class="sched-cancel-btn" onclick="window.closeScheduleModal()">Batal</button>
@@ -1551,6 +1564,24 @@ window.saveManualBooking = async function() {
 };
 
 // ── SCHEDULE EDIT ──────────────────────────────────────
+function initScheduleTimeSelects() {
+  const hSel = document.getElementById('sm-hour');
+  if (hSel && !hSel.options.length) {
+    hSel.innerHTML = '<option value="">--</option>' +
+      Array.from({length: 15}, (_, i) => {
+        const h = String(7 + i).padStart(2, '0');
+        return `<option value="${h}">${h}</option>`;
+      }).join('');
+  }
+  const sync = () => {
+    const h = document.getElementById('sm-hour').value;
+    const m = document.getElementById('sm-minute').value || '00';
+    document.getElementById('sm-time').value = h ? `${h}:${m}` : '';
+  };
+  hSel?.addEventListener('change', sync);
+  document.getElementById('sm-minute')?.addEventListener('change', sync);
+}
+initScheduleTimeSelects();
 window.openEditSchedule = function(orderId) {
   const o = allOrders.find(x => x.id === orderId);
   if (!o) return;
@@ -1558,7 +1589,11 @@ window.openEditSchedule = function(orderId) {
   document.getElementById('sm-order-label').textContent =
     'Order: ' + (o.order_id || o.id.slice(0,8).toUpperCase()) + ' — ' + (o.name || 'Customer');
   document.getElementById('sm-date').value = o.scheduled_date || '';
-  document.getElementById('sm-time').value = o.scheduled_time || '';
+  const t = (o.scheduled_time || '').trim();
+  const m = t.match(/^(\d{1,2}):(\d{2})/);
+  document.getElementById('sm-hour').value = m ? String(parseInt(m[1], 10)).padStart(2, '0') : '';
+  document.getElementById('sm-minute').value = (m && m[2] === '30') ? '30' : '00';
+  document.getElementById('sm-time').value = m ? `${String(parseInt(m[1], 10)).padStart(2, '0')}:${(m[2] === '30') ? '30' : '00'}` : '';
   document.getElementById('schedule-modal').classList.add('open');
 };
 
