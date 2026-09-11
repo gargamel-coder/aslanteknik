@@ -1204,6 +1204,13 @@ function renderOrders() {
     el.innerHTML = `<div class="orders-empty">Tidak ada pesanan${orderFilter !== 'all' ? ' dengan status ini' : ''}${dateInfo}.</div>`;
     return;
   }
+  // Urutkan dari jam paling pagi (tanggal fix + jam fix)
+  list = list.slice().sort((a, b) => {
+    const ka = (a.scheduled_date || '') + ' ' + (a.scheduled_time || '99:99');
+    const kb = (b.scheduled_date || '') + ' ' + (b.scheduled_time || '99:99');
+    if (ka !== kb) return ka.localeCompare(kb);
+    return (b.created_at?.seconds || 0) - (a.created_at?.seconds || 0);
+  });
   el.innerHTML = list.map(o => {
     const createdAt = o.created_at
       ? new Date(o.created_at.seconds*1000).toLocaleString('id-ID',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})
@@ -1568,8 +1575,8 @@ function initScheduleTimeSelects() {
   const hSel = document.getElementById('sm-hour');
   if (hSel && !hSel.options.length) {
     hSel.innerHTML = '<option value="">--</option>' +
-      Array.from({length: 15}, (_, i) => {
-        const h = String(7 + i).padStart(2, '0');
+      Array.from({length: 11}, (_, i) => {
+        const h = String(8 + i).padStart(2, '0');
         return `<option value="${h}">${h}</option>`;
       }).join('');
   }

@@ -893,10 +893,13 @@ function renderTasks() {
     return;
   }
 
-  // Sort: belum first, then selesai, then skip
+  // Sort: belum first, then selesai, then skip — tiap grup urut dari jam paling pagi
+  const schedKey = o => (o.scheduled_date || getOrderDate(o) || '9999') + ' ' + (o.scheduled_time || '99:99');
   const sorted = [...filtered].sort((a,b) => {
     const order = { belum:0, selesai:1, skip:2 };
-    return (order[a.task_status||'belum']||0) - (order[b.task_status||'belum']||0);
+    const sa = (order[a.task_status||'belum']||0) - (order[b.task_status||'belum']||0);
+    if (sa !== 0) return sa;
+    return schedKey(a).localeCompare(schedKey(b));
   });
 
   el.innerHTML = sorted.map(o => buildTaskCard(o)).join('');
