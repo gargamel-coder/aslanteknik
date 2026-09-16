@@ -96,6 +96,14 @@
   .tab-btn{padding:8px 22px;border-radius:10px;border:none;background:transparent;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:500;color:var(--soft);transition:all 0.2s;}
   .tab-btn.act{background:var(--white);color:var(--charcoal);box-shadow:0 2px 8px rgba(0,0,0,0.08);}
   .tab-pane{display:none;}.tab-pane.act{display:block;}
+  .notif-card{background:var(--white);border:1px solid #FDE68A;border-left:4px solid var(--amber);border-radius:16px;padding:18px 20px;margin-bottom:12px;}
+  .notif-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:8px;}
+  .notif-name{font-size:0.95rem;font-weight:700;color:var(--charcoal);}
+  .notif-age{font-size:0.75rem;font-weight:600;color:#854D0E;background:#FEF9C3;padding:4px 9px;border-radius:100px;}
+  .notif-meta{font-size:0.8rem;color:var(--mid);line-height:1.7;margin-bottom:12px;}
+  .notif-wa{display:inline-flex;align-items:center;gap:6px;padding:9px 15px;border-radius:10px;background:#25D366;color:#fff;text-decoration:none;font-size:0.8rem;font-weight:600;transition:background 0.2s;}
+  .notif-wa:hover{background:#16A34A;}
+  .notif-summary{background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);border-radius:14px;padding:14px 16px;margin-bottom:18px;font-size:0.82rem;color:#854D0E;}
   /* ORDER CARDS */
   .order-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:20px 22px;margin-bottom:12px;transition:box-shadow 0.2s;}
   .order-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.07);}
@@ -389,6 +397,10 @@
         📦 Pesanan
         <span id="orders-badge" style="display:none;background:var(--red);color:#fff;border-radius:100px;padding:1px 7px;font-size:0.7rem;margin-left:4px;vertical-align:middle;"></span>
       </button>
+      <button class="tab-btn" id="tab-notifikasi" onclick="switchTab('notifikasi')">
+        🔔 Notifikasi
+        <span id="notifications-badge" style="display:none;background:var(--amber);color:#fff;border-radius:100px;padding:1px 7px;font-size:0.7rem;margin-left:4px;vertical-align:middle;"></span>
+      </button>
       <button class="tab-btn" id="tab-pendapatan" onclick="switchTab('pendapatan')">💰 Pendapatan</button>
       <button class="tab-btn" id="tab-teknisi" onclick="switchTab('teknisi')">👷 Teknisi</button>
     </div>
@@ -501,6 +513,15 @@
 
       <div id="orders-list">
         <div class="orders-empty">Belum ada pesanan masuk.</div>
+      </div>
+    </div>
+
+    <!-- PANE: NOTIFIKASI PERAWATAN -->
+    <div id="pane-notifikasi" class="tab-pane">
+      <div class="panel">
+        <div class="panel-title">🔔 Pengingat Perawatan AC</div>
+        <div class="notif-summary">Menampilkan customer dengan booking layanan <b>cuci</b> atau <b>pasang</b> yang tanggal layanannya sudah minimal 90 hari lalu. Klik tombol WhatsApp untuk mengirim pengingat dan menawarkan jadwal pekan ini.</div>
+        <div id="notifications-list"><div class="orders-empty">Memuat notifikasi...</div></div>
       </div>
     </div>
 
@@ -977,7 +998,7 @@ window.deleteV = async function(id, code) {
 
 // ── TABS ───────────────────────────────────────────────
 window.switchTab = function(tab) {
-  ['voucher','orders','pendapatan','teknisi'].forEach(t => {
+  ['voucher','orders','notifikasi','pendapatan','teknisi'].forEach(t => {
     const pane = document.getElementById('pane-'+t);
     const btn  = document.getElementById('tab-'+t);
     if (pane) pane.classList.toggle('act', t===tab);
@@ -1108,6 +1129,7 @@ function listenOrders() {
     allOrders = snap.docs.map(d => ({ id: d.id, ...d.data() }));
     renderOrderStats();
     renderOrders();
+    renderNotifications();
     renderCalendar(); // re-render dots
     renderIncome();
   });
@@ -1155,6 +1177,70 @@ function renderOrderStats() {
   const badge = document.getElementById('orders-badge');
   if (pending > 0) { badge.textContent = pending; badge.style.display = 'inline-block'; }
   else { badge.style.display = 'none'; }
+}
+
+// ── NOTIFIKASI PERAWATAN 90 HARI ───────────────────────
+function notificationDate(o) {
+  if (o.scheduled_date) {
+    const d = new Date(o.scheduled_date + 'T00:00:00');
+    if (!isNaN(d)) return d;
+  }
+  if (o.date) {
+    const d = new Date(o.date);
+    if (!isNaN(d)) return d;
+  }
+  if (o.created_at && o.created_at.seconds) return new Date(o.created_at.seconds * 1000);
+  return null;
+}
+
+function notificationServices(o) {
+  const services = Array.isArray(o.services) ? o.services : [o.services || ''];
+  return services.map(s => String(s).toLowerCase()).filter(s => s.includes('cuci') || s.includes('pasang'));
+}
+
+function notificationWaNumber(raw) {
+  const digits = String(raw || '').replace(/\D/g, '');
+  return digits.replace(/^0/, '62');
+}
+
+function renderNotifications() {
+  const el = document.getElementById('notifications-list');
+  const badge = document.getElementById('notifications-badge');
+  if (!el) return;
+  const now = new Date();
+  const cutoff = new Date(now.getTime() - (90 * 24 * 60 * 60 * 1000));
+  const eligible = allOrders
+    .filter(o => o.status !== 'rejected' && notificationServices(o).length && notificationDate(o) && notificationDate(o) <= cutoff)
+    .map(o => ({ order: o, date: notificationDate(o) }))
+    .sort((a,b) => a.date - b.date);
+
+  if (eligible.length) {
+    badge.textContent = eligible.length;
+    badge.style.display = 'inline-block';
+  } else {
+    badge.style.display = 'none';
+  }
+  if (!eligible.length) {
+    el.innerHTML = '<div class="orders-empty">Belum ada customer yang perlu diingatkan. ✅</div>';
+    return;
+  }
+
+  el.innerHTML = eligible.map(({order:o, date:lastDate}) => {
+    const ageDays = Math.floor((now - lastDate) / (24 * 60 * 60 * 1000));
+    const lastDateStr = lastDate.toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
+    const wa = notificationWaNumber(o.wa_number);
+    const services = Array.isArray(o.services) ? o.services.join(', ') : (o.services || 'layanan AC');
+    const message = `Halo Kak ${o.name || ''}, kami dari Aslan Teknik ingin mengingatkan bahwa AC Kakak terakhir mendapat layanan ${services} pada ${lastDateStr}. Sudah lebih dari 90 hari, jadi sebaiknya dijadwalkan perawatan kembali agar tetap dingin dan bersih. Apakah Kakak ingin kami bantu jadwalkan cuci AC di pekan ini?`;
+    const href = wa ? `https://wa.me/${wa}?text=${encodeURIComponent(message)}` : '';
+    const action = href
+      ? `<a class="notif-wa" href="${href}" target="_blank" rel="noopener">💬 Kirim Pengingat WhatsApp</a>`
+      : '<span style="font-size:0.78rem;color:var(--red);">Nomor WhatsApp belum tersedia</span>';
+    return `<div class="notif-card">
+      <div class="notif-head"><div class="notif-name">${o.name || 'Customer'}</div><span class="notif-age">${ageDays} hari sejak layanan</span></div>
+      <div class="notif-meta">📅 Layanan terakhir: <b>${lastDateStr}</b><br>🧰 ${services}<br>📱 ${o.wa_number || '—'}${o.city ? '<br>📍 ' + o.city : ''}</div>
+      ${action}
+    </div>`;
+  }).join('');
 }
 
 window.filterOrders = function(f) {
