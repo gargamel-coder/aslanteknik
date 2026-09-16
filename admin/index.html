@@ -1208,9 +1208,13 @@ function renderNotifications() {
   const badge = document.getElementById('notifications-badge');
   if (!el) return;
   const now = new Date();
-  const cutoff = new Date(now.getTime() - (90 * 24 * 60 * 60 * 1000));
+  const targetDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 90);
+  const isExactlyNinetyDaysAgo = date => date
+    && date.getFullYear() === targetDate.getFullYear()
+    && date.getMonth() === targetDate.getMonth()
+    && date.getDate() === targetDate.getDate();
   const eligible = allOrders
-    .filter(o => o.status !== 'rejected' && notificationServices(o).length && notificationDate(o) && notificationDate(o) <= cutoff)
+    .filter(o => o.status !== 'rejected' && notificationServices(o).length && isExactlyNinetyDaysAgo(notificationDate(o)))
     .map(o => ({ order: o, date: notificationDate(o) }))
     .sort((a,b) => a.date - b.date);
 
@@ -1230,7 +1234,11 @@ function renderNotifications() {
     const lastDateStr = lastDate.toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
     const wa = notificationWaNumber(o.wa_number);
     const services = Array.isArray(o.services) ? o.services.join(', ') : (o.services || 'layanan AC');
-    const message = `Halo Kak ${o.name || ''}, kami dari Aslan Teknik ingin mengingatkan bahwa AC Kakak terakhir mendapat layanan ${services} pada ${lastDateStr}. Sudah lebih dari 90 hari, jadi sebaiknya dijadwalkan perawatan kembali agar tetap dingin dan bersih. Apakah Kakak ingin kami bantu jadwalkan cuci AC di pekan ini?`;
+    const message = `Hallo kak, ${o.name || ''}!
+
+Mau mengingatkan kalau AC kakak sudah 90 hari sejak terakhir dicuci. Untuk menjaga AC tetap bersih, dingin, dan tidak cepat bermasalah, kami ingin menawarkan jadwal cuci AC rutin.
+
+Kalau Kakak berkenan, kami bisa bantu jadwalkan kunjungan teknisi sesuai waktu yang nyaman.`;
     const href = wa ? `https://wa.me/${wa}?text=${encodeURIComponent(message)}` : '';
     const action = href
       ? `<a class="notif-wa" href="${href}" target="_blank" rel="noopener">💬 Kirim Pengingat WhatsApp</a>`
