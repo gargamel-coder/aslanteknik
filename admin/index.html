@@ -1319,12 +1319,15 @@ function renderOrders() {
     el.innerHTML = `<div class="orders-empty">Tidak ada pesanan${orderFilter !== 'all' ? ' dengan status ini' : ''}${dateInfo}.</div>`;
     return;
   }
-  // Urutkan dari jam paling pagi (tanggal fix + jam fix)
+  // Urutkan dari booking paling terbaru di atas (created_at desc)
   list = list.slice().sort((a, b) => {
-    const ka = (a.scheduled_date || '') + ' ' + (a.scheduled_time || '99:99');
-    const kb = (b.scheduled_date || '') + ' ' + (b.scheduled_time || '99:99');
-    if (ka !== kb) return ka.localeCompare(kb);
-    return (b.created_at?.seconds || 0) - (a.created_at?.seconds || 0);
+    const ta = a.created_at?.seconds || 0;
+    const tb = b.created_at?.seconds || 0;
+    if (ta !== tb) return tb - ta;
+    // Tie-breaker: jadwal lebih pagi dulu
+    const ka = (a.scheduled_date || '') + ' ' + (a.scheduled_time || '');
+    const kb = (b.scheduled_date || '') + ' ' + (b.scheduled_time || '');
+    return ka.localeCompare(kb);
   });
   el.innerHTML = list.map(o => {
     const createdAt = o.created_at
