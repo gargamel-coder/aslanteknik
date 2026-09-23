@@ -12,8 +12,19 @@
 <meta name="theme-color" content="#5B4FD9">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aslan Teknik — Admin Dashboard</title>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<!-- Font Google dioptimasi (2026-09-23):
+     * preconnect: DNS/TLS siap lebih awal -> lebih cepat
+     * media="print" + onload: font TIDAK memblokir render halaman.
+       Halaman langsung tampil dengan font sistem, font kustom menyusul.
+       (Sebelumnya stylesheet font menahan tampilan sampai Google merespons.) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet" media="print" onload="this.media='all'">
+<noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+</noscript>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
 <style>
   :root{--cream:#FDF8F2;--charcoal:#1A1A2E;--mid:#4A4A6A;--soft:#8888AA;--accent:#5B4FD9;--accent2:#E8643A;--white:#fff;--border:rgba(0,0,0,0.08);--green:#22C55E;--red:#EF4444;--amber:#F59E0B;}
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -345,6 +356,14 @@
     <input type="password" class="l-input" id="l-pass" placeholder="••••••••">
     <button class="l-btn" id="btn-login">Masuk ke Dashboard</button>
     <p class="l-err" id="l-err"></p>
+    <!-- Muncul hanya kalau browser memblokir penyimpanan sesi (mode privat,
+         cookie diblokir). Supaya kalau diminta login lagi, penyebabnya jelas. -->
+    <p id="auth-warn" style="display:none;margin-top:14px;font-size:0.78rem;line-height:1.5;color:#8a5a00;background:#FFF6E0;border:1px solid #FFE0A3;border-radius:12px;padding:10px 12px;">
+      ⚠️ Browser ini memblokir penyimpanan sesi, jadi Anda akan diminta login
+      lagi tiap membuka halaman. Coba: matikan mode privat/incognito, izinkan
+      cookie &amp; penyimpanan situs, atau pastikan halaman dibuka dari domain
+      resmi (bukan URL preview).
+    </p>
   </div>
 </div>
 
@@ -769,10 +788,11 @@
 
 <script type="module">
 import { initializeApp }        from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-import { getAuth, setPersistence, browserLocalPersistence, signInWithEmailAndPassword, signOut, onAuthStateChanged }
+import { getAuth, setPersistence, browserLocalPersistence, browserSessionPersistence,
+         inMemoryPersistence, signInWithEmailAndPassword, signOut, onAuthStateChanged }
   from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
 import { getFirestore, collection, addDoc, doc, setDoc, updateDoc, deleteDoc,
-         onSnapshot, query, orderBy, where, getDocs, serverTimestamp, increment }
+         onSnapshot, query, orderBy, where, getDocs, serverTimestamp, increment, limit }
   from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
 const firebaseConfig = {
@@ -786,8 +806,44 @@ const firebaseConfig = {
 
 const app  = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-// Sesi admin tetap tersimpan di browser (tidak perlu login ulang tiap buka halaman)
-setPersistence(auth, browserLocalPersistence).catch(() => {});
+
+// ── SESI ADMIN (perbaikan 2026-09-23) ─────────────────────────────────
+// Masalah: "harus login terus setiap buka halaman".
+//
+// Dua penyebab yang diperbaiki dari sisi kode:
+//  1. setPersistence() TIDAK di-await. Firebase bisa mulai memulihkan sesi
+//     sebelum persistence tersimpan (race condition) -> sesi kadang tidak
+//     menempel. Sekarang di-await.
+//  2. Sebagian browser memblokir IndexedDB (mode privat / cookie diblokir),
+//     membuat browserLocalPersistence gagal. Disiapkan RANTAI fallback:
+//     Local -> Session -> In-memory.
+//
+// CATATAN: kalau domain situs belum terdaftar di Firebase Console >
+// Authentication > Settings > Authorized domains, sesi TIDAK akan bertahan.
+// Itu harus ditambahkan di Console (mis. aslanteknik.vercel.app).
+const PERSISTENCE_CHAIN = [browserLocalPersistence, browserSessionPersistence, inMemoryPersistence];
+
+async function siapkanPersistence() {
+  for (const mode of PERSISTENCE_CHAIN) {
+    try {
+      await setPersistence(auth, mode);
+      const nama = mode === browserLocalPersistence ? 'local (permanen)'
+                 : mode === browserSessionPersistence ? 'session (per tab)'
+                 : 'in-memory (sementara)';
+      console.info('[auth] persistence aktif:', nama);
+      window._persistPermanen = (mode === browserLocalPersistence);
+      return mode;
+    } catch (e) {
+      console.warn('[auth] persistence gagal, coba berikutnya:', e?.code || e?.message);
+    }
+  }
+  window._persistPermanen = false;
+  return null;
+}
+
+// Dituntut selesai SEBELUM onAuthStateChanged didaftarkan.
+const _persistSiap = siapkanPersistence();
+
 const db   = getFirestore(app);
 
 // Expose ke window agar fungsi global bisa akses tanpa dynamic import
@@ -836,30 +892,40 @@ let calMonth = new Date().getMonth();
 })();
 
 // ── AUTH ───────────────────────────────────────────────
-onAuthStateChanged(auth, user => {
-  if (user) {
-    document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('dashboard').style.display    = 'block';
-    document.getElementById('hdr-email').textContent      = user.email;
-    if (unsubVouchers)    { unsubVouchers();    unsubVouchers    = null; }
-    if (unsubOrders)      { unsubOrders();      unsubOrders      = null; }
-    listenVouchers();
-    listenOrders();
-    listenAvailability();
-    listenTechnicians();
-    const d = new Date(); d.setDate(d.getDate()+30);
-    document.getElementById('v-exp').value = d.toISOString().split('T')[0];
-    document.getElementById('v-exp').min   = new Date().toISOString().split('T')[0];
-    renderCalendar();
-  } else {
-    if (unsubVouchers)    { unsubVouchers();    unsubVouchers    = null; }
-    if (unsubOrders)      { unsubOrders();      unsubOrders      = null; }
-    if (unsubAvailability){ unsubAvailability();unsubAvailability= null; }
-    if (unsubTechnicians) { unsubTechnicians(); unsubTechnicians = null; }
-    allVouchers = []; allOrders = []; allAvailability = {}; allTechnicians = [];
-    document.getElementById('login-screen').style.display = 'flex';
-    document.getElementById('dashboard').style.display    = 'none';
-  }
+// PERBAIKAN (2026-09-23): tunggu persistence selesai, baru daftarkan
+// listener auth. Sebelumnya berjalan berbarengan sehingga sesi kadang
+// tidak terpulihkan -> user diminta login lagi padahal sudah pernah login.
+_persistSiap.then(() => {
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('dashboard').style.display    = 'block';
+      document.getElementById('hdr-email').textContent      = user.email;
+      // Kalau sesi TIDAK permanen (browser blokir penyimpanan), beri tahu.
+      if (window._persistPermanen === false) {
+        const w = document.getElementById('auth-warn');
+        if (w) w.style.display = 'block';
+      }
+      if (unsubVouchers)    { unsubVouchers();    unsubVouchers    = null; }
+      if (unsubOrders)      { unsubOrders();      unsubOrders      = null; }
+      listenVouchers();
+      listenOrders();
+      listenAvailability();
+      listenTechnicians();
+      const d = new Date(); d.setDate(d.getDate()+30);
+      document.getElementById('v-exp').value = d.toISOString().split('T')[0];
+      document.getElementById('v-exp').min   = new Date().toISOString().split('T')[0];
+      renderCalendar();
+    } else {
+      if (unsubVouchers)    { unsubVouchers();    unsubVouchers    = null; }
+      if (unsubOrders)      { unsubOrders();      unsubOrders      = null; }
+      if (unsubAvailability){ unsubAvailability();unsubAvailability= null; }
+      if (unsubTechnicians) { unsubTechnicians(); unsubTechnicians = null; }
+      allVouchers = []; allOrders = []; allAvailability = {}; allTechnicians = [];
+      document.getElementById('login-screen').style.display = 'flex';
+      document.getElementById('dashboard').style.display    = 'none';
+    }
+  });
 });
 
 async function doLogin() {
@@ -885,7 +951,9 @@ async function doLogout() { await signOut(auth); }
 
 // ── VOUCHERS ───────────────────────────────────────────
 function listenVouchers() {
-  const q = query(collection(db, 'vouchers'), orderBy('created_at', 'desc'));
+  // PERBAIKAN (2026-09-23): limit supaya tidak mengunduh SELURUH koleksi.
+  // Makin banyak data, dulu makin lambat dimuat saat login.
+  const q = query(collection(db, 'vouchers'), orderBy('created_at', 'desc'), limit(500));
   unsubVouchers = onSnapshot(q, snap => {
     allVouchers = snap.docs.map(d => ({ id: d.id, ...d.data() }));
     renderStats();
@@ -1022,6 +1090,22 @@ window.toggleCalendar = function() {
 function renderCalendar() {
   const grid = document.getElementById('cal-grid');
   const label = document.getElementById('cal-month-label');
+  if (!grid || !label) return;   // elemen belum siap -> jangan error
+
+  // PERBAIKAN (2026-09-23): renderCalendar dipanggil dari 8 tempat
+  // (orders, availability, filter, ganti bulan). Kalau data Firestore
+  // berubah beruntun, seluruh grid dihitung ulang berkali-kali -> berat.
+  // Render ditunda ke frame berikutnya dan hanya SEKALI per burst.
+  if (renderCalendar._jadwal) return;
+  renderCalendar._jadwal = requestAnimationFrame(() => {
+    renderCalendar._jadwal = null;
+    _renderCalendarNow();
+  });
+}
+
+function _renderCalendarNow() {
+  const grid = document.getElementById('cal-grid');
+  const label = document.getElementById('cal-month-label');
   const months = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
   const days = ['Min','Sen','Sel','Rab','Kam','Jum','Sab'];
 
@@ -1127,7 +1211,8 @@ document.getElementById('cal-clear').addEventListener('click', () => {
 
 // ── ORDERS ─────────────────────────────────────────────
 function listenOrders() {
-  const q = query(collection(db, 'orders'), orderBy('created_at', 'desc'));
+  // PERBAIKAN (2026-09-23): limit 1000 pesanan terbaru.
+  const q = query(collection(db, 'orders'), orderBy('created_at', 'desc'), limit(1000));
   unsubOrders = onSnapshot(q, snap => {
     allOrders = snap.docs.map(d => ({ id: d.id, ...d.data() }));
     renderOrderStats();
