@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico?v=2" type="image/x-icon">
+<link rel="shortcut icon" href="/favicon.ico?v=2" type="image/x-icon">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=3">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=3">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3">
+<meta name="theme-color" content="#5B4FD9">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricelist Servis AC — Aslan Teknik | Daftar Harga Transparan</title>
+<meta name="description" content="Daftar harga servis AC Aslan Teknik: cuci AC, pengecekan, ganti kapasitor, freon, bongkar pasang, dan instalasi. Harga transparan, teknisi bersertifikat. Melayani Jakarta Selatan, Depok, Bogor, Tangerang Selatan.">
+<link rel="canonical" href="https://aslanteknik.id/pricelist">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mint: #C8F0E8; --lavender: #DDD6F3; --peach: #FDDCCC;
+    --sky: #C9E8F5; --cream: #FDF8F2; --charcoal: #1A1A2E;
+    --mid: #4A4A6A; --soft: #8888AA; --accent: #5B4FD9;
+    --accent2: #E8643A; --white: #FFFFFF; --border: rgba(0,0,0,0.08);
+    --err: #EF4444; --green: #166534;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    font-family:'DM Sans',sans-serif; background:var(--cream);
+    color:var(--charcoal); overflow-x:hidden; line-height:1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(253,248,242,0.92); backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-in {
+    max-width:1120px; margin:0 auto; padding:14px 22px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+  }
+  .brand { font-family:'Instrument Serif',serif; font-size:1.35rem; color:var(--charcoal); text-decoration:none; }
+  .brand span { color:var(--accent); }
+  .nav-links { display:flex; align-items:center; gap:22px; }
+  .nav-links a { color:var(--mid); text-decoration:none; font-size:0.9rem; font-weight:500; transition:color .2s; }
+  .nav-links a:hover { color:var(--accent); }
+  .nav-cta {
+    background:var(--accent); color:#fff !important; padding:9px 18px;
+    border-radius:999px; font-weight:600 !important; font-size:0.86rem !important;
+  }
+  @media(max-width:760px){ .nav-links a:not(.nav-cta){ display:none; } }
+
+  /* ── HERO ── */
+  header {
+    padding:130px 22px 46px;
+    background:linear-gradient(160deg, var(--cream) 0%, #F5EFFB 55%, var(--mint) 100%);
+  }
+  .wrap { max-width:1120px; margin:0 auto; }
+  .slbl {
+    font-size:0.76rem; font-weight:700; color:var(--accent);
+    letter-spacing:0.14em; text-transform:uppercase; margin-bottom:14px;
+  }
+  h1 {
+    font-family:'Instrument Serif',serif; font-size:clamp(2rem,5vw,3.1rem);
+    line-height:1.12; letter-spacing:-0.02em; margin-bottom:16px;
+  }
+  h1 em { font-style:italic; color:var(--accent); }
+  .sub { color:var(--mid); font-size:1.03rem; max-width:660px; }
+  .hero-meta { display:flex; flex-wrap:wrap; gap:10px; margin-top:26px; }
+  .pill {
+    background:rgba(255,255,255,0.75); border:1px solid var(--border);
+    padding:8px 15px; border-radius:999px; font-size:0.82rem;
+    color:var(--mid); font-weight:500;
+  }
+
+  /* ── SECTION ── */
+  section { padding:52px 22px; }
+  .sec-head { margin-bottom:26px; }
+  h2 {
+    font-family:'Instrument Serif',serif; font-size:clamp(1.5rem,3.4vw,2.1rem);
+    letter-spacing:-0.01em; margin-bottom:8px;
+  }
+  .sec-desc { color:var(--mid); font-size:0.96rem; }
+
+  /* ── TABEL ── */
+  .tbl-card {
+    background:var(--white); border:1px solid var(--border);
+    border-radius:18px; overflow:hidden;
+    box-shadow:0 6px 26px rgba(26,26,46,0.05); margin-bottom:26px;
+  }
+  .tbl-head {
+    padding:18px 22px; border-bottom:1px solid var(--border);
+    display:flex; align-items:center; justify-content:space-between;
+    gap:12px; flex-wrap:wrap; background:linear-gradient(135deg,#FBF7FF,#F3FBF8);
+  }
+  .tbl-head h3 { font-size:1.02rem; font-weight:700; }
+  .tbl-head .note { font-size:0.78rem; color:var(--soft); }
+  .tbl-scroll { overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; min-width:660px; }
+  thead th {
+    background:#FAF7F3; text-align:left; padding:13px 16px;
+    font-size:0.72rem; font-weight:700; color:var(--mid);
+    text-transform:uppercase; letter-spacing:0.07em;
+    border-bottom:1px solid var(--border); white-space:nowrap;
+  }
+  thead th.num { text-align:right; }
+  tbody td {
+    padding:14px 16px; border-bottom:1px solid rgba(0,0,0,0.05);
+    font-size:0.9rem; vertical-align:top;
+  }
+  tbody tr:last-child td { border-bottom:none; }
+  tbody tr:hover { background:#FCFAF7; }
+  .svc-name { font-weight:600; color:var(--charcoal); }
+  .svc-desc { font-size:0.79rem; color:var(--soft); margin-top:3px; }
+  td.num { text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums; }
+  .price { font-weight:700; color:var(--accent); font-size:0.95rem; }
+  .badge-inc {
+    display:inline-block; margin-top:5px; font-size:0.66rem; font-weight:700;
+    letter-spacing:0.05em; text-transform:uppercase;
+    background:#EAFBF4; color:var(--green);
+    padding:3px 8px; border-radius:6px;
+  }
+
+  /* ── CALLOUT ── */
+  .callout {
+    display:flex; gap:14px; align-items:flex-start;
+    background:linear-gradient(135deg,#EAFBF4,#DFF7EC);
+    border:1px solid rgba(22,101,52,0.16);
+    border-left:4px solid var(--green);
+    border-radius:14px; padding:18px 20px; margin:0 0 26px;
+  }
+  .callout .ic { font-size:1.35rem; line-height:1; }
+  .callout h4 { font-size:0.96rem; color:var(--green); margin-bottom:5px; }
+  .callout p { font-size:0.88rem; color:#2F5F45; }
+  .callout.warn {
+    background:linear-gradient(135deg,#FFF7ED,#FEF1E4);
+    border-color:rgba(232,100,58,0.2);
+    border-left-color:var(--accent2);
+  }
+  .callout.warn h4 { color:#B4471F; }
+  .callout.warn p { color:#7A4429; }
+
+  /* ── TOMBOL ── */
+  .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:30px; }
+  .btn {
+    display:inline-flex; align-items:center; gap:9px;
+    padding:14px 26px; border-radius:999px; font-weight:600;
+    font-size:0.94rem; text-decoration:none; border:none; cursor:pointer;
+    font-family:inherit; transition:transform .18s, box-shadow .18s, background .18s;
+  }
+  .btn:active { transform:scale(0.98); }
+  .btn-primary {
+    background:var(--accent); color:#fff;
+    box-shadow:0 8px 22px rgba(91,79,217,0.28);
+  }
+  .btn-primary:hover { background:#4B3FC9; }
+  .btn-ghost {
+    background:var(--white); color:var(--accent);
+    border:1.5px solid rgba(91,79,217,0.28);
+  }
+  .btn-ghost:hover { background:#F6F3FF; }
+  .btn-wa { background:#25D366; color:#fff; box-shadow:0 8px 22px rgba(37,211,102,0.28); }
+  .btn-wa:hover { background:#1EBE5A; }
+
+  /* ── CTA BAND ── */
+  .cta-band {
+    background:linear-gradient(135deg,var(--charcoal) 0%,#2A2A4A 60%,#3B3170 100%);
+    border-radius:22px; padding:40px 34px; color:#fff; text-align:center;
+  }
+  .cta-band h3 {
+    font-family:'Instrument Serif',serif; font-size:clamp(1.5rem,3.6vw,2.1rem);
+    margin-bottom:12px;
+  }
+  .cta-band p { color:rgba(255,255,255,0.78); max-width:560px; margin:0 auto 24px; font-size:0.95rem; }
+  .cta-band .actions { justify-content:center; margin-top:0; }
+  .cta-band .btn-ghost { background:transparent; color:#fff; border-color:rgba(255,255,255,0.32); }
+  .cta-band .btn-ghost:hover { background:rgba(255,255,255,0.1); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top:1px solid var(--border); padding:30px 22px; margin-top:40px;
+    background:var(--white);
+  }
+  .foot-in {
+    max-width:1120px; margin:0 auto; display:flex; flex-wrap:wrap;
+    gap:14px; justify-content:space-between; align-items:center;
+    font-size:0.84rem; color:var(--soft);
+  }
+  .foot-in a { color:var(--mid); text-decoration:none; }
+  .foot-in a:hover { color:var(--accent); }
+
+  .area-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+  .area-tags span {
+    background:var(--white); border:1px solid var(--border);
+    padding:7px 14px; border-radius:999px; font-size:0.82rem; color:var(--mid);
+  }
+
+  /* ── CETAK / PDF ── */
+  @media print {
+    nav, .actions, footer .no-print { display:none !important; }
+    body { background:#fff; }
+    header { padding:20px 0 10px; background:#fff; }
+    section { padding:12px 0; }
+    .tbl-card, .callout { box-shadow:none; margin-bottom:14px; break-inside:avoid; }
+    .tbl-card { border-color:#ddd; }
+    tbody tr { break-inside:avoid; }
+    thead th { background:#f2f2f2 !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    .price, .badge-inc, .callout, .cta-band, .grp {
+      -webkit-print-color-adjust:exact; print-color-adjust:exact;
+    }
+    .cta-band { background:#f4f4f8 !important; color:#111 !important; padding:20px; }
+    .cta-band h3 { color:#111 !important; }
+    .cta-band p { color:#444 !important; }
+    a[href]:after { content:""; }
+    .print-only { display:block !important; }
+  }
+  .print-only { display:none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a class="brand" href="/">Aslan<span>Teknik</span></a>
+    <div class="nav-links">
+      <a href="/">Beranda</a>
+      <a href="/#layanan">Layanan</a>
+      <a href="/pricelist" style="color:var(--accent);font-weight:600;">Pricelist</a>
+      <a href="/booking" class="nav-cta">Booking Sekarang</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="slbl">Daftar Harga</div>
+    <h1>Pricelist <em>Servis AC</em></h1>
+    <p class="sub">
+      Harga transparan tanpa biaya tersembunyi. Semua pekerjaan dikerjakan teknisi
+      berpengalaman dengan hasil bergaransi. Harga dapat menyesuaikan kondisi unit
+      dan tingkat kesulitan di lapangan.
+    </p>
+    <div class="hero-meta">
+      <span class="pill">✅ Teknisi bersertifikat</span>
+      <span class="pill">🧾 Harga jelas di awal</span>
+      <span class="pill">🛡️ Bergaransi</span>
+      <span class="pill">⏱️ Respon cepat</span>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Daftar Harga per Layanan</h2>
+      <p class="sec-desc">
+        Harga per unit, sudah termasuk jasa teknisi. Kolom <b>Split</b> dan
+        <b>Inverter</b> membedakan jenis unit, dengan kapasitas <b>½–1 PK</b>
+        atau <b>1½–2 PK</b>.
+      </p>
+    </div>
+
+    <div class="tbl-card">
+      <div class="tbl-head">
+        <h3>💠 Servis &amp; Perawatan</h3>
+        <span class="note">Harga dalam Rupiah · per unit</span>
+      </div>
+      <div class="tbl-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Jenis Pekerjaan</th>
+              <th class="num">Split ½–1 PK</th>
+              <th class="num">Split 1½–2 PK</th>
+              <th class="num">Inverter ½–1 PK</th>
+              <th class="num">Inverter 1½–2 PK</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="svc-name">Cuci AC</div>
+                <div class="svc-desc">Bongkar unit, cuci evaporator &amp; kondensor, bersihkan drainase.</div>
+              </td>
+              <td class="num"><span class="price">Rp 110.000</span></td>
+              <td class="num"><span class="price">Rp 160.000</span></td>
+              <td class="num"><span class="price">Rp 160.000</span></td>
+              <td class="num"><span class="price">Rp 190.000</span></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="svc-name">Pengecekan / Diagnosa</div>
+                <div class="svc-desc">Pemeriksaan menyeluruh untuk menemukan penyebab masalah AC.</div>
+              </td>
+              <td class="num"><span class="price">Rp 80.000</span></td>
+              <td class="num"><span class="price">Rp 80.000</span></td>
+              <td class="num"><span class="price">Rp 80.000</span></td>
+              <td class="num"><span class="price">Rp 80.000</span></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="svc-name">Ganti Kapasitor</div>
+                <div class="svc-desc">Sudah termasuk sparepart kapasitor dan jasa pemasangan.</div>
+              </td>
+              <td class="num"><span class="price">Rp 345.000</span></td>
+              <td class="num"><span class="price">Rp 440.000</span></td>
+              <td class="num"><span class="price">Rp 345.000</span></td>
+              <td class="num"><span class="price">Rp 440.000</span></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="svc-name">Ganti Termis</div>
+                <div class="svc-desc">Penggantian termis / overload protector unit outdoor.</div>
+              </td>
+              <td class="num"><span class="price">Rp 200.000</span></td>
+              <td class="num"><span class="price">Rp 200.000</span></td>
+              <td class="num"><span class="price">Rp 200.000</span></td>
+              <td class="num"><span class="price">Rp 200.000</span></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="svc-name">Ganti Sensor</div>
+                <div class="svc-desc">Penggantian sensor suhu yang rusak atau tidak akurat.</div>
+              </td>
+              <td class="num"><span class="price">Rp 200.000</span></td>
+              <td class="num"><span class="price">Rp 200.000</span></td>
+              <td class="num"><span class="price">Rp 200.000</span></td>
+              <td class="num"><span class="price">Rp 200.000</span></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="svc-name">Overhaul</div>
+                <div class="svc-desc">Bongkar total unit, pembersihan menyeluruh, dan perbaikan komponen.</div>
+              </td>
+              <td class="num"><span class="price">Rp 560.000</span></td>
+              <td class="num"><span class="price">Rp 560.000</span></td>
+              <td class="num"><span class="price">Rp 560.000</span></td>
+              <td class="num"><span class="price">Rp 560.000</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="ic">🧰</div>
+      <div>
+        <h4>Jasa Instalasi — harga sudah termasuk bobok tembok &amp; vacuum</h4>
+        <p>
+          Harga <b>Pasang / Instalasi Baru</b> dan <b>Bongkar + Pasang</b> di bawah ini
+          <b>sudah termasuk</b> jasa <b>bobok tembok</b> untuk jalur pipa dan
+          <b>vacuum</b> (pengosongan udara serta kelembapan pada sistem) agar AC
+          bekerja optimal dan tidak cepat rusak. Tidak ada biaya tambahan untuk
+          kedua pekerjaan tersebut.
+        </p>
+      </div>
+    </div>
+
+    <div class="tbl-card">
+      <div class="tbl-head">
+        <h3>🧰 Instalasi &amp; Bongkar Pasang</h3>
+        <span class="note">Termasuk bobok tembok + vacuum</span>
+      </div>
+      <div class="tbl-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Jenis Pekerjaan</th>
+              <th class="num">Split ½–1 PK</th>
+              <th class="num">Split 1½–2 PK</th>
+              <th class="num">Inverter ½–1 PK</th>
+              <th class="num">Inverter 1½–2 PK</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="svc-name">Pasang / Instalasi Baru</div>
+                <div class="svc-desc">Pemasangan unit indoor &amp; outdoor, jalur pipa, bobok tembok, dan vacuum.</div>
+                <span class="badge-inc">Termasuk bobok tembok + vacuum</span>
+              </td>
+              <td class="num"><span class="price">Rp 375.000</span></td>
+              <td class="num"><span class="price">Rp 440.000</span></td>
+              <td class="num"><span class="price">Rp 375.000</span></td>
+              <td class="num"><span class="price">Rp 440.000</span></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="svc-name">Bongkar</div>
+                <div class="svc-desc">Pelepasan unit indoor &amp; outdoor, termasuk pengosongan freon ke tabung.</div>
+              </td>
+              <td class="num"><span class="price">Rp 250.000</span></td>
+              <td class="num"><span class="price">Rp 315.000</span></td>
+              <td class="num"><span class="price">Rp 250.000</span></td>
+              <td class="num"><span class="price">Rp 315.000</span></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="svc-name">Bongkar + Pasang</div>
+                <div class="svc-desc">Pindah unit lengkap: bongkar dari lokasi lama, pasang di lokasi baru, jalur pipa, dan vacuum.</div>
+                <span class="badge-inc">Termasuk bobok tembok + vacuum</span>
+              </td>
+              <td class="num"><span class="price">Rp 560.000</span></td>
+              <td class="num"><span class="price">Rp 750.000</span></td>
+              <td class="num"><span class="price">Rp 560.000</span></td>
+              <td class="num"><span class="price">Rp 750.000</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <div class="ic">📌</div>
+      <div>
+        <h4>Catatan penting untuk instalasi</h4>
+        <p>
+          Harga berlaku untuk pemasangan <b>standar</b> (panjang pipa s/d 3 meter,
+          posisi outdoor terjangkau). Kondisi khusus seperti pipa lebih panjang,
+          outdoor di lantai atas, atau perlu <b>tambahan freon</b> akan
+          diinformasikan lebih dulu sebelum pekerjaan dimulai — tanpa kejutan biaya.
+        </p>
+      </div>
+    </div>
+
+    <div class="tbl-card">
+      <div class="tbl-head">
+        <h3>❄️ Freon</h3>
+        <span class="note">Harga dalam Rupiah · per unit</span>
+      </div>
+      <div class="tbl-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Jenis Pekerjaan</th>
+              <th class="num">Split ½–1 PK</th>
+              <th class="num">Split 1½–2 PK</th>
+              <th class="num">Inverter ½–1 PK</th>
+              <th class="num">Inverter 1½–2 PK</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="svc-name">Tambah Freon R22</div>
+                <div class="svc-desc">Penambahan freon R22 untuk menutup kekurangan isi.</div>
+              </td>
+              <td class="num"><span class="price">Rp 280.000</span></td>
+              <td class="num"><span class="price">Rp 345.000</span></td>
+              <td class="num"><span class="price">Rp 280.000</span></td>
+              <td class="num"><span class="price">Rp 345.000</span></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="svc-name">Tambah Freon R32</div>
+                <div class="svc-desc">Penambahan freon R32 untuk unit inverter.</div>
+              </td>
+              <td class="num"><span class="price">Rp 315.000</span></td>
+              <td class="num"><span class="price">Rp 405.000</span></td>
+              <td class="num"><span class="price">Rp 315.000</span></td>
+              <td class="num"><span class="price">Rp 405.000</span></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="svc-name">Isi Freon R22</div>
+                <div class="svc-desc">Pengisian penuh freon R22 (sistem kosong).</div>
+              </td>
+              <td class="num"><span class="price">Rp 560.000</span></td>
+              <td class="num"><span class="price">Rp 690.000</span></td>
+              <td class="num"><span class="price">Rp 560.000</span></td>
+              <td class="num"><span class="price">Rp 690.000</span></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="svc-name">Isi Freon R32</div>
+                <div class="svc-desc">Pengisian penuh freon R32 (sistem kosong).</div>
+              </td>
+              <td class="num"><span class="price">Rp 625.000</span></td>
+              <td class="num"><span class="price">Rp 815.000</span></td>
+              <td class="num"><span class="price">Rp 625.000</span></td>
+              <td class="num"><span class="price">Rp 815.000</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="actions">
+      <a href="/booking" class="btn btn-primary">📅 Booking Sekarang</a>
+      <button class="btn btn-ghost" onclick="window.print()">⬇️ Download PDF</button>
+      <a href="https://wa.me/62895326105290?text=Halo%20Aslan%20Teknik%2C%20saya%20mau%20tanya%20soal%20harga%20servis%20AC" target="_blank" rel="noopener" class="btn btn-wa">💬 Tanya via WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Area Layanan</h2>
+      <p class="sec-desc">Teknisi kami siap datang ke lokasi Anda di wilayah berikut.</p>
+      <div class="area-tags">
+        <span>📍 Jakarta Selatan</span>
+        <span>📍 Depok</span>
+        <span>📍 Bogor</span>
+        <span>📍 Tangerang Selatan</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="wrap">
+    <div class="cta-band">
+      <h3>Sudah tahu kebutuhan Anda?</h3>
+      <p>
+        Pilih layanan, tentukan tanggal, dan konfirmasi dalam 5 menit.
+        Harga akhir dikonfirmasi teknisi sebelum pekerjaan dimulai.
+      </p>
+      <div class="actions">
+        <a href="/booking" class="btn btn-primary">📅 Booking Sekarang</a>
+        <a href="https://wa.me/62895326105290" target="_blank" rel="noopener" class="btn btn-ghost">💬 Chat WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-in">
+    <div>© <span id="yr"></span> Aslan Teknik — Jasa Servis AC Profesional</div>
+    <div class="no-print">
+      <a href="/">Beranda</a> · <a href="/booking">Booking</a> · <a href="/pricelist">Pricelist</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
