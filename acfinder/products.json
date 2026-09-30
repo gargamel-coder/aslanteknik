@@ -2,22 +2,32 @@
   {
     "product_id": "shopee-001",
     "affiliate_url": "https://s.shopee.co.id/4VdBmtalVr",
-    "brand": null,
-    "model": null,
-    "product_name": null,
-    "pk": null,
+    "brand": "AQUA",
+    "model": "AQA-KR05FQDL/FQAL",
+    "product_name": "AQUA AQA-KR05FQDL/FQAL — varian ½ PK",
+    "pk": 0.5,
     "inverter": null,
-    "price": null,
-    "budget_category": null,
-    "specifications": {},
+    "price": 2500000,
+    "budget_category": "under3",
+    "specifications": {
+      "cooling_btu_h": 5000,
+      "power_watt": 360,
+      "room_area_m2_up_to": 10,
+      "features": [
+        "Pendinginan cepat (klaim penjual: sekitar 5 menit)",
+        "Operasi 160–242 V",
+        "Aliran udara lebih jauh",
+        "Label efisiensi energi 4 bintang (klaim deskripsi)"
+      ]
+    },
     "image": null,
     "rating": null,
     "review_count": null,
     "verification_status": "unverified",
-    "last_checked": "2026-09-30T02:38:50.395Z",
+    "last_checked": null,
     "active": true,
     "source_url": "https://shopee.co.id/opaanlp/243117622/29255617981",
-    "verification_notes": "HTTP 200; detail produk tidak tersedia dari respons publik. Nilai PK/tipe/harga tidak ditebak."
+    "verification_notes": "Data harga dan spesifikasi diberikan langsung oleh pemilik Aslan Teknik pada 30 September 2026; detail tidak bisa diverifikasi mandiri dari halaman Shopee publik. Konfirmasi harga dan varian di Shopee sebelum checkout."
   },
   {
     "product_id": "shopee-002",
@@ -34,7 +44,7 @@
     "rating": null,
     "review_count": null,
     "verification_status": "unverified",
-    "last_checked": "2026-09-30T02:38:51.344Z",
+    "last_checked": null,
     "active": true,
     "source_url": "https://shopee.co.id/opaanlp/465149627/10716373664",
     "verification_notes": "HTTP 200; detail produk tidak tersedia dari respons publik. Nilai PK/tipe/harga tidak ditebak."
@@ -42,42 +52,65 @@
   {
     "product_id": "shopee-003",
     "affiliate_url": "https://s.shopee.co.id/20vqoNmJpg",
-    "brand": null,
+    "brand": "TCL",
     "model": null,
-    "product_name": null,
-    "pk": null,
+    "product_name": "TCL AC ½ PK — model belum disebut",
+    "pk": 0.5,
     "inverter": null,
-    "price": null,
-    "budget_category": null,
-    "specifications": {},
+    "price": 2800000,
+    "budget_category": "under3",
+    "specifications": {
+      "features": [
+        "Smart Air Flow",
+        "Comfortable Fast Cooling",
+        "Titan Gold",
+        "Super Quiet 22 dB (klaim deskripsi)",
+        "R32",
+        "I-Set",
+        "Turbo Mode"
+      ]
+    },
     "image": null,
     "rating": null,
     "review_count": null,
     "verification_status": "unverified",
-    "last_checked": "2026-09-30T02:38:52.361Z",
+    "last_checked": null,
     "active": true,
     "source_url": "https://shopee.co.id/opaanlp/227074971/24070422485",
-    "verification_notes": "HTTP 200; detail produk tidak tersedia dari respons publik. Nilai PK/tipe/harga tidak ditebak."
+    "verification_notes": "Data harga dan spesifikasi diberikan langsung oleh pemilik Aslan Teknik pada 30 September 2026; detail tidak bisa diverifikasi mandiri dari halaman Shopee publik. Konfirmasi harga dan varian di Shopee sebelum checkout."
   },
   {
     "product_id": "shopee-004",
     "affiliate_url": "https://s.shopee.co.id/6L4pyP13g2",
-    "brand": null,
-    "model": null,
-    "product_name": null,
-    "pk": null,
-    "inverter": null,
-    "price": null,
-    "budget_category": null,
-    "specifications": {},
+    "brand": "TCL",
+    "model": "TAC-05CSV/ZB2",
+    "product_name": "TCL SavelN AI WiFi Inverter ½ PK TAC-05CSV/ZB2",
+    "pk": 0.5,
+    "inverter": true,
+    "price": 3500000,
+    "budget_category": "3-5",
+    "specifications": {
+      "power_watt": 385,
+      "features": [
+        "Kontrol WiFi TCL Home",
+        "Smart Airflow",
+        "Auto Diagnose",
+        "Silent Mode 26 dB (klaim deskripsi)",
+        "Fast Cooling (klaim deskripsi)",
+        "Outdoor self-cleaning"
+      ],
+      "warranty_compressor_years": 10,
+      "warranty_sparepart_years": 5,
+      "energy_efficiency_verified": false
+    },
     "image": null,
     "rating": null,
     "review_count": null,
-    "verification_status": "unverified",
-    "last_checked": "2026-09-30T02:38:53.449Z",
+    "verification_status": "verified",
+    "last_checked": null,
     "active": true,
     "source_url": "https://shopee.co.id/opaanlp/227074971/46612372033",
-    "verification_notes": "HTTP 200; detail produk tidak tersedia dari respons publik. Nilai PK/tipe/harga tidak ditebak."
+    "verification_notes": "Data harga dan spesifikasi diberikan langsung oleh pemilik Aslan Teknik pada 30 September 2026; detail tidak bisa diverifikasi mandiri dari halaman Shopee publik. Konfirmasi harga dan varian di Shopee sebelum checkout."
   },
   {
     "product_id": "shopee-005",
@@ -94,7 +127,7 @@
     "rating": null,
     "review_count": null,
     "verification_status": "unverified",
-    "last_checked": "2026-09-30T02:38:54.422Z",
+    "last_checked": null,
     "active": true,
     "source_url": "https://shopee.co.id/opaanlp/227074971/23473565669",
     "verification_notes": "HTTP 200; detail produk tidak tersedia dari respons publik. Nilai PK/tipe/harga tidak ditebak."
@@ -114,7 +147,7 @@
     "rating": null,
     "review_count": null,
     "verification_status": "unverified",
-    "last_checked": "2026-09-30T02:38:55.395Z",
+    "last_checked": null,
     "active": true,
     "source_url": "https://shopee.co.id/opaanlp/227074971/22473571131",
     "verification_notes": "HTTP 200; detail produk tidak tersedia dari respons publik. Nilai PK/tipe/harga tidak ditebak."
@@ -134,7 +167,7 @@
     "rating": null,
     "review_count": null,
     "verification_status": "unverified",
-    "last_checked": "2026-09-30T02:38:56.376Z",
+    "last_checked": null,
     "active": true,
     "source_url": "https://shopee.co.id/opaanlp/466645045/25264061335",
     "verification_notes": "HTTP 200; detail produk tidak tersedia dari respons publik. Nilai PK/tipe/harga tidak ditebak."
@@ -154,7 +187,7 @@
     "rating": null,
     "review_count": null,
     "verification_status": "unverified",
-    "last_checked": "2026-09-30T02:38:57.402Z",
+    "last_checked": null,
     "active": true,
     "source_url": "https://shopee.co.id/opaanlp/466645045/29969737965",
     "verification_notes": "HTTP 200; detail produk tidak tersedia dari respons publik. Nilai PK/tipe/harga tidak ditebak."
@@ -174,7 +207,7 @@
     "rating": null,
     "review_count": null,
     "verification_status": "unverified",
-    "last_checked": "2026-09-30T02:38:58.418Z",
+    "last_checked": null,
     "active": true,
     "source_url": "https://shopee.co.id/opaanlp/1550431283/40304997369",
     "verification_notes": "HTTP 200; detail produk tidak tersedia dari respons publik. Nilai PK/tipe/harga tidak ditebak."
@@ -194,7 +227,7 @@
     "rating": null,
     "review_count": null,
     "verification_status": "unverified",
-    "last_checked": "2026-09-30T02:38:59.379Z",
+    "last_checked": null,
     "active": true,
     "source_url": "https://shopee.co.id/opaanlp/57328541/28423346555",
     "verification_notes": "HTTP 200; detail produk tidak tersedia dari respons publik. Nilai PK/tipe/harga tidak ditebak."
@@ -214,7 +247,7 @@
     "rating": null,
     "review_count": null,
     "verification_status": "unverified",
-    "last_checked": "2026-09-30T02:39:00.353Z",
+    "last_checked": null,
     "active": true,
     "source_url": "https://shopee.co.id/opaanlp/57328541/21057416675",
     "verification_notes": "HTTP 200; detail produk tidak tersedia dari respons publik. Nilai PK/tipe/harga tidak ditebak."
@@ -234,7 +267,7 @@
     "rating": null,
     "review_count": null,
     "verification_status": "unverified",
-    "last_checked": "2026-09-30T02:39:01.359Z",
+    "last_checked": null,
     "active": true,
     "source_url": "https://shopee.co.id/opaanlp/818619470/20134555163",
     "verification_notes": "HTTP 200; detail produk tidak tersedia dari respons publik. Nilai PK/tipe/harga tidak ditebak."
@@ -254,7 +287,7 @@
     "rating": null,
     "review_count": null,
     "verification_status": "unverified",
-    "last_checked": "2026-09-30T02:39:02.403Z",
+    "last_checked": null,
     "active": true,
     "source_url": "https://shopee.co.id/opaanlp/818619470/20234565278",
     "verification_notes": "HTTP 200; detail produk tidak tersedia dari respons publik. Nilai PK/tipe/harga tidak ditebak."
@@ -274,7 +307,7 @@
     "rating": null,
     "review_count": null,
     "verification_status": "unverified",
-    "last_checked": "2026-09-30T02:39:03.407Z",
+    "last_checked": null,
     "active": true,
     "source_url": "https://shopee.co.id/opaanlp/818619470/20134555175",
     "verification_notes": "HTTP 200; detail produk tidak tersedia dari respons publik. Nilai PK/tipe/harga tidak ditebak."
@@ -294,9 +327,34 @@
     "rating": null,
     "review_count": null,
     "verification_status": "unverified",
-    "last_checked": "2026-09-30T02:39:04.392Z",
+    "last_checked": null,
     "active": true,
     "source_url": "https://shopee.co.id/opaanlp/818619470/18932892298",
     "verification_notes": "HTTP 200; detail produk tidak tersedia dari respons publik. Nilai PK/tipe/harga tidak ditebak."
+  },
+  {
+    "product_id": "shopee-001-1pk",
+    "variant_of": "shopee-001",
+    "affiliate_url": "https://s.shopee.co.id/4VdBmtalVr",
+    "brand": "AQUA",
+    "model": "AQA-KR09FQDL/FQAL",
+    "product_name": "AQUA AQA-KR09FQDL/FQAL — varian 1 PK",
+    "pk": 1,
+    "inverter": null,
+    "price": 3300000,
+    "budget_category": "3-5",
+    "specifications": {
+      "cooling_btu_h": 9000,
+      "power_watt": 760,
+      "room_area_m2_up_to": 14
+    },
+    "image": null,
+    "rating": null,
+    "review_count": null,
+    "verification_status": "partial",
+    "last_checked": "2026-09-30T03:27:08.564Z",
+    "active": true,
+    "source_url": "https://shopee.co.id/opaanlp/243117622/29255617981",
+    "verification_notes": "Data harga dan spesifikasi diberikan langsung oleh pemilik Aslan Teknik pada 30 September 2026; detail tidak bisa diverifikasi mandiri dari halaman Shopee publik. Konfirmasi harga dan varian di Shopee sebelum checkout."
   }
 ]

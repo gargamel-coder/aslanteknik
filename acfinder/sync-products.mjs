@@ -10,7 +10,8 @@ const linksPath=path.join(dir,'affiliate-links.json'),outPath=path.join(dir,'pro
 const links=JSON.parse(fs.readFileSync(linksPath,'utf8'));
 const existing=fs.existsSync(outPath)?JSON.parse(fs.readFileSync(outPath,'utf8')):[];
 if(!Array.isArray(links))throw Error('affiliate-links.json harus array');
-const byUrl=new Map(existing.map(p=>[p.affiliate_url,p]));
+const byUrl=new Map(existing.filter(p=>!p.variant_of).map(p=>[p.affiliate_url,p]));
+const variants=existing.filter(p=>p.variant_of);
 const cleanText=s=>String(s??'').replace(/<[^>]*>/g,' ').replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#39;/g,"'").trim();
 const meta=(s,name)=>{const re=new RegExp(`<meta[^>]+(?:property|name)=["']${name}["'][^>]*content=["']([^"']+)["']|<meta[^>]+content=["']([^"']+)["'][^>]*(?:property|name)=["']${name}["']`,'i');const m=s.match(re);return m?cleanText(m[1]||m[2]):null};
 const extract=(html)=>{const title=meta(html,'og:title')||meta(html,'twitter:title')||cleanText(html.match(/<title[^>]*>([^<]+)<\/title>/i)?.[1]);const image=meta(html,'og:image')||meta(html,'twitter:image');const desc=meta(html,'og:description')||meta(html,'description');return {title:title||null,image:image||null,description:desc||null}};
@@ -19,7 +20,7 @@ const changes=[];
 for(const [i,entry] of links.entries()){
  const u=entry.affiliate_url;if(!validateProduct({product_id:'check',affiliate_url:u,verification_status:'unverified'}).valid)throw Error(`URL ke-${i+1} bukan Shopee yang sah`);
  const previous=byUrl.get(u)||{};const id=previous.product_id||`shopee-${String(i+1).padStart(3,'0')}`;
- const rec={product_id:id,affiliate_url:u,brand:previous.brand??null,model:previous.model??null,product_name:previous.product_name??null,pk:previous.pk??null,inverter:previous.inverter??null,price:previous.price??null,budget_category:previous.price!=null?categorizeBudget(previous.price):null,specifications:previous.specifications??{},image:previous.image??null,rating:previous.rating??null,review_count:previous.review_count??null,verification_status:previous.verification_status??'unverified',last_checked:null,active:previous.active??true,source_url:previous.source_url??null,verification_notes:previous.verification_notes??null};
+ const rec={product_id:id,affiliate_url:u,brand:previous.brand??null,model:previous.model??null,product_name:previous.product_name??null,pk:previous.pk??null,inverter:previous.inverter??null,price:previous.price??null,budget_category:previous.price!=null?categorizeBudget(previous.price):null,specifications:previous.specifications??{},image:previous.image??null,rating:previous.rating??null,review_count:previous.review_count??null,verification_status:previous.verification_status??'unverified',last_checked:previous.last_checked??null,active:previous.active??true,source_url:previous.source_url??null,verification_notes:previous.verification_notes??null};
  if(process.argv.includes('--check-links')){
    try{
      // curl mengikuti proxy HTTPS pada sandbox; fetch Node bisa gagal sebelum redirect.
@@ -38,4 +39,4 @@ for(const [i,entry] of links.entries()){
  if(!rec.product_name||!rec.model||!rec.brand||!Number.isFinite(Number(rec.pk))||rec.pk<=0||typeof rec.inverter!=='boolean'||!Number.isFinite(Number(rec.price))||rec.price<=0)rec.verification_status='unverified';
  byUrl.set(u,rec);
 }
-const validURLs=new Set(links.map(e=>e.affiliate_url));const products=[...byUrl.values()].filter(p=>validURLs.has(p.affiliate_url));const errors=validateInventory(products);if(errors.length)throw Error(errors.join('\n'));fs.writeFileSync(outPath,JSON.stringify(products,null,2)+'\n');console.log(`Tersimpan ${products.length} produk; terverifikasi ${products.filter(p=>p.verification_status==='verified').length}; tidak terverifikasi ${products.filter(p=>p.verification_status!=='verified').length}`);for(const line of changes)console.log(line);
+const validURLs=new Set(links.map(e=>e.affiliate_url));const products=[...byUrl.values(),...variants].filter(p=>validURLs.has(p.affiliate_url));const errors=validateInventory(products);if(errors.length)throw Error(errors.join('\n'));fs.writeFileSync(outPath,JSON.stringify(products,null,2)+'\n');console.log(`Tersimpan ${products.length} produk; terverifikasi ${products.filter(p=>p.verification_status==='verified').length}; tidak terverifikasi ${products.filter(p=>p.verification_status!=='verified').length}`);for(const line of changes)console.log(line);

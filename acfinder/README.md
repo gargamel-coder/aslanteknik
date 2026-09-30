@@ -10,7 +10,7 @@ Rute statis: `/acfinder/` (`index.html`, `app.mjs`, `engine.mjs`, `inventory.mjs
 - `specifications`, `image`, `rating`, `review_count`, `verification_status`, `last_checked`, `active`
 - `source_url`, `verification_notes` untuk jejak pemeriksaan.
 
-**Jangan mengisi metadata berdasarkan urutan tautan atau label merek yang diberikan bersama daftar.** Tautan pendek hanya membuktikan redirect ke Shopee; halaman publik dapat menutup metadata bagi bot. Item yang belum terverifikasi ditandai `unverified`, field inti `null`, dan **tidak muncul sebagai rekomendasi**. Hasil kebutuhan AC tetap tampil jujur dengan informasi bahwa belum ada produk cocok yang dapat diverifikasi.
+**Jangan mengisi metadata berdasarkan urutan tautan atau label merek yang diberikan bersama daftar.** Tautan pendek hanya membuktikan redirect ke Shopee; halaman publik dapat menutup metadata bagi bot. Item yang belum punya data diberi `unverified`; spesifikasi yang diberikan pemilik tetapi masih kurang (misalnya jenis inverter) diberi `partial` dan ditampilkan terpisah sebagai **opsi cek manual**, bukan rekomendasi penuh. Hanya item `verified` dengan PK, jenis, harga, model, serta catatan asal yang lengkap masuk ranking. Harga dari pemilik adalah harga acuan, bukan harga Shopee yang dicek langsung. Varian berbeda dapat memakai URL afiliasi yang sama, tetapi pembeli harus memilih varian yang disebut sebelum checkout.
 
 ## Menambah produk
 

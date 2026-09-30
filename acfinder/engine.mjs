@@ -38,4 +38,8 @@ export function recommendProducts(need,inventory){
  if(need.inverter){const efficient=candidates.filter(p=>!used.has(p.product_id)&&p.specifications?.energy_efficiency_verified===true).sort((a,b)=>(b.specifications?.energy_efficiency_rating||0)-(a.specifications?.energy_efficiency_rating||0))[0];if(efficient){result.push({label:'⚡ Pilihan efisien',product:efficient});used.add(efficient.product_id)}}
  return result;
 }
+export function findPartialProducts(need,inventory){
+ const min=need.budget.min||0,max=need.budget.max;
+ return inventory.filter(p=>p.active===true&&p.verification_status==='partial'&&validateProduct(p).valid&&p.inverter==null&&Number(p.pk)>=need.pk&&Number(p.pk)<=need.pk+0.5&&Number(p.price)>=min&&Number(p.price)<=max).sort((a,b)=>Number(a.pk)-Number(b.pk)||Number(a.price)-Number(b.price)).slice(0,3);
+}
 export const pkLabel=pk=>Number.isInteger(pk)?String(pk):String(pk).replace('0.5','½').replace('0.75','¾').replace('1.5','1½').replace('2.5','2½');
