@@ -36,7 +36,8 @@ for(const [i,entry] of links.entries()){
    await sleep(300);
  }
  // Verified HANYA jika data inti lengkap dan diverifikasi manual/sumber terpercaya.
- if(!rec.product_name||!rec.model||!rec.brand||!Number.isFinite(Number(rec.pk))||rec.pk<=0||typeof rec.inverter!=='boolean'||!Number.isFinite(Number(rec.price))||rec.price<=0)rec.verification_status='unverified';
+ if(!rec.product_name||!rec.brand||!Number.isFinite(Number(rec.pk))||rec.pk<=0||!Number.isFinite(Number(rec.price))||rec.price<=0)rec.verification_status='unverified';
+ else if(typeof rec.inverter!=='boolean'||!rec.model)rec.verification_status='partial';
  byUrl.set(u,rec);
 }
 const validURLs=new Set(links.map(e=>e.affiliate_url));const products=[...byUrl.values(),...variants].filter(p=>validURLs.has(p.affiliate_url));const errors=validateInventory(products);if(errors.length)throw Error(errors.join('\n'));fs.writeFileSync(outPath,JSON.stringify(products,null,2)+'\n');console.log(`Tersimpan ${products.length} produk; terverifikasi ${products.filter(p=>p.verification_status==='verified').length}; tidak terverifikasi ${products.filter(p=>p.verification_status!=='verified').length}`);for(const line of changes)console.log(line);
