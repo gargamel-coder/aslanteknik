@@ -43,8 +43,8 @@ set('shopee-016', {
 set('shopee-017', {
   brand: 'AQUA', model: 'AQA-KCR09FQDL / KCR9FQAL', product_name: 'AQUA AQA-KCR09FQDL / KCR9FQAL — 1 PK Non-Inverter',
   pk: 1, inverter: false, price: 2900000,
-  specifications: {cooling_btu_h: 9000, power_watt: 760},
-  source_url: 'https://shopee.co.id/opaanlp/19109964/43712077230',
+  specifications: {cooling_btu_h: 9000, power_watt: 790},
+  source_url: 'https://shopee.co.id/opaanlp/229571444/18682269838',
 });
 
 // ── TCL ───────────────────────────────────────────────────────────────────
