@@ -311,10 +311,20 @@
   .cd.dis,.cd.oth { color:#ccc;cursor:default;pointer-events:none; }
 
   /* ── AVAILABILITY STATUS ── */
+  /* Full booked: merah, cap FULL, tidak bisa klik */
   .cd.avail-full {
     background:#FEE2E2 !important; color:#EF4444 !important;
     cursor:not-allowed !important; pointer-events:none;
-    text-decoration:line-through; opacity:0.75;
+    opacity:0.9; position:relative;
+    padding-bottom:4px; line-height:1.15;
+  }
+  .cd.avail-full .full-stamp {
+    display:block; margin:2px auto 0; width:fit-content;
+    background:#DC2626; color:#fff !important;
+    font-size:0.52rem; font-weight:800; letter-spacing:0.05em;
+    border-radius:4px; padding:1px 4px; line-height:1.3;
+    text-decoration:none; transform:rotate(-4deg);
+    box-shadow:0 1px 3px rgba(220,38,38,0.4);
   }
   .cd.avail-almost { position:relative; }
   .cd.avail-almost::after {
@@ -1058,6 +1068,7 @@ function renderCal() {
       btn.title = 'Hari Jumat libur';
     } else if (avail === 'full_booked') {
       btn.classList.add('avail-full');
+      btn.innerHTML = '<span>' + d + '</span><span class="full-stamp">FULL</span>';
       btn.title = 'Tanggal ini sudah penuh. Silakan pilih tanggal lain.';
     } else {
       if(dt.toDateString() === today.toDateString()) btn.classList.add('tod');
