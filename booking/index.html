@@ -1106,6 +1106,7 @@ function chMon(dir) {
   var warnEl = document.getElementById('avail-warn');
   if (warnEl) warnEl.classList.remove('show');
   renderCal();
+  _loadAvailability();
 }
 
 function pickDay(btn, date) {
@@ -1341,10 +1342,22 @@ function updDiscountDisplay() {
 
 // ── CALENDAR AVAILABILITY ──────────────────────────────
 function _loadAvailability() {
-  if (!window._fbDb || !window._fbGetDocs || !window._fbCollection) return;
-  window._fbGetDocs(window._fbCollection(window._fbDb, 'calendar_availability'))
+  if (!window._fbDb || !window._fbGetDocs || !window._fbCollection || !window._fbQuery || !window._fbWhere) return;
+
+  var firstKey = curYr + '-' + String(curMon + 1).padStart(2, '0') + '-01';
+  var lastDay = new Date(curYr, curMon + 1, 0).getDate();
+  var lastKey = curYr + '-' + String(curMon + 1).padStart(2, '0') + '-' + String(lastDay).padStart(2, '0');
+  var q = window._fbQuery(
+    window._fbCollection(window._fbDb, 'calendar_availability'),
+    window._fbWhere('__name__', '>=', firstKey),
+    window._fbWhere('__name__', '<=', lastKey)
+  );
+
+  window._fbGetDocs(q)
     .then(function(snap) {
-      availabilityMap = {};
+      Object.keys(availabilityMap).forEach(function(key) {
+        if (key >= firstKey && key <= lastKey) delete availabilityMap[key];
+      });
       snap.docs.forEach(function(d) {
         availabilityMap[d.id] = d.data().status;
       });
