@@ -753,6 +753,7 @@ window.dispatchEvent(new Event('fbReady'));
         <span class="err-msg" id="err-date">Pilih tanggal layanan</span>
         <div class="avail-legend">
           <span><span class="avail-dot-l" style="background:#ccc;"></span> Jumat libur</span>
+          <span><span class="avail-dot-l" style="background:#FEE2E2;border:1.5px solid #EF4444;"></span> Full booked — tidak bisa dipilih</span>
         </div>
         <div class="avail-warn" id="avail-warn">
           ⚠️ <strong>Jadwal ini hampir penuh.</strong> Konfirmasi akan lebih lama — pertimbangkan tanggal lain jika kamu butuh kepastian cepat.
@@ -1340,11 +1341,7 @@ function updDiscountDisplay() {
 
 // ── CALENDAR AVAILABILITY ──────────────────────────────
 function _loadAvailability() {
-  if (!window._fbDb || !window._fbGetDocs || !window._fbCollection) {
-    // Firebase module belum selesai init — retry sekali setelah 300ms
-    setTimeout(_loadAvailability, 300);
-    return;
-  }
+  if (!window._fbDb || !window._fbGetDocs || !window._fbCollection) return;
   window._fbGetDocs(window._fbCollection(window._fbDb, 'calendar_availability'))
     .then(function(snap) {
       availabilityMap = {};
@@ -1359,9 +1356,9 @@ function _loadAvailability() {
 // ── INIT ───────────────────────────────────────────────
 renderCal();
 upd();
-// Load availability setelah Firebase siap
-// Firebase module sudah init di <head>, window._fbDb tersedia saat script ini jalan
-_loadAvailability();
+// Load availability setelah Firebase siap (pola sama dgn index.html halaman utama)
+window.addEventListener('fbReady', _loadAvailability);
+if (window._fbDb && window._fbGetDocs) _loadAvailability();
 </script>
 
 <!-- ASLAN TEKNIK — TRACKING SCRIPT v2 -->
