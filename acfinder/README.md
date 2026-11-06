@@ -25,6 +25,10 @@ Ini katalog berbasis file untuk situs statis: penambahan link perlu sinkronisasi
 
 Perkiraan kebutuhan berdasar luas × 500 BTU/m² lalu koreksi plafon, penghuni, matahari, dan perangkat; dibulatkan ke kapasitas pasar ½, ¾, 1, 1½, 2, 2½, 3 PK. Ini bukan survei HVAC dan ditampilkan sebagai perkiraan. Pilihan inverter eksplisit diikuti; mode otomatis mempertimbangkan durasi/prioritas. Produk harus lolos status, tipe, kapasitas cukup, dan budget. Maksimal tiga peran tanpa duplikasi; label efisien hanya jika ada spesifikasi efisiensi terverifikasi. Jika tidak ada kecocokan, jangan turunkan kapasitas atau melampaui budget diam-diam. Budget adalah batas atas (pilihan "Di atas Rp12 juta" tidak membuang AC yang lebih murah). Bila tidak ada kecocokan, `findAlternatives` menampilkan maksimal dua alternatif berlabel jelas: beda tipe dengan harga dalam budget, atau tipe sama di atas budget — kapasitas tidak pernah diturunkan.
 
+## Merek pilihan teknisi
+
+`RECOMMENDED_BRANDS` di `engine.mjs` (Panasonic, TCL, AQUA, Midea, Mitsubishi, Gree, FLIFE, COMFEE, Hisense) adalah daftar merek hasil pengamatan teknisi Aslan Teknik di lapangan. Produk merek lain tidak akan direkomendasikan meski ada di katalog. Halaman hasil menampilkan keterangan ini di atas daftar produk. Ubah daftar di satu tempat itu saja.
+
 ## Halaman hasil
 
 Urutannya: ringkasan kapasitas → **penjelasan per jawaban** (apa artinya dan pengaruhnya, termasuk tambahan BTU dari plafon, orang, matahari, dan perangkat) → kesimpulan kebutuhan → rekomendasi produk dengan alasan kecocokan dan tautan afiliasi → alternatif (bila ada) → disclosure afiliasi. Input ukuran ruangan tidak lagi pindah otomatis saat mengetik; pengguna menekan Lanjut atau Enter.

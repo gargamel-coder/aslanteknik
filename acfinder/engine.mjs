@@ -1,6 +1,9 @@
 // Mesin rekomendasi murni; tidak bergantung pada merek atau produk tertentu.
 export const PK_LEVELS=[{pk:0.5,btu:5000},{pk:0.75,btu:7000},{pk:1,btu:9000},{pk:1.5,btu:12000},{pk:2,btu:18000},{pk:2.5,btu:24000},{pk:3,btu:28000}];
 export const BUDGETS={'under3':{label:'Di bawah Rp3 juta',max:3000000},'3-5':{label:'Rp3–5 juta',max:5000000},'5-8':{label:'Rp5–8 juta',max:8000000},'8-12':{label:'Rp8–12 juta',max:12000000},'over12':{label:'Di atas Rp12 juta',max:Infinity}};
+// Merek pilihan teknisi Aslan Teknik. Produk merek lain tidak pernah direkomendasikan, walau ada di katalog.
+export const RECOMMENDED_BRANDS=['Panasonic','TCL','AQUA','Midea','Mitsubishi','Gree','FLIFE','COMFEE','Hisense'];
+export const isRecommendedBrand=b=>RECOMMENDED_BRANDS.some(x=>x.toLowerCase()===String(b||'').trim().toLowerCase());
 // Budget adalah batas atas: AC yang lebih murah tetap boleh tampil.
 export const factors={ceiling:{low:0.94,normal:1,high:1.18},people:{'1':0,'2':450,'3-4':1150,'5+':2400},sun:{none:1,little:1.09,moderate:1.19,very:1.32},heat:{none:0,tv:400,several:900,many:1600}};
 export function categorizeBudget(price){if(!Number.isFinite(Number(price))||price<0)return null;return price<3000000?'under3':price<=5000000?'3-5':price<=8000000?'5-8':price<=12000000?'8-12':'over12'}
@@ -35,7 +38,7 @@ export function validateProduct(p){
 }
 export function recommendProducts(need,inventory){
  const min=need.budget.min||0,max=need.budget.max;
- const candidates=inventory.filter(p=>p.active===true&&p.verification_status==='verified'&&validateProduct(p).valid&&Number(p.pk)>=need.pk&&Number(p.pk)<=need.pk+0.5&&p.inverter===need.inverter&&Number(p.price)>=min&&Number(p.price)<=max);
+ const candidates=inventory.filter(p=>p.active===true&&isRecommendedBrand(p.brand)&&p.verification_status==='verified'&&validateProduct(p).valid&&Number(p.pk)>=need.pk&&Number(p.pk)<=need.pk+0.5&&p.inverter===need.inverter&&Number(p.price)>=min&&Number(p.price)<=max);
  candidates.sort((a,b)=>{const score=p=>(Number(p.pk)===need.pk?100:35)+(need.priority==='harga'?(max===Infinity?0:((max-p.price)/max)*30):0)+(typeof p.rating==='number'?p.rating*2:0)-(Number(p.pk)-need.pk)*30;return score(b)-score(a)||a.price-b.price});
  if(!candidates.length)return [];
  const result=[{label:'🎯 Paling sesuai',product:candidates[0]}],used=new Set([candidates[0].product_id]);
@@ -46,13 +49,13 @@ export function recommendProducts(need,inventory){
 }
 export function findPartialProducts(need,inventory){
  const min=need.budget.min||0,max=need.budget.max;
- return inventory.filter(p=>p.active===true&&p.verification_status==='partial'&&validateProduct(p).valid&&p.inverter==null&&Number(p.pk)>=need.pk&&Number(p.pk)<=need.pk+0.5&&Number(p.price)>=min&&Number(p.price)<=max).sort((a,b)=>Number(a.pk)-Number(b.pk)||Number(a.price)-Number(b.price)).slice(0,3);
+ return inventory.filter(p=>p.active===true&&isRecommendedBrand(p.brand)&&p.verification_status==='partial'&&validateProduct(p).valid&&p.inverter==null&&Number(p.pk)>=need.pk&&Number(p.pk)<=need.pk+0.5&&Number(p.price)>=min&&Number(p.price)<=max).sort((a,b)=>Number(a.pk)-Number(b.pk)||Number(a.price)-Number(b.price)).slice(0,3);
 }
 export const pkLabel=pk=>Number.isInteger(pk)?String(pk):String(pk).replace('0.5','½').replace('0.75','¾').replace('1.5','1½').replace('2.5','2½');
 // Dipakai hanya bila tidak ada produk yang pas. Setiap alternatif diberi alasan eksplisit;
 // kapasitas tidak pernah diturunkan dan budget tidak dilampaui diam-diam.
 export function findAlternatives(need,inventory){
- const ok=p=>p.active===true&&p.verification_status==='verified'&&validateProduct(p).valid&&Number(p.pk)>=need.pk&&Number(p.pk)<=need.pk+0.5;
+ const ok=p=>p.active===true&&isRecommendedBrand(p.brand)&&p.verification_status==='verified'&&validateProduct(p).valid&&Number(p.pk)>=need.pk&&Number(p.pk)<=need.pk+0.5;
  const pool=inventory.filter(ok).sort((a,b)=>Number(a.pk)-Number(b.pk)||a.price-b.price);
  const out=[];
  const otherType=pool.find(p=>p.inverter!==need.inverter&&Number(p.price)<=need.budget.max);

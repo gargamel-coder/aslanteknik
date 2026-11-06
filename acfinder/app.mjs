@@ -1,4 +1,4 @@
-import {analyzeNeeds,recommendProducts,findPartialProducts,findAlternatives,pkLabel} from './engine.mjs';
+import {analyzeNeeds,recommendProducts,findPartialProducts,findAlternatives,pkLabel,RECOMMENDED_BRANDS} from './engine.mjs';
 import {loadInventory} from './inventory.mjs';
 const questions=[
  {key:'room',title:'AC ini untuk ruangan apa?',hint:'Pilih yang paling menggambarkan ruanganmu.',options:[['Kamar tidur','Kamar tidur'],['Ruang tamu','Ruang tamu'],['Ruang keluarga','Ruang keluarga'],['Ruang kerja','Ruang kerja'],['Kantor','Kantor'],['Toko/usaha','Toko / usaha'],['Lainnya','Lainnya']]},
@@ -84,6 +84,7 @@ async function showResult(){if(state.busy)return;state.busy=true;$('next').disab
   <div class="conclusion"><h3>Jadi, kebutuhanmu:</h3><p>${needSummary(need)}</p></div>
   ${need.overRange?'<p class="disclaimer">Ukuran dan beban panas melebihi kapasitas satu unit AC yang umum. Pertimbangkan dua unit atau konsultasikan dengan teknisi sebelum membeli.</p>':''}
   <p class="disclaimer">Kapasitas ini perkiraan awal, bukan pengganti survei ruangan. Performa dan konsumsi listrik dipengaruhi kondisi bangunan, instalasi, dan cara pemakaian.</p>
+  <div class="brand-note"><h3>🔧 Kenapa hanya merek ini?</h3><p>Rekomendasi kami hanya mencakup <strong>${RECOMMENDED_BRANDS.join(', ')}</strong>. Daftar ini disusun dari pengamatan langsung teknisi Aslan Teknik saat memasang, merawat, dan memperbaiki AC pelanggan di lapangan: merek yang unitnya jarang bermasalah, mudah diservis, dan suku cadangnya mudah dicari.</p></div>
   <section class="products"><h2>Rekomendasi AC untukmu</h2>${matches.length?matches.map(x=>renderProduct(x,need)).join(''):`<div class="empty"><strong>Belum ada AC yang pas dengan semua kebutuhan ini.</strong><p>${safe(emptyMsg)}</p></div>`}</section>
   ${renderAlternatives(alts,need)}
   ${partial.length?`<section class="products"><h2>Opsi yang perlu kamu periksa</h2><p class="hint">Tipe inverter produk di bawah belum diketahui. Ini bukan rekomendasi kecocokan penuh.</p>${partial.map(renderPartial).join('')}</section>`:''}

@@ -18,14 +18,14 @@ test('dimensi invalid tidak menghasilkan rekomendasi',()=>{
 });
 test('produk tak terverifikasi tidak diranking; tipe, kapasitas, budget disaring',()=>{
  const need=analyzeNeeds(base);
- const mk=(id,pk,inverter,price)=>({product_id:id,affiliate_url:'https://s.shopee.co.id/4VdBmtalVr',brand:'Brand',model:id,product_name:id,pk,inverter,price,verification_notes:'Verifikasi manual dari halaman produk',verification_status:'verified',active:true});
+ const mk=(id,pk,inverter,price)=>({product_id:id,affiliate_url:'https://s.shopee.co.id/4VdBmtalVr',brand:'TCL',model:id,product_name:id,pk,inverter,price,verification_notes:'Verifikasi manual dari halaman produk',verification_status:'verified',active:true});
  const products=[mk('cocok',need.pk,true,4500000),mk('mahal',need.pk,true,15000000),mk('kapasitas-kecil',0.5,true,2500000),mk('tipe-salah',need.pk,false,4000000),{...mk('palsu',need.pk,true,3500000),verification_status:'unverified'}];
  const result=recommendProducts(need,products);
  assert.deepEqual(result.map(x=>x.product.product_id),['cocok']);
 });
 test('slot hemat/efisien tidak mengulang dan hanya produk benar-benar cocok',()=>{
  const need=analyzeNeeds(base);
- const mk=(id,price,rating=null)=>({product_id:id,affiliate_url:'https://s.shopee.co.id/4VdBmtalVr',brand:'A',model:id,product_name:id,pk:need.pk,inverter:true,price,rating,verification_notes:'Verifikasi manual dari halaman produk',verification_status:'verified',active:true});
+ const mk=(id,price,rating=null)=>({product_id:id,affiliate_url:'https://s.shopee.co.id/4VdBmtalVr',brand:'Gree',model:id,product_name:id,pk:need.pk,inverter:true,price,rating,verification_notes:'Verifikasi manual dari halaman produk',verification_status:'verified',active:true});
  const result=recommendProducts(need,[mk('a',4600000,4.8),mk('b',3500000,4.5),mk('c',4900000,4.7),mk('d',5100000,4.9)]);
  assert.ok(result.length<=3);assert.equal(new Set(result.map(x=>x.product.product_id)).size,result.length);
  assert.ok(result.every(x=>x.product.price<=5000000));
@@ -45,7 +45,7 @@ await import('./inventory.mjs').then(({validateInventory})=>{
 });
 
 await import('./engine.mjs').then(({findAlternatives,analyzeNeeds:an,recommendProducts:rec})=>{
- const mk=(id,pk,inverter,price)=>({product_id:id,affiliate_url:'https://s.shopee.co.id/4VdBmtalVr',brand:'B',model:id,product_name:id,pk,inverter,price,verification_notes:'Cek manual',verification_status:'verified',active:true});
+ const mk=(id,pk,inverter,price)=>({product_id:id,affiliate_url:'https://s.shopee.co.id/4VdBmtalVr',brand:'Midea',model:id,product_name:id,pk,inverter,price,verification_notes:'Cek manual',verification_status:'verified',active:true});
  test('budget di atas 12 juta tetap menampilkan AC yang lebih murah',()=>{
   const need=an({...base,budget:'over12'});
   assert.deepEqual(rec(need,[mk('murah',need.pk,true,4000000)]).map(x=>x.product.product_id),['murah']);
@@ -58,5 +58,14 @@ await import('./engine.mjs').then(({findAlternatives,analyzeNeeds:an,recommendPr
   const need=an(base);
   const alts=findAlternatives(need,[mk('kecil',0.5,true,2000000),mk('beda-tipe',need.pk,false,3500000),mk('mahal',need.pk,true,9000000)]);
   assert.deepEqual(alts.map(x=>[x.reason,x.product.product_id]),[['type','beda-tipe'],['budget','mahal']]);
+ });
+});
+
+await import('./engine.mjs').then(({recommendProducts:rec,analyzeNeeds:an,isRecommendedBrand})=>{
+ test('hanya merek pilihan teknisi yang direkomendasikan',()=>{
+  const need=an(base);
+  const mk=(id,brand)=>({product_id:id,affiliate_url:'https://s.shopee.co.id/4VdBmtalVr',brand,model:id,product_name:id,pk:need.pk,inverter:true,price:4000000,verification_notes:'Cek manual',verification_status:'verified',active:true});
+  assert.deepEqual(rec(need,[mk('lain','MerekLain'),mk('ok','tcl')]).map(x=>x.product.product_id),['ok']);
+  assert.ok(isRecommendedBrand('PANASONIC')&&!isRecommendedBrand('Sharp'));
  });
 });
