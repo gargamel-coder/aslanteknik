@@ -43,3 +43,20 @@ await import('./inventory.mjs').then(({validateInventory})=>{
   assert.ok(validateInventory([...rows,...rows]).length>0);
  });
 });
+
+await import('./engine.mjs').then(({findAlternatives,analyzeNeeds:an,recommendProducts:rec})=>{
+ const mk=(id,pk,inverter,price)=>({product_id:id,affiliate_url:'https://s.shopee.co.id/4VdBmtalVr',brand:'B',model:id,product_name:id,pk,inverter,price,verification_notes:'Cek manual',verification_status:'verified',active:true});
+ test('budget di atas 12 juta tetap menampilkan AC yang lebih murah',()=>{
+  const need=an({...base,budget:'over12'});
+  assert.deepEqual(rec(need,[mk('murah',need.pk,true,4000000)]).map(x=>x.product.product_id),['murah']);
+ });
+ test('rincian BTU menjumlah ke kebutuhan total',()=>{
+  const n=an({...base,ceiling:'high',people:'3-4',heat:'many',sun:'very'});const b=n.breakdown;
+  assert.ok(Math.abs(b.baseBtu+b.ceilingBtu+b.peopleBtu+b.heatBtu+b.sunBtu-n.requiredBtu)<1);
+ });
+ test('alternatif diberi alasan dan tidak menurunkan kapasitas',()=>{
+  const need=an(base);
+  const alts=findAlternatives(need,[mk('kecil',0.5,true,2000000),mk('beda-tipe',need.pk,false,3500000),mk('mahal',need.pk,true,9000000)]);
+  assert.deepEqual(alts.map(x=>[x.reason,x.product.product_id]),[['type','beda-tipe'],['budget','mahal']]);
+ });
+});
