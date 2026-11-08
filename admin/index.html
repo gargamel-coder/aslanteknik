@@ -693,19 +693,8 @@
     </div>
     <div class="sched-field">
       <label>🕐 Jam Kedatangan <span style="font-weight:400;color:var(--soft)">(opsional)</span></label>
-      <div class="fg fr2">
-        <div>
-          <label class="fl">Jam</label>
-          <select class="fi" id="sm-hour"></select>
-        </div>
-        <div>
-          <label class="fl">Menit</label>
-          <select class="fi" id="sm-minute">
-            <option value="00">00</option>
-            <option value="30">30</option>
-          </select>
-        </div>
-      </div>
+      <select class="sched-input" id="sm-hour"></select>
+      <div id="sm-hour-note" style="font-size:0.72rem;color:var(--soft);margin-top:6px;"></div>
       <input type="hidden" id="sm-time">
     </div>
     <div class="sched-foot">
@@ -1787,22 +1776,55 @@ window.saveManualBooking = async function() {
 };
 
 // ── SCHEDULE EDIT ──────────────────────────────────────
-function initScheduleTimeSelects() {
+const SCHEDULE_HOURS = ['09', '11', '14', '16'];
+
+// Jam (HH) yang sudah dipakai teknisi yang sama di tanggal yang sama,
+// tidak termasuk order yang sedang diedit dan order yang ditolak.
+function getTakenHours(orderId, date) {
+  const o = allOrders.find(x => x.id === orderId);
+  const taken = new Set();
+  if (!o || !o.assigned_to || !date) return taken;
+  allOrders.forEach(x => {
+    if (x.id === orderId || x.status === 'rejected') return;
+    if (x.assigned_to !== o.assigned_to || x.scheduled_date !== date) return;
+    const m = String(x.scheduled_time || '').trim().match(/^(\d{1,2}):/);
+    if (m) taken.add(String(parseInt(m[1], 10)).padStart(2, '0'));
+  });
+  return taken;
+}
+
+function syncScheduleTime() {
+  const h = document.getElementById('sm-hour').value;
+  document.getElementById('sm-time').value = h ? `${h}:00` : '';
+}
+
+function refreshScheduleHourOptions() {
   const hSel = document.getElementById('sm-hour');
-  if (hSel && !hSel.options.length) {
-    hSel.innerHTML = '<option value="">--</option>' +
-      Array.from({length: 11}, (_, i) => {
-        const h = String(8 + i).padStart(2, '0');
-        return `<option value="${h}">${h}</option>`;
-      }).join('');
+  const orderId = document.getElementById('sm-order-id').value;
+  const date = document.getElementById('sm-date').value;
+  const o = allOrders.find(x => x.id === orderId);
+  const taken = getTakenHours(orderId, date);
+  const current = hSel.value;
+  hSel.innerHTML = '<option value="">--</option>' + SCHEDULE_HOURS.map(h => {
+    const busy = taken.has(h);
+    return `<option value="${h}"${busy ? ' disabled' : ''}>${h}:00${busy ? ' — sudah terisi' : ''}</option>`;
+  }).join('');
+  hSel.value = (current && !taken.has(current)) ? current : '';
+  syncScheduleTime();
+
+  const note = document.getElementById('sm-hour-note');
+  if (!o || !o.assigned_to) {
+    note.textContent = 'Order ini belum di-assign ke teknisi, jadi semua jam masih bisa dipilih.';
+  } else if (taken.size) {
+    note.textContent = `Jam yang abu-abu sudah dipakai ${o.assigned_name || o.assigned_to} di tanggal ini.`;
+  } else {
+    note.textContent = '';
   }
-  const sync = () => {
-    const h = document.getElementById('sm-hour').value;
-    const m = document.getElementById('sm-minute').value || '00';
-    document.getElementById('sm-time').value = h ? `${h}:${m}` : '';
-  };
-  hSel?.addEventListener('change', sync);
-  document.getElementById('sm-minute')?.addEventListener('change', sync);
+}
+
+function initScheduleTimeSelects() {
+  document.getElementById('sm-hour')?.addEventListener('change', syncScheduleTime);
+  document.getElementById('sm-date')?.addEventListener('change', refreshScheduleHourOptions);
 }
 initScheduleTimeSelects();
 window.openEditSchedule = function(orderId) {
@@ -1814,9 +1836,11 @@ window.openEditSchedule = function(orderId) {
   document.getElementById('sm-date').value = o.scheduled_date || '';
   const t = (o.scheduled_time || '').trim();
   const m = t.match(/^(\d{1,2}):(\d{2})/);
-  document.getElementById('sm-hour').value = m ? String(parseInt(m[1], 10)).padStart(2, '0') : '';
-  document.getElementById('sm-minute').value = (m && m[2] === '30') ? '30' : '00';
-  document.getElementById('sm-time').value = m ? `${String(parseInt(m[1], 10)).padStart(2, '0')}:${(m[2] === '30') ? '30' : '00'}` : '';
+  const h = m ? String(parseInt(m[1], 10)).padStart(2, '0') : '';
+  const hSel = document.getElementById('sm-hour');
+  hSel.innerHTML = `<option value="${h}"></option>`;
+  hSel.value = SCHEDULE_HOURS.includes(h) ? h : '';
+  refreshScheduleHourOptions();
   document.getElementById('schedule-modal').classList.add('open');
 };
 
@@ -1829,6 +1853,11 @@ window.saveSchedule = async function() {
   const date    = document.getElementById('sm-date').value;
   const time    = document.getElementById('sm-time').value;
   if (!date) { showToast('Tanggal wajib diisi!'); return; }
+  if (time && getTakenHours(orderId, date).has(time.slice(0, 2))) {
+    showToast('Jam ini sudah dipakai teknisi yang sama di tanggal tersebut.');
+    refreshScheduleHourOptions();
+    return;
+  }
   try {
     await window._fbUpdateDoc(window._fbDoc(window._fbDb, 'orders', orderId), {
       scheduled_date: date,
