@@ -2121,11 +2121,31 @@ window.openAssignModal = function(orderId) {
     `Order ${o.order_id||o.id.slice(0,8).toUpperCase()} — ${o.name||'Customer'}`;
   const sel = document.getElementById('assign-tech-select');
   const active = allTechnicians.filter(t => t.is_active);
+  const busy = getBusyTechs(o);
   sel.innerHTML = '<option value="">-- Pilih Teknisi --</option>' +
-    active.map(t => `<option value="${t.tech_id}" data-name="${t.name}">${t.name} (${t.tech_id})</option>`).join('');
-  if (o.assigned_to) sel.value = o.assigned_to;
+    active.map(t => {
+      const isBusy = busy.has(t.tech_id);
+      return `<option value="${t.tech_id}" data-name="${t.name}"${isBusy ? ' disabled' : ''}>${t.name} (${t.tech_id})${isBusy ? ' — sudah ada jadwal di jam ini' : ''}</option>`;
+    }).join('');
+  if (o.assigned_to && !busy.has(o.assigned_to)) sel.value = o.assigned_to;
   document.getElementById('assign-modal').classList.add('open');
 };
+
+// Teknisi yang sudah punya order lain di tanggal & jam yang sama dengan order ini.
+function getBusyTechs(o) {
+  const busy = new Set();
+  const hourOf = x => {
+    const m = String(x.scheduled_time || '').trim().match(/^(\d{1,2}):/);
+    return m ? parseInt(m[1], 10) : null;
+  };
+  const h = hourOf(o);
+  if (!o.scheduled_date || h === null) return busy;
+  allOrders.forEach(x => {
+    if (x.id === o.id || x.status === 'rejected' || !x.assigned_to) return;
+    if (x.scheduled_date === o.scheduled_date && hourOf(x) === h) busy.add(x.assigned_to);
+  });
+  return busy;
+}
 
 window.closeAssignModal = function() {
   document.getElementById('assign-modal').classList.remove('open');
@@ -2138,6 +2158,11 @@ window.saveAssign = async function() {
   const techOpt = sel.options[sel.selectedIndex];
   const techName = techOpt ? techOpt.dataset.name || techId : techId;
   if (!techId) { showToast('Pilih teknisi terlebih dahulu!'); return; }
+  const ord = allOrders.find(x => x.id === orderId);
+  if (ord && getBusyTechs(ord).has(techId)) {
+    showToast('Teknisi ini sudah punya jadwal lain di tanggal & jam yang sama.');
+    return;
+  }
   try {
     await window._fbUpdateDoc(window._fbDoc(window._fbDb,'orders',orderId), {
       assigned_to: techId,
