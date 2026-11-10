@@ -727,6 +727,16 @@ window.dispatchEvent(new Event('fbReady'));
       </div>
 
       <div class="fg">
+        <label class="fl">Merk AC <span style="font-weight:400;color:var(--soft)">(opsional)</span></label>
+        <input type="text" class="fi" id="f-brand" list="ac-brand-list" maxlength="40" autocomplete="off" placeholder="Contoh: Daikin, Panasonic, Sharp...">
+        <datalist id="ac-brand-list">
+          <option value="Daikin"><option value="Panasonic"><option value="Sharp"><option value="LG"><option value="Samsung">
+          <option value="Gree"><option value="Midea"><option value="Polytron"><option value="Aqua"><option value="Mitsubishi">
+          <option value="Changhong"><option value="TCL"><option value="AUX"><option value="Toshiba"><option value="Hisense">
+        </datalist>
+      </div>
+
+      <div class="fg">
         <label class="fl">Layanan yang Dibutuhkan * <span style="font-weight:400;color:var(--soft)">(bisa pilih lebih dari satu)</span></label>
         <div class="chip-groups">
           <div class="chip-group">
@@ -1226,6 +1236,7 @@ function sendWA() {
   var acEl  = document.getElementById('f-ac');
   var acTxt = acEl.options[acEl.selectedIndex].text;
   var notes = document.getElementById('f-notes').value.trim();
+  var brand = (document.getElementById('f-brand').value || '').trim().slice(0, 40);
   var dateStr = DAY[selDate.getDay()]+', '+selDate.getDate()+' '+MON[selDate.getMonth()]+' '+selDate.getFullYear();
   var res = calcPrice();
   var totalUnits = 0;
@@ -1248,7 +1259,8 @@ function sendWA() {
 '📱 *WhatsApp:* '+wa+'\n'+
 '📍 *Kota:* '+city+'\n'+
 '🏠 *Alamat:* '+addr+'\n\n'+
-'❄️ *Jenis AC:* '+acTxt+'\n\n'+
+'❄️ *Jenis AC:* '+acTxt+'\n'+
+(brand ? '🏷️ *Merk AC:* '+brand+'\n' : '')+'\n'+
 '🔧 *Layanan:*\n'+svcList+'\n\n'+
 '💰 *Estimasi Biaya:*\n'+priceLines+'\n'+
 '  ──────────────────\n'+
@@ -1310,6 +1322,7 @@ function sendWA() {
     city:            city,
     address:         addr,
     ac_type:         acTxt,
+    ac_brand:        brand,
     unit_count:      totalUnits > 0 ? totalUnits : 1,
     services_detail: Object.keys(selSvc).map(function(k){ return {service:SVC_LBL[k], key:k, qty:selSvc[k]}; }),
     services:        Object.keys(selSvc).map(function(k){ return SVC_LBL[k]+' ('+selSvc[k]+' unit)'; }),
@@ -1330,6 +1343,17 @@ function saveOrder(data) {
     return;
   }
   var payload = Object.assign({}, data, { created_at: window._fbServerTimestamp() });
+  // Merk AC opsional: field hanya dikirim kalau diisi, supaya order tanpa merk
+  // tersimpan persis seperti sebelumnya.
+  if (!payload.ac_brand) delete payload.ac_brand;
+  // Kalau simpan pertama gagal (mis. aturan database menolak field baru),
+  // percobaan kedua menitipkan merk di catatan agar order tidak hilang.
+  var retryPayload = payload;
+  if (payload.ac_brand) {
+    retryPayload = Object.assign({}, payload);
+    retryPayload.notes = ((payload.notes || '') + ' [Merk AC: ' + payload.ac_brand + ']').trim();
+    delete retryPayload.ac_brand;
+  }
   window._fbAddDoc(
     window._fbCollection(window._fbDb, 'orders'),
     payload
@@ -1341,7 +1365,7 @@ function saveOrder(data) {
     setTimeout(function(){
       window._fbAddDoc(
         window._fbCollection(window._fbDb, 'orders'),
-        payload
+        retryPayload
       ).then(function(){
         window.location.href = '/terima-kasih.html'; // ← dan di sini juga
       }).catch(function(e2){ 

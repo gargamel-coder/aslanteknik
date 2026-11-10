@@ -1640,7 +1640,7 @@ function renderOrders() {
           </a>
         </div>` : ''}
         <div style="grid-column:1/-1;color:var(--soft)">${o.address||'—'}</div>
-        <div>${o.ac_type||'—'}</div>
+        <div>${o.ac_type||'—'}${custOrderBrand(o) ? ' · Merk: ' + esc(custOrderBrand(o)) : ''}</div>
         <div>${o.unit_count||'—'} unit</div>
         <div style="grid-column:1/-1">${svcList}</div>
         <div>📅 ${o.date||'—'}</div>
@@ -1956,7 +1956,14 @@ function custServiceLabels(o) {
   return list.map(s => String(s).replace(/\s*\(\s*\d+\s*unit\s*\)\s*$/i, '').trim()).filter(Boolean);
 }
 function custNote(o) {
-  return String(o.notes || '').replace(/\(Booking manual oleh admin\)/gi, '').trim();
+  return String(o.notes || '').replace(/\(Booking manual oleh admin\)/gi, '').replace(/\[Merk AC: [^\]]*\]/gi, '').trim();
+}
+// Merk AC satu order: field ac_brand, atau titipan "[Merk AC: ...]" di catatan
+// (dipakai form booking kalau field baru ditolak database).
+function custOrderBrand(o) {
+  if (o.ac_brand != null) return String(o.ac_brand).trim();
+  const m = String(o.notes || '').match(/\[Merk AC: ([^\]]*)\]/i);
+  return m ? m[1].trim() : '';
 }
 function custTop(counts) { // {label: n} → [[label, n], ...] terbanyak dulu
   return Object.entries(counts).sort((a,b) => b[1] - a[1] || a[0].localeCompare(b[0]));
@@ -2005,7 +2012,7 @@ function buildCustomers() {
       custInc(ac, String(r.o.ac_type || '').trim());
       custInc(hours, r.hour);
       custInc(vouchers, r.o.voucher_code);
-      if (!brand && r.o.ac_brand) brand = String(r.o.ac_brand).trim();
+      if (!brand) brand = custOrderBrand(r.o);
       if (!note && r.o.customer_note) note = String(r.o.customer_note).trim();
     });
     // Hari favorit: hari dengan order terbanyak; kalau seri, pakai yang paling baru.
