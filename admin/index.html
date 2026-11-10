@@ -9,7 +9,7 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=6">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=6">
 <link rel="manifest" href="/admin/manifest.json?v=6">
-<meta name="theme-color" content="#5B4FD9">
+<meta name="theme-color" content="#16153A">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aslan Teknik — Admin Dashboard</title>
 <!-- Font Google dioptimasi (2026-09-23):
@@ -19,41 +19,41 @@
        (Sebelumnya stylesheet font menahan tampilan sampai Google merespons.) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap"
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap"
       rel="stylesheet" media="print" onload="this.media='all'">
 <noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 </noscript>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
 <style>
-  :root{--cream:#FDF8F2;--charcoal:#1A1A2E;--mid:#4A4A6A;--soft:#8888AA;--accent:#5B4FD9;--accent2:#E8643A;--white:#fff;--border:rgba(0,0,0,0.08);--green:#22C55E;--red:#EF4444;--amber:#F59E0B;}
+  :root{--cream:#F2F4FB;--charcoal:#16153A;--mid:#51547A;--soft:#6F7191;--accent:#4A3FE0;--accent2:#E8643A;--white:#fff;--border:#E2E5F0;--green:#128C4B;--red:#C2362B;--amber:#B26A00;}
   *{margin:0;padding:0;box-sizing:border-box;}
-  body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--charcoal);min-height:100vh;}
+  body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--cream);color:var(--charcoal);min-height:100vh;}
   #login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#EDE9FB 0%,#D4F5EC 50%,#FCEEE7 100%);}
   .login-card{background:var(--white);border-radius:28px;padding:48px 40px;box-shadow:0 24px 80px rgba(0,0,0,0.1);width:100%;max-width:400px;}
-  .login-logo{font-family:'Instrument Serif',serif;font-size:1.8rem;margin-bottom:6px;}
+  .login-logo{font-family:'Bricolage Grotesque',sans-serif;font-size:1.8rem;margin-bottom:6px;}
   .login-logo span{color:var(--accent);}
   .login-sub{font-size:0.85rem;color:var(--soft);margin-bottom:32px;}
   .l-label{font-size:0.8rem;font-weight:600;display:block;margin-bottom:7px;}
-  .l-input{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:12px;font-family:'DM Sans',sans-serif;font-size:0.9rem;background:var(--cream);outline:none;transition:border-color 0.2s;margin-bottom:16px;}
+  .l-input{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.9rem;background:var(--cream);outline:none;transition:border-color 0.2s;margin-bottom:16px;}
   .l-input:focus{border-color:var(--accent);background:#fff;}
-  .l-btn{width:100%;padding:14px;border-radius:14px;background:var(--charcoal);color:#fff;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:600;transition:all 0.2s;margin-top:4px;}
+  .l-btn{width:100%;padding:14px;border-radius:14px;background:var(--charcoal);color:#fff;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.95rem;font-weight:600;transition:all 0.2s;margin-top:4px;}
   .l-btn:hover{background:var(--accent);}
   .l-btn:disabled{opacity:0.5;cursor:not-allowed;}
   .l-err{font-size:0.82rem;color:var(--red);margin-top:10px;min-height:18px;}
   #dashboard{display:none;}
   header{background:var(--white);border-bottom:1px solid var(--border);padding:16px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;}
-  .hdr-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;}
+  .hdr-logo{font-family:'Bricolage Grotesque',sans-serif;font-size:1.3rem;}
   .hdr-logo span{color:var(--accent);}
   .hdr-right{display:flex;align-items:center;gap:16px;}
   .hdr-user{font-size:0.82rem;color:var(--soft);}
-  .logout-btn{padding:7px 18px;border-radius:100px;background:transparent;border:1.5px solid var(--border);font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:500;color:var(--mid);cursor:pointer;transition:all 0.2s;}
+  .logout-btn{padding:7px 18px;border-radius:100px;background:transparent;border:1.5px solid var(--border);font-family:'Plus Jakarta Sans',sans-serif;font-size:0.82rem;font-weight:500;color:var(--mid);cursor:pointer;transition:all 0.2s;}
   .logout-btn:hover{border-color:var(--red);color:var(--red);}
   .dash-body{padding:40px;max-width:1100px;margin:0 auto;}
   .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:36px;}
   .stat-row-orders{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:8px;}
   .stat-c{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:22px 24px;}
-  .stat-c .s-num{font-family:'Instrument Serif',serif;font-size:2rem;}
+  .stat-c .s-num{font-family:'Bricolage Grotesque',sans-serif;font-size:2rem;}
   .stat-c .s-lbl{font-size:0.8rem;color:var(--soft);margin-top:3px;}
   .stat-c.green .s-num{color:var(--green);}
   .stat-c.amber .s-num{color:var(--amber);}
@@ -64,24 +64,24 @@
   .panel-title{font-size:1rem;font-weight:600;margin-bottom:22px;}
   .fg{margin-bottom:15px;}
   .fl{font-size:0.78rem;font-weight:600;display:block;margin-bottom:6px;}
-  .fi,.fs{width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:11px;font-family:'DM Sans',sans-serif;font-size:0.87rem;color:var(--charcoal);background:var(--cream);outline:none;transition:border-color 0.2s;}
+  .fi,.fs{width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:11px;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.87rem;color:var(--charcoal);background:var(--cream);outline:none;transition:border-color 0.2s;}
   .fi:focus,.fs:focus{border-color:var(--accent);background:#fff;}
   .fr2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
   .type-row{display:flex;gap:8px;}
-  .type-pill{flex:1;padding:9px 0;border-radius:100px;border:1.5px solid var(--border);background:transparent;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.83rem;font-weight:500;color:var(--mid);transition:all 0.15s;text-align:center;}
+  .type-pill{flex:1;padding:9px 0;border-radius:100px;border:1.5px solid var(--border);background:transparent;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.83rem;font-weight:500;color:var(--mid);transition:all 0.15s;text-align:center;}
   .type-pill.act{border-color:var(--accent);background:var(--accent);color:#fff;}
   .gen-row{display:flex;gap:8px;}
-  .gen-input{flex:1;padding:10px 13px;border:1.5px solid var(--border);border-radius:11px;font-family:'DM Sans',sans-serif;font-size:0.87rem;background:var(--cream);outline:none;transition:border-color 0.2s;text-transform:uppercase;letter-spacing:0.08em;}
+  .gen-input{flex:1;padding:10px 13px;border:1.5px solid var(--border);border-radius:11px;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.87rem;background:var(--cream);outline:none;transition:border-color 0.2s;text-transform:uppercase;letter-spacing:0.08em;}
   .gen-input:focus{border-color:var(--accent);background:#fff;}
   .gen-btn{padding:10px 14px;border-radius:11px;background:var(--cream);border:1.5px solid var(--border);cursor:pointer;font-size:0.85rem;transition:all 0.15s;color:var(--mid);white-space:nowrap;}
   .gen-btn:hover{border-color:var(--accent);color:var(--accent);}
-  .create-btn{width:100%;padding:13px;border-radius:14px;background:var(--charcoal);color:#fff;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.92rem;font-weight:600;transition:all 0.2s;margin-top:6px;}
+  .create-btn{width:100%;padding:13px;border-radius:14px;background:var(--charcoal);color:#fff;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.92rem;font-weight:600;transition:all 0.2s;margin-top:6px;}
   .create-btn:hover{background:var(--accent);}
   .create-btn:disabled{opacity:0.4;cursor:not-allowed;}
   .form-msg{font-size:0.8rem;margin-top:10px;min-height:18px;text-align:center;}
   .form-msg.ok{color:var(--green);}
   .form-msg.err{color:var(--red);}
-  .search-bar{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:12px;font-family:'DM Sans',sans-serif;font-size:0.87rem;background:var(--cream);outline:none;transition:border-color 0.2s;margin-bottom:16px;}
+  .search-bar{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.87rem;background:var(--cream);outline:none;transition:border-color 0.2s;margin-bottom:16px;}
   .search-bar:focus{border-color:var(--accent);background:#fff;}
   .tbl-wrap{overflow-x:auto;}
   table{width:100%;border-collapse:collapse;font-size:0.83rem;}
@@ -97,14 +97,14 @@
   .badge-pending{background:#FEF9C3;color:#854D0E;}
   .prog-bar{height:6px;background:rgba(0,0,0,0.06);border-radius:3px;min-width:80px;overflow:hidden;}
   .prog-fill{height:100%;border-radius:3px;background:var(--accent);transition:width 0.3s;}
-  .act-btn{padding:5px 12px;border-radius:8px;border:1.5px solid var(--border);background:transparent;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:500;color:var(--mid);transition:all 0.15s;margin-right:4px;}
+  .act-btn{padding:5px 12px;border-radius:8px;border:1.5px solid var(--border);background:transparent;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.75rem;font-weight:500;color:var(--mid);transition:all 0.15s;margin-right:4px;}
   .act-btn.del:hover{border-color:var(--red);color:var(--red);background:#FEE2E2;}
   .act-btn.tog:hover{border-color:var(--green);color:#166534;background:#DCFCE7;}
   .empty-state{text-align:center;padding:48px 20px;color:var(--soft);font-size:0.88rem;}
   #toast{position:fixed;bottom:28px;right:28px;background:var(--charcoal);color:#fff;padding:12px 22px;border-radius:14px;font-size:0.85rem;font-weight:500;box-shadow:0 8px 32px rgba(0,0,0,0.2);opacity:0;transform:translateY(10px);transition:all 0.3s;pointer-events:none;z-index:999;}
   #toast.show{opacity:1;transform:translateY(0);}
   .tabs{display:flex;gap:4px;margin-bottom:28px;background:rgba(0,0,0,0.04);padding:4px;border-radius:14px;width:fit-content;max-width:100%;overflow-x:auto;}
-  .tab-btn{padding:8px 22px;border-radius:10px;border:none;background:transparent;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:500;color:var(--soft);transition:all 0.2s;}
+  .tab-btn{padding:8px 22px;border-radius:10px;border:none;background:transparent;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.85rem;font-weight:500;color:var(--soft);transition:all 0.2s;}
   .tab-btn.act{background:var(--white);color:var(--charcoal);box-shadow:0 2px 8px rgba(0,0,0,0.08);}
   .tab-pane{display:none;}.tab-pane.act{display:block;}
   .notif-card{background:var(--white);border:1px solid #FDE68A;border-left:4px solid var(--amber);border-radius:16px;padding:18px 20px;margin-bottom:12px;}
@@ -133,15 +133,15 @@
   .order-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
   .confirmed-badge{display:inline-flex;align-items:center;gap:5px;background:#DCFCE7;color:#166534;padding:8px 14px;border-radius:10px;font-size:0.8rem;font-weight:600;}
   .rejected-badge{display:inline-flex;align-items:center;gap:5px;background:#FEE2E2;color:#991B1B;padding:8px 14px;border-radius:10px;font-size:0.8rem;font-weight:600;}
-  .confirm-btn-o{padding:10px 20px;border-radius:10px;background:var(--green);color:#fff;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:600;transition:all 0.2s;}
+  .confirm-btn-o{padding:10px 20px;border-radius:10px;background:var(--green);color:#fff;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.82rem;font-weight:600;transition:all 0.2s;}
   .confirm-btn-o:hover{background:#16A34A;transform:translateY(-1px);}
   .confirm-btn-o:disabled{opacity:0.4;cursor:not-allowed;transform:none;}
-  .reject-btn-o{padding:10px 20px;border-radius:10px;background:transparent;color:var(--red);border:1.5px solid var(--red);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:600;transition:all 0.2s;}
+  .reject-btn-o{padding:10px 20px;border-radius:10px;background:transparent;color:var(--red);border:1.5px solid var(--red);cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.82rem;font-weight:600;transition:all 0.2s;}
   .reject-btn-o:hover{background:var(--red);color:#fff;transform:translateY(-1px);}
   .reject-btn-o:disabled{opacity:0.4;cursor:not-allowed;transform:none;}
   .orders-empty{text-align:center;padding:48px 20px;color:var(--soft);font-size:0.88rem;}
   .filter-row{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
-  .filter-pill{padding:6px 16px;border-radius:100px;border:1.5px solid var(--border);background:transparent;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:500;color:var(--mid);transition:all 0.15s;}
+  .filter-pill{padding:6px 16px;border-radius:100px;border:1.5px solid var(--border);background:transparent;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.8rem;font-weight:500;color:var(--mid);transition:all 0.15s;}
   .filter-pill.act{border-color:var(--accent);background:var(--accent);color:#fff;}
   /* Spinner */
   @keyframes spin{to{transform:rotate(360deg)}}
@@ -157,23 +157,23 @@
   .sched-modal-sub{font-size:0.78rem;color:var(--soft);margin-bottom:24px;}
   .sched-field{margin-bottom:16px;}
   .sched-field label{display:block;font-size:0.78rem;font-weight:600;margin-bottom:6px;}
-  .sched-input{width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:11px;font-family:'DM Sans',sans-serif;font-size:0.9rem;background:var(--cream);outline:none;color:var(--charcoal);}
+  .sched-input{width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:11px;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.9rem;background:var(--cream);outline:none;color:var(--charcoal);}
   .sched-input:focus{border-color:var(--accent);background:#fff;}
   .sched-foot{display:flex;gap:10px;margin-top:4px;}
-  .sched-save-btn{flex:1;padding:12px;border-radius:12px;background:var(--charcoal);color:#fff;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;transition:all 0.2s;}
+  .sched-save-btn{flex:1;padding:12px;border-radius:12px;background:var(--charcoal);color:#fff;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.9rem;font-weight:600;transition:all 0.2s;}
   .sched-save-btn:hover{background:var(--accent);}
-  .sched-cancel-btn{padding:12px 20px;border-radius:12px;background:transparent;border:1.5px solid var(--border);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:500;color:var(--mid);transition:all 0.2s;}
+  .sched-cancel-btn{padding:12px 20px;border-radius:12px;background:transparent;border:1.5px solid var(--border);cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.9rem;font-weight:500;color:var(--mid);transition:all 0.2s;}
   .sched-cancel-btn:hover{border-color:var(--red);color:var(--red);}
 
   /* Scheduled info badge inside card */
   .sched-info{display:inline-flex;align-items:center;gap:6px;background:#EDE9FB;border:1px solid rgba(91,79,217,0.2);border-radius:100px;padding:4px 12px;font-size:0.78rem;font-weight:600;color:var(--accent);margin-bottom:10px;}
-  .edit-sched-btn{padding:7px 14px;border-radius:8px;border:1.5px solid var(--border);background:transparent;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:500;color:var(--mid);transition:all 0.15s;}
+  .edit-sched-btn{padding:7px 14px;border-radius:8px;border:1.5px solid var(--border);background:transparent;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.75rem;font-weight:500;color:var(--mid);transition:all 0.15s;}
   .edit-sched-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(91,79,217,0.05);}
-  .export-cal-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:100px;border:1.5px solid var(--accent);background:rgba(91,79,217,0.07);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:600;color:var(--accent);transition:all 0.15s;margin-left:auto;}
+  .export-cal-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:100px;border:1.5px solid var(--accent);background:rgba(91,79,217,0.07);cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.82rem;font-weight:600;color:var(--accent);transition:all 0.15s;margin-left:auto;}
   .export-cal-btn:hover{background:var(--accent);color:#fff;}
 
   /* ── CALENDAR PICKER ── */
-  .cal-toggle-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:100px;border:1.5px solid var(--border);background:var(--white);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:500;color:var(--mid);transition:all 0.15s;margin-bottom:16px;}
+  .cal-toggle-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:100px;border:1.5px solid var(--border);background:var(--white);cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.82rem;font-weight:500;color:var(--mid);transition:all 0.15s;margin-bottom:16px;}
   .cal-toggle-btn:hover{border-color:var(--accent);color:var(--accent);}
   .cal-toggle-btn.act{border-color:var(--accent);background:rgba(91,79,217,0.06);color:var(--accent);}
   .cal-container{margin-bottom:20px;display:none;}
@@ -206,13 +206,13 @@
   /* Selected info — redesigned to host availability picker */
   .cal-selected-info{margin-top:12px;padding:14px;background:rgba(91,79,217,0.06);border-radius:14px;font-size:0.82rem;color:var(--charcoal);}
   .cal-sel-top{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
-  .cal-selected-info .cal-clear{margin-left:auto;padding:4px 12px;border-radius:8px;border:1.5px solid var(--border);background:var(--white);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:500;color:var(--mid);transition:all 0.15s;white-space:nowrap;}
+  .cal-selected-info .cal-clear{margin-left:auto;padding:4px 12px;border-radius:8px;border:1.5px solid var(--border);background:var(--white);cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.75rem;font-weight:500;color:var(--mid);transition:all 0.15s;white-space:nowrap;}
   .cal-selected-info .cal-clear:hover{border-color:var(--red);color:var(--red);}
   /* Availability picker inside selected-info */
   .avail-picker{border-top:1px solid rgba(91,79,217,0.15);padding-top:12px;}
   .avail-picker-label{font-size:0.72rem;font-weight:600;color:var(--soft);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;}
   .avail-btn-row{display:flex;gap:7px;flex-wrap:wrap;}
-  .avail-btn{flex:1;min-width:70px;padding:9px 6px;border-radius:10px;border:1.5px solid var(--border);background:var(--white);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:600;color:var(--mid);transition:all 0.15s;text-align:center;}
+  .avail-btn{flex:1;min-width:70px;padding:9px 6px;border-radius:10px;border:1.5px solid var(--border);background:var(--white);cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.75rem;font-weight:600;color:var(--mid);transition:all 0.15s;text-align:center;}
   .avail-btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,0.08);}
   .avail-btn.av-available{border-color:#22C55E;color:#166534;}
   .avail-btn.av-available:hover,.avail-btn.av-available.act{background:#DCFCE7;border-color:#22C55E;}
@@ -227,16 +227,16 @@
   .tech-assign-badge{display:inline-flex;align-items:center;gap:6px;background:#EDE9FB;border:1px solid rgba(91,79,217,0.2);border-radius:10px;padding:6px 12px;font-size:0.78rem;font-weight:600;color:var(--accent);}
   .tech-assign-badge .unassign-btn{background:none;border:none;cursor:pointer;color:var(--soft);font-size:0.85rem;line-height:1;padding:0 0 0 4px;transition:color 0.15s;}
   .tech-assign-badge .unassign-btn:hover{color:var(--red);}
-  .assign-btn-o{padding:8px 16px;border-radius:10px;background:transparent;color:var(--accent);border:1.5px solid var(--accent);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:600;transition:all 0.2s;}
+  .assign-btn-o{padding:8px 16px;border-radius:10px;background:transparent;color:var(--accent);border:1.5px solid var(--accent);cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.8rem;font-weight:600;transition:all 0.2s;}
   .assign-btn-o:hover{background:var(--accent);color:#fff;}
-  .invoice-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:10px;background:var(--charcoal);color:#fff;border:1.5px solid var(--charcoal);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:600;transition:all 0.2s;}
+  .invoice-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:10px;background:var(--charcoal);color:#fff;border:1.5px solid var(--charcoal);cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.8rem;font-weight:600;transition:all 0.2s;}
   .invoice-btn:hover{background:var(--accent);border-color:var(--accent);transform:translateY(-1px);}
   .invoice-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
   /* ======= Invoice Review Modal ======= */
   .inv-modal-overlay{position:fixed;inset:0;background:rgba(26,26,46,0.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px;opacity:0;transition:opacity 0.2s;}
   .inv-modal-overlay.inv-modal-show{opacity:1;}
-  .inv-modal{background:#FDF8F2;border-radius:20px;padding:28px;max-width:560px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.25);font-family:'DM Sans',sans-serif;}
-  .inv-modal h2{font-family:'Instrument Serif',serif;font-size:1.7rem;color:#1A1A2E;margin:0 0 4px 0;font-weight:400;}
+  .inv-modal{background:#FDF8F2;border-radius:20px;padding:28px;max-width:560px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.25);font-family:'Plus Jakarta Sans',sans-serif;}
+  .inv-modal h2{font-family:'Bricolage Grotesque',sans-serif;font-size:1.7rem;color:#1A1A2E;margin:0 0 4px 0;font-weight:400;}
   .inv-modal-sub{font-size:0.82rem;color:#8888AA;margin-bottom:20px;}
   .inv-modal-summary{background:#fff;border-radius:12px;padding:14px 16px;margin-bottom:20px;font-size:0.85rem;border:1px solid rgba(0,0,0,0.04);}
   .inv-sum-row{display:flex;justify-content:space-between;padding:4px 0;color:#8888AA;gap:12px;}
@@ -266,8 +266,8 @@
   .inv-total-row{display:flex;justify-content:space-between;padding:5px 0;font-size:0.85rem;color:#8888AA;}
   .inv-total-row b{color:#1A1A2E;font-weight:600;}
   .inv-total-row.inv-grand{padding-top:10px;margin-top:6px;border-top:1.5px solid #1A1A2E;align-items:baseline;}
-  .inv-total-row.inv-grand span{font-family:'Instrument Serif',serif;font-size:1.05rem;color:#1A1A2E;}
-  .inv-total-row.inv-grand b{color:#5B4FD9;font-family:'Instrument Serif',serif;font-size:1.4rem;font-weight:400;}
+  .inv-total-row.inv-grand span{font-family:'Bricolage Grotesque',sans-serif;font-size:1.05rem;color:#1A1A2E;}
+  .inv-total-row.inv-grand b{color:#5B4FD9;font-family:'Bricolage Grotesque',sans-serif;font-size:1.4rem;font-weight:400;}
   .inv-modal-actions{display:flex;gap:10px;justify-content:flex-end;}
   .inv-btn-cancel,.inv-btn-confirm{padding:11px 20px;border-radius:10px;font-family:inherit;font-weight:600;cursor:pointer;transition:all 0.2s;font-size:0.88rem;}
   .inv-btn-cancel{background:transparent;color:#8888AA;border:1.5px solid rgba(0,0,0,0.1);}
@@ -292,12 +292,12 @@
   .assign-modal{background:var(--white);border-radius:24px;padding:32px 28px;width:100%;max-width:420px;box-shadow:0 24px 80px rgba(0,0,0,0.2);}
   .assign-modal-title{font-size:1rem;font-weight:700;color:var(--charcoal);margin-bottom:4px;}
   .assign-modal-sub{font-size:0.78rem;color:var(--soft);margin-bottom:20px;}
-  .assign-select{width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:11px;font-family:'DM Sans',sans-serif;font-size:0.87rem;color:var(--charcoal);background:var(--cream);outline:none;transition:border-color 0.2s;margin-bottom:16px;}
+  .assign-select{width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:11px;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.87rem;color:var(--charcoal);background:var(--cream);outline:none;transition:border-color 0.2s;margin-bottom:16px;}
   .assign-select:focus{border-color:var(--accent);background:#fff;}
   .assign-foot{display:flex;gap:10px;}
-  .assign-save-btn{flex:1;padding:12px;border-radius:12px;background:var(--charcoal);color:#fff;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;transition:all 0.2s;}
+  .assign-save-btn{flex:1;padding:12px;border-radius:12px;background:var(--charcoal);color:#fff;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.9rem;font-weight:600;transition:all 0.2s;}
   .assign-save-btn:hover{background:var(--accent);}
-  .assign-cancel-btn{padding:12px 20px;border-radius:12px;background:transparent;border:1.5px solid var(--border);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--mid);transition:all 0.2s;}
+  .assign-cancel-btn{padding:12px 20px;border-radius:12px;background:transparent;border:1.5px solid var(--border);cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.9rem;color:var(--mid);transition:all 0.2s;}
   .assign-cancel-btn:hover{border-color:var(--red);color:var(--red);}
   /* Tech ID badge */
   .tech-id-badge{font-family:monospace;font-size:0.82rem;font-weight:700;color:var(--accent);background:#EDE9FB;padding:2px 8px;border-radius:5px;letter-spacing:0.06em;}
@@ -316,9 +316,9 @@
   .cust-ins-empty{font-size:0.78rem;color:var(--soft);}
   .cust-toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px;}
   .cust-toolbar .search-bar{flex:1;min-width:200px;margin-bottom:0;}
-  .cust-select{padding:10px 13px;border:1.5px solid var(--border);border-radius:12px;font-family:'DM Sans',sans-serif;font-size:0.82rem;color:var(--charcoal);background:var(--cream);outline:none;max-width:100%;}
+  .cust-select{padding:10px 13px;border:1.5px solid var(--border);border-radius:12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.82rem;color:var(--charcoal);background:var(--cream);outline:none;max-width:100%;}
   .cust-select:focus{border-color:var(--accent);background:#fff;}
-  .cust-export-btn{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:100px;border:1.5px solid var(--accent);background:rgba(91,79,217,0.07);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:600;color:var(--accent);transition:all 0.15s;}
+  .cust-export-btn{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:100px;border:1.5px solid var(--accent);background:rgba(91,79,217,0.07);cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.8rem;font-weight:600;color:var(--accent);transition:all 0.15s;}
   .cust-export-btn:hover{background:var(--accent);color:#fff;}
   .cust-sub{font-size:0.74rem;color:var(--soft);margin-top:2px;}
   .cust-tag{display:inline-block;padding:2px 9px;border-radius:100px;font-size:0.68rem;font-weight:600;margin:4px 4px 0 0;white-space:nowrap;}
@@ -328,7 +328,7 @@
   .cust-tag.sleep{background:#FEF9C3;color:#854D0E;}
   .cust-tag.next{background:#DCFCE7;color:#166534;}
   .cust-count{font-size:0.78rem;color:var(--soft);margin-bottom:10px;}
-  .cm-name{font-family:'Instrument Serif',serif;font-size:1.5rem;color:var(--charcoal);}
+  .cm-name{font-family:'Bricolage Grotesque',sans-serif;font-size:1.5rem;color:var(--charcoal);}
   .cm-facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0;}
   .cm-fact{background:var(--cream);border-radius:12px;padding:10px 12px;}
   .cm-fact-lbl{font-size:0.68rem;font-weight:600;color:var(--soft);text-transform:uppercase;letter-spacing:0.06em;}
@@ -401,6 +401,7 @@
     td::before{content:attr(data-label);font-size:0.68rem;font-weight:600;color:var(--soft);text-transform:uppercase;display:block;margin-bottom:2px}
   }
 </style>
+<link rel="stylesheet" href="/assets/aslan-admin.css?v=1">
 </head>
 <body>
 
@@ -408,7 +409,7 @@
 <div id="login-screen">
   <div class="login-card">
     <div class="login-logo">Aslan<span>.</span>Teknik</div>
-    <p class="login-sub">Admin Dashboard — Voucher, Pesanan &amp; Pendapatan</p>
+    <p class="login-sub">Masuk untuk mengelola pesanan, jadwal, dan teknisi.</p>
     <label class="l-label">Email</label>
     <input type="email" class="l-input" id="l-email" placeholder="admin@email.com">
     <label class="l-label">Password</label>
@@ -429,7 +430,7 @@
 <!-- DASHBOARD -->
 <div id="dashboard">
   <header>
-    <div class="hdr-logo">Aslan<span>.</span>Teknik <span style="font-family:'DM Sans';font-size:0.75rem;color:var(--soft);font-weight:400;margin-left:8px;">Admin</span></div>
+    <div class="hdr-logo">Aslan<span>.</span>Teknik<b class="hdr-tag">Admin</b></div>
     <div class="hdr-right">
       <span class="hdr-user" id="hdr-email"></span>
       <button class="logout-btn" id="btn-logout">Keluar</button>
@@ -438,66 +439,39 @@
 
   <div class="dash-body">
 
-    <!-- STAT: VOUCHER -->
-    <div style="font-size:0.72rem;font-weight:600;color:var(--soft);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">🎟️ Statistik Voucher</div>
-    <div class="stat-row" style="grid-template-columns:repeat(4,1fr)">
-      <div class="stat-c purple"><div class="s-num" id="st-total">—</div><div class="s-lbl">Total Voucher</div></div>
-      <div class="stat-c green"><div class="s-num" id="st-active">—</div><div class="s-lbl">Aktif</div></div>
-      <div class="stat-c amber"><div class="s-num" id="st-used">—</div><div class="s-lbl">Total Diklaim</div></div>
-      <div class="stat-c red"><div class="s-num" id="st-expired">—</div><div class="s-lbl">Kedaluwarsa</div></div>
-    </div>
-
-    <!-- STAT: ORDERS -->
-    <div style="font-size:0.72rem;font-weight:600;color:var(--soft);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;margin-top:20px;">📦 Statistik Pesanan</div>
-    <div class="stat-row-orders">
-      <div class="stat-c" style="border-left:3px solid var(--accent)"><div class="s-num" id="st-orders" style="color:var(--accent)">—</div><div class="s-lbl">Pesanan Masuk</div></div>
-      <div class="stat-c green"><div class="s-num" id="st-confirmed">—</div><div class="s-lbl">Dikonfirmasi</div></div>
-      <div class="stat-c amber"><div class="s-num" id="st-pending">—</div><div class="s-lbl">Menunggu</div></div>
-    </div>
-
-    <!-- STAT: PENDAPATAN -->
-    <div style="font-size:0.72rem;font-weight:600;color:var(--soft);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;margin-top:20px;">💰 Statistik Pendapatan</div>
-    <div class="stat-row-orders">
-      <div class="stat-c green"><div class="s-num" id="st-income-today" style="font-size:1.5rem">—</div><div class="s-lbl">Pendapatan Hari Ini</div></div>
-      <div class="stat-c purple"><div class="s-num" id="st-income-month" style="font-size:1.5rem">—</div><div class="s-lbl">Pendapatan Bulan Ini</div></div>
-      <div class="stat-c amber"><div class="s-num" id="st-income-total" style="font-size:1.5rem">—</div><div class="s-lbl">Total Pendapatan</div></div>
-    </div>
-
-    <!-- STAT: TEKNISI -->
-    <div style="font-size:0.72rem;font-weight:600;color:var(--soft);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;margin-top:20px;">👷 Statistik Teknisi</div>
-    <div class="stat-row-orders">
-      <div class="stat-c" style="border-left:3px solid var(--accent)"><div class="s-num" id="st-tech-total" style="color:var(--accent)">—</div><div class="s-lbl">Total Teknisi</div></div>
-      <div class="stat-c green"><div class="s-num" id="st-tech-active">—</div><div class="s-lbl">Aktif</div></div>
-      <div class="stat-c purple"><div class="s-num" id="st-tech-assigned">—</div><div class="s-lbl">Order Ter-assign</div></div>
-    </div>
-
     <!-- TABS -->
-    <div class="tabs" style="margin-top:32px;">
-      <button class="tab-btn act" id="tab-voucher" onclick="switchTab('voucher')">🎟️ Voucher</button>
-      <button class="tab-btn" id="tab-orders" onclick="switchTab('orders')">
-        📦 Pesanan
-        <span id="orders-badge" style="display:none;background:var(--red);color:#fff;border-radius:100px;padding:1px 7px;font-size:0.7rem;margin-left:4px;vertical-align:middle;"></span>
-      </button>
-      <button class="tab-btn" id="tab-notifikasi" onclick="switchTab('notifikasi')">
-        🔔 Notifikasi
-        <span id="notifications-badge" style="display:none;background:var(--amber);color:#fff;border-radius:100px;padding:1px 7px;font-size:0.7rem;margin-left:4px;vertical-align:middle;"></span>
-      </button>
-      <button class="tab-btn" id="tab-pendapatan" onclick="switchTab('pendapatan')">💰 Pendapatan</button>
-      <button class="tab-btn" id="tab-teknisi" onclick="switchTab('teknisi')">👷 Teknisi</button>
-      <button class="tab-btn" id="tab-pelanggan" onclick="switchTab('pelanggan')">👥 Pelanggan</button>
+    <div class="tabs" role="tablist">
+      <button class="tab-btn act" id="tab-hari" onclick="switchTab('hari')">Hari ini</button>
+      <button class="tab-btn" id="tab-orders" onclick="switchTab('orders')">Pesanan<span class="tab-n" id="orders-badge" style="display:none"></span></button>
+      <button class="tab-btn" id="tab-notifikasi" onclick="switchTab('notifikasi')">Pengingat<span class="tab-n amber" id="notifications-badge" style="display:none"></span></button>
+      <button class="tab-btn" id="tab-pendapatan" onclick="switchTab('pendapatan')">Pendapatan</button>
+      <button class="tab-btn" id="tab-pelanggan" onclick="switchTab('pelanggan')">Pelanggan</button>
+      <button class="tab-btn" id="tab-teknisi" onclick="switchTab('teknisi')">Teknisi</button>
+      <button class="tab-btn" id="tab-voucher" onclick="switchTab('voucher')">Voucher</button>
+    </div>
+
+    <!-- PANE: HARI INI -->
+    <div id="pane-hari" class="tab-pane act">
+      <div id="today-root"><div class="orders-empty">Memuat data...</div></div>
     </div>
 
     <!-- PANE: VOUCHER -->
-    <div id="pane-voucher" class="tab-pane act">
+    <div id="pane-voucher" class="tab-pane">
+      <div class="stat-row" style="grid-template-columns:repeat(4,1fr)">
+        <div class="stat-c"><div class="s-num" id="st-total">—</div><div class="s-lbl">Total voucher</div></div>
+        <div class="stat-c"><div class="s-num" id="st-active">—</div><div class="s-lbl">Aktif</div></div>
+        <div class="stat-c"><div class="s-num" id="st-used">—</div><div class="s-lbl">Total diklaim</div></div>
+        <div class="stat-c"><div class="s-num" id="st-expired">—</div><div class="s-lbl">Kedaluwarsa</div></div>
+      </div>
       <div class="panels">
         <!-- CREATE PANEL -->
         <div class="panel">
-          <div class="panel-title">✨ Buat Voucher Baru</div>
+          <div class="panel-title">Buat Voucher Baru</div>
           <div class="fg">
             <label class="fl">Kode Voucher</label>
             <div class="gen-row">
               <input type="text" class="gen-input" id="v-code" placeholder="ASLAN20" maxlength="20">
-              <button class="gen-btn" id="btn-gen">🎲 Generate</button>
+              <button class="gen-btn" id="btn-gen">Generate</button>
             </div>
           </div>
           <div class="fg">
@@ -531,8 +505,8 @@
 
         <!-- TABLE PANEL -->
         <div class="panel">
-          <div class="panel-title">📋 Daftar Voucher</div>
-          <input type="text" class="search-bar" id="search" placeholder="🔍  Cari kode atau deskripsi...">
+          <div class="panel-title">Daftar Voucher</div>
+          <input type="text" class="search-bar" id="search" placeholder=" Cari kode atau deskripsi...">
           <div class="tbl-wrap">
             <table>
               <thead>
@@ -551,15 +525,28 @@
 
     <!-- PANE: ORDERS -->
     <div id="pane-orders" class="tab-pane">
-      <div class="filter-row" style="align-items:center;">
-        <button class="filter-pill act" id="f-all"       onclick="filterOrders('all')">Semua</button>
-        <button class="filter-pill"     id="f-pending"   onclick="filterOrders('pending')">⏳ Menunggu</button>
-        <button class="filter-pill"     id="f-confirmed" onclick="filterOrders('confirmed')">✅ Dikonfirmasi</button>
-        <button class="filter-pill"     id="f-rejected"  onclick="filterOrders('rejected')">❌ Ditolak</button>
-        <button class="cal-toggle-btn" id="cal-toggle" onclick="window.toggleCalendar()">📅 Filter Tanggal</button>
-        <button class="export-cal-btn" onclick="window.exportToCalendar()" title="Export order terkonfirmasi ke iPhone Calendar">📤 Export ke Kalender</button>
-        <button class="export-cal-btn" style="border-color:var(--green);background:rgba(34,197,94,0.08);color:#166534;" onclick="window.openManualBookingModal()" title="Tambahkan booking dari WhatsApp/telepon">➕ Tambah Booking Manual</button>
+      <div class="ord-toolbar">
+        <input type="search" class="search-bar" id="ord-search" placeholder="Cari nama, nomor WhatsApp, ID order, alamat..." aria-label="Cari pesanan">
+        <div class="ord-tools">
+          <button class="tool-btn primary" onclick="window.openManualBookingModal()" title="Tambahkan booking dari WhatsApp/telepon">+ Booking manual</button>
+          <button class="cal-toggle-btn" id="cal-toggle" onclick="window.toggleCalendar()">Kalender</button>
+          <button class="tool-btn" onclick="window.exportToCalendar()" title="Export order terkonfirmasi ke aplikasi Kalender">Export kalender</button>
+        </div>
       </div>
+      <div class="filter-row" style="align-items:center;">
+        <button class="filter-pill act" id="f-all"       onclick="filterOrders('all')">Semua<span class="pill-n" id="fn-all"></span></button>
+        <button class="filter-pill"     id="f-pending"   onclick="filterOrders('pending')">Menunggu<span class="pill-n" id="fn-pending"></span></button>
+        <button class="filter-pill"     id="f-confirmed" onclick="filterOrders('confirmed')">Dikonfirmasi<span class="pill-n" id="fn-confirmed"></span></button>
+        <button class="filter-pill"     id="f-rejected"  onclick="filterOrders('rejected')">Ditolak<span class="pill-n" id="fn-rejected"></span></button>
+        <button class="filter-pill warn" id="f-unassigned"  data-hide-empty="1" hidden onclick="filterOrders('unassigned')">Belum ada teknisi<span class="pill-n" id="fn-unassigned"></span></button>
+        <button class="filter-pill warn" id="f-unscheduled" data-hide-empty="1" hidden onclick="filterOrders('unscheduled')">Belum dijadwalkan<span class="pill-n" id="fn-unscheduled"></span></button>
+        <button class="filter-pill warn" id="f-overdue"     data-hide-empty="1" hidden onclick="filterOrders('overdue')">Lewat jadwal<span class="pill-n" id="fn-overdue"></span></button>
+        <select class="cust-select" id="ord-sort" aria-label="Urutkan pesanan" style="margin-left:auto">
+          <option value="new">Urut: terbaru masuk</option>
+          <option value="sched">Urut: jadwal terdekat</option>
+        </select>
+      </div>
+      <div class="ord-count" id="ord-count"></div>
 
       <!-- CALENDAR (hidden by default) -->
       <div class="panel cal-container" id="cal-panel">
@@ -583,11 +570,11 @@
             <button class="cal-clear" id="cal-clear">✕ Reset</button>
           </div>
           <div class="avail-picker">
-            <div class="avail-picker-label">🗓️ Atur Ketersediaan Tanggal Ini</div>
+            <div class="avail-picker-label">Atur Ketersediaan Tanggal Ini</div>
             <div class="avail-btn-row">
-              <button class="avail-btn av-available" id="avail-btn-available" onclick="window.setAvailability('available')">✅ Tersedia</button>
-              <button class="avail-btn av-almost"    id="avail-btn-almost"    onclick="window.setAvailability('almost_full')">⚠️ Hampir Penuh</button>
-              <button class="avail-btn av-full"      id="avail-btn-full"      onclick="window.setAvailability('full_booked')">🔴 Full Booked</button>
+              <button class="avail-btn av-available" id="avail-btn-available" onclick="window.setAvailability('available')">Tersedia</button>
+              <button class="avail-btn av-almost"    id="avail-btn-almost"    onclick="window.setAvailability('almost_full')">Hampir Penuh</button>
+              <button class="avail-btn av-full"      id="avail-btn-full"      onclick="window.setAvailability('full_booked')">Full Booked</button>
             </div>
           </div>
         </div>
@@ -601,7 +588,7 @@
     <!-- PANE: NOTIFIKASI PERAWATAN -->
     <div id="pane-notifikasi" class="tab-pane">
       <div class="panel">
-        <div class="panel-title">🔔 Pengingat Perawatan AC</div>
+        <div class="panel-title">Pengingat Perawatan AC</div>
         <div class="notif-summary">Menampilkan customer dengan booking layanan <b>cuci</b> atau <b>pasang</b> yang tanggal layanannya sudah 90–100 hari lalu. Klik tombol WhatsApp untuk mengirim pengingat dan menawarkan jadwal pekan ini.</div>
         <div id="notifications-list"><div class="orders-empty">Memuat notifikasi...</div></div>
       </div>
@@ -609,16 +596,25 @@
 
     <!-- PANE: PENDAPATAN -->
     <div id="pane-pendapatan" class="tab-pane">
+      <div class="stat-row-orders" style="margin-bottom:20px;">
+        <div class="stat-c"><div class="s-num" id="st-income-today">—</div><div class="s-lbl">Pendapatan hari ini</div></div>
+        <div class="stat-c"><div class="s-num" id="st-income-month">—</div><div class="s-lbl">Pendapatan bulan ini</div></div>
+        <div class="stat-c"><div class="s-num" id="st-income-total">—</div><div class="s-lbl">Total pendapatan</div></div>
+      </div>
+      <div class="panel inc-chart" style="margin-bottom:20px;">
+        <div class="panel-title">Pendapatan 6 bulan terakhir</div>
+        <div id="inc-chart"><div class="empty-state">Memuat data...</div></div>
+      </div>
       <div class="filter-row" style="align-items:center;">
         <button class="filter-pill act" id="inc-all"    onclick="window.filterIncome('all')">Semua</button>
-        <button class="filter-pill"     id="inc-today"  onclick="window.filterIncome('today')">📆 Hari Ini</button>
-        <button class="filter-pill"     id="inc-month"  onclick="window.filterIncome('month')">🗓️ Bulan Ini</button>
-        <button class="filter-pill"     id="inc-custom" onclick="window.filterIncome('custom')">🔧 Custom</button>
+        <button class="filter-pill"     id="inc-today"  onclick="window.filterIncome('today')">Hari Ini</button>
+        <button class="filter-pill"     id="inc-month"  onclick="window.filterIncome('month')">Bulan Ini</button>
+        <button class="filter-pill"     id="inc-custom" onclick="window.filterIncome('custom')">Custom</button>
       </div>
 
       <!-- CUSTOM DATE RANGE PANEL -->
       <div class="panel" id="inc-custom-panel" style="display:none;margin-bottom:20px;">
-        <div class="panel-title">🔧 Pilih Rentang Tanggal</div>
+        <div class="panel-title">Pilih Rentang Tanggal</div>
         <div class="fg fr2">
           <div>
             <label class="fl">Dari Tanggal</label>
@@ -639,7 +635,10 @@
       </div>
 
       <div class="panel">
-        <div class="panel-title">📋 Rincian Pesanan Terkonfirmasi</div>
+        <div class="inc-head">
+          <div class="panel-title">Rincian pesanan terkonfirmasi</div>
+          <button class="tool-btn" onclick="window.exportIncomeCsv()" title="Sesuai periode yang sedang dipilih">Export CSV</button>
+        </div>
         <div class="tbl-wrap">
           <table>
             <thead>
@@ -655,10 +654,15 @@
 
     <!-- PANE: TEKNISI -->
     <div id="pane-teknisi" class="tab-pane">
+      <div class="stat-row-orders" style="margin-bottom:20px;">
+        <div class="stat-c"><div class="s-num" id="st-tech-total">—</div><div class="s-lbl">Total teknisi</div></div>
+        <div class="stat-c"><div class="s-num" id="st-tech-active">—</div><div class="s-lbl">Aktif</div></div>
+        <div class="stat-c"><div class="s-num" id="st-tech-assigned">—</div><div class="s-lbl">Order ter-assign</div></div>
+      </div>
       <div class="panels">
         <!-- CREATE TEKNISI PANEL -->
         <div class="panel">
-          <div class="panel-title">👷 Tambah Teknisi Baru</div>
+          <div class="panel-title">Tambah Teknisi Baru</div>
           <div class="fg">
             <label class="fl">Nama Teknisi</label>
             <input type="text" class="fi" id="tech-name" placeholder="Nama lengkap teknisi">
@@ -667,14 +671,14 @@
             <label class="fl">ID Login</label>
             <div class="gen-row">
               <input type="text" class="gen-input" id="tech-id" placeholder="TECH01" maxlength="20" style="text-transform:uppercase;letter-spacing:0.06em;">
-              <button class="gen-btn" id="btn-gen-tech">🎲 Generate</button>
+              <button class="gen-btn" id="btn-gen-tech">Generate</button>
             </div>
           </div>
           <div class="fg">
             <label class="fl">Password</label>
             <div class="gen-row">
               <input type="text" class="gen-input" id="tech-pass" placeholder="password123" style="text-transform:none;letter-spacing:normal;">
-              <button class="gen-btn" id="btn-gen-tech-pass">🎲 Random</button>
+              <button class="gen-btn" id="btn-gen-tech-pass">Random</button>
             </div>
           </div>
           <div class="fg">
@@ -688,14 +692,14 @@
           <button class="create-btn" id="btn-create-tech">+ Tambah Teknisi</button>
           <p class="form-msg" id="tech-form-msg"></p>
           <div style="margin-top:16px;padding:12px;background:#EDE9FB;border-radius:12px;font-size:0.76rem;color:var(--mid);line-height:1.6;">
-            💡 Teknisi login di <strong>/teknisi</strong> menggunakan ID dan password yang kamu buat di sini.
+            Teknisi login di <strong>/teknisi</strong> menggunakan ID dan password yang kamu buat di sini.
           </div>
         </div>
 
         <!-- TEKNISI TABLE PANEL -->
         <div class="panel">
-          <div class="panel-title">📋 Daftar Teknisi</div>
-          <input type="text" class="search-bar" id="tech-search" placeholder="🔍  Cari nama atau ID...">
+          <div class="panel-title">Daftar Teknisi</div>
+          <input type="text" class="search-bar" id="tech-search" placeholder=" Cari nama atau ID...">
           <div class="tbl-wrap">
             <table>
               <thead>
@@ -711,7 +715,7 @@
 
       <!-- ASSIGNMENT OVERVIEW -->
       <div class="panel" style="margin-top:24px;">
-        <div class="panel-title">📋 Ringkasan Assignment Teknisi</div>
+        <div class="panel-title">Ringkasan Assignment Teknisi</div>
         <p style="font-size:0.82rem;color:var(--soft);margin-bottom:16px;">Order confirmed yang sudah / belum di-assign ke teknisi.</p>
         <div id="tech-assignment-overview">
           <div class="empty-state">Memuat data assignment...</div>
@@ -731,17 +735,17 @@
       <div class="cust-insights" id="cust-insights"></div>
 
       <div class="panel">
-        <div class="panel-title">👥 Data Pelanggan</div>
+        <div class="panel-title">Data Pelanggan</div>
         <div class="filter-row">
           <button class="filter-pill act" id="cf-all"     onclick="window.filterCustomers('all')">Semua</button>
-          <button class="filter-pill"     id="cf-repeat"  onclick="window.filterCustomers('repeat')">🔁 Langganan</button>
-          <button class="filter-pill"     id="cf-new"     onclick="window.filterCustomers('new')">🆕 Baru 1x</button>
-          <button class="filter-pill"     id="cf-weekend" onclick="window.filterCustomers('weekend')">🏖️ Servis Weekend</button>
-          <button class="filter-pill"     id="cf-weekday" onclick="window.filterCustomers('weekday')">💼 Weekday Saja</button>
-          <button class="filter-pill"     id="cf-sleep"   onclick="window.filterCustomers('sleep')">😴 90+ Hari Tidak Order</button>
+          <button class="filter-pill"     id="cf-repeat"  onclick="window.filterCustomers('repeat')">Langganan</button>
+          <button class="filter-pill"     id="cf-new"     onclick="window.filterCustomers('new')">Baru 1x</button>
+          <button class="filter-pill"     id="cf-weekend" onclick="window.filterCustomers('weekend')">Servis Weekend</button>
+          <button class="filter-pill"     id="cf-weekday" onclick="window.filterCustomers('weekday')">Weekday Saja</button>
+          <button class="filter-pill"     id="cf-sleep"   onclick="window.filterCustomers('sleep')">90+ Hari Tidak Order</button>
         </div>
         <div class="cust-toolbar">
-          <input type="text" class="search-bar" id="cust-search" placeholder="🔍  Cari nama, WhatsApp, kota, merk AC, keluhan...">
+          <input type="text" class="search-bar" id="cust-search" placeholder=" Cari nama, WhatsApp, kota, merk AC, keluhan...">
           <select class="cust-select" id="cust-svc" aria-label="Filter layanan"><option value="">Semua layanan</option></select>
           <select class="cust-select" id="cust-day" aria-label="Filter hari favorit">
             <option value="">Semua hari favorit</option>
@@ -782,7 +786,7 @@
 <!-- ASSIGN ORDER MODAL -->
 <div class="assign-modal-overlay" id="assign-modal" onclick="if(event.target===this)window.closeAssignModal()">
   <div class="assign-modal">
-    <div class="assign-modal-title">👷 Assign ke Teknisi</div>
+    <div class="assign-modal-title">Assign ke Teknisi</div>
     <div class="assign-modal-sub" id="assign-modal-sub">Pilih teknisi yang akan menangani order ini</div>
     <input type="hidden" id="assign-order-id">
     <select class="assign-select" id="assign-tech-select">
@@ -790,7 +794,7 @@
     </select>
     <div class="assign-foot">
       <button class="assign-cancel-btn" onclick="window.closeAssignModal()">Batal</button>
-      <button class="assign-save-btn" onclick="window.saveAssign()">✅ Assign</button>
+      <button class="assign-save-btn" onclick="window.saveAssign()">Assign</button>
     </div>
   </div>
 </div>
@@ -798,22 +802,22 @@
 <!-- SCHEDULE EDIT MODAL -->
 <div class="sched-modal-overlay" id="schedule-modal" onclick="if(event.target===this)window.closeScheduleModal()">
   <div class="sched-modal">
-    <div class="sched-modal-title">✏️ Edit Jadwal Order</div>
+    <div class="sched-modal-title">Edit Jadwal Order</div>
     <div class="sched-modal-sub" id="sm-order-label">Atur tanggal &amp; jam yang sudah disepakati via WhatsApp</div>
     <input type="hidden" id="sm-order-id">
     <div class="sched-field">
-      <label>📅 Tanggal Servis</label>
+      <label>Tanggal Servis</label>
       <input type="date" class="sched-input" id="sm-date">
     </div>
     <div class="sched-field">
-      <label>🕐 Jam Kedatangan <span style="font-weight:400;color:var(--soft)">(opsional)</span></label>
+      <label>Jam Kedatangan <span style="font-weight:400;color:var(--soft)">(opsional)</span></label>
       <select class="sched-input" id="sm-hour"></select>
       <div id="sm-hour-note" style="font-size:0.72rem;color:var(--soft);margin-top:6px;"></div>
       <input type="hidden" id="sm-time">
     </div>
     <div class="sched-foot">
       <button class="sched-cancel-btn" onclick="window.closeScheduleModal()">Batal</button>
-      <button class="sched-save-btn" onclick="window.saveSchedule()">💾 Simpan Jadwal</button>
+      <button class="sched-save-btn" onclick="window.saveSchedule()">Simpan Jadwal</button>
     </div>
   </div>
 </div>
@@ -828,12 +832,12 @@
       <input type="text" class="sched-input" id="cm-brand" list="ac-brand-list" maxlength="60" placeholder="Daikin, Panasonic, Sharp...">
     </div>
     <div class="sched-field">
-      <label>📝 Catatan tentang pelanggan <span style="font-weight:400;color:var(--soft)">(opsional)</span></label>
+      <label>Catatan tentang pelanggan <span style="font-weight:400;color:var(--soft)">(opsional)</span></label>
       <textarea class="sched-input" id="cm-note" rows="3" maxlength="500" placeholder="Contoh: lebih suka dihubungi sore, rumah 2 lantai, AC kamar anak sering bocor"></textarea>
     </div>
     <div class="sched-foot">
       <button class="sched-cancel-btn" onclick="window.closeCustomerModal()">Tutup</button>
-      <button class="sched-save-btn" id="cm-save-btn" onclick="window.saveCustomerProfile()">💾 Simpan Profil</button>
+      <button class="sched-save-btn" id="cm-save-btn" onclick="window.saveCustomerProfile()">Simpan Profil</button>
     </div>
   </div>
 </div>
@@ -846,7 +850,7 @@
 <!-- MANUAL BOOKING MODAL -->
 <div class="sched-modal-overlay" id="manual-booking-modal" onclick="if(event.target===this)window.closeManualBookingModal()">
   <div class="sched-modal" style="max-width:480px;max-height:90vh;overflow-y:auto;">
-    <div class="sched-modal-title">➕ Tambah Booking Manual</div>
+    <div class="sched-modal-title">Tambah Booking Manual</div>
     <div class="sched-modal-sub">Untuk pesanan yang masuk lewat WhatsApp / telepon, bukan lewat website.</div>
 
     <div class="sched-field">
@@ -908,8 +912,8 @@
     <div class="sched-field">
       <label>Status Booking</label>
       <select class="sched-input" id="mb-status">
-        <option value="confirmed">✅ Konfirmasi Langsung</option>
-        <option value="pending">⏳ Menunggu Konfirmasi</option>
+        <option value="confirmed">Konfirmasi Langsung</option>
+        <option value="pending">Menunggu Konfirmasi</option>
       </select>
     </div>
     <div class="sched-field">
@@ -919,7 +923,7 @@
     <p class="form-msg" id="mb-msg"></p>
     <div class="sched-foot">
       <button class="sched-cancel-btn" onclick="window.closeManualBookingModal()">Batal</button>
-      <button class="sched-save-btn" id="mb-save-btn" onclick="window.saveManualBooking()">💾 Simpan Booking</button>
+      <button class="sched-save-btn" id="mb-save-btn" onclick="window.saveManualBooking()">Simpan Booking</button>
     </div>
   </div>
 </div>
@@ -1010,6 +1014,9 @@ let unsubOrders      = null;
 let unsubAvailability = null;
 let unsubTechnicians = null;
 let allTechnicians   = [];
+let notifPendingCount = 0; // pengingat perawatan yang belum dikirim
+let incomeShown = [];      // daftar pendapatan sesuai filter aktif (untuk export)
+let knownPendingIds = null; // untuk memberi tahu saat ada pesanan baru
 
 // ── PENDAPATAN (income recap) STATE ────────────────────
 let incomeFilter     = 'all'; // 'all' | 'today' | 'month' | 'custom'
@@ -1207,13 +1214,19 @@ window.deleteV = async function(id, code) {
 
 // ── TABS ───────────────────────────────────────────────
 window.switchTab = function(tab) {
-  ['voucher','orders','notifikasi','pendapatan','teknisi','pelanggan'].forEach(t => {
+  const tabs = ['hari','orders','notifikasi','pendapatan','pelanggan','teknisi','voucher'];
+  if (!tabs.includes(tab)) tab = 'hari';
+  tabs.forEach(t => {
     const pane = document.getElementById('pane-'+t);
     const btn  = document.getElementById('tab-'+t);
     if (pane) pane.classList.toggle('act', t===tab);
-    if (btn)  btn.classList.toggle('act', t===tab);
+    if (btn)  { btn.classList.toggle('act', t===tab); btn.setAttribute('aria-selected', String(t===tab)); }
   });
+  try { sessionStorage.setItem('at_admin_tab', tab); } catch(e) {}
+  const strip = document.getElementById('tab-'+tab);
+  if (strip && strip.scrollIntoView) strip.scrollIntoView({ block:'nearest', inline:'center' });
 };
+try { window.switchTab(sessionStorage.getItem('at_admin_tab') || 'hari'); } catch(e) {}
 
 // ── CALENDAR ───────────────────────────────────────────
 // ── CALENDAR TOGGLE ────────────────────────────────────
@@ -1253,19 +1266,8 @@ function _renderCalendarNow() {
   const orderCounts = {};
   allOrders.forEach(o => {
     if (o.status === 'rejected') return;
-    const addDate = (dateStr) => { orderCounts[dateStr] = (orderCounts[dateStr] || 0) + 1; };
-    // Priority: scheduled_date > date field > created_at
-    if (o.scheduled_date) {
-      addDate(o.scheduled_date);
-    } else if (o.date) {
-      try {
-        const pd = new Date(o.date);
-        if (!isNaN(pd)) addDate(pd.getFullYear() + '-' + String(pd.getMonth()+1).padStart(2,'0') + '-' + String(pd.getDate()).padStart(2,'0'));
-      } catch(e){}
-    } else if (o.created_at && o.created_at.seconds) {
-      const d = new Date(o.created_at.seconds * 1000);
-      addDate(d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'));
-    }
+    const sd = custServiceDate(o);
+    if (sd) orderCounts[sd] = (orderCounts[sd] || 0) + 1;
   });
 
   const firstDay = new Date(calYear, calMonth, 1).getDay();
@@ -1353,9 +1355,16 @@ function listenOrders() {
   const q = query(collection(db, 'orders'), orderBy('created_at', 'desc'), limit(1000));
   unsubOrders = onSnapshot(q, snap => {
     allOrders = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    const pendingNow = allOrders.filter(o => o.status === 'pending');
+    if (knownPendingIds) {
+      const fresh = pendingNow.filter(o => !knownPendingIds.has(o.id));
+      if (fresh.length) showToast(fresh.length === 1 ? 'Pesanan baru dari ' + (fresh[0].name || 'customer') : fresh.length + ' pesanan baru masuk');
+    }
+    knownPendingIds = new Set(pendingNow.map(o => o.id));
     renderOrderStats();
     renderOrders();
     renderNotifications();
+    renderToday();
     renderCalendar(); // re-render dots
     renderIncome();
     renderCustomers();
@@ -1396,30 +1405,21 @@ function updateAvailBtnState(status) {
 }
 
 function renderOrderStats() {
-  const pending   = allOrders.filter(o => o.status === 'pending').length;
-  const confirmed = allOrders.filter(o => o.status === 'confirmed').length;
-  document.getElementById('st-orders').textContent    = allOrders.length;
-  document.getElementById('st-confirmed').textContent = confirmed;
-  document.getElementById('st-pending').textContent   = pending;
+  const pending = allOrders.filter(o => o.status === 'pending').length;
   const badge = document.getElementById('orders-badge');
   if (pending > 0) { badge.textContent = pending; badge.style.display = 'inline-block'; }
   else { badge.style.display = 'none'; }
+  // Jumlah pesanan menunggu ikut tampil di judul tab browser
+  document.title = (pending ? '(' + pending + ') ' : '') + 'Aslan Teknik — Admin Dashboard';
 }
 
 // ── NOTIFIKASI PERAWATAN 90 HARI ───────────────────────
 function notificationDate(o) {
-  if (o.scheduled_date) {
-    const d = new Date(o.scheduled_date + 'T00:00:00');
-    if (!isNaN(d)) return d;
-  }
-  if (o.date) {
-    const d = new Date(o.date);
-    if (!isNaN(d)) return d;
-  }
-  if (o.created_at && o.created_at.seconds) return new Date(o.created_at.seconds * 1000);
-  return null;
+  const sd = custServiceDate(o);
+  if (!sd) return null;
+  const d = new Date(sd + 'T00:00:00');
+  return isNaN(d) ? null : d;
 }
-
 function notificationServices(o) {
   const services = Array.isArray(o.services) ? o.services : [o.services || ''];
   return services.map(s => String(s).toLowerCase()).filter(s => s.includes('cuci') || s.includes('pasang'));
@@ -1448,6 +1448,7 @@ function renderNotifications() {
     .map(o => ({ order: o, date: notificationDate(o), ageDays: daysSince(notificationDate(o)) }))
     .sort((a,b) => a.date - b.date);
 
+  notifPendingCount = eligible.filter(e => !e.order.maintenance_reminder_sent_at).length;
   if (eligible.length) {
     badge.textContent = eligible.length;
     badge.style.display = 'inline-block';
@@ -1496,18 +1497,92 @@ window.markMaintenanceReminder = function(orderId) {
   }).catch(e => showToast('WhatsApp terbuka, tetapi status pengingat gagal disimpan: ' + e.message));
 }
 
+// ── Bantuan pesanan ──
+const WA_ICON = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>';
+function ordToday() { return custYmd(new Date()); }
+function ordOpen(o) { return o.status === 'confirmed' && (o.task_status || 'belum') === 'belum'; }
+// Butuh tindakan: hanya order yang jadwalnya hari ini atau ke depan.
+function ordIsUnassigned(o)  { return ordOpen(o) && !o.assigned_to && (custServiceDate(o) || '') >= ordToday(); }
+function ordIsUnscheduled(o) { return ordOpen(o) && (!o.scheduled_date || !o.scheduled_time) && (custServiceDate(o) || '') >= ordToday(); }
+// Lewat jadwal tapi belum ditandai selesai (dibatasi 14 hari terakhir supaya tetap bisa ditindak).
+function ordIsOverdue(o) {
+  const sd = custServiceDate(o);
+  if (!ordOpen(o) || !sd || sd >= ordToday()) return false;
+  const min = new Date(); min.setDate(min.getDate() - 14);
+  return sd >= custYmd(min);
+}
+function ordFullDate(ymd) {
+  return ymd ? new Date(ymd + 'T00:00:00').toLocaleDateString('id-ID', { weekday:'long', day:'numeric', month:'long', year:'numeric' }) : '';
+}
+function ordRelDay(ymd) {
+  if (!ymd) return '';
+  const t = ordToday(); const tm = new Date(); tm.setDate(tm.getDate() + 1);
+  return ymd === t ? 'Hari ini' : ymd === custYmd(tm) ? 'Besok' : '';
+}
+function ordSvcText(o) { return Array.isArray(o.services) ? o.services.join(', ') : (o.services || ''); }
+function ordWaHref(number, text) {
+  const wa = custWa(number);
+  return wa.length >= 8 ? `https://wa.me/${wa}${text ? '?text=' + encodeURIComponent(text) : ''}` : '';
+}
+function ordMapsHref(o) {
+  const q = [o.address, o.city].filter(Boolean).join(', ');
+  return q ? 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q) : '';
+}
+function ordScheduleLine(o) {
+  if (!o.scheduled_date) return '';
+  return ordFullDate(o.scheduled_date) + (o.scheduled_time ? ' pukul ' + o.scheduled_time + ' WIB' : '');
+}
+// Pesan konfirmasi jadwal ke customer
+function ordConfirmMsg(o) {
+  const lines = [
+    `Halo kak ${o.name || ''},`, '',
+    'Booking servis AC kakak sudah kami konfirmasi.', '',
+    `ID Order: ${o.order_id || o.id.slice(0,8).toUpperCase()}`,
+    `Jadwal: ${ordScheduleLine(o) || o.date || '-'}`,
+    `Layanan: ${ordSvcText(o) || '-'}`,
+    `Alamat: ${[o.address, o.city].filter(Boolean).join(', ') || '-'}`
+  ];
+  if (o.assigned_name) lines.push(`Teknisi: ${o.assigned_name}`);
+  lines.push(`Estimasi biaya: ${fmt(getOrderRevenue(o))}`, '',
+    'Teknisi kami datang sesuai jadwal. Kalau ada perubahan, balas pesan ini ya.', 'Terima kasih, Aslan Teknik');
+  return lines.join('\n');
+}
+// Ringkasan pekerjaan untuk teknisi
+function ordTechMsg(o) {
+  const maps = ordMapsHref(o);
+  const brand = custOrderBrand(o);
+  const lines = [
+    `Tugas servis AC — ${o.order_id || o.id.slice(0,8).toUpperCase()}`, '',
+    `Jadwal: ${ordScheduleLine(o) || o.date || '-'}`,
+    `Customer: ${o.name || '-'} (${o.wa_number || '-'})`,
+    `Alamat: ${[o.address, o.city].filter(Boolean).join(', ') || '-'}`
+  ];
+  if (maps) lines.push(`Maps: ${maps}`);
+  lines.push(`Layanan: ${ordSvcText(o) || '-'}`, `AC: ${o.ac_type || '-'}${brand ? ', merk ' + brand : ''}, ${o.unit_count || 1} unit`);
+  const note = custNote(o);
+  if (note) lines.push(`Catatan customer: ${note}`);
+  return lines.join('\n');
+}
+
 window.filterOrders = function(f) {
   orderFilter = f;
-  ['all','pending','confirmed','rejected'].forEach(x => {
-    document.getElementById('f-'+x).classList.toggle('act', x===f);
+  ['all','pending','confirmed','rejected','unassigned','unscheduled','overdue'].forEach(x => {
+    const el = document.getElementById('f-' + x);
+    if (el) el.classList.toggle('act', x === f);
   });
   renderOrders();
+};
+window.goOrders = function(f) {
+  if (selectedDate && typeof window.selectCalDate === 'function') { try { document.getElementById('cal-clear').click(); } catch(e){} }
+  const s = document.getElementById('ord-search'); if (s) s.value = '';
+  window.switchTab('orders');
+  window.filterOrders(f);
+  window.scrollTo({ top: 0 });
 };
 
 function fmt(n){ return 'Rp ' + Number(n).toLocaleString('id-ID'); }
 
 function getOrderDateStr(o) {
-  // Returns YYYY-MM-DD from created_at timestamp
   if (o.created_at && o.created_at.seconds) {
     const d = new Date(o.created_at.seconds * 1000);
     return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
@@ -1516,161 +1591,237 @@ function getOrderDateStr(o) {
 }
 
 function renderOrders() {
-  let list = orderFilter === 'all' ? allOrders : allOrders.filter(o => o.status === orderFilter);
+  const el = document.getElementById('orders-list');
+  if (!el) return;
+  const live = allOrders;
+  const FILTERS = {
+    all: () => true,
+    pending: o => o.status === 'pending',
+    confirmed: o => o.status === 'confirmed',
+    rejected: o => o.status === 'rejected',
+    unassigned: ordIsUnassigned,
+    unscheduled: ordIsUnscheduled,
+    overdue: ordIsOverdue
+  };
+  // Angka di tiap pill filter
+  Object.keys(FILTERS).forEach(k => {
+    const n = document.getElementById('fn-' + k);
+    const count = live.filter(FILTERS[k]).length;
+    if (n) n.textContent = count;
+    const pill = document.getElementById('f-' + k);
+    if (pill && pill.dataset.hideEmpty) pill.hidden = !count && orderFilter !== k;
+  });
 
-  // Calendar date filter — match by scheduled_date (fix) as priority
-  if (selectedDate) {
+  let list = live.filter(FILTERS[orderFilter] || FILTERS.all);
+  if (selectedDate) list = list.filter(o => custServiceDate(o) === selectedDate);
+
+  const q = (document.getElementById('ord-search')?.value || '').trim().toLowerCase();
+  if (q) {
+    const qDigits = q.replace(/\D/g, '');
     list = list.filter(o => {
-      // Priority: scheduled_date > date field > created_at
-      if (o.scheduled_date) return o.scheduled_date === selectedDate;
-      if (o.date) {
-        try {
-          const pd = new Date(o.date);
-          if (!isNaN(pd)) {
-            const bookingStr = pd.getFullYear() + '-' + String(pd.getMonth()+1).padStart(2,'0') + '-' + String(pd.getDate()).padStart(2,'0');
-            return bookingStr === selectedDate;
-          }
-        } catch(e){}
-      }
-      const createdDateStr = getOrderDateStr(o);
-      return createdDateStr === selectedDate;
+      const hay = [o.name, o.order_id, o.id, o.wa_number, o.city, o.address, ordSvcText(o), o.assigned_name, o.notes, custOrderBrand(o)].join(' ').toLowerCase();
+      return hay.includes(q) || (qDigits.length >= 4 && custWa(o.wa_number).includes(custWa(qDigits)));
     });
   }
 
-  const el = document.getElementById('orders-list');
-  if (!list.length) {
-    const dateInfo = selectedDate ? ` pada tanggal ${new Date(selectedDate).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})}` : '';
-    el.innerHTML = `<div class="orders-empty">Tidak ada pesanan${orderFilter !== 'all' ? ' dengan status ini' : ''}${dateInfo}.</div>`;
-    return;
-  }
-  if (selectedDate) {
-    // Mode kalender: urutkan berdasarkan JAM JADWAL, paling pagi di atas
+  const sortBy = document.getElementById('ord-sort')?.value || 'new';
+  const created = o => o.created_at?.seconds || 0;
+  if (selectedDate || sortBy === 'sched') {
+    // Jadwal terdekat dulu: yang akan datang (paling dekat di atas), lalu yang sudah lewat.
+    const today = ordToday();
+    const key = o => (custServiceDate(o) || '9999') + ' ' + (o.scheduled_time || '99:99');
     list = list.slice().sort((a, b) => {
-      const ta = (a.scheduled_time || '99:99').trim();
-      const tb = (b.scheduled_time || '99:99').trim();
-      if (ta !== tb) return ta.localeCompare(tb);
-      // Tie-breaker: order yang lebih dulu dibuat di atas
-      const ca = a.created_at?.seconds || 0;
-      const cb = b.created_at?.seconds || 0;
-      return ca - cb;
+      const fa = (custServiceDate(a) || '9999') >= today, fb = (custServiceDate(b) || '9999') >= today;
+      if (fa !== fb) return fa ? -1 : 1;
+      return fa ? key(a).localeCompare(key(b)) || created(a) - created(b) : key(b).localeCompare(key(a));
     });
   } else {
-    // Urutkan dari booking paling terbaru di atas (created_at desc)
-    list = list.slice().sort((a, b) => {
-      const ta = a.created_at?.seconds || 0;
-      const tb = b.created_at?.seconds || 0;
-      if (ta !== tb) return tb - ta;
-      // Tie-breaker: jadwal lebih pagi dulu
-      const ka = (a.scheduled_date || '') + ' ' + (a.scheduled_time || '');
-      const kb = (b.scheduled_date || '') + ' ' + (b.scheduled_time || '');
-      return ka.localeCompare(kb);
-    });
+    list = list.slice().sort((a, b) => created(b) - created(a));
   }
+
+  const countEl = document.getElementById('ord-count');
+  if (countEl) {
+    const dateInfo = selectedDate ? ` untuk ${ordFullDate(selectedDate)}` : '';
+    countEl.textContent = `${list.length} pesanan${dateInfo}` + (allOrders.length >= 1000 ? ' (dari 1.000 pesanan terbaru)' : '');
+  }
+  if (!list.length) {
+    el.innerHTML = `<div class="orders-empty">${q ? 'Tidak ada pesanan yang cocok dengan pencarian ini.' : 'Tidak ada pesanan di filter ini.'}</div>`;
+    return;
+  }
+
   el.innerHTML = list.map(o => {
+    const safeId    = o.id.replace(/'/g, "\\'");
+    const safeVid   = (o.voucher_id || '').replace(/'/g, "\\'");
+    const safeVcode = (o.voucher_code || '').replace(/'/g, "\\'");
+    const isConfirmed = o.status === 'confirmed';
+    const isRejected  = o.status === 'rejected';
+    const isPending   = !isConfirmed && !isRejected;
+    const ts = o.task_status || 'belum';
     const createdAt = o.created_at
-      ? new Date(o.created_at.seconds*1000).toLocaleString('id-ID',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})
-      : '—';
-    const svcList      = Array.isArray(o.services) ? o.services.join(', ') : (o.services || '—');
-    const isConfirmed  = o.status === 'confirmed';
-    const isRejected   = o.status === 'rejected';
-    const isPending    = !isConfirmed && !isRejected;
-    const voucherHtml  = o.voucher_code
-      ? `<div class="order-voucher">🎟️ ${o.voucher_code} — hemat ${fmt(o.discount_amount||0)}</div>`
+      ? new Date(o.created_at.seconds * 1000).toLocaleString('id-ID', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' })
       : '';
-    const totalHtml    = o.voucher_code
-      ? `<div class="order-total"><span style="text-decoration:line-through;color:var(--soft);font-weight:400">${fmt(o.total_before)}</span> → <span class="green">${fmt(o.total_after)}</span></div>`
-      : `<div class="order-total">${fmt(o.total_before||0)}</div>`;
-    const safeId       = o.id.replace(/'/g,"\\'");
-    const safeVid      = (o.voucher_id||'').replace(/'/g,"\\'");
-    const safeVcode    = (o.voucher_code||'').replace(/'/g,"\\'");
+    const orderId = o.order_id || o.id.slice(0,8).toUpperCase();
 
-    // Assignment UI for confirmed orders
-    let assignHtml = '';
-    if (isConfirmed) {
-      const ts = o.task_status || 'belum';
-      const tsBadge = ts === 'selesai'
-        ? `<span class="ts-selesai">✅ Selesai</span>`
-        : ts === 'skip'
-        ? `<span class="ts-skip">⏭️ Skip</span>`
-        : `<span class="ts-belum">⏳ Belum</span>`;
-      if (o.assigned_to) {
-        assignHtml = `<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-          <div class="tech-assign-badge">👷 ${o.assigned_name||o.assigned_to}
-            <button class="unassign-btn" onclick="window.unassignOrder('${safeId}')" title="Hapus assignment">✕</button>
-          </div>
-          ${tsBadge}
-          <button class="invoice-btn" onclick="window.printInvoice('${safeId}',this)" title="Cetak invoice PDF">🧾 Cetak Invoice</button>
-        </div>`;
-      } else {
-        assignHtml = `<button class="assign-btn-o" onclick="window.openAssignModal('${safeId}')">👷 Assign Teknisi</button>`;
-      }
-    }
+    const badge = isPending ? '<span class="chip-s pending">Menunggu konfirmasi</span>'
+      : isRejected ? '<span class="chip-s no">Ditolak</span>'
+      : ts === 'selesai' ? '<span class="chip-s done">Selesai</span>'
+      : ts === 'skip' ? '<span class="chip-s mute">Di-skip teknisi</span>'
+      : '<span class="chip-s ok">Dikonfirmasi</span>';
 
-    const actionHtml   = isConfirmed
-      ? `<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-           <div class="confirmed-badge">✅ Dikonfirmasi</div>
-           ${assignHtml}
-         </div>`
-      : isRejected
-      ? `<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-           <div class="rejected-badge">❌ Ditolak</div>
-           <button class="act-btn del" onclick="window.deleteOrder('${safeId}',this)">🗑️ Hapus Order</button>
-         </div>`
-      : `<div class="order-actions">
-           <button class="confirm-btn-o" onclick="window.confirmOrder('${safeId}','${safeVid}','${safeVcode}',this)">✅ Konfirmasi Order</button>
-           <button class="reject-btn-o"  onclick="window.rejectOrder('${safeId}',this)">❌ Tolak Order</button>
-         </div>`;
+    const total = o.voucher_code
+      ? `<div class="oc-total"><s>${fmt(o.total_before || 0)}</s>${fmt(o.total_after || 0)}</div>`
+      : `<div class="oc-total">${fmt(o.total_before || 0)}</div>`;
 
-    // Scheduled date/time display
-    let schedHtml = '';
+    // Jadwal
+    const rel = ordRelDay(custServiceDate(o));
+    const relChip = rel && !isRejected ? ` <span class="chip-s info">${rel}</span>` : '';
+    const editBtn = `<button class="oc-inline-btn" onclick="window.openEditSchedule('${safeId}')">${o.scheduled_date ? 'Ubah' : 'Atur jadwal'}</button>`;
+    let sched;
     if (o.scheduled_date) {
-      const sd = new Date(o.scheduled_date + 'T00:00:00');
-      const sdStr = sd.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-      const stStr = o.scheduled_time ? ' · ' + o.scheduled_time + ' WIB' : '';
-      schedHtml = `<div class="sched-info">📅 Jadwal Fix: ${sdStr}${stStr}</div>`;
+      sched = esc(ordFullDate(o.scheduled_date)) + (o.scheduled_time ? `, <b>${esc(o.scheduled_time)} WIB</b>` : ', <span class="warn">jam belum ditentukan</span>') + relChip;
+    } else {
+      sched = `<span class="dim">Diminta ${esc(o.date || '—')}</span>, <span class="warn">belum dijadwalkan</span>` + relChip;
     }
-    const badgeHtml    = isConfirmed
-      ? '<span class="badge badge-green">Confirmed</span>'
-      : isRejected
-      ? '<span class="badge badge-red">Ditolak</span>'
-      : '<span class="badge badge-pending">Pending</span>';
-    return `<div class="order-card" id="ocard-${o.id}">
-      <div class="order-head">
-        <div style="display:flex;align-items:center;gap:10px">
-          <span class="order-id">${o.order_id || o.id.slice(0,8).toUpperCase()}</span>
-          ${badgeHtml}
+
+    const brand = custOrderBrand(o);
+    const maps = ordMapsHref(o);
+    const note = custNote(o);
+    const rows = [
+      `<div><dt>Jadwal</dt><dd>${sched} ${isRejected ? '' : editBtn}</dd></div>`,
+      `<div><dt>Layanan</dt><dd>${esc(ordSvcText(o) || '—')}<br><span class="dim">${esc(o.ac_type || 'Jenis AC belum diisi')}${brand ? ', merk ' + esc(brand) : ''}, ${esc(o.unit_count || 1)} unit</span></dd></div>`,
+      `<div><dt>Alamat</dt><dd>${esc([o.address, o.city].filter(Boolean).join(', ') || '—')}${maps ? ` <a class="oc-link" href="${maps}" target="_blank" rel="noopener">Buka Maps</a>` : ''}</dd></div>`
+    ];
+    if (note) rows.push(`<div><dt>Catatan</dt><dd>${esc(note)}</dd></div>`);
+    if (o.voucher_code) rows.push(`<div><dt>Voucher</dt><dd>${esc(o.voucher_code)}, hemat ${fmt(o.discount_amount || 0)}</dd></div>`);
+    if (isConfirmed) {
+      rows.push(`<div><dt>Teknisi</dt><dd>${o.assigned_to
+        ? `<b>${esc(o.assigned_name || o.assigned_to)}</b> <button class="oc-inline-btn" onclick="window.openAssignModal('${safeId}')">Ganti</button><button class="oc-inline-btn" onclick="window.unassignOrder('${safeId}')" title="Lepas teknisi dari order ini">Lepas</button>`
+        : '<span class="warn">Belum ada teknisi</span>'}</dd></div>`);
+    }
+
+    // Tombol aksi
+    const waChat = ordWaHref(o.wa_number);
+    const acts = [];
+    if (isPending) {
+      acts.push(`<button class="oc-btn go" onclick="window.confirmOrder('${safeId}','${safeVid}','${safeVcode}',this)">Konfirmasi</button>`);
+      acts.push(`<button class="oc-btn danger" onclick="window.rejectOrder('${safeId}',this)">Tolak</button>`);
+      if (waChat) acts.push(`<a class="oc-btn wa" href="${waChat}" target="_blank" rel="noopener">${WA_ICON}Chat customer</a>`);
+    } else if (isConfirmed) {
+      if (ts === 'belum') {
+        if (!o.assigned_to) acts.push(`<button class="oc-btn brand" onclick="window.openAssignModal('${safeId}')">Pilih teknisi</button>`);
+        const confirmHref = ordWaHref(o.wa_number, ordConfirmMsg(o));
+        if (confirmHref) acts.push(`<a class="oc-btn wa" href="${confirmHref}" target="_blank" rel="noopener" title="Buka WhatsApp customer dengan pesan konfirmasi jadwal yang sudah terisi">${WA_ICON}Kirim jadwal</a>`);
+        const tech = o.assigned_to ? allTechnicians.find(t => t.tech_id === o.assigned_to) : null;
+        const techHref = tech ? ordWaHref(tech.wa_number, ordTechMsg(o)) : '';
+        if (techHref) acts.push(`<a class="oc-btn" href="${techHref}" target="_blank" rel="noopener" title="Kirim detail pekerjaan ke WhatsApp teknisi">${WA_ICON}Kirim ke teknisi</a>`);
+      } else if (waChat) {
+        acts.push(`<a class="oc-btn wa" href="${waChat}" target="_blank" rel="noopener">${WA_ICON}Chat customer</a>`);
+      }
+      if (o.assigned_to) acts.push(`<button class="oc-btn" onclick="window.printInvoice('${safeId}',this)" title="Cetak invoice PDF">Cetak invoice</button>`);
+    } else {
+      if (waChat) acts.push(`<a class="oc-btn wa" href="${waChat}" target="_blank" rel="noopener">${WA_ICON}Chat customer</a>`);
+      acts.push(`<button class="oc-btn danger" onclick="window.deleteOrder('${safeId}',this)">Hapus order</button>`);
+    }
+
+    return `<article class="oc oc-${isPending ? 'pending' : o.status}" id="ocard-${esc(o.id)}">
+      <div class="oc-top">
+        <div class="oc-who">
+          <div class="oc-name">${custNameLink(o)}</div>
+          <div class="oc-sub">${esc(orderId)}${createdAt ? ', masuk ' + createdAt : ''}${o.source === 'manual' ? ', booking manual' : ''}</div>
         </div>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <span class="order-time">${createdAt}</span>
-          <button class="edit-sched-btn" onclick="window.openEditSchedule('${safeId}')">✏️ Edit Jadwal</button>
-        </div>
+        <div class="oc-right">${badge}${total}</div>
       </div>
-      ${schedHtml}
-      <div class="order-body">
-        <div><b>${custNameLink(o)}</b></div>
-        <div>${o.city||'—'}</div>
-        ${o.wa_number ? `<div style="grid-column:1/-1">
-          <a href="https://wa.me/${(o.wa_number||'').replace(/\D/g,'').replace(/^0/,'62')}" target="_blank"
-             style="display:inline-flex;align-items:center;gap:6px;background:#DCFCE7;color:#166534;padding:4px 12px;border-radius:100px;font-size:0.78rem;font-weight:600;text-decoration:none;border:1px solid #BBF7D0;transition:background 0.2s;"
-             onmouseover="this.style.background='#BBF7D0'" onmouseout="this.style.background='#DCFCE7'">
-            <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            📱 ${o.wa_number}
-          </a>
-        </div>` : ''}
-        <div style="grid-column:1/-1;color:var(--soft)">${o.address||'—'}</div>
-        <div>${o.ac_type||'—'}${custOrderBrand(o) ? ' · Merk: ' + esc(custOrderBrand(o)) : ''}</div>
-        <div>${o.unit_count||'—'} unit</div>
-        <div style="grid-column:1/-1">${svcList}</div>
-        <div>📅 ${o.date||'—'}</div>
-        ${o.notes ? `<div style="grid-column:1/-1;color:var(--soft)">📝 ${o.notes}</div>` : ''}
-      </div>
-      ${voucherHtml}
-      <div class="order-foot">
-        ${totalHtml}
-        ${actionHtml}
-      </div>
-    </div>`;
+      <dl class="oc-rows">${rows.join('')}</dl>
+      <div class="oc-actions">${acts.join('')}</div>
+    </article>`;
   }).join('');
+}
+
+// ── HARI INI (ringkasan & jadwal) ──
+function renderToday() {
+  const root = document.getElementById('today-root');
+  if (!root) return;
+  const today = ordToday();
+  const live = allOrders.filter(o => o.status !== 'rejected');
+  const confirmed = allOrders.filter(o => o.status === 'confirmed');
+  const sum = list => list.reduce((s, o) => s + getOrderRevenue(o), 0);
+
+  // Yang perlu ditindak
+  const pending = allOrders.filter(o => o.status === 'pending').length;
+  const todo = [
+    [pending, 'pesanan menunggu konfirmasi', "window.goOrders('pending')", 'Tinjau', ''],
+    [allOrders.filter(ordIsUnassigned).length, 'order belum ada teknisi', "window.goOrders('unassigned')", 'Pilih teknisi', ''],
+    [allOrders.filter(ordIsUnscheduled).length, 'order belum punya tanggal atau jam', "window.goOrders('unscheduled')", 'Atur jadwal', ''],
+    [allOrders.filter(ordIsOverdue).length, 'order lewat jadwal tapi belum ditandai selesai', "window.goOrders('overdue')", 'Cek', 'red'],
+    [notifPendingCount, 'customer perlu diingatkan cuci AC lagi', "window.switchTab('notifikasi')", 'Kirim pengingat', '']
+  ].filter(t => t[0] > 0);
+  const todoHtml = todo.length
+    ? `<div class="todo">${todo.map(t => `<button type="button" class="todo-item ${t[4]}" onclick="${t[2]}"><b>${t[0]}</b><span>${t[1]}</span><i>${t[3]}</i></button>`).join('')}</div>`
+    : '<div class="todo-clear">Semua beres. Tidak ada yang perlu ditindak sekarang.</div>';
+
+  // Angka ringkas
+  const week = new Date(); week.setDate(week.getDate() + 6);
+  const weekEnd = custYmd(week);
+  const monthPrefix = today.slice(0, 7);
+  const jobsToday = live.filter(o => custServiceDate(o) === today).length;
+  const jobsWeek  = live.filter(o => { const d = custServiceDate(o); return d && d >= today && d <= weekEnd; }).length;
+  const tile = (num, lbl) => `<div class="stat-c"><div class="s-num">${num}</div><div class="s-lbl">${lbl}</div></div>`;
+  const tiles = `<div class="tiles">
+    ${tile(jobsToday, 'Jadwal hari ini')}
+    ${tile(jobsWeek, 'Jadwal 7 hari ke depan')}
+    ${tile(fmt(sum(confirmed.filter(o => custServiceDate(o) === today))), 'Pendapatan hari ini')}
+    ${tile(fmt(sum(confirmed.filter(o => (custServiceDate(o) || '').startsWith(monthPrefix)))), 'Pendapatan bulan ini')}
+  </div>`;
+
+  // Agenda: hari ini, besok, lalu hari berikutnya yang ada jadwalnya (maks. 7 hari ke depan)
+  const byDay = {};
+  live.forEach(o => {
+    const d = custServiceDate(o);
+    if (d && d >= today && d <= weekEnd) (byDay[d] = byDay[d] || []).push(o);
+  });
+  const tm = new Date(); tm.setDate(tm.getDate() + 1);
+  const days = Array.from(new Set([today, custYmd(tm), ...Object.keys(byDay)])).sort();
+  const agenda = days.map(d => {
+    const rows = (byDay[d] || []).slice().sort((a, b) => (a.scheduled_time || '99:99').localeCompare(b.scheduled_time || '99:99'));
+    const label = ordRelDay(d) || new Date(d + 'T00:00:00').toLocaleDateString('id-ID', { weekday:'long' });
+    const dateStr = new Date(d + 'T00:00:00').toLocaleDateString('id-ID', { day:'numeric', month:'long' });
+    const body = rows.length ? `<div class="ag-list">${rows.map(o => {
+      const safeId = o.id.replace(/'/g, "\\'");
+      const ts = o.task_status || 'belum';
+      const chips = [];
+      if (o.status === 'pending') chips.push('<span class="chip-s pending">Menunggu konfirmasi</span>');
+      else if (ts === 'selesai') chips.push('<span class="chip-s done">Selesai</span>');
+      else if (ts === 'skip') chips.push('<span class="chip-s mute">Di-skip teknisi</span>');
+      chips.push(o.assigned_to ? `<span class="chip-s ok">${esc(o.assigned_name || o.assigned_to)}</span>` : (o.status === 'confirmed' ? '<span class="chip-s no">Belum ada teknisi</span>' : ''));
+      const waChat = ordWaHref(o.wa_number);
+      const maps = ordMapsHref(o);
+      const acts = [];
+      if (o.status === 'pending') acts.push(`<button class="oc-btn go" onclick="window.goOrders('pending')">Tinjau</button>`);
+      else if (!o.assigned_to) acts.push(`<button class="oc-btn brand" onclick="window.openAssignModal('${safeId}')">Pilih teknisi</button>`);
+      if (!o.scheduled_time) acts.push(`<button class="oc-btn" onclick="window.openEditSchedule('${safeId}')">Atur jam</button>`);
+      if (waChat) acts.push(`<a class="oc-btn wa" href="${waChat}" target="_blank" rel="noopener" aria-label="Chat WhatsApp ${esc(o.name || '')}">${WA_ICON}Chat</a>`);
+      if (maps) acts.push(`<a class="oc-btn" href="${maps}" target="_blank" rel="noopener">Maps</a>`);
+      return `<div class="ag-row">
+        <div class="ag-time${o.scheduled_time ? '' : ' none'}">${o.scheduled_time ? esc(o.scheduled_time) : 'Jam belum diatur'}</div>
+        <div class="ag-main"><b>${custNameLink(o)}</b>
+          <p>${esc(ordSvcText(o) || '—')}</p>
+          <p>${esc([o.address, o.city].filter(Boolean).join(', ') || 'Alamat belum ada')}</p>
+          <div class="ag-meta">${chips.join('')}</div>
+        </div>
+        <div class="ag-act">${acts.join('')}</div>
+      </div>`;
+    }).join('')}</div>` : '<div class="ag-empty">Belum ada jadwal.</div>';
+    return `<section class="ag-day"><h3>${label} <small>${dateStr}${rows.length ? ', ' + rows.length + ' order' : ''}</small></h3>${body}</section>`;
+  }).join('');
+
+  root.innerHTML = `
+    <div class="today-head">
+      <h1 class="pane-title">${new Date().toLocaleDateString('id-ID', { weekday:'long', day:'numeric', month:'long', year:'numeric' })}</h1>
+    </div>
+    ${todoHtml}
+    ${tiles}
+    <h2 class="pane-title" style="font-size:1.35rem;margin-bottom:14px;">Jadwal</h2>
+    ${agenda}`;
 }
 
 window.confirmOrder = async function(orderId, voucherId, voucherCode, btn) {
@@ -1712,7 +1863,7 @@ window.confirmOrder = async function(orderId, voucherId, voucherCode, btn) {
 
   } catch(e) {
     showToast('Gagal konfirmasi: ' + e.message);
-    if (btn) { btn.disabled = false; btn.textContent = '✅ Konfirmasi Order'; }
+    if (btn) { btn.disabled = false; btn.textContent = 'Konfirmasi'; }
   }
 };
 
@@ -1727,7 +1878,7 @@ window.rejectOrder = async function(orderId, btn) {
     showToast('Order telah ditolak ❌');
   } catch(e) {
     showToast('Gagal menolak order: ' + e.message);
-    if (btn) { btn.disabled = false; btn.textContent = '❌ Tolak Order'; }
+    if (btn) { btn.disabled = false; btn.textContent = 'Tolak'; }
   }
 };
 
@@ -1739,7 +1890,7 @@ window.deleteOrder = async function(orderId, btn) {
     showToast('Order berhasil dihapus permanen 🗑️');
   } catch(e) {
     showToast('Gagal menghapus: ' + e.message);
-    if (btn) { btn.disabled = false; btn.textContent = '🗑️ Hapus Order'; }
+    if (btn) { btn.disabled = false; btn.textContent = 'Hapus order'; }
   }
 };
 
@@ -1754,16 +1905,7 @@ function showToast(msg) {
 // Tanggal acuan pendapatan: pakai scheduled_date (jadwal fix) kalau ada,
 // fallback ke field 'date' dari booking, fallback terakhir ke created_at.
 function getOrderServiceDate(o) {
-  if (o.scheduled_date) return o.scheduled_date;
-  if (o.date) {
-    try {
-      const pd = new Date(o.date);
-      if (!isNaN(pd)) {
-        return pd.getFullYear() + '-' + String(pd.getMonth()+1).padStart(2,'0') + '-' + String(pd.getDate()).padStart(2,'0');
-      }
-    } catch(e){}
-  }
-  return getOrderDateStr(o);
+  return custServiceDate(o);
 }
 
 function getOrderRevenue(o) {
@@ -1810,6 +1952,8 @@ function renderIncome() {
   if (incSum) incSum.textContent = fmt(total);
   if (incCount) incCount.textContent = count;
   if (incAvg) incAvg.textContent = fmt(avg);
+  incomeShown = list;
+  renderIncomeChart(confirmed);
 
   const tbody = document.getElementById('inc-tbl-body');
   if (!tbody) return;
@@ -1829,6 +1973,41 @@ function renderIncome() {
     </tr>`;
   }).join('');
 }
+
+function renderIncomeChart(confirmed) {
+  const el = document.getElementById('inc-chart');
+  if (!el) return;
+  const now = new Date();
+  const months = [];
+  for (let i = 5; i >= 0; i--) {
+    const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+    months.push({ key: d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0'),
+      label: d.toLocaleDateString('id-ID', { month:'short', year:'2-digit' }), total: 0, count: 0 });
+  }
+  confirmed.forEach(o => {
+    const m = months.find(x => (getOrderServiceDate(o) || '').startsWith(x.key));
+    if (m) { m.total += getOrderRevenue(o); m.count++; }
+  });
+  const max = Math.max(...months.map(m => m.total));
+  if (!max) { el.innerHTML = '<div class="empty-state">Belum ada pendapatan dalam 6 bulan terakhir.</div>'; return; }
+  el.innerHTML = '<div class="cm-cols">' + months.map((m, i) => `<div class="cm-col${i === 5 ? ' now' : ''}" title="${m.label}: ${fmt(m.total)} dari ${m.count} order">
+    <div class="cm-col-val">${m.total ? custRpShort(m.total) : '0'}</div>
+    <div class="cm-col-bar" style="height:${m.total ? Math.max(3, Math.round(m.total / max * 110)) : 2}px"></div>
+    <div class="cm-col-lbl">${m.label}<br>${m.count} order</div>
+  </div>`).join('') + '</div>';
+}
+
+window.exportIncomeCsv = function() {
+  if (!incomeShown.length) { showToast('Tidak ada data pendapatan untuk di-export.'); return; }
+  const header = ['Tanggal Servis','ID Order','Customer','Kota','Layanan','Teknisi','Total Sebelum Diskon (Rp)','Diskon (Rp)','Total (Rp)','Voucher'];
+  const rows = incomeShown.map(o => [
+    getOrderServiceDate(o) || '', o.order_id || o.id.slice(0,8).toUpperCase(), o.name || '', o.city || '',
+    Array.isArray(o.services) ? o.services.join(', ') : (o.services || ''), o.assigned_name || '',
+    Number(o.total_before) || 0, Number(o.discount_amount) || 0, getOrderRevenue(o), o.voucher_code || ''
+  ]);
+  custDownloadCsv('pendapatan-aslan-teknik-' + custYmd(new Date()) + '.csv', header, rows);
+  showToast(rows.length + ' baris pendapatan di-export');
+};
 
 window.filterIncome = function(f) {
   incomeFilter = f;
@@ -2378,6 +2557,8 @@ window.exportCustomerOrdersCsv = function() {
   showToast(`${rows.length} order di-export 📄`);
 };
 
+document.getElementById('ord-search')?.addEventListener('input', renderOrders);
+document.getElementById('ord-sort')?.addEventListener('change', renderOrders);
 ['cust-search','cust-svc','cust-day','cust-sort'].forEach(id => {
   const el = document.getElementById(id);
   if (el) el.addEventListener(id === 'cust-search' ? 'input' : 'change', renderCustomers);
@@ -2589,6 +2770,8 @@ function listenTechnicians() {
     renderTechTable();
     renderTechStats();
     renderTechAssignmentOverview();
+    renderOrders();
+    renderToday();
   });
 }
 

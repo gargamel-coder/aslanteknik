@@ -1,0 +1,177 @@
+/* Aslan Teknik — lapisan gaya halaman admin.
+   Dimuat SETELAH <style> bawaan admin/index.html: file ini menimpa tampilan
+   lama dan menambah komponen baru (Hari ini, kartu pesanan, toolbar). */
+
+:root{
+  --display:'Bricolage Grotesque','Plus Jakarta Sans',system-ui,sans-serif;
+  --text:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --ice:#F2F4FB;
+  --line-strong:#C6CADD;
+  --brand-tint:#EEEDFF;
+  --mint:#DDF5EE;
+  --mint-ink:#0B6B57;
+  --warn-tint:#FFF4D6;
+  --warn-ink:#7A5200;
+  --danger-tint:#FDECEA;
+  --wa:#128C4B;
+}
+body{font-family:var(--text);-webkit-font-smoothing:antialiased;background:var(--ice)}
+button,input,select,textarea{font-family:var(--text)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+/* ── Login ── */
+#login-screen{background:var(--ice)}
+.login-card{border-radius:20px;border:1px solid var(--border);box-shadow:0 18px 40px rgba(22,21,58,.08);padding:36px 28px;margin:16px}
+.login-logo,.hdr-logo{font-family:var(--display);font-weight:800;letter-spacing:-0.03em}
+.l-input,.fi,.fs,.gen-input,.search-bar,.sched-input,.cust-select{background:#fff;border-color:var(--line-strong);border-radius:12px;font-size:0.95rem;min-height:44px}
+.l-btn,.create-btn{border-radius:12px;min-height:48px}
+
+/* ── Kerangka ── */
+header{padding:0 20px;min-height:56px;z-index:60}
+.hdr-logo{font-size:1.2rem}
+.hdr-logo .hdr-tag{font-family:var(--text);font-size:0.72rem;font-weight:700;color:var(--accent);background:var(--brand-tint);padding:3px 8px;border-radius:6px;margin-left:8px;letter-spacing:0;vertical-align:middle}
+.hdr-user{display:none}
+.logout-btn{border-radius:10px;border-color:var(--line-strong);min-height:36px;font-weight:600}
+.dash-body{padding:0 16px 48px;max-width:1160px}
+@media(min-width:760px){header{padding:0 28px}.hdr-user{display:inline}.dash-body{padding:0 28px 64px}}
+
+/* Tab: strip menempel di bawah header, bisa digeser di HP */
+.tabs{position:sticky;top:56px;z-index:50;width:auto;max-width:none;margin:0 -16px 20px;padding:8px 16px;border-radius:0;background:var(--ice);border-bottom:1px solid var(--border);gap:6px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab-btn{flex:none;min-height:40px;padding:0 14px;border-radius:10px;font-size:0.9rem;font-weight:600;color:var(--mid);white-space:nowrap;border:1.5px solid transparent}
+.tab-btn:hover{color:var(--charcoal)}
+.tab-btn.act{background:var(--charcoal);color:#fff;box-shadow:none}
+.tab-btn .tab-n{display:inline-block;min-width:20px;padding:1px 6px;margin-left:6px;border-radius:100px;font-size:0.72rem;font-weight:700;line-height:1.5;text-align:center;background:var(--red);color:#fff}
+.tab-btn .tab-n.amber{background:#E08A00}
+@media(min-width:760px){.tabs{margin:0 -28px 24px;padding:10px 28px}}
+
+.pane-title{font-family:var(--display);font-weight:700;font-size:1.6rem;letter-spacing:-0.025em;line-height:1.1;margin:4px 0 4px}
+.pane-sub{color:var(--mid);font-size:0.92rem;margin-bottom:18px}
+
+/* ── Kartu angka & panel ── */
+.stat-row,.stat-row-orders,.cust-stats{gap:12px;margin-bottom:20px}
+.stat-c{border-radius:16px;padding:16px 18px;border-left-width:1px !important}
+.stat-c .s-num{font-family:var(--display);font-weight:700;font-size:1.7rem !important;letter-spacing:-0.03em;line-height:1.1;font-variant-numeric:tabular-nums;color:var(--charcoal) !important}
+.stat-c .s-lbl{font-size:0.82rem;color:var(--mid);margin-top:4px}
+@media(max-width:560px){.stat-c{padding:14px}.stat-c .s-num{font-size:1.25rem !important;white-space:nowrap}}
+.panel{border-radius:18px;padding:20px 18px}
+.panel-title{font-family:var(--display);font-weight:700;font-size:1.15rem;letter-spacing:-0.02em;margin-bottom:16px}
+@media(min-width:760px){.panel{padding:24px}}
+th{letter-spacing:0.02em;text-transform:none;font-size:0.8rem}
+.code-badge,.order-id{font-family:var(--text);background:var(--brand-tint)}
+.cust-ins,.cm-chart{border-radius:16px}
+.cm-name{font-family:var(--display);font-weight:700;letter-spacing:-0.02em}
+
+/* ── Pill filter & toolbar ── */
+.filter-row{gap:8px;margin-bottom:12px}
+.filter-pill{min-height:38px;padding:0 14px;border-color:var(--line-strong);background:#fff;font-size:0.86rem;font-weight:600;color:var(--mid)}
+.filter-pill.act{background:var(--accent);border-color:var(--accent);color:#fff}
+.filter-pill .pill-n{margin-left:6px;font-variant-numeric:tabular-nums;opacity:.75}
+.filter-pill.warn:not(.act){border-color:#E9C46A;background:var(--warn-tint);color:var(--warn-ink)}
+.ord-toolbar{display:grid;gap:10px;margin-bottom:12px}
+.ord-toolbar .search-bar{margin:0}
+.ord-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ord-tools > *,.filter-row > *{margin:0 !important}
+@media(max-width:520px){.ord-tools > *{flex:1 1 auto}#ord-sort{margin-left:0 !important;width:100%}}
+@media(min-width:760px){.ord-toolbar{grid-template-columns:minmax(0,1fr) auto;align-items:center}}
+.tool-btn,.cal-toggle-btn,.export-cal-btn,.cust-export-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:42px;padding:0 14px;border-radius:10px;border:1.5px solid var(--line-strong);background:#fff;font-size:0.86rem;font-weight:600;color:var(--charcoal);cursor:pointer;box-shadow:none;white-space:nowrap}
+.tool-btn:hover,.cal-toggle-btn:hover,.export-cal-btn:hover,.cust-export-btn:hover{border-color:var(--charcoal);background:#fff;color:var(--charcoal)}
+.tool-btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tool-btn.primary:hover{background:#372CC0;border-color:#372CC0;color:#fff}
+.cal-toggle-btn.act{border-color:var(--accent);color:var(--accent);background:var(--brand-tint)}
+.ord-count{font-size:0.84rem;color:var(--mid);margin:4px 0 12px}
+
+/* ── Kartu pesanan ── */
+.oc{background:#fff;border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:12px}
+.oc-pending{border-color:#E9C46A;box-shadow:inset 4px 0 0 #E08A00}
+.oc-rejected{opacity:.75}
+.oc-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.oc-who{min-width:0}
+.oc-name{font-family:var(--display);font-weight:700;font-size:1.15rem;letter-spacing:-0.02em;line-height:1.2}
+.oc-sub{font-size:0.8rem;color:var(--soft);margin-top:3px;overflow-wrap:anywhere}
+.oc-right{flex:none;text-align:right}
+.oc-total{font-weight:800;font-size:1rem;font-variant-numeric:tabular-nums;margin-top:6px;white-space:nowrap}
+.oc-total s{display:block;font-weight:500;font-size:0.8rem;color:var(--soft)}
+.chip-s{display:inline-block;padding:3px 10px;border-radius:100px;font-size:0.76rem;font-weight:700;white-space:nowrap}
+.chip-s.pending{background:var(--warn-tint);color:var(--warn-ink)}
+.chip-s.ok{background:var(--mint);color:var(--mint-ink)}
+.chip-s.no{background:var(--danger-tint);color:var(--red)}
+.chip-s.done{background:var(--charcoal);color:#fff}
+.chip-s.info{background:var(--brand-tint);color:var(--accent)}
+.chip-s.mute{background:#ECEEF5;color:var(--mid)}
+.oc-rows{display:grid;gap:8px;margin:14px 0;font-size:0.92rem}
+.oc-rows > div{display:grid;grid-template-columns:74px minmax(0,1fr);gap:10px;align-items:baseline}
+.oc-rows dt{font-size:0.8rem;font-weight:600;color:var(--soft)}
+.oc-rows dd{color:var(--charcoal);overflow-wrap:anywhere}
+.oc-rows dd .dim{color:var(--mid)}
+.oc-rows dd .warn{color:var(--warn-ink);font-weight:600}
+.oc-link{color:var(--accent);font-weight:600;text-underline-offset:3px;white-space:nowrap}
+.oc-inline-btn{margin-left:6px;padding:2px 8px;border-radius:8px;border:1.5px solid var(--line-strong);background:#fff;font-size:0.78rem;font-weight:600;color:var(--mid);cursor:pointer}
+.oc-inline-btn:hover{border-color:var(--accent);color:var(--accent)}
+.oc-actions{display:flex;flex-wrap:wrap;gap:8px;padding-top:12px;border-top:1px solid var(--border)}
+.oc-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:42px;padding:0 14px;border-radius:10px;border:1.5px solid var(--line-strong);background:#fff;font-size:0.86rem;font-weight:700;color:var(--charcoal);text-decoration:none;cursor:pointer;white-space:nowrap}
+.oc-btn:hover{border-color:var(--charcoal)}
+.oc-btn:disabled{opacity:.5;cursor:not-allowed}
+.oc-btn.go{background:var(--wa);border-color:var(--wa);color:#fff}
+.oc-btn.go:hover{background:#0E7540;border-color:#0E7540}
+.oc-btn.brand{background:var(--accent);border-color:var(--accent);color:#fff}
+.oc-btn.danger{color:var(--red);border-color:#E7B3AE}
+.oc-btn.danger:hover{background:var(--danger-tint);border-color:var(--red)}
+.oc-btn.wa{color:var(--mint-ink);border-color:#A9DCCB;background:#F3FBF8}
+.oc-btn svg{width:16px;height:16px;flex:none}
+@media(max-width:520px){.oc-actions .oc-btn{flex:1 1 calc(50% - 8px)}}
+.orders-empty,.empty-state{padding:36px 16px;color:var(--mid)}
+
+/* ── Hari ini ── */
+.today-head{margin:4px 0 16px}
+.todo{display:grid;gap:8px;margin-bottom:22px}
+.todo-item{display:flex;align-items:center;gap:12px;width:100%;padding:12px 14px;border-radius:14px;border:1px solid #E9C46A;background:var(--warn-tint);text-align:left;cursor:pointer;font-size:0.94rem;color:var(--charcoal)}
+.todo-item:hover{border-color:var(--warn-ink)}
+.todo-item b{font-family:var(--display);font-weight:800;font-size:1.4rem;letter-spacing:-0.03em;min-width:28px;text-align:center;color:var(--warn-ink);font-variant-numeric:tabular-nums}
+.todo-item span{flex:1;font-weight:600}
+.todo-item i{font-style:normal;font-size:0.82rem;font-weight:700;color:var(--warn-ink);white-space:nowrap}
+.todo-item.red{border-color:#E7B3AE;background:var(--danger-tint)}
+.todo-item.red b,.todo-item.red i{color:var(--red)}
+.todo-clear{padding:14px 16px;border-radius:14px;background:var(--mint);color:var(--mint-ink);font-weight:700;margin-bottom:22px}
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:24px}
+@media(min-width:860px){.tiles{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.ag-day{margin-bottom:18px}
+.ag-day h3{font-family:var(--display);font-weight:700;font-size:1.2rem;letter-spacing:-0.02em;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.ag-day h3 small{font-family:var(--text);font-size:0.84rem;font-weight:500;color:var(--mid);letter-spacing:0}
+.ag-list{background:#fff;border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.ag-row{display:grid;grid-template-columns:58px minmax(0,1fr);gap:4px 12px;padding:14px;border-bottom:1px solid var(--border)}
+.ag-row:last-child{border-bottom:0}
+.ag-time{font-family:var(--display);font-weight:700;font-size:1.1rem;letter-spacing:-0.02em;font-variant-numeric:tabular-nums}
+.ag-time.none{font-family:var(--text);font-size:0.76rem;font-weight:600;color:var(--warn-ink);line-height:1.3}
+.ag-main{min-width:0}
+.ag-main b{font-size:1rem}
+.ag-main p{font-size:0.86rem;color:var(--mid);margin-top:2px;overflow-wrap:anywhere}
+.ag-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.ag-act{grid-column:2;display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.ag-act .oc-btn{min-height:36px;padding:0 12px;font-size:0.82rem}
+.ag-empty{padding:16px;color:var(--mid);font-size:0.92rem;background:#fff;border:1px dashed var(--line-strong);border-radius:16px}
+@media(min-width:860px){
+  .ag-row{grid-template-columns:70px minmax(0,1fr) auto;align-items:center}
+  .ag-act{grid-column:3;margin-top:0;justify-content:flex-end}
+}
+
+/* ── Grafik pendapatan ── */
+.inc-chart .cm-cols{align-items:flex-end;gap:10px}
+.inc-chart .cm-col{max-width:110px}
+.inc-chart .cm-col-bar{max-width:56px}
+.inc-chart .cm-col.now .cm-col-bar{background:var(--accent)}
+.inc-chart .cm-col:not(.now) .cm-col-bar{background:#B9B4F3}
+.inc-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px}
+.inc-head .panel-title{margin:0}
+
+/* ── Lain-lain ── */
+.notif-card{border-radius:16px;border-color:var(--border);border-left:4px solid #E08A00}
+.notif-summary{border-radius:12px;background:var(--warn-tint);border-color:#E9C46A;color:var(--warn-ink)}
+.notif-wa{background:var(--wa);min-height:42px;border-radius:10px}
+.sched-modal,.assign-modal{border-radius:20px}
+#toast{border-radius:12px;font-weight:600;z-index:1000}
+.foot-copy{background:transparent}
+@media(max-width:480px){
+  .stat-row,.stat-row-orders,.cust-stats{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+  .tab-btn{font-size:0.88rem;padding:0 12px}
+}
