@@ -401,7 +401,7 @@
     td::before{content:attr(data-label);font-size:0.68rem;font-weight:600;color:var(--soft);text-transform:uppercase;display:block;margin-bottom:2px}
   }
 </style>
-<link rel="stylesheet" href="/assets/aslan-admin.css?v=1">
+<link rel="stylesheet" href="/assets/aslan-admin.css?v=2">
 </head>
 <body>
 
@@ -453,6 +453,12 @@
     <!-- PANE: HARI INI -->
     <div id="pane-hari" class="tab-pane act">
       <div id="today-root"><div class="orders-empty">Memuat data...</div></div>
+      <section class="cal-home" aria-labelledby="cal-home-t">
+        <h2 class="pane-title" id="cal-home-t" style="font-size:1.35rem;">Cek tanggal</h2>
+        <p class="cal-hint">Ketuk tanggal untuk melihat order dan jam yang sudah terisi, lalu atur ketersediaannya.</p>
+        <div id="cal-slot-hari"></div>
+      </section>
+      <div id="today-rest"></div>
     </div>
 
     <!-- PANE: VOUCHER -->
@@ -548,8 +554,10 @@
       </div>
       <div class="ord-count" id="ord-count"></div>
 
-      <!-- CALENDAR (hidden by default) -->
+      <!-- KALENDER: satu panel yang sama, tampil di tab Hari ini (selalu) dan di sini (lewat tombol Kalender) -->
+      <div id="cal-slot-orders">
       <div class="panel cal-container" id="cal-panel">
+        <div class="cal-main">
         <div class="cal-header">
           <button class="cal-nav-btn" id="cal-prev">‹</button>
           <span class="cal-month-label" id="cal-month-label"></span>
@@ -564,10 +572,12 @@
           <span><span class="cal-legend-dot" style="background:#FEF9C3;border:2px solid #F59E0B;"></span> Hampir Penuh</span>
           <span><span class="cal-legend-dot" style="background:#FEE2E2;border:2px solid #EF4444;"></span> Full Booked</span>
         </div>
+        </div>
+        <div class="cal-side">
         <div class="cal-selected-info" id="cal-selected-info" style="display:none;">
           <div class="cal-sel-top">
             <span id="cal-selected-text"></span>
-            <button class="cal-clear" id="cal-clear">✕ Reset</button>
+            <button class="cal-clear" id="cal-clear">Batal pilih</button>
           </div>
           <div class="avail-picker">
             <div class="avail-picker-label">Atur Ketersediaan Tanggal Ini</div>
@@ -578,6 +588,9 @@
             </div>
           </div>
         </div>
+        <div class="cal-dayinfo" id="cal-day"></div>
+        </div>
+      </div>
       </div>
 
       <div id="orders-list">
@@ -1222,6 +1235,7 @@ window.switchTab = function(tab) {
     if (pane) pane.classList.toggle('act', t===tab);
     if (btn)  { btn.classList.toggle('act', t===tab); btn.setAttribute('aria-selected', String(t===tab)); }
   });
+  placeCalendar(tab);
   try { sessionStorage.setItem('at_admin_tab', tab); } catch(e) {}
   const strip = document.getElementById('tab-'+tab);
   if (strip && strip.scrollIntoView) strip.scrollIntoView({ block:'nearest', inline:'center' });
@@ -1313,14 +1327,15 @@ window.selectCalDate = function(dateStr) {
   if (selectedDate === dateStr) {
     selectedDate = null;
     document.getElementById('cal-selected-info').style.display = 'none';
-    document.getElementById('cal-toggle').innerHTML = '📅 Filter Tanggal';
+    document.getElementById('cal-toggle').classList.remove('act');
+    document.getElementById('cal-toggle').textContent = 'Kalender';
   } else {
     selectedDate = dateStr;
     const d = new Date(dateStr + 'T00:00:00');
     const formatted = d.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-    document.getElementById('cal-selected-text').textContent = '📅 ' + formatted;
+    document.getElementById('cal-selected-text').textContent = formatted;
     document.getElementById('cal-selected-info').style.display = 'block';
-    document.getElementById('cal-toggle').innerHTML = '📅 ' + d.toLocaleDateString('id-ID',{day:'numeric',month:'short'});
+    document.getElementById('cal-toggle').textContent = 'Kalender: ' + d.toLocaleDateString('id-ID',{day:'numeric',month:'short'});
     document.getElementById('cal-toggle').classList.add('act');
     // Reflect current availability status on the picker buttons
     const currentStatus = allAvailability[dateStr] || 'available';
@@ -1328,6 +1343,7 @@ window.selectCalDate = function(dateStr) {
   }
   renderCalendar();
   renderOrders();
+  renderCalDay();
 };
 
 document.getElementById('cal-prev').addEventListener('click', () => {
@@ -1344,9 +1360,11 @@ document.getElementById('cal-clear').addEventListener('click', () => {
   selectedDate = null;
   document.getElementById('cal-selected-info').style.display = 'none';
   document.getElementById('cal-toggle').classList.remove('act');
-  document.getElementById('cal-toggle').innerHTML = '📅 Filter Tanggal';
+  document.getElementById('cal-toggle').textContent = 'Kalender';
   document.getElementById('cal-panel').classList.remove('open');
+  renderCalendar();
   renderOrders();
+  renderCalDay();
 });
 
 // ── ORDERS ─────────────────────────────────────────────
@@ -1818,10 +1836,56 @@ function renderToday() {
     <div class="today-head">
       <h1 class="pane-title">${new Date().toLocaleDateString('id-ID', { weekday:'long', day:'numeric', month:'long', year:'numeric' })}</h1>
     </div>
-    ${todoHtml}
+    ${todoHtml}`;
+  const rest = document.getElementById('today-rest');
+  if (rest) rest.innerHTML = `
     ${tiles}
-    <h2 class="pane-title" style="font-size:1.35rem;margin-bottom:14px;">Jadwal</h2>
+    <h2 class="pane-title" style="font-size:1.35rem;margin-bottom:14px;">Jadwal 7 hari ke depan</h2>
     ${agenda}`;
+  renderCalDay();
+}
+
+// Isi samping kalender (tab Hari ini): order & jam terisi di tanggal yang dipilih
+function renderCalDay() {
+  const el = document.getElementById('cal-day');
+  if (!el) return;
+  if (!selectedDate) { el.innerHTML = '<p class="cal-day-empty">Belum ada tanggal dipilih.</p>'; return; }
+  const rows = allOrders.filter(o => o.status !== 'rejected' && custServiceDate(o) === selectedDate)
+    .sort((a, b) => (a.scheduled_time || '99:99').localeCompare(b.scheduled_time || '99:99'));
+  const slots = SCHEDULE_HOURS.map(h => {
+    const at = rows.filter(o => String(o.scheduled_time || '').slice(0, 2) === h);
+    const who = at.map(o => o.assigned_name || o.assigned_to || 'belum ada teknisi').join(', ');
+    return `<div class="slot${at.length ? ' taken' : ''}"><b>${h}:00</b><span>${at.length ? at.length + ' order · ' + esc(who) : 'Kosong'}</span></div>`;
+  }).join('');
+  const list = rows.length ? rows.map(o => {
+    const st = o.status === 'pending' ? '<span class="chip-s pending">Menunggu konfirmasi</span>'
+      : (o.task_status === 'selesai' ? '<span class="chip-s done">Selesai</span>' : '');
+    return `<div class="cal-day-row">
+      <div class="ag-time${o.scheduled_time ? '' : ' none'}">${o.scheduled_time ? esc(o.scheduled_time) : 'Jam belum diatur'}</div>
+      <div><b>${custNameLink(o)}</b>
+        <p>${esc(ordSvcText(o) || '—')}</p>
+        <p>${esc([o.city, o.assigned_name ? 'Teknisi ' + o.assigned_name : 'Belum ada teknisi'].filter(Boolean).join(' · '))}</p>
+        ${st}
+      </div>
+    </div>`;
+  }).join('') : '<p class="cal-day-empty">Belum ada order di tanggal ini.</p>';
+  el.innerHTML = `
+    <div class="cal-day-count">${rows.length} order di tanggal ini</div>
+    <div class="slots">${slots}</div>
+    ${list}
+    ${rows.length ? `<button type="button" class="oc-btn" onclick="window.switchTab('orders')">Buka di tab Pesanan</button>` : ''}`;
+}
+
+// Kalender hanya satu; dipindah ke tab yang sedang dibuka.
+function placeCalendar(tab) {
+  const panel = document.getElementById('cal-panel');
+  const slot  = document.getElementById(tab === 'hari' ? 'cal-slot-hari' : tab === 'orders' ? 'cal-slot-orders' : '');
+  if (panel && slot && panel.parentNode !== slot) slot.appendChild(panel);
+  // Di Pesanan: kalau ada tanggal terpilih, kalender ikut terbuka supaya jelas daftar sedang disaring.
+  if (panel && tab === 'orders' && selectedDate) {
+    panel.classList.add('open');
+    const btn = document.getElementById('cal-toggle'); if (btn) btn.classList.add('act');
+  }
 }
 
 window.confirmOrder = async function(orderId, voucherId, voucherCode, btn) {

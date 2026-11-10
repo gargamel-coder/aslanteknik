@@ -175,3 +175,26 @@ th{letter-spacing:0.02em;text-transform:none;font-size:0.8rem}
   .stat-row,.stat-row-orders,.cust-stats{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
   .tab-btn{font-size:0.88rem;padding:0 12px}
 }
+
+/* ── Kalender di tab Hari ini ── */
+.cal-home{margin:22px 0 26px}
+.cal-hint{color:var(--mid);font-size:0.9rem;margin:0 0 12px}
+#cal-slot-hari .cal-container{display:block;margin-bottom:0}
+#cal-slot-orders .cal-dayinfo{display:none}
+.cal-dayinfo{margin-top:14px;font-size:0.88rem}
+.cal-day-empty{color:var(--mid);padding:6px 0}
+.cal-day-count{font-family:var(--display);font-weight:700;font-size:1.1rem;letter-spacing:-0.02em;margin-bottom:10px}
+.slots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:12px}
+.slot{border:1.5px solid var(--border);border-radius:12px;padding:9px 12px;background:#fff;min-width:0}
+.slot b{display:block;font-variant-numeric:tabular-nums}
+.slot span{display:block;font-size:0.78rem;color:var(--mint-ink);font-weight:600;overflow-wrap:anywhere}
+.slot.taken{background:var(--warn-tint);border-color:#EBD08A}
+.slot.taken span{color:var(--warn-ink)}
+.cal-day-row{display:grid;grid-template-columns:58px minmax(0,1fr);gap:4px 12px;padding:12px 0;border-top:1px solid var(--border)}
+.cal-day-row p{color:var(--mid);font-size:0.84rem}
+.cal-dayinfo > .oc-btn{margin-top:10px}
+@media(min-width:900px){
+  #cal-slot-hari .cal-container{display:grid;grid-template-columns:minmax(0,440px) minmax(0,1fr);gap:28px;align-items:start}
+  #cal-slot-hari .cal-selected-info{margin-top:0}
+  .slots{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
