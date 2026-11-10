@@ -1,7 +1,7 @@
 /* Aslan Teknik — pelengkap UX halaman utama & /booking.
    Dimuat SETELAH skrip utama halaman. Logika harga, kalender, voucher, dan
    pengiriman order tetap di skrip halaman; file ini hanya menambah:
-   menu HP, tombol jenis AC, harga di tiap layanan, ringkasan (nota),
+   menu HP, ringkasan pesanan (nota),
    bar total di HP, dan gulir ke isian yang belum lengkap. */
 (function () {
   'use strict';
@@ -27,23 +27,10 @@
   if (typeof window.upd !== 'function' || typeof window.sendWA !== 'function' || !$('f-ac')) return;
 
   var acSel = $('f-ac');
-  var acField = document.querySelector('.ac-field');
-  var acOpts = acField ? Array.prototype.slice.call(acField.querySelectorAll('.ac-opt')) : [];
   var bar = $('bk-bar');
   var waBtn = $('wa-btn');
   var ctaVisible = false;
   var missingShown = false;
-
-  // Tombol jenis AC menggerakkan <select id="f-ac"> yang tetap jadi sumber data.
-  if (acField && acOpts.length) {
-    acField.classList.add('js');
-    acOpts.forEach(function (b) {
-      b.addEventListener('click', function () {
-        acSel.value = b.dataset.ac;
-        acSel.dispatchEvent(new Event('change', { bubbles: true }));
-      });
-    });
-  }
 
   function svcKeys() { return Object.keys(window.selSvc || {}); }
 
@@ -89,16 +76,7 @@
     var ac = acSel.value;
     var keys = svcKeys();
 
-    acOpts.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.ac === ac)); });
-
-    // Harga per unit di tiap pilihan layanan, mengikuti jenis AC.
-    var approx = !ac || ac === 'oth';
     document.querySelectorAll('.chip[data-k]').forEach(function (chip) {
-      var el = chip.querySelector('.chip-price');
-      if (!el) return;
-      var map = PRICE[chip.dataset.k] || {};
-      var p = map[ac || 'oth'] || map.oth || 0;
-      el.textContent = p ? (approx ? 'mulai ' : '') + fmt(p) : '';
       chip.setAttribute('aria-pressed', String(chip.classList.contains('act')));
     });
 

@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/aslan.css?v=1">
+<link rel="stylesheet" href="/assets/aslan.css?v=2">
 
 
 <!-- FIREBASE -->
@@ -92,41 +92,41 @@ window.dispatchEvent(new Event('fbReady'));
         <!-- 1. LAYANAN -->
         <div class="bk-step" id="step-svc" role="group" aria-labelledby="step-svc-t">
           <div class="bk-step-head"><span class="bk-num" aria-hidden="true">1</span><h3 class="bk-step-title" id="step-svc-t">Layanan apa yang dibutuhkan?</h3></div>
-          <p class="bk-help">Boleh pilih lebih dari satu. Harga per unit AC.</p>
+          <p class="bk-help">Boleh pilih lebih dari satu.</p>
           <div class="chip-groups">
             <div class="chip-group">
               <span class="chip-group-lbl">Cuci</span>
               <div class="chip-row">
-                <button type="button" class="chip" data-k="cuci" onclick="toggleChip(this)"><span class="chip-name">Cuci AC</span><span class="chip-price"></span></button>
+                <button type="button" class="chip" data-k="cuci" onclick="toggleChip(this)">Cuci AC</button>
               </div>
             </div>
             <div class="chip-group">
               <span class="chip-group-lbl">Servis dan perbaikan</span>
               <div class="chip-row">
-                <button type="button" class="chip" data-k="periksa" onclick="toggleChip(this)"><span class="chip-name">Pengecekan</span><span class="chip-price"></span></button>
-                <button type="button" class="chip" data-k="kapasitor" onclick="toggleChip(this)"><span class="chip-name">Ganti Kapasitor</span><span class="chip-price"></span></button>
-                <button type="button" class="chip" data-k="termis" onclick="toggleChip(this)"><span class="chip-name">Ganti Termis</span><span class="chip-price"></span></button>
-                <button type="button" class="chip" data-k="sensor" onclick="toggleChip(this)"><span class="chip-name">Ganti Sensor</span><span class="chip-price"></span></button>
-                <button type="button" class="chip" data-k="overhaul" onclick="toggleChip(this)"><span class="chip-name">Overhaul</span><span class="chip-price"></span></button>
+                <button type="button" class="chip" data-k="periksa" onclick="toggleChip(this)">Pengecekan</button>
+                <button type="button" class="chip" data-k="kapasitor" onclick="toggleChip(this)">Ganti Kapasitor</button>
+                <button type="button" class="chip" data-k="termis" onclick="toggleChip(this)">Ganti Termis</button>
+                <button type="button" class="chip" data-k="sensor" onclick="toggleChip(this)">Ganti Sensor</button>
+                <button type="button" class="chip" data-k="overhaul" onclick="toggleChip(this)">Overhaul</button>
               </div>
             </div>
             <div class="chip-group">
               <span class="chip-group-lbl">Bongkar pasang</span>
               <div class="chip-row">
-                <button type="button" class="chip" data-k="bongkar" onclick="toggleChip(this)"><span class="chip-name">Bongkar</span><span class="chip-price"></span></button>
-                <button type="button" class="chip" data-k="pasang" onclick="toggleChip(this)"><span class="chip-name">Pasang</span><span class="chip-price"></span></button>
-                <button type="button" class="chip" data-k="bongpas" onclick="toggleChip(this)"><span class="chip-name">Bongkar + Pasang</span><span class="chip-price"></span></button>
+                <button type="button" class="chip" data-k="bongkar" onclick="toggleChip(this)">Bongkar</button>
+                <button type="button" class="chip" data-k="pasang" onclick="toggleChip(this)">Pasang</button>
+                <button type="button" class="chip" data-k="bongpas" onclick="toggleChip(this)">Bongkar + Pasang</button>
               </div>
             </div>
             <div class="chip-group">
               <span class="chip-group-lbl">Freon</span>
               <div class="chip-row">
-                <button type="button" class="chip" data-k="tambahR22" onclick="toggleChip(this)"><span class="chip-name">Tambah R22</span><span class="chip-price"></span></button>
-                <button type="button" class="chip" data-k="tambahR32" onclick="toggleChip(this)"><span class="chip-name">Tambah R32</span><span class="chip-price"></span></button>
-                <button type="button" class="chip" data-k="tambahR410" onclick="toggleChip(this)"><span class="chip-name">Tambah R410</span><span class="chip-price"></span></button>
-                <button type="button" class="chip" data-k="isiR22" onclick="toggleChip(this)"><span class="chip-name">Isi ulang R22</span><span class="chip-price"></span></button>
-                <button type="button" class="chip" data-k="isiR32" onclick="toggleChip(this)"><span class="chip-name">Isi ulang R32</span><span class="chip-price"></span></button>
-                <button type="button" class="chip" data-k="isiR410" onclick="toggleChip(this)"><span class="chip-name">Isi ulang R410</span><span class="chip-price"></span></button>
+                <button type="button" class="chip" data-k="tambahR22" onclick="toggleChip(this)">Tambah Freon R22</button>
+                <button type="button" class="chip" data-k="tambahR32" onclick="toggleChip(this)">Tambah Freon R32</button>
+                <button type="button" class="chip" data-k="tambahR410" onclick="toggleChip(this)">Tambah Freon R410</button>
+                <button type="button" class="chip" data-k="isiR22" onclick="toggleChip(this)">Isi Freon R22</button>
+                <button type="button" class="chip" data-k="isiR32" onclick="toggleChip(this)">Isi Freon R32</button>
+                <button type="button" class="chip" data-k="isiR410" onclick="toggleChip(this)">Isi Freon R410</button>
               </div>
             </div>
           </div>
@@ -136,9 +136,10 @@ window.dispatchEvent(new Event('fbReady'));
         <!-- 2. JENIS AC -->
         <div class="bk-step" id="step-ac" role="group" aria-labelledby="step-ac-t">
           <div class="bk-step-head"><span class="bk-num" aria-hidden="true">2</span><h3 class="bk-step-title" id="step-ac-t">AC-nya yang mana?</h3></div>
-          <p class="bk-help">Harga mengikuti jenis dan kapasitas AC. Kalau belum yakin, pilih “Tidak tahu”, nanti teknisi cek di lokasi.</p>
+          <p class="bk-help">Harga mengikuti jenis dan kapasitas AC. Kalau belum yakin, pilih “Tidak Tahu / Lainnya”, nanti teknisi cek di lokasi.</p>
           <div class="ac-field">
-            <select class="fs" id="f-ac" aria-label="Jenis AC" onchange="clearErr(this);upd()">
+            <label class="fl" for="f-ac">Jenis AC</label>
+            <select class="fs" id="f-ac" onchange="clearErr(this);upd()">
               <option value="">-- Pilih Jenis AC --</option>
               <option value="ss">AC Split Standard (½–1 PK)</option>
               <option value="sb">AC Split Standard (1½–2 PK)</option>
@@ -146,13 +147,6 @@ window.dispatchEvent(new Event('fbReady'));
               <option value="invb">AC Split Inverter (1½–2 PK)</option>
               <option value="oth">Tidak Tahu / Lainnya</option>
             </select>
-            <div class="ac-opts">
-              <button type="button" class="ac-opt" data-ac="ss" aria-pressed="false"><strong>Split standar</strong><span>½–1 PK</span></button>
-              <button type="button" class="ac-opt" data-ac="sb" aria-pressed="false"><strong>Split standar</strong><span>1½–2 PK</span></button>
-              <button type="button" class="ac-opt" data-ac="inv" aria-pressed="false"><strong>Split inverter</strong><span>½–1 PK</span></button>
-              <button type="button" class="ac-opt" data-ac="invb" aria-pressed="false"><strong>Split inverter</strong><span>1½–2 PK</span></button>
-              <button type="button" class="ac-opt wide" data-ac="oth" aria-pressed="false"><strong>Tidak tahu / lainnya</strong></button>
-            </div>
             <span class="err-msg" id="err-ac">Pilih jenis AC</span>
           </div>
           <div class="fg">
@@ -1042,6 +1036,6 @@ window.addEventListener('beforeunload',saveDur);
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')saveDur();});
 </script>
 
-<script src="/assets/aslan.js?v=1"></script>
+<script src="/assets/aslan.js?v=2"></script>
 </body>
 </html>
