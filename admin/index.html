@@ -337,6 +337,24 @@
   .cm-item{font-size:0.8rem;color:var(--mid);line-height:1.55;padding:8px 0;border-bottom:1px solid var(--border);}
   .cm-item:last-child{border-bottom:none;}
   .cm-item b{color:var(--charcoal);}
+  .cust-link{background:none;border:none;padding:0;margin:0;font:inherit;color:inherit;font-weight:inherit;cursor:pointer;text-align:left;text-decoration:underline dotted rgba(91,79,217,0.55);text-underline-offset:3px;}
+  .cust-link:hover,.cust-link:focus-visible{color:var(--accent);text-decoration-style:solid;outline:none;}
+  .cm-charts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px;}
+  .cm-chart{border:1px solid var(--border);border-radius:14px;padding:14px 16px;min-width:0;}
+  .cm-chart.wide{grid-column:1/-1;}
+  .cm-chart-title{font-size:0.8rem;font-weight:600;color:var(--charcoal);margin-bottom:12px;}
+  .cm-chart .cust-bar{grid-template-columns:minmax(52px,auto) 1fr 22px;}
+  .cm-chart.wide .cust-bar{grid-template-columns:minmax(52px,150px) 1fr 22px;}
+  .cm-legend{display:flex;gap:14px;flex-wrap:wrap;font-size:0.7rem;color:var(--soft);margin-top:10px;}
+  .cm-legend i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:5px;background:var(--accent);}
+  .cm-legend i.wk{background:var(--accent2);}
+  .cm-legend i.pend{opacity:0.35;}
+  .cm-cols{display:flex;align-items:flex-end;gap:8px;overflow-x:auto;padding-top:4px;}
+  .cm-col{flex:1 1 0;min-width:44px;max-width:72px;display:flex;flex-direction:column;align-items:center;}
+  .cm-col-val{font-size:0.68rem;font-weight:600;color:var(--charcoal);margin-bottom:4px;white-space:nowrap;}
+  .cm-col-bar{width:100%;max-width:34px;background:var(--accent);border-radius:4px 4px 0 0;}
+  .cm-col-bar.pend{opacity:0.35;}
+  .cm-col-lbl{font-size:0.66rem;color:var(--soft);margin-top:6px;text-align:center;line-height:1.3;border-top:1px solid var(--border);padding-top:5px;width:100%;}
   .cm-wa{display:inline-flex;align-items:center;gap:6px;background:#DCFCE7;color:#166534;padding:5px 12px;border-radius:100px;font-size:0.78rem;font-weight:600;text-decoration:none;border:1px solid #BBF7D0;margin-top:8px;}
 
   @media(max-width:800px){
@@ -368,7 +386,7 @@
   }
   @media(max-width:480px){
     .stat-row,.stat-row-orders,.cust-stats{grid-template-columns:repeat(2,1fr);gap:10px}
-    .cm-facts{grid-template-columns:1fr}
+    .cm-facts,.cm-charts{grid-template-columns:1fr}
     .cust-export-btn{flex:1;justify-content:center}
     .tabs{border-radius:12px}
     .tab-btn{font-size:0.72rem;padding:7px 6px}
@@ -802,7 +820,7 @@
 
 <!-- CUSTOMER DETAIL MODAL -->
 <div class="sched-modal-overlay" id="customer-modal" onclick="if(event.target===this)window.closeCustomerModal()">
-  <div class="sched-modal" style="max-width:600px;max-height:90vh;overflow-y:auto;">
+  <div class="sched-modal" style="max-width:720px;max-height:90vh;overflow-y:auto;">
     <div id="customer-modal-body"></div>
     <div class="cm-sec">Lengkapi profil</div>
     <div class="sched-field">
@@ -1459,7 +1477,7 @@ Kalau Kakak berkenan, kami bisa bantu jadwalkan kunjungan teknisi sesuai waktu y
       ? `<a class="notif-wa" href="${href}" target="_blank" rel="noopener" onclick="window.markMaintenanceReminder('${o.id}')">💬 ${reminded ? 'Kirim Lagi via WhatsApp' : 'Kirim Pengingat WhatsApp'}</a>`
       : '<span style="font-size:0.78rem;color:var(--red);">Nomor WhatsApp belum tersedia</span>';
     return `<div class="notif-card">
-      <div class="notif-head"><div class="notif-name">${o.name || 'Customer'}</div><span class="notif-age">${ageDays} hari sejak layanan</span></div>
+      <div class="notif-head"><div class="notif-name">${custNameLink(o, 'Customer')}</div><span class="notif-age">${ageDays} hari sejak layanan</span></div>
       <div class="notif-meta">${statusHtml}<br>📅 Layanan terakhir: <b>${lastDateStr}</b><br>🧰 ${services}<br>📱 ${o.wa_number || '—'}${o.city ? '<br>📍 ' + o.city : ''}</div>
       ${action}
     </div>`;
@@ -1629,7 +1647,7 @@ function renderOrders() {
       </div>
       ${schedHtml}
       <div class="order-body">
-        <div><b>${o.name||'—'}</b></div>
+        <div><b>${custNameLink(o)}</b></div>
         <div>${o.city||'—'}</div>
         ${o.wa_number ? `<div style="grid-column:1/-1">
           <a href="https://wa.me/${(o.wa_number||'').replace(/\D/g,'').replace(/^0/,'62')}" target="_blank"
@@ -1805,7 +1823,7 @@ function renderIncome() {
     const svcList = Array.isArray(o.services) ? o.services.join(', ') : (o.services || '—');
     return `<tr>
       <td data-label="Tanggal">${dStr}</td>
-      <td data-label="Customer"><b style="color:var(--charcoal)">${o.name||'—'}</b></td>
+      <td data-label="Customer"><b style="color:var(--charcoal)">${custNameLink(o)}</b></td>
       <td data-label="Layanan">${svcList}</td>
       <td data-label="Total"><strong style="color:var(--green)">${fmt(getOrderRevenue(o))}</strong></td>
     </tr>`;
@@ -1951,6 +1969,12 @@ function custServiceDate(o) {
   if (m && CUST_MONTHS[m[2]] !== undefined) return custYmd(new Date(+m[3], CUST_MONTHS[m[2]], +m[1]));
   return getOrderDateStr(o);
 }
+function custNameLink(o, fallback = '—') {
+  return `<button type="button" class="cust-link" data-cust-open="${esc(custKey(o))}" title="Lihat data & grafik pelanggan ini">${esc(o.name || fallback)}</button>`;
+}
+function custRpShort(n) {
+  return n >= 1e6 ? (n / 1e6).toFixed(n % 1e6 ? 1 : 0).replace('.', ',') + ' jt' : Math.round(n / 1000) + ' rb';
+}
 function custServiceLabels(o) {
   const list = Array.isArray(o.services) ? o.services : (o.services ? [o.services] : []);
   return list.map(s => String(s).replace(/\s*\(\s*\d+\s*unit\s*\)\s*$/i, '').trim()).filter(Boolean);
@@ -2038,6 +2062,7 @@ function buildCustomers() {
       dayCounts, favDay: favOf(dayCounts), favBookDay: favOf(bookDayCounts),
       weekendCount, weekendDone,
       favHour: (custTop(hours)[0] || [''])[0],
+      hours: Object.entries(hours).sort((a,b) => a[0].localeCompare(b[0])),
       services: custTop(svc), acTypes: custTop(ac), vouchers: custTop(vouchers),
       brand, note,
       complaints: rows.filter(r => r.note).map(r => ({ sd: r.sd, text: r.note })),
@@ -2051,7 +2076,7 @@ function buildCustomers() {
 
 function custBars(entries, max, opts = {}) {
   if (!entries.length || !max) return '<div class="cust-ins-empty">Belum ada data.</div>';
-  return entries.map(([label, n, wk]) => `<div class="cust-bar">
+  return entries.map(([label, n, wk]) => `<div class="cust-bar" title="${esc(label)}: ${n} order">
     <span title="${esc(label)}">${esc(label)}</span>
     <div class="cust-bar-track"><div class="cust-bar-fill${wk ? ' wk' : ''}" style="width:${n ? Math.max(3, Math.round(n / max * 100)) : 0}%"></div></div>
     <b>${n}</b>
@@ -2167,7 +2192,7 @@ function renderCustomers() {
       ? (c.daysSince === 0 ? 'Hari ini' : c.daysSince + ' hari lalu') + (c.nextDate ? ' · berikutnya ' + custFmtDate(c.nextDate) : '')
       : (c.nextDate ? 'Akan datang' : '');
     return `<tr>
-      <td data-label="Pelanggan"><b style="color:var(--charcoal)">${esc(c.name)}</b>
+      <td data-label="Pelanggan"><b style="color:var(--charcoal)"><button type="button" class="cust-link" data-cust-open="${esc(c.key)}" title="Lihat data & grafik pelanggan ini">${esc(c.name)}</button></b>
         <div class="cust-sub">${esc(c.wa || 'Tanpa nomor WA')}${c.city ? ' · ' + esc(c.city) : ''}</div>${tags}</td>
       <td data-label="Order" style="white-space:nowrap"><b style="color:var(--charcoal)">${c.orderCount}x</b><div class="cust-sub">${c.doneCount} selesai</div></td>
       <td data-label="Hari Favorit" style="white-space:nowrap"><b style="color:var(--charcoal)">${fav}</b>${c.favHour ? ' · ' + esc(c.favHour) : ''}<div class="cust-sub">${favSub}</div></td>
@@ -2175,7 +2200,7 @@ function renderCustomers() {
       <td data-label="Layanan">${esc(svcStr)}${c.complaints.length ? `<div class="cust-sub">📝 ${c.complaints.length} catatan/keluhan</div>` : ''}</td>
       <td data-label="Servis Terakhir" style="white-space:nowrap">${lastStr}<div class="cust-sub">${lastSub}</div></td>
       <td data-label="Belanja" style="white-space:nowrap"><strong style="color:var(--green)">${fmt(c.spend)}</strong></td>
-      <td data-label=""><button class="act-btn" data-cust-key="${esc(c.key)}" style="margin:0">Detail</button></td>
+      <td data-label=""><button class="act-btn" data-cust-open="${esc(c.key)}" style="margin:0">Detail</button></td>
     </tr>`;
   }).join('');
 }
@@ -2191,10 +2216,28 @@ window.filterCustomers = function(f) {
 // ── Detail pelanggan ──
 window.openCustomer = function(key) {
   const c = custAll.find(x => x.key === key);
-  if (!c) return;
+  if (!c) { showToast('Pelanggan ini belum punya order aktif.'); return; }
   custOpenKey = key;
   const fact = (lbl, val) => `<div class="cm-fact"><div class="cm-fact-lbl">${lbl}</div><div class="cm-fact-val">${val}</div></div>`;
-  const dayEntries = CUST_DAY_ORDER.map(i => [CUST_DAYS[i], c.dayCounts[i], i === 0 || i === 6]).filter(e => e[1]);
+  const dayEntries = CUST_DAY_ORDER.map(i => [CUST_DAYS[i], c.dayCounts[i], i === 0 || i === 6]);
+  // Belanja per order: 12 order terakhir, urut dari yang paling lama
+  const spendPts = c.rows.filter(r => r.sd).slice(0, 12).reverse();
+  const spendMax = Math.max(0, ...spendPts.map(r => getOrderRevenue(r.o)));
+  const anyPending = spendPts.some(r => r.o.status !== 'confirmed');
+  const spendChart = spendPts.length && spendMax
+    ? `<div class="cm-cols">` + spendPts.map(r => {
+        const v = getOrderRevenue(r.o);
+        const lbl = new Date(r.sd + 'T00:00:00').toLocaleDateString('id-ID', { day:'numeric', month:'short', year:'2-digit' });
+        return `<div class="cm-col" title="${esc(custFmtDate(r.sd))}: ${fmt(v)} — ${esc(r.services.join(', ') || 'tanpa layanan')}">
+          <div class="cm-col-val">${custRpShort(v)}</div>
+          <div class="cm-col-bar${r.o.status !== 'confirmed' ? ' pend' : ''}" style="height:${Math.max(3, Math.round(v / spendMax * 96))}px"></div>
+          <div class="cm-col-lbl">${lbl}</div>
+        </div>`;
+      }).join('') + `</div>` +
+      (anyPending ? '<div class="cm-legend"><span><i></i>Dikonfirmasi</span><span><i class="pend"></i>Menunggu konfirmasi</span></div>' : '') +
+      (c.rows.length > 12 ? '<div class="cust-sub" style="margin-top:8px;">Menampilkan 12 order terakhir.</div>' : '')
+    : '<div class="cust-ins-empty">Belum ada data.</div>';
+  const chart = (title, body, wide) => `<div class="cm-chart${wide ? ' wide' : ''}"><div class="cm-chart-title">${title}</div>${body}</div>`;
   const hello = `Halo kak ${c.name}, `;
   const waBtn = c.waIntl
     ? `<a class="cm-wa" href="https://wa.me/${c.waIntl}?text=${encodeURIComponent(hello)}" target="_blank" rel="noopener">💬 Chat WhatsApp ${esc(c.wa)}</a>`
@@ -2216,9 +2259,16 @@ window.openCustomer = function(key) {
       ${fact('Jenis AC', esc(c.acTypes.map(a => a[0]).join(', ') || '—') + (c.units ? ` · ${c.units} unit` : ''))}
       ${fact('Voucher dipakai', esc(c.vouchers.map(v => v[0]).join(', ') || 'Tidak pernah'))}
     </div>
-    ${dayEntries.length > 1 ? `<div class="cm-sec">Pola hari servis</div>${custBars(dayEntries, Math.max(...c.dayCounts))}` : ''}
-    <div class="cm-sec">Layanan yang pernah dipesan</div>
-    <div class="cm-item">${esc(c.services.map(s => `${s[0]} (${s[1]}x)`).join(', ') || '—')}</div>
+    <div class="cm-sec">Grafik pelanggan</div>
+    <div class="cm-charts">
+      ${chart('📅 Hari servis', custBars(dayEntries, Math.max(...c.dayCounts)) +
+        '<div class="cm-legend"><span><i></i>Senin–Jumat</span><span><i class="wk"></i>Weekend</span></div>')}
+      ${chart('⏰ Jam kedatangan', c.hours.length
+        ? custBars(c.hours, Math.max(...c.hours.map(h => h[1])))
+        : '<div class="cust-ins-empty">Belum ada order dengan jam terjadwal.</div>')}
+      ${chart('🧰 Layanan yang dipesan', custBars(c.services, c.services.length ? c.services[0][1] : 0), true)}
+      ${chart('💰 Belanja per order', spendChart, true)}
+    </div>
     <div class="cm-sec">Keluhan &amp; catatan dari order</div>
     ${c.complaints.length
       ? c.complaints.map(k => `<div class="cm-item"><b>${custFmtDate(k.sd)}</b> — ${esc(k.text)}</div>`).join('')
@@ -2332,9 +2382,10 @@ window.exportCustomerOrdersCsv = function() {
   const el = document.getElementById(id);
   if (el) el.addEventListener(id === 'cust-search' ? 'input' : 'change', renderCustomers);
 });
-document.getElementById('cust-tbl-body')?.addEventListener('click', e => {
-  const btn = e.target.closest('[data-cust-key]');
-  if (btn) window.openCustomer(btn.dataset.custKey);
+// Nama pelanggan di tab mana pun (Pesanan, Notifikasi, Pendapatan, Teknisi, Pelanggan) membuka profilnya.
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-cust-open]');
+  if (el) { e.preventDefault(); e.stopPropagation(); window.openCustomer(el.dataset.custOpen); }
 });
 
 // ── SCHEDULE EDIT ──────────────────────────────────────
@@ -2595,7 +2646,7 @@ function renderTechAssignmentOverview() {
       return `<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);gap:12px;flex-wrap:wrap;">
         <div>
           <span class="code-badge" style="font-size:0.75rem">${o.order_id||o.id.slice(0,8).toUpperCase()}</span>
-          <span style="font-size:0.82rem;color:var(--charcoal);margin-left:8px;font-weight:600">${o.name||'—'}</span>
+          <span style="font-size:0.82rem;color:var(--charcoal);margin-left:8px;font-weight:600">${custNameLink(o)}</span>
           <span style="font-size:0.75rem;color:var(--soft);margin-left:8px">📅 ${sd}</span>
         </div>
         <button class="assign-btn-o" style="padding:6px 14px;font-size:0.75rem" onclick="window.openAssignModal('${safeId}')">👷 Assign</button>
