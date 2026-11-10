@@ -9,518 +9,13 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=6">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=6">
 <link rel="manifest" href="/site.webmanifest?v=6">
-<meta name="theme-color" content="#5B4FD9">
+<meta name="theme-color" content="#4A3FE0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aslan Teknik — Spesialis AC Terpercaya</title>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --mint: #C8F0E8; --lavender: #DDD6F3; --peach: #FDDCCC;
-    --sky: #C9E8F5; --cream: #FDF8F2; --charcoal: #1A1A2E;
-    --mid: #4A4A6A; --soft: #8888AA; --accent: #5B4FD9;
-    --accent2: #E8643A; --white: #FFFFFF; --border: rgba(0,0,0,0.08);
-    --err: #EF4444;
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  html { scroll-behavior:smooth; }
-  body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--charcoal); overflow-x:hidden; }
-
-  /* NAV */
-  nav {
-    position:fixed; top:0; left:0; right:0; z-index:100;
-    display:flex; align-items:center; justify-content:space-between;
-    padding:18px 60px; background:rgba(253,248,242,0.9);
-    backdrop-filter:blur(16px); border-bottom:1px solid var(--border);
-  }
-  .nav-logo { font-family:'Instrument Serif',serif; font-size:1.5rem; color:var(--charcoal); letter-spacing:-0.02em; text-decoration:none; }
-  .nav-logo span { color:var(--accent); }
-  .nav-links { display:flex; gap:36px; }
-  .nav-links a { font-size:0.88rem; font-weight:500; color:var(--mid); text-decoration:none; transition:color 0.2s; }
-  .nav-links a:hover { color:var(--accent); }
-  .nav-cta {
-    background:var(--charcoal); color:#fff; padding:10px 24px; border-radius:100px;
-    font-size:0.88rem; font-weight:500; text-decoration:none; transition:background 0.2s;
-    cursor:pointer; border:none; font-family:'DM Sans',sans-serif;
-  }
-  .nav-cta:hover { background:var(--accent); }
-
-  /* HERO */
-  .hero {
-    min-height:100vh; display:flex; flex-direction:column; align-items:center;
-    justify-content:center; text-align:center; padding:120px 40px 80px;
-    position:relative; overflow:hidden;
-  }
-  .blob { position:absolute; border-radius:50%; filter:blur(80px); opacity:0.5; }
-  .b1 { width:500px;height:500px;background:var(--lavender);top:-100px;left:-100px; }
-  .b2 { width:400px;height:400px;background:var(--mint);bottom:-80px;right:-60px; }
-  .b3 { width:300px;height:300px;background:var(--peach);top:40%;left:55%; }
-
-  .hero-badge {
-    display:inline-flex; align-items:center; gap:8px; background:var(--white);
-    border:1px solid var(--border); padding:6px 18px; border-radius:100px;
-    font-size:0.8rem; font-weight:500; color:var(--mid); margin-bottom:28px;
-    box-shadow:0 2px 12px rgba(0,0,0,0.06); position:relative; z-index:1;
-  }
-  .bdot { width:8px;height:8px;background:#4CAF50;border-radius:50%;animation:pulse 2s infinite; }
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-
-  .hero h1 {
-    font-family:'Instrument Serif',serif; font-size:clamp(2.8rem,6vw,5rem);
-    line-height:1.1; letter-spacing:-0.03em; color:var(--charcoal); max-width:780px;
-    position:relative; z-index:1; animation:fadeUp 0.8s ease both;
-  }
-  .hero h1 em { font-style:italic; color:var(--accent); }
-  .hero-sub {
-    font-size:1.1rem; color:var(--soft); max-width:520px; line-height:1.7;
-    margin-top:20px; position:relative; z-index:1; animation:fadeUp 0.9s 0.1s ease both;
-  }
-  .hero-actions {
-    display:flex; gap:14px; margin-top:36px; position:relative; z-index:1; animation:fadeUp 1s 0.2s ease both;
-  }
-  .btn-primary {
-    background:var(--charcoal); color:#fff; padding:14px 32px; border-radius:100px;
-    font-size:0.95rem; font-weight:500; text-decoration:none; transition:all 0.2s;
-    border:none; cursor:pointer; font-family:'DM Sans',sans-serif; box-shadow:0 4px 20px rgba(26,26,46,0.2);
-  }
-  .btn-primary:hover { background:var(--accent); transform:translateY(-2px); }
-  .btn-ghost {
-    background:transparent; color:var(--mid); padding:14px 32px; border-radius:100px;
-    font-size:0.95rem; font-weight:500; text-decoration:none; border:1px solid var(--border); transition:all 0.2s;
-  }
-  .btn-ghost:hover { border-color:var(--accent); color:var(--accent); }
-
-  .hero-illo { margin-top:60px; position:relative; z-index:1; animation:fadeUp 1s 0.3s ease both; }
-  .hero-cards { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; }
-  .hero-card {
-    background:var(--white); border:1px solid var(--border); border-radius:24px;
-    padding:22px 28px; box-shadow:0 8px 40px rgba(0,0,0,0.06); display:flex;
-    align-items:center; gap:14px; min-width:180px; transition:transform 0.3s;
-  }
-  .hero-card:hover { transform:translateY(-4px); }
-  .hci { width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem; }
-  .hct strong { font-size:1.15rem;font-weight:700;display:block; }
-  .hct span { font-size:0.75rem;color:var(--soft); }
-
-  /* LOGOS */
-  .logos { text-align:center; padding:16px 60px 60px; }
-  .logos-lbl { font-size:0.75rem;color:var(--soft);font-weight:500;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:18px; }
-  .logos-row { display:flex;gap:32px;justify-content:center;flex-wrap:wrap;align-items:center; }
-  .logo-b { font-size:0.8rem;font-weight:600;color:var(--mid);opacity:0.4;letter-spacing:0.06em;text-transform:uppercase; }
-
-  /* SECTION BASE */
-  section { padding:80px 60px; }
-  .slbl { font-size:0.76rem;font-weight:600;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px; }
-  .stitle { font-family:'Instrument Serif',serif;font-size:clamp(2rem,4vw,3rem);line-height:1.15;letter-spacing:-0.02em;color:var(--charcoal);max-width:560px; }
-  .stitle em { font-style:italic;color:var(--accent); }
-  .ssub { font-size:1rem;color:var(--soft);line-height:1.7;max-width:480px;margin-top:12px; }
-
-  /* HOW */
-  .how-s { background:var(--white); }
-  .how-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:52px; }
-  .how-c { border-radius:24px;padding:34px 28px; }
-  .how-c:nth-child(1){background:#EDE9FB} .how-c:nth-child(2){background:#D4F5EC} .how-c:nth-child(3){background:#FCEEE7}
-  .how-n { font-family:'Instrument Serif',serif;font-size:3.5rem;color:rgba(0,0,0,0.08);line-height:1;margin-bottom:10px; }
-  .how-i { font-size:2.2rem;margin-bottom:10px; }
-  .how-c h3 { font-size:1rem;font-weight:600;margin-bottom:7px; }
-  .how-c p { font-size:0.85rem;color:var(--mid);line-height:1.6; }
-
-  /* SERVICES */
-  .svc-head { display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px; }
-  .svc-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:44px; }
-  .svc-plist { margin-top:14px;display:flex;flex-direction:column;gap:5px;position:relative;z-index:1; }
-  .spl-item { display:flex;justify-content:space-between;align-items:center;font-size:0.8rem;color:var(--mid);padding:4px 0;border-bottom:1px dashed rgba(0,0,0,0.07); }
-  .spl-item:last-child { border-bottom:none; }
-  .spl-item span:last-child { font-weight:600;color:var(--charcoal);white-space:nowrap; }
-  .spl-cat { font-size:0.72rem;font-weight:700;color:var(--soft);text-transform:uppercase;letter-spacing:0.08em;margin-top:10px;margin-bottom:2px;position:relative;z-index:1; }
-  .svc-c {
-    border-radius:24px;padding:32px 26px;border:1px solid var(--border);
-    background:var(--white);transition:all 0.3s;position:relative;overflow:hidden;
-  }
-  .svc-c::before { content:'';position:absolute;inset:0;opacity:0;transition:opacity 0.3s; }
-  .svc-c:nth-child(1)::before{background:linear-gradient(135deg,#EDE9FB,#C8F0E8)}
-  .svc-c:nth-child(2)::before{background:linear-gradient(135deg,#FCEEE7,#FDD9C0)}
-  .svc-c:nth-child(3)::before{background:linear-gradient(135deg,#D4F5EC,#C9E8F5)}
-  .svc-c:nth-child(4)::before{background:linear-gradient(135deg,#FDD9C0,#FCEEE7)}
-  .svc-c:nth-child(5)::before{background:linear-gradient(135deg,#C9E8F5,#DDD6F3)}
-  .svc-c:nth-child(6)::before{background:linear-gradient(135deg,#D4EDD4,#C8F0E8)}
-  .svc-c:hover::before{opacity:1}
-  .svc-c:hover{transform:translateY(-4px);border-color:transparent;box-shadow:0 16px 48px rgba(0,0,0,0.08)}
-  .svc-ico { font-size:2.4rem;margin-bottom:16px;position:relative;z-index:1; }
-  .svc-c h3 { font-size:0.98rem;font-weight:600;margin-bottom:7px;position:relative;z-index:1; }
-  .svc-c p { font-size:0.84rem;color:var(--mid);line-height:1.6;position:relative;z-index:1; }
-  .svc-price { margin-top:16px;font-weight:700;font-size:0.9rem;color:var(--accent);position:relative;z-index:1; }
-  .svc-btn {
-    margin-top:12px;padding:7px 18px;border-radius:100px;background:transparent;
-    border:1.5px solid var(--accent);color:var(--accent);font-family:'DM Sans',sans-serif;
-    font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;position:relative;z-index:1;
-  }
-  .svc-btn:hover { background:var(--accent);color:#fff; }
-
-  /* STATS */
-  .stats-s { background:var(--charcoal);color:#fff;border-radius:32px;margin:0 60px;padding:56px 60px; }
-  .stats-g { display:grid;grid-template-columns:repeat(4,1fr);gap:36px;text-align:center; }
-  .stat-n { font-family:'Instrument Serif',serif;font-size:2.8rem;color:#fff; }
-  .stat-n span { color:var(--peach); }
-  .stat-l { font-size:0.8rem;color:rgba(255,255,255,0.45);margin-top:5px; }
-
-  /* TESTI – MARQUEE */
-  .testi-s { background:var(--white); padding-bottom:60px; }
-  .testi-marquee-wrap {
-    overflow:hidden;
-    -webkit-mask-image:linear-gradient(to right,transparent,black 6%,black 94%,transparent);
-    mask-image:linear-gradient(to right,transparent,black 6%,black 94%,transparent);
-  }
-  .testi-marquee-track {
-    display:flex; gap:20px; width:max-content;
-    animation:marqueeScroll 40s linear infinite;
-  }
-  .testi-marquee-wrap:hover .testi-marquee-track { animation-play-state:paused; }
-  @keyframes marqueeScroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-  .testi-c {
-    border:1px solid var(--border);border-radius:20px;padding:26px;
-    width:300px;flex-shrink:0;background:var(--white);
-    transition:box-shadow 0.3s,transform 0.3s;
-  }
-  .testi-c:hover { box-shadow:0 8px 32px rgba(0,0,0,0.08);transform:translateY(-3px); }
-  .t-stars { color:#F5A623;font-size:0.85rem;margin-bottom:10px;letter-spacing:1px; }
-  .t-q { font-size:0.88rem;line-height:1.7;color:var(--mid);margin-bottom:16px;font-style:italic; }
-  .t-au { display:flex;align-items:center;gap:10px; }
-  .t-av { width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0; }
-  .t-name { font-weight:600;font-size:0.86rem; }
-  .t-loc { font-size:0.72rem;color:var(--soft); }
-  /* Write Review Button */
-  .write-review-btn {
-    display:inline-flex;align-items:center;gap:8px;
-    background:transparent;border:1.5px solid var(--border);
-    color:var(--mid);padding:11px 26px;border-radius:100px;
-    font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;
-    cursor:pointer;transition:all 0.2s;margin-top:28px;
-  }
-  .write-review-btn:hover { border-color:var(--accent);color:var(--accent);background:#F5F3FF; }
-  /* Review Modal */
-  .rv-overlay {
-    position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:9999;
-    display:flex;align-items:center;justify-content:center;padding:20px;
-    opacity:0;pointer-events:none;transition:opacity 0.25s;
-  }
-  .rv-overlay.open { opacity:1;pointer-events:auto; }
-  .rv-modal {
-    background:var(--white);border-radius:24px;padding:36px 32px;
-    width:100%;max-width:480px;box-shadow:0 32px 80px rgba(0,0,0,0.18);
-    transform:translateY(24px);transition:transform 0.3s;
-    max-height:90vh;overflow-y:auto;
-  }
-  .rv-overlay.open .rv-modal { transform:translateY(0); }
-  .rv-modal-title { font-family:'Instrument Serif',serif;font-size:1.5rem;margin-bottom:5px; }
-  .rv-modal-sub { font-size:0.82rem;color:var(--soft);margin-bottom:24px;line-height:1.5; }
-  .rv-fg { margin-bottom:16px; }
-  .rv-label { font-size:0.78rem;font-weight:600;display:block;margin-bottom:7px;color:var(--charcoal); }
-  .rv-input {
-    width:100%;padding:11px 14px;border:1.5px solid var(--border);
-    border-radius:12px;font-family:'DM Sans',sans-serif;font-size:0.88rem;
-    background:var(--cream);outline:none;transition:border-color 0.2s;
-  }
-  .rv-input:focus { border-color:var(--accent);background:#fff; }
-  .rv-input:disabled { opacity:0.55;cursor:not-allowed; }
-  .rv-name-disp {
-    width:100%;padding:11px 14px;background:#EDE9FB;border-radius:12px;
-    font-size:0.88rem;font-weight:600;color:var(--charcoal);min-height:44px;
-    display:flex;align-items:center;border:1.5px solid transparent;
-  }
-  .rv-stars-row { display:flex;gap:6px;margin-top:4px; }
-  .rv-star { font-size:1.7rem;cursor:pointer;color:#D1D5DB;transition:color 0.12s,transform 0.12s;line-height:1;user-select:none; }
-  .rv-star.lit { color:#F5A623; }
-  .rv-star:hover { transform:scale(1.15); }
-  .rv-textarea {
-    width:100%;padding:11px 14px;border:1.5px solid var(--border);
-    border-radius:12px;font-family:'DM Sans',sans-serif;font-size:0.88rem;
-    background:var(--cream);outline:none;transition:border-color 0.2s;
-    resize:vertical;min-height:94px;
-  }
-  .rv-textarea:focus { border-color:var(--accent);background:#fff; }
-  .rv-actions { display:flex;gap:10px;margin-top:4px; }
-  .rv-submit-btn {
-    flex:1;padding:13px;border-radius:14px;background:var(--charcoal);
-    color:#fff;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;
-    font-size:0.92rem;font-weight:600;transition:all 0.2s;
-  }
-  .rv-submit-btn:hover { background:var(--accent); }
-  .rv-submit-btn:disabled { opacity:0.4;cursor:not-allowed; }
-  .rv-cancel-btn {
-    padding:13px 20px;border-radius:14px;background:transparent;
-    color:var(--mid);border:1.5px solid var(--border);cursor:pointer;
-    font-family:'DM Sans',sans-serif;font-size:0.88rem;transition:all 0.2s;
-  }
-  .rv-cancel-btn:hover { border-color:var(--charcoal);color:var(--charcoal); }
-  .rv-msg { font-size:0.82rem;margin-top:10px;min-height:18px;line-height:1.5; }
-  .rv-msg.ok { color:#16A34A; }
-  .rv-msg.err { color:#EF4444; }
-  @media(max-width:600px){
-    .rv-modal{padding:24px 18px;border-radius:18px;}
-    .testi-c{width:260px;padding:20px;}
-  }
-
-  /* TRUST */
-  .trust-s { padding:0 60px 80px; }
-  .trust-g { display:grid;grid-template-columns:repeat(4,1fr);gap:20px; }
-  .trust-c { text-align:center;padding:30px 18px;border:1px solid var(--border);border-radius:20px;background:var(--white); }
-  .trust-ic { font-size:1.9rem;margin-bottom:10px; }
-  .trust-c h4 { font-size:0.9rem;font-weight:600;margin-bottom:5px; }
-  .trust-c p { font-size:0.78rem;color:var(--soft);line-height:1.5; }
-
-  /* ===== BOOKING ===== */
-  .bk-section { padding:80px 60px; }
-  .bk-title-blk { text-align:center;margin-bottom:52px; }
-  .bk-title-blk .stitle { margin:0 auto;text-align:center;max-width:none; }
-  .bk-title-blk .ssub { margin:12px auto 0;text-align:center;max-width:560px; }
-
-  /* FIX: 2-kolom grid — hapus ekspektasi kolom ke-3 */
-  .bk-box {
-    display:grid;
-    grid-template-columns:280px 1fr;
-    border-radius:28px;overflow:hidden;border:1px solid var(--border);
-    box-shadow:0 24px 80px rgba(0,0,0,0.09);background:var(--white);max-width:860px;margin:0 auto;
-  }
-
-  /* LEFT */
-  .bk-l { padding:34px 26px;border-right:1px solid var(--border);background:var(--cream); }
-  .bk-brand { display:flex;align-items:center;gap:10px;margin-bottom:20px; }
-  .bk-brand-ic { width:34px;height:34px;border-radius:10px;background:var(--charcoal);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.95rem; }
-  .bk-brand-nm { font-family:'Instrument Serif',serif;font-size:1rem; }
-  .bk-ttl { font-size:1.3rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:3px; }
-  .bk-sub-txt { font-size:0.8rem;color:var(--soft);margin-bottom:20px; }
-  .bk-meta { display:flex;flex-direction:column;gap:9px;margin-bottom:24px; }
-  .bk-mi { display:flex;align-items:center;gap:9px;font-size:0.82rem;color:var(--mid); }
-  .bk-chk { border-top:1px solid var(--border);padding-top:16px; }
-  .bk-chk h4 { font-size:0.8rem;font-weight:600;margin-bottom:9px; }
-  .bk-chk li { font-size:0.78rem;color:var(--mid);padding:3px 0;display:flex;gap:7px;list-style:none; }
-  .bk-chk li::before { content:'✓';color:var(--accent);font-weight:700;flex-shrink:0; }
-
-  /* CENTER */
-  .bk-c { padding:34px 30px;overflow-y:auto; }
-  .bk-c h3 { font-size:1.02rem;font-weight:600;margin-bottom:3px; }
-  .bk-hint { font-size:0.78rem;color:var(--soft);margin-bottom:24px; }
-
-  .fg { margin-bottom:16px; }
-  .fl { font-size:0.78rem;font-weight:600;color:var(--charcoal);margin-bottom:6px;display:block; }
-  .fi,.fs,.fta {
-    width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:11px;
-    font-family:'DM Sans',sans-serif;font-size:0.87rem;color:var(--charcoal);
-    background:var(--cream);outline:none;transition:border-color 0.2s;
-  }
-  .fi:focus,.fs:focus,.fta:focus { border-color:var(--accent);background:#fff; }
-  .fi.err-field,.fs.err-field { border-color:var(--err) !important; background:#FEF2F2; }
-  .fta { resize:none;height:76px; }
-  .fr2 { display:grid;grid-template-columns:1fr 1fr;gap:11px; }
-
-  /* Pesan error validasi */
-  .err-msg { font-size:0.74rem;color:var(--err);margin-top:4px;display:none; }
-  .err-msg.show { display:block; }
-
-  /* order summary */
-  .order-summary { display:none;margin-bottom:16px; }
-  .order-summary.show { display:block; }
-  .order-summary-title { font-size:0.78rem;font-weight:600;color:var(--charcoal);margin-bottom:10px;display:flex;align-items:center;gap:6px; }
-  .order-items { display:flex;flex-direction:column;gap:0; }
-  .order-item {
-    display:flex;align-items:center;justify-content:space-between;
-    padding:10px 0;border-bottom:1px solid var(--border);gap:10px;
-  }
-  .order-item:last-child { border-bottom:none; }
-  .order-item-info { flex:1;min-width:0; }
-  .order-item-name { font-size:0.84rem;font-weight:500;color:var(--charcoal); }
-  .order-item-price { font-size:0.74rem;color:var(--soft); }
-  .order-item-sub { font-size:0.82rem;font-weight:600;color:var(--charcoal);white-space:nowrap;margin-right:4px; }
-  .qty-ctrl {
-    display:flex;align-items:center;gap:0;border:1.5px solid var(--border);border-radius:10px;overflow:hidden;flex-shrink:0;
-  }
-  .qty-btn {
-    width:32px;height:32px;border:none;background:transparent;cursor:pointer;
-    font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;color:var(--mid);
-    display:flex;align-items:center;justify-content:center;transition:all 0.15s;
-  }
-  .qty-btn:hover { background:var(--lavender);color:var(--accent); }
-  .qty-btn.remove { color:var(--err); }
-  .qty-btn.remove:hover { background:#FEE2E2; }
-  .qty-val {
-    width:28px;text-align:center;font-size:0.88rem;font-weight:600;color:var(--charcoal);
-    border-left:1px solid var(--border);border-right:1px solid var(--border);
-    line-height:32px;
-  }
-
-  /* service chips */
-  .chip-groups { display:flex;flex-direction:column;gap:10px; }
-  .chip-group { display:flex;flex-direction:column;gap:5px; }
-  .chip-group-lbl { font-size:0.7rem;font-weight:700;color:var(--soft);text-transform:uppercase;letter-spacing:0.08em; }
-  .chip-row { display:flex;gap:7px;flex-wrap:wrap; }
-  .chip {
-    padding:6px 13px;border-radius:100px;border:1.5px solid var(--border);background:transparent;
-    cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:500;color:var(--mid);transition:all 0.15s;
-  }
-  .chip.act { border-color:var(--accent2);background:#FCEEE7;color:var(--accent2); }
-  .chip:hover:not(.act) { border-color:var(--mid); }
-  .chip-err { font-size:0.74rem;color:var(--err);margin-top:6px;display:none; }
-  .chip-err.show { display:block; }
-
-  /* price box */
-  .price-box {
-    background:linear-gradient(135deg,#EDE9FB,#D4F5EC);border-radius:14px;
-    padding:14px 16px;margin-bottom:16px;display:none;
-  }
-  .price-box.show { display:block; }
-  .price-lbl { font-size:0.72rem;font-weight:600;color:var(--mid);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:3px; }
-  .price-val { font-size:1.55rem;font-weight:700;color:var(--charcoal);letter-spacing:-0.02em; }
-  .price-note { font-size:0.72rem;color:var(--soft);margin-top:2px; }
-  .price-bk { font-size:0.75rem;color:var(--mid);margin-top:7px;line-height:1.65; }
-
-  /* calendar */
-  .cal-wrap { background:var(--white);border:1.5px solid var(--border);border-radius:15px;padding:14px; }
-  .cal-wrap.err-field { border-color:var(--err) !important; }
-  .cal-head { display:flex;align-items:center;justify-content:space-between;margin-bottom:12px; }
-  .cal-mlbl { font-weight:600;font-size:0.9rem; }
-  .cal-nav {
-    background:none;border:none;cursor:pointer;padding:4px 9px;border-radius:8px;
-    font-size:1rem;color:var(--mid);transition:background 0.15s;
-  }
-  .cal-nav:hover { background:rgba(0,0,0,0.06); }
-  .cal-grid { display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center; }
-  .cdn { font-size:0.65rem;font-weight:600;color:var(--soft);padding:4px 0; }
-  .cd {
-    padding:6px 2px;border-radius:8px;font-size:0.78rem;cursor:pointer;transition:all 0.15s;
-    color:var(--charcoal);border:none;background:none;font-family:'DM Sans',sans-serif;width:100%;
-  }
-  .cd:hover { background:var(--lavender); }
-  .cd.sel { background:var(--charcoal);color:#fff;font-weight:600; }
-  .cd.tod::after { content:'';width:4px;height:4px;background:var(--accent);border-radius:50%;display:block;margin:2px auto 0; }
-  .cd.dis,.cd.oth { color:#ccc;cursor:default;pointer-events:none; }
-  /* Jumat libur */
-  .cd.fri-dis {
-    color:#ccc !important; background:none !important;
-    cursor:not-allowed !important; pointer-events:none;
-  }
-
-  /* ── AVAILABILITY STATUS ── */
-  /* Full booked: merah, cap FULL, tidak bisa klik */
-  .cd.avail-full {
-    background:#FEE2E2 !important; color:#EF4444 !important;
-    cursor:not-allowed !important; pointer-events:none;
-    opacity:0.9; position:relative;
-    padding-bottom:4px; line-height:1.15;
-  }
-  .cd.avail-full .full-stamp {
-    display:block; margin:2px auto 0; width:fit-content;
-    background:#DC2626; color:#fff !important;
-    font-size:0.52rem; font-weight:800; letter-spacing:0.05em;
-    border-radius:4px; padding:1px 4px; line-height:1.3;
-    text-decoration:none; transform:rotate(-4deg);
-    box-shadow:0 1px 3px rgba(220,38,38,0.4);
-  }
-  /* Hampir penuh: dot amber di bawah tanggal, masih bisa diklik */
-  .cd.avail-almost { position:relative; }
-  .cd.avail-almost::after {
-    content:''; position:absolute; bottom:2px; left:50%;
-    transform:translateX(-50%); width:4px; height:4px;
-    border-radius:50%; background:#F59E0B; display:block;
-  }
-  /* Tersedia: dot hijau di bawah tanggal */
-  .cd.avail-ok { position:relative; }
-  .cd.avail-ok::after {
-    content:''; position:absolute; bottom:2px; left:50%;
-    transform:translateX(-50%); width:4px; height:4px;
-    border-radius:50%; background:#22C55E; display:block;
-  }
-  /* Legend */
-  .avail-legend {
-    display:flex; gap:14px; flex-wrap:wrap;
-    margin-top:10px; font-size:0.7rem; color:var(--soft); align-items:center;
-  }
-  .avail-legend span { display:flex; align-items:center; gap:5px; }
-  .avail-dot-l { width:10px; height:10px; border-radius:3px; display:inline-block; flex-shrink:0; }
-  /* Warning banner saat pilih tanggal hampir penuh */
-  .avail-warn {
-    display:none; margin-top:8px; padding:9px 13px;
-    background:#FEF9C3; border:1px solid #F59E0B; border-radius:10px;
-    font-size:0.76rem; color:#854D0E; line-height:1.5;
-  }
-  .avail-warn.show { display:block; }
-
-  /* WA Button */
-  .wa-btn {
-    width:100%;margin-top:20px;padding:14px;border-radius:13px;background:#25D366;color:#fff;border:none;
-    cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.92rem;font-weight:600;
-    display:flex;align-items:center;justify-content:center;gap:9px;
-    transition:all 0.2s;box-shadow:0 4px 20px rgba(37,211,102,0.25);
-  }
-  .wa-btn:hover:not(:disabled) { background:#1ebe5d;transform:translateY(-2px);box-shadow:0 8px 30px rgba(37,211,102,0.35); }
-  .wa-btn:disabled { opacity:0.4;cursor:not-allowed;transform:none;box-shadow:none; }
-  .wa-hint { font-size:0.7rem;color:var(--soft);text-align:center;margin-top:7px; }
-
-
-  /* GBP MAP */
-  .gbp-s { background:var(--white);padding:80px 60px; }
-  .gbp-wrap { display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:40px;align-items:center; }
-  .gbp-map { border-radius:24px;overflow:hidden;border:1px solid var(--border);box-shadow:0 8px 40px rgba(0,0,0,0.06);aspect-ratio:4/3; }
-  .gbp-map iframe { width:100%;height:100%;border:0; }
-  .gbp-info { display:flex;flex-direction:column;gap:16px; }
-  .gbp-info h3 { font-family:'Instrument Serif',serif;font-size:1.6rem;letter-spacing:-0.02em; }
-  .gbp-detail { display:flex;align-items:flex-start;gap:10px;font-size:0.88rem;color:var(--mid);line-height:1.6; }
-  .gbp-detail span:first-child { font-size:1.2rem;flex-shrink:0; }
-  .gbp-link {
-    display:inline-flex;align-items:center;gap:8px;background:var(--charcoal);color:#fff;
-    padding:13px 28px;border-radius:100px;font-size:0.9rem;font-weight:500;text-decoration:none;
-    transition:all 0.2s;margin-top:8px;width:fit-content;
-  }
-  .gbp-link:hover { background:var(--accent);transform:translateY(-2px); }
-  @media(max-width:900px){
-    .gbp-s{padding:56px 20px}
-    .gbp-wrap{grid-template-columns:1fr}
-  }
-
-  /* FOOTER */
-  footer { background:var(--charcoal);color:rgba(255,255,255,0.5);padding:56px 60px 36px;margin-top:80px; }
-  .foot-g { display:grid;grid-template-columns:2fr 1fr 1fr;gap:56px;margin-bottom:36px; }
-  .foot-logo { font-family:'Instrument Serif',serif;font-size:1.6rem;color:#fff;display:block;margin-bottom:11px; }
-  .foot-g > div > p { font-size:0.83rem;line-height:1.7;max-width:270px; }
-  .foot-col h4 { font-size:0.83rem;font-weight:600;color:#fff;margin-bottom:12px; }
-  .foot-col a { display:block;font-size:0.8rem;margin-bottom:7px;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s; }
-  .foot-col a:hover { color:#fff; }
-  .foot-bot { border-top:1px solid rgba(255,255,255,0.1);padding-top:20px;display:flex;justify-content:space-between;font-size:0.76rem; }
-
-  @media(max-width:900px){
-    nav{padding:14px 20px} .nav-links{display:none}
-    section{padding:56px 20px} .hero{padding:96px 20px 56px}
-    .how-grid,.svc-grid{grid-template-columns:1fr}
-    .stats-s{margin:0 20px;padding:36px 20px} .stats-g{grid-template-columns:repeat(2,1fr)}
-    /* RESPONSIVE: stack ke 1 kolom di mobile */
-    .bk-box{grid-template-columns:1fr}
-    .bk-l{border-right:none;border-bottom:1px solid var(--border)}
-    .bk-section{padding:56px 20px}
-    .trust-s{padding:0 20px 56px} .trust-g{grid-template-columns:repeat(2,1fr)}
-    footer{padding:36px 20px} .foot-g{grid-template-columns:1fr;gap:24px}
-    .foot-bot{flex-direction:column;gap:6px}
-  }
-
-  /* VOUCHER */
-  .voucher-wrap{position:relative;}
-  .voucher-row{display:flex;gap:8px;}
-  .voucher-input{flex:1;padding:10px 13px;border:1.5px solid var(--border);border-radius:11px;font-family:'DM Sans',sans-serif;font-size:0.87rem;color:var(--charcoal);background:var(--cream);outline:none;transition:border-color 0.2s;text-transform:uppercase;letter-spacing:0.06em;}
-  .voucher-input:focus{border-color:var(--accent);background:#fff;}
-  .voucher-apply{padding:10px 18px;border-radius:11px;background:var(--charcoal);color:#fff;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;transition:all 0.2s;white-space:nowrap;}
-  .voucher-apply:hover{background:var(--accent);}
-  .voucher-apply:disabled{opacity:0.4;cursor:not-allowed;}
-  .voucher-msg{font-size:0.78rem;margin-top:7px;min-height:16px;}
-  .voucher-msg.ok{color:#22C55E;}
-  .voucher-msg.err{color:#EF4444;}
-  .voucher-tag{display:inline-flex;align-items:center;gap:8px;background:#DCFCE7;border:1px solid #BBF7D0;border-radius:100px;padding:5px 14px;font-size:0.82rem;font-weight:600;color:#166534;margin-top:8px;}
-  .voucher-tag-remove{background:none;border:none;cursor:pointer;color:#166534;font-size:1rem;line-height:1;padding:0;}
-  .price-after{margin-top:8px;padding:10px 14px;background:linear-gradient(135deg,#DCFCE7,#D4F5EC);border-radius:12px;display:none;}
-  .price-after.show{display:block;}
-  .price-after-lbl{font-size:0.72rem;font-weight:600;color:var(--mid);text-transform:uppercase;letter-spacing:0.08em;}
-  .price-after-val{font-size:1.4rem;font-weight:700;color:#166534;letter-spacing:-0.02em;}
-  .price-after-disc{font-size:0.78rem;color:#166534;margin-top:2px;}
-
-</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/aslan.css?v=1">
 
 <!-- FIREBASE -->
 <script type="module">
@@ -546,367 +41,423 @@ window.dispatchEvent(new Event('fbReady'));
 <body>
 
 <!-- NAV -->
-<nav>
-  <a class="nav-logo" href="#">Aslan<span>.</span>Teknik</a>
-  <div class="nav-links">
-    <a href="#layanan">Layanan</a>
-    <a href="#cara-kerja">Cara Kerja</a>
-    <a href="/acfinder/">AC Finder</a>
-    <a href="#testimoni">Testimoni</a>
-    <a href="#booking" onclick="if(typeof window._atSectionClick==='function')window._atSectionClick('/#booking')">Booking</a>
-    <a href="#lokasi">Lokasi</a>
+<header class="nav">
+  <div class="wrap">
+    <div class="nav-in">
+      <a class="nav-logo" href="#">Aslan<span>.</span>Teknik</a>
+      <nav class="nav-links" aria-label="Menu utama">
+        <a href="#layanan">Layanan</a>
+        <a href="#cara-kerja">Cara Kerja</a>
+        <a href="/acfinder/">AC Finder</a>
+        <a href="#testimoni">Testimoni</a>
+        <a href="#booking" onclick="if(typeof window._atSectionClick==='function')window._atSectionClick('/#booking')">Booking</a>
+        <a href="#lokasi">Lokasi</a>
+      </nav>
+      <button class="nav-menu" type="button" aria-expanded="false" aria-controls="nav-drawer">Menu</button>
+      <button class="nav-cta" type="button" onclick="goBook()">Booking<span class="nav-cta-x"> servis</span></button>
+    </div>
+    <div class="nav-drawer" id="nav-drawer">
+      <a href="#layanan">Layanan dan harga</a>
+      <a href="#cara-kerja">Cara kerja</a>
+      <a href="/acfinder/">AC Finder</a>
+      <a href="#testimoni">Testimoni</a>
+      <a href="#booking" onclick="if(typeof window._atSectionClick==='function')window._atSectionClick('/#booking')">Booking</a>
+      <a href="#lokasi">Lokasi dan jam buka</a>
+    </div>
   </div>
-  <button class="nav-cta" onclick="goBook()">Pesan Sekarang</button>
-</nav>
+</header>
+
+<main>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
-  <h1>AC Bersih, Rumah <em>Nyaman</em><br>Sejuk Sepanjang Hari</h1>
-  <p class="hero-sub">Solusi perawatan AC profesional untuk hunian dan bisnis Anda. Teknisi berpengalaman, harga transparan, hasil terjamin.</p>
-  <div class="hero-actions">
-    <button class="btn-primary" onclick="goBook()">📅 Pesan Sekarang</button>
-    <a href="#layanan" class="btn-ghost">Lihat Layanan</a>
-  </div>
-  <div class="hero-illo">
-    <div class="hero-cards">
-      <div class="hero-card"><div class="hci" style="background:#EDE9FB">🧊</div><div class="hct"><strong>500+</strong><span>AC Dicuci</span></div></div>
-      <div class="hero-card"><div class="hci" style="background:#D4F5EC">⭐</div><div class="hct"><strong>5/5</strong><span>Rating Pelanggan</span></div></div>
-      <div class="hero-card"><div class="hci" style="background:#FCEEE7">🛡️</div><div class="hct"><strong>Garansi</strong><span>14 Hari*</span></div></div>
-      <div class="hero-card"><div class="hci" style="background:#C9E8F5">⚡</div><div class="hct"><strong>Same Day</strong><span>Service</span></div></div>
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Servis AC ke rumah, harga jelas sejak awal.</h1>
+      <p class="hero-sub">Cuci, perbaikan, isi freon, dan bongkar pasang AC untuk rumah dan tempat usaha di Jakarta Selatan, Depok, Bogor, dan Tangerang Selatan.</p>
+      <div class="hero-actions">
+        <button class="btn btn-brand" type="button" onclick="goBook()">Booking servis</button>
+        <a class="btn btn-line" href="#layanan">Lihat layanan dan harga</a>
+      </div>
+      <ul class="hero-points">
+        <li>Rating 5/5 dari pelanggan</li>
+        <li>Same day service</li>
+        <li>Konfirmasi lewat WhatsApp</li>
+      </ul>
+    </div>
+    <div class="hero-nota nota-shadow">
+      <div class="sticker" aria-label="Garansi hasil 14 hari"><span>Garansi</span><b>14</b><span>hari*</span></div>
+      <div class="nota-paper">
+        <div class="nota-head"><span class="nota-title">Harga mulai</span></div>
+        <ul class="price-rows">
+          <li><button type="button" class="price-row" onclick="goBookWith('cuci')"><span class="price-row-name">Cuci AC</span><span class="price-row-dots"></span><span class="price-row-val">Rp 110.000</span></button></li>
+          <li><button type="button" class="price-row" onclick="goBookWith('periksa')"><span class="price-row-name">Pengecekan</span><span class="price-row-dots"></span><span class="price-row-val">Rp 80.000</span></button></li>
+          <li><button type="button" class="price-row" onclick="goBookWith('tambahR22')"><span class="price-row-name">Tambah freon</span><span class="price-row-dots"></span><span class="price-row-val">Rp 280.000</span></button></li>
+          <li><button type="button" class="price-row" onclick="goBookWith('bongkar')"><span class="price-row-name">Bongkar AC</span><span class="price-row-dots"></span><span class="price-row-val">Rp 250.000</span></button></li>
+          <li><button type="button" class="price-row" onclick="goBookWith('overhaul')"><span class="price-row-name">Overhaul</span><span class="price-row-dots"></span><span class="price-row-val">Rp 560.000</span></button></li>
+        </ul>
+        <p class="nota-foot">Harga per unit untuk AC split standar ½–1 PK. Ketuk salah satu untuk langsung memesan.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- LOGOS -->
-<div class="logos">
-  <div class="logos-lbl">Dipercaya oleh ratusan pelanggan dari</div>
-  <div class="logos-row">
-    <span class="logo-b">Perumahan</span><span class="logo-b">Perkantoran</span>
-    <span class="logo-b">Restoran</span><span class="logo-b">Hotel</span>
-    <span class="logo-b">Apartemen</span><span class="logo-b">Ruko &amp; Toko</span>
-  </div>
-</div>
-
-<!-- HOW -->
-<section class="how-s" id="cara-kerja">
-  <div class="slbl">Cara Kerja</div>
-  <div class="stitle">Service AC Mudah dalam <em>3 Langkah</em></div>
-  <div class="how-grid">
-    <div class="how-c"><div class="how-n">01</div><div class="how-i">📋</div><h3>Isi Form Booking</h3><p>Pilih layanan, tanggal, dan waktu yang sesuai jadwal Anda melalui form booking online kami.</p></div>
-    <div class="how-c"><div class="how-n">02</div><div class="how-i">🔧</div><h3>Teknisi Kami Datang</h3><p>Teknisi bersertifikat kami tiba tepat waktu dengan peralatan lengkap dan produk kebersihan terbaik.</p></div>
-    <div class="how-c"><div class="how-n">03</div><div class="how-i">❄️</div><h3>AC Kembali Prima</h3><p>AC Anda bersih, dingin optimal, dan efisien. Nikmati udara segar dengan garansi 14 Hari*.</p></div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section id="layanan">
-  <div class="svc-head">
-    <div><div class="slbl">Layanan Kami</div><div class="stitle">Solusi Lengkap untuk <em>Semua Kebutuhan</em> AC Anda</div></div>
-    <p class="ssub">Dari cuci rutin hingga perbaikan darurat — kami siap menangani semua jenis AC.</p>
-  </div>
-  <div class="svc-grid">
-    <div class="svc-c"><div class="svc-ico">💨</div><h3>Cuci AC</h3><p>Pembersihan menyeluruh evaporator, kondensor, dan drainase. Hilangkan debu, jamur, dan bakteri penyebab bau.</p><div class="svc-price">Mulai Rp 110.000/unit</div><button class="svc-btn" onclick="goBook()">Pesan Sekarang</button></div>
-    <div class="svc-c"><div class="svc-ico">🔧</div><h3>Service &amp; Perbaikan</h3><p>Overhaul, ganti kapasitor, dan pengecekan menyeluruh untuk memulihkan performa AC yang bermasalah.</p><div class="svc-price">Mulai Rp 80.000/unit</div><button class="svc-btn" onclick="goBook()">Pesan Sekarang</button></div>
-    <div class="svc-c"><div class="svc-ico">🧰</div><h3>Bongkar / Pasang</h3><p>Bongkar dan pemasangan AC dengan rapi dan tepat untuk sirkulasi udara yang maksimal.</p><div class="svc-price">Mulai Rp 250.000/unit</div><button class="svc-btn" onclick="goBook()">Pesan Sekarang</button></div>
-    <div class="svc-c"><div class="svc-ico">❄️</div><h3>Freon</h3><p>Tambah atau isi ulang freon R22/R32 dengan kualitas terjamin untuk memulihkan dingin optimal.</p><div class="svc-price">Mulai Rp 280.000/unit</div><button class="svc-btn" onclick="goBook()">Pesan Sekarang</button></div>
-  </div>
-</section>
-
-<!-- STATS -->
-<div class="stats-s">
-  <div class="stats-g">
-    <div><div class="stat-n">500<span>+</span></div><div class="stat-l">Pelanggan Puas</div></div>
-    <div><div class="stat-n">96<span>%</span></div><div class="stat-l">Tingkat Kepuasan</div></div>
-    <div><div class="stat-n">5<span>+</span></div><div class="stat-l">Tahun Pengalaman</div></div>
-    <div><div class="stat-n">14<span>hari</span></div><div class="stat-l">Garansi Layanan</div></div>
-  </div>
-</div>
-
-<!-- TRUST -->
-<section class="trust-s">
-  <div class="trust-g">
-    <div class="trust-c"><div class="trust-ic">🏅</div><h4>Teknisi Bersertifikat</h4><p>Tim terlatih dengan sertifikasi resmi keahlian teknik pendingin</p></div>
-    <div class="trust-c"><div class="trust-ic">⏰</div><h4>Tepat Waktu</h4><p>Komitmen tiba sesuai jadwal yang sudah disepakati bersama</p></div>
-    <div class="trust-c"><div class="trust-ic">💎</div><h4>Peralatan Premium</h4><p>Tools dan material berkualitas tinggi untuk hasil terbaik</p></div>
-    <div class="trust-c"><div class="trust-ic">📞</div><h4>Layanan Darurat</h4><p>Tersedia emergency 7 hari seminggu untuk kebutuhan mendesak</p></div>
+<!-- LAYANAN -->
+<section class="sec" id="layanan">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Layanan dan harga</h2>
+      <p class="sec-lead">Dari cuci rutin sampai perbaikan, untuk rumah, apartemen, kantor, ruko, restoran, dan hotel.</p>
+    </div>
+    <div class="svc-list">
+      <article class="svc-row">
+        <h3>Cuci AC</h3>
+        <p>Pembersihan menyeluruh evaporator, kondensor, dan drainase. Menghilangkan debu, jamur, dan bakteri penyebab bau.</p>
+        <div class="svc-price"><small>mulai</small>Rp 110.000/unit</div>
+        <button class="btn btn-line btn-sm" type="button" onclick="goBookWith('cuci')">Pesan cuci AC</button>
+      </article>
+      <article class="svc-row">
+        <h3>Servis dan perbaikan</h3>
+        <p>Overhaul, ganti kapasitor, dan pengecekan menyeluruh untuk memulihkan performa AC yang bermasalah.</p>
+        <div class="svc-price"><small>mulai</small>Rp 80.000/unit</div>
+        <button class="btn btn-line btn-sm" type="button" onclick="goBook()">Pesan servis</button>
+      </article>
+      <article class="svc-row">
+        <h3>Bongkar pasang</h3>
+        <p>Bongkar dan pemasangan AC yang rapi dan tepat, supaya sirkulasi udara maksimal.</p>
+        <div class="svc-price"><small>mulai</small>Rp 250.000/unit</div>
+        <button class="btn btn-line btn-sm" type="button" onclick="goBook()">Pesan bongkar pasang</button>
+      </article>
+      <article class="svc-row">
+        <h3>Freon</h3>
+        <p>Tambah atau isi ulang freon R22, R32, dan R410 untuk memulihkan dingin AC.</p>
+        <div class="svc-price"><small>mulai</small>Rp 280.000/unit</div>
+        <button class="btn btn-line btn-sm" type="button" onclick="goBook()">Pesan isi freon</button>
+      </article>
+    </div>
+    <p class="svc-more"><a href="/pricelist/">Lihat daftar harga lengkap</a></p>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="testi-s" id="testimoni">
-  <div style="text-align:center;margin-bottom:44px">
-    <div class="slbl">Testimoni</div>
-    <div class="stitle" style="max-width:none;text-align:center">Apa Kata <em>Pelanggan</em> Kami</div>
+<!-- CARA KERJA -->
+<section class="sec sec-tint" id="cara-kerja">
+  <div class="wrap">
+    <div class="sec-head"><h2>Servis AC dalam tiga langkah</h2></div>
+    <ol class="steps">
+      <li><h3>Isi form booking</h3><p>Pilih layanan dan tanggal yang cocok dengan jadwalmu lewat form di halaman ini.</p></li>
+      <li><h3>Teknisi datang ke lokasi</h3><p>Teknisi bersertifikat tiba tepat waktu dengan peralatan lengkap.</p></li>
+      <li><h3>AC kembali dingin</h3><p>AC bersih, dingin optimal, dan efisien, dengan garansi hasil 14 hari*.</p></li>
+    </ol>
   </div>
-  <div class="testi-marquee-wrap">
-    <div class="testi-marquee-track" id="testi-track"><!-- loaded by JS --></div>
+</section>
+
+<!-- ANGKA & KOMITMEN -->
+<section class="band">
+  <div class="wrap band-grid">
+    <div class="nums">
+      <div class="num"><b>500+</b><span>Pelanggan puas</span></div>
+      <div class="num"><b>96%</b><span>Tingkat kepuasan</span></div>
+      <div class="num"><b>5+</b><span>Tahun pengalaman</span></div>
+      <div class="num"><b>14 hari</b><span>Garansi layanan*</span></div>
+    </div>
+    <ul class="promises">
+      <li><h3>Teknisi bersertifikat</h3><p>Tim terlatih dengan sertifikasi resmi keahlian teknik pendingin.</p></li>
+      <li><h3>Tepat waktu</h3><p>Tiba sesuai jadwal yang sudah disepakati bersama.</p></li>
+      <li><h3>Peralatan premium</h3><p>Alat dan material berkualitas tinggi untuk hasil terbaik.</p></li>
+      <li><h3>Layanan darurat</h3><p>Tersedia 7 hari seminggu untuk kebutuhan mendesak.</p></li>
+    </ul>
   </div>
-  <div style="text-align:center">
-    <button class="write-review-btn" onclick="openReviewModal()">✍️ Tulis Review</button>
+</section>
+
+<!-- TESTIMONI -->
+<section class="sec" id="testimoni">
+  <div class="wrap">
+    <div class="sec-head"><h2>Kata pelanggan</h2></div>
+    <div class="testi-marquee-wrap">
+      <div class="testi-marquee-track" id="testi-track"><!-- loaded by JS --></div>
+    </div>
+    <div class="testi-actions">
+      <button class="btn btn-line btn-sm write-review-btn" type="button" onclick="openReviewModal()">Tulis review</button>
+    </div>
   </div>
 </section>
 
 <!-- BOOKING -->
-<section class="bk-section" id="booking">
-  <div class="bk-title-blk">
-    <div class="slbl">Booking Online</div>
-    <div class="stitle">Jadwalkan Servis AC <em>Sekarang</em></div>
-    <p class="ssub">Isi form di bawah, pilih tanggal, dan kami akan segera konfirmasi via WhatsApp.</p>
-  </div>
+<section class="sec sec-tint bk-section" id="booking">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Booking servis AC</h2>
+      <p class="sec-lead">Isi empat langkah di bawah. Kami konfirmasi jadwal lewat WhatsApp dalam 15 menit.</p>
+    </div>
+    <div class="bk">
+      <div class="bk-form">
 
-  <div class="bk-box">
+        <!-- 1. LAYANAN -->
+        <div class="bk-step" id="step-svc" role="group" aria-labelledby="step-svc-t">
+          <div class="bk-step-head"><span class="bk-num" aria-hidden="true">1</span><h3 class="bk-step-title" id="step-svc-t">Layanan apa yang dibutuhkan?</h3></div>
+          <p class="bk-help">Boleh pilih lebih dari satu. Harga per unit AC.</p>
+          <div class="chip-groups">
+            <div class="chip-group">
+              <span class="chip-group-lbl">Cuci</span>
+              <div class="chip-row">
+                <button type="button" class="chip" data-k="cuci" onclick="toggleChip(this)"><span class="chip-name">Cuci AC</span><span class="chip-price"></span></button>
+              </div>
+            </div>
+            <div class="chip-group">
+              <span class="chip-group-lbl">Servis dan perbaikan</span>
+              <div class="chip-row">
+                <button type="button" class="chip" data-k="periksa" onclick="toggleChip(this)"><span class="chip-name">Pengecekan</span><span class="chip-price"></span></button>
+                <button type="button" class="chip" data-k="kapasitor" onclick="toggleChip(this)"><span class="chip-name">Ganti Kapasitor</span><span class="chip-price"></span></button>
+                <button type="button" class="chip" data-k="termis" onclick="toggleChip(this)"><span class="chip-name">Ganti Termis</span><span class="chip-price"></span></button>
+                <button type="button" class="chip" data-k="sensor" onclick="toggleChip(this)"><span class="chip-name">Ganti Sensor</span><span class="chip-price"></span></button>
+                <button type="button" class="chip" data-k="overhaul" onclick="toggleChip(this)"><span class="chip-name">Overhaul</span><span class="chip-price"></span></button>
+              </div>
+            </div>
+            <div class="chip-group">
+              <span class="chip-group-lbl">Bongkar pasang</span>
+              <div class="chip-row">
+                <button type="button" class="chip" data-k="bongkar" onclick="toggleChip(this)"><span class="chip-name">Bongkar</span><span class="chip-price"></span></button>
+                <button type="button" class="chip" data-k="pasang" onclick="toggleChip(this)"><span class="chip-name">Pasang</span><span class="chip-price"></span></button>
+                <button type="button" class="chip" data-k="bongpas" onclick="toggleChip(this)"><span class="chip-name">Bongkar + Pasang</span><span class="chip-price"></span></button>
+              </div>
+            </div>
+            <div class="chip-group">
+              <span class="chip-group-lbl">Freon</span>
+              <div class="chip-row">
+                <button type="button" class="chip" data-k="tambahR22" onclick="toggleChip(this)"><span class="chip-name">Tambah R22</span><span class="chip-price"></span></button>
+                <button type="button" class="chip" data-k="tambahR32" onclick="toggleChip(this)"><span class="chip-name">Tambah R32</span><span class="chip-price"></span></button>
+                <button type="button" class="chip" data-k="tambahR410" onclick="toggleChip(this)"><span class="chip-name">Tambah R410</span><span class="chip-price"></span></button>
+                <button type="button" class="chip" data-k="isiR22" onclick="toggleChip(this)"><span class="chip-name">Isi ulang R22</span><span class="chip-price"></span></button>
+                <button type="button" class="chip" data-k="isiR32" onclick="toggleChip(this)"><span class="chip-name">Isi ulang R32</span><span class="chip-price"></span></button>
+                <button type="button" class="chip" data-k="isiR410" onclick="toggleChip(this)"><span class="chip-name">Isi ulang R410</span><span class="chip-price"></span></button>
+              </div>
+            </div>
+          </div>
+          <span class="chip-err" id="err-svc">Pilih minimal satu layanan</span>
+        </div>
 
-    <!-- LEFT INFO -->
-    <div class="bk-l">
-      <div class="bk-brand">
-        <div class="bk-brand-ic">❄</div>
-        <div class="bk-brand-nm">Aslan Teknik</div>
+        <!-- 2. JENIS AC -->
+        <div class="bk-step" id="step-ac" role="group" aria-labelledby="step-ac-t">
+          <div class="bk-step-head"><span class="bk-num" aria-hidden="true">2</span><h3 class="bk-step-title" id="step-ac-t">AC-nya yang mana?</h3></div>
+          <p class="bk-help">Harga mengikuti jenis dan kapasitas AC. Kalau belum yakin, pilih “Tidak tahu”, nanti teknisi cek di lokasi.</p>
+          <div class="ac-field">
+            <select class="fs" id="f-ac" aria-label="Jenis AC" onchange="clearErr(this);upd()">
+              <option value="">-- Pilih Jenis AC --</option>
+              <option value="ss">AC Split Standard (½–1 PK)</option>
+              <option value="sb">AC Split Standard (1½–2 PK)</option>
+              <option value="inv">AC Split Inverter (½–1 PK)</option>
+              <option value="invb">AC Split Inverter (1½–2 PK)</option>
+              <option value="oth">Tidak Tahu / Lainnya</option>
+            </select>
+            <div class="ac-opts">
+              <button type="button" class="ac-opt" data-ac="ss" aria-pressed="false"><strong>Split standar</strong><span>½–1 PK</span></button>
+              <button type="button" class="ac-opt" data-ac="sb" aria-pressed="false"><strong>Split standar</strong><span>1½–2 PK</span></button>
+              <button type="button" class="ac-opt" data-ac="inv" aria-pressed="false"><strong>Split inverter</strong><span>½–1 PK</span></button>
+              <button type="button" class="ac-opt" data-ac="invb" aria-pressed="false"><strong>Split inverter</strong><span>1½–2 PK</span></button>
+              <button type="button" class="ac-opt wide" data-ac="oth" aria-pressed="false"><strong>Tidak tahu / lainnya</strong></button>
+            </div>
+            <span class="err-msg" id="err-ac">Pilih jenis AC</span>
+          </div>
+          <div class="fg">
+            <label class="fl" for="f-brand">Merk AC <span class="opt">(opsional)</span></label>
+            <input type="text" class="fi" id="f-brand" list="ac-brand-list" maxlength="40" autocomplete="off" placeholder="Contoh: Daikin, Panasonic, Sharp">
+            <datalist id="ac-brand-list">
+              <option value="Daikin"><option value="Panasonic"><option value="Sharp"><option value="LG"><option value="Samsung">
+              <option value="Gree"><option value="Midea"><option value="Polytron"><option value="Aqua"><option value="Mitsubishi">
+              <option value="Changhong"><option value="TCL"><option value="AUX"><option value="Toshiba"><option value="Hisense">
+            </datalist>
+          </div>
+        </div>
+
+        <!-- 3. TANGGAL -->
+        <div class="bk-step" id="step-date" role="group" aria-labelledby="step-date-t">
+          <div class="bk-step-head"><span class="bk-num" aria-hidden="true">3</span><h3 class="bk-step-title" id="step-date-t">Mau dikerjakan kapan?</h3></div>
+          <p class="bk-help">Buka Senin sampai Minggu pukul 09.00–15.00, Jumat libur. Jam kedatangan kami konfirmasi lewat WhatsApp.</p>
+          <div class="cal-wrap" id="cal-wrap">
+            <div class="cal-head">
+              <button type="button" class="cal-nav" onclick="chMon(-1)" aria-label="Bulan sebelumnya">&#8249;</button>
+              <span class="cal-mlbl" id="cal-lbl" aria-live="polite"></span>
+              <button type="button" class="cal-nav" onclick="chMon(1)" aria-label="Bulan berikutnya">&#8250;</button>
+            </div>
+            <div class="cal-grid" id="cal-grid">
+              <div class="cdn">Min</div><div class="cdn">Sen</div><div class="cdn">Sel</div>
+              <div class="cdn">Rab</div><div class="cdn">Kam</div><div class="cdn">Jum</div><div class="cdn">Sab</div>
+            </div>
+          </div>
+          <span class="err-msg" id="err-date">Pilih tanggal layanan</span>
+          <p class="picked-date" id="picked-date" aria-live="polite"></p>
+          <div class="avail-legend">
+            <span><i class="lg lg-ok"></i>Bisa dipilih</span>
+            <span><i class="lg lg-almost"></i>Hampir penuh</span>
+            <span><i class="lg lg-full"></i>Penuh</span>
+            <span><s>12</s>&nbsp;Libur atau sudah lewat</span>
+          </div>
+          <div class="avail-warn" id="avail-warn">
+            <strong>Tanggal ini hampir penuh.</strong> Konfirmasi bisa lebih lama. Pilih tanggal lain kalau butuh kepastian cepat.
+          </div>
+        </div>
+
+        <!-- 4. ALAMAT & KONTAK -->
+        <div class="bk-step" id="step-contact" role="group" aria-labelledby="step-contact-t">
+          <div class="bk-step-head"><span class="bk-num" aria-hidden="true">4</span><h3 class="bk-step-title" id="step-contact-t">Alamat dan kontak</h3></div>
+          <p class="bk-help">Dipakai teknisi untuk datang ke lokasi dan menghubungi kamu.</p>
+          <div class="fg fr2">
+            <div>
+              <label class="fl" for="f-name">Nama lengkap</label>
+              <input type="text" class="fi" id="f-name" autocomplete="name" placeholder="Budi Santoso" oninput="clearErr(this);upd()">
+              <span class="err-msg" id="err-name">Nama wajib diisi</span>
+            </div>
+            <div>
+              <label class="fl" for="f-wa">Nomor WhatsApp</label>
+              <input type="tel" class="fi" id="f-wa" inputmode="tel" autocomplete="tel" placeholder="08xxxxxxxxxx" oninput="clearErr(this);upd()" maxlength="15">
+              <span class="err-msg" id="err-wa">No. WhatsApp wajib diisi</span>
+            </div>
+          </div>
+          <div class="fg">
+            <label class="fl" for="f-city">Kota / wilayah</label>
+            <input type="text" class="fi" id="f-city" autocomplete="address-level2" placeholder="Depok" oninput="clearErr(this);upd()">
+            <span class="err-msg" id="err-city">Kota wajib diisi</span>
+          </div>
+          <div class="fg">
+            <label class="fl" for="f-addr">Alamat lengkap</label>
+            <input type="text" class="fi" id="f-addr" autocomplete="street-address" placeholder="Jl. Nama Jalan No. xx, Kecamatan" oninput="clearErr(this);upd()">
+            <span class="err-msg" id="err-addr">Alamat wajib diisi</span>
+          </div>
+          <div class="fg">
+            <label class="fl" for="f-notes">Catatan untuk teknisi <span class="opt">(opsional)</span></label>
+            <textarea class="fta" id="f-notes" placeholder="Contoh: AC berbunyi keras, bocor air, atau permintaan khusus lainnya"></textarea>
+          </div>
+        </div>
+
       </div>
-      <div class="bk-ttl">Booking Servis AC</div>
-      <p class="bk-sub-txt">Konfirmasi via WhatsApp dalam 15 menit</p>
-      <div class="bk-meta">
-        <div class="bk-mi">⏱️&nbsp; Estimasi 1–3 jam pengerjaan</div>
-        <div class="bk-mi">📍&nbsp; Jakarta Selatan, Depok, Bogor & Tangerang Selatan</div>
-        <div class="bk-mi">💬&nbsp; Konfirmasi via WhatsApp</div>
-        <div class="bk-mi">🛡️&nbsp; Garansi hasil 14 Hari*</div>
-      </div>
-      <div class="bk-chk">
-        <h4>Yang Akan Kami Lakukan:</h4>
-        <ul>
-          <li>Pemeriksaan kondisi AC awal</li>
-          <li>Pembersihan filter dan evaporator</li>
-          <li>Pengecekan freon dan sirkulasi</li>
-          <li>Uji performa pendinginan</li>
-          <li>Laporan kondisi AC setelah servis</li>
+
+      <!-- RINGKASAN (NOTA) -->
+      <aside class="nota" id="nota" aria-label="Ringkasan pesanan">
+        <div class="nota-shadow">
+          <div class="nota-paper">
+            <div class="nota-head"><span class="nota-title">Ringkasan pesanan</span><span class="nota-brand">Aslan Teknik</span></div>
+            <p class="nota-empty" id="nota-empty">Pilih layanan dulu. Estimasi biaya muncul di sini.</p>
+            <div class="order-summary" id="order-summary">
+              <div class="order-items" id="order-items"></div>
+            </div>
+            <dl class="nota-meta">
+              <div><dt>Jenis AC</dt><dd id="nota-ac" class="unset">Belum dipilih</dd></div>
+              <div><dt>Tanggal</dt><dd id="nota-date" class="unset">Belum dipilih</dd></div>
+            </dl>
+            <div class="price-box" id="price-box">
+              <div class="price-lbl">Estimasi biaya</div>
+              <div class="price-val" id="p-val">Rp 0</div>
+              <div class="price-bk" id="p-bk"></div>
+            </div>
+            <div class="price-after" id="price-after">
+              <div class="price-after-lbl">Total setelah diskon</div>
+              <div class="price-after-val" id="pa-val"></div>
+              <div class="price-after-disc" id="pa-disc"></div>
+            </div>
+            <div class="voucher">
+              <label class="fl" for="v-code-input">Kode voucher <span class="opt">(opsional)</span></label>
+              <div class="voucher-row">
+                <input type="text" class="voucher-input" id="v-code-input" placeholder="Contoh: ASLAN20" maxlength="20" autocomplete="off" oninput="this.value=this.value.toUpperCase()">
+                <button type="button" class="voucher-apply" id="v-apply-btn" onclick="applyVoucher()">Terapkan</button>
+              </div>
+              <p class="voucher-msg" id="v-msg"></p>
+              <div id="v-tag" style="display:none">
+                <span class="voucher-tag" id="v-tag-inner">
+                  <span id="v-tag-text"></span>
+                  <button type="button" class="voucher-tag-remove" onclick="removeVoucher()" title="Hapus voucher" aria-label="Hapus voucher">✕</button>
+                </span>
+              </div>
+            </div>
+            <p class="price-note">Estimasi awal. Harga final dikonfirmasi teknisi setelah pemeriksaan.</p>
+          </div>
+        </div>
+
+        <button type="button" class="wa-btn" id="wa-btn" onclick="sendWA()">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Pesan lewat WhatsApp
+        </button>
+        <p class="bk-missing" id="bk-missing" role="alert"></p>
+        <p class="wa-hint">Detail pesanan terisi otomatis di WhatsApp, tinggal tekan kirim.</p>
+        <ul class="nota-assure">
+          <li>Garansi hasil 14 hari*</li>
+          <li>Tanpa biaya tersembunyi</li>
+          <li>Estimasi pengerjaan 1–3 jam</li>
         </ul>
-      </div>
-    </div>
-
-    <!-- CENTER FORM -->
-    <div class="bk-c">
-      <h3>Detail Pemesanan</h3>
-      <p class="bk-hint">Lengkapi informasi di bawah, lalu pilih tanggal layanan.</p>
-
-      <div class="fg fr2">
-        <div>
-          <label class="fl">Nama Lengkap *</label>
-          <input type="text" class="fi" id="f-name" placeholder="Budi Santoso" oninput="clearErr(this);upd()">
-          <span class="err-msg" id="err-name">Nama wajib diisi</span>
-        </div>
-        <div>
-          <label class="fl">Kota / Wilayah *</label>
-          <input type="text" class="fi" id="f-city" placeholder="Depok" oninput="clearErr(this);upd()">
-          <span class="err-msg" id="err-city">Kota wajib diisi</span>
-        </div>
-      </div>
-
-      <div class="fg">
-        <label class="fl">Alamat Lengkap *</label>
-        <input type="text" class="fi" id="f-addr" placeholder="Jl. Nama Jalan No.xx, Kecamatan..." oninput="clearErr(this);upd()">
-        <span class="err-msg" id="err-addr">Alamat wajib diisi</span>
-      </div>
-
-      <div class="fg">
-        <label class="fl">No. WhatsApp *</label>
-        <input type="tel" class="fi" id="f-wa" placeholder="08xxxxxxxxxx" oninput="clearErr(this);upd()" maxlength="15">
-        <span class="err-msg" id="err-wa">No. WhatsApp wajib diisi</span>
-      </div>
-
-      <div class="fg">
-        <label class="fl">Jenis AC *</label>
-        <select class="fs" id="f-ac" onchange="clearErr(this);upd()">
-          <option value="">-- Pilih Jenis AC --</option>
-          <option value="ss">AC Split Standard (½–1 PK)</option>
-          <option value="sb">AC Split Standard (1½–2 PK)</option>
-          <option value="inv">AC Split Inverter (½–1 PK)</option>
-          <option value="invb">AC Split Inverter (1½–2 PK)</option>
-          <option value="oth">Tidak Tahu / Lainnya</option>
-        </select>
-        <span class="err-msg" id="err-ac">Jenis AC wajib dipilih</span>
-      </div>
-
-      <div class="fg">
-        <label class="fl">Merk AC <span style="font-weight:400;color:var(--soft)">(opsional)</span></label>
-        <input type="text" class="fi" id="f-brand" list="ac-brand-list" maxlength="40" autocomplete="off" placeholder="Contoh: Daikin, Panasonic, Sharp...">
-        <datalist id="ac-brand-list">
-          <option value="Daikin"><option value="Panasonic"><option value="Sharp"><option value="LG"><option value="Samsung">
-          <option value="Gree"><option value="Midea"><option value="Polytron"><option value="Aqua"><option value="Mitsubishi">
-          <option value="Changhong"><option value="TCL"><option value="AUX"><option value="Toshiba"><option value="Hisense">
-        </datalist>
-      </div>
-
-      <div class="fg">
-        <label class="fl">Layanan yang Dibutuhkan * <span style="font-weight:400;color:var(--soft)">(bisa pilih lebih dari satu)</span></label>
-        <div class="chip-groups">
-          <div class="chip-group">
-            <span class="chip-group-lbl">💨 Cuci AC</span>
-            <div class="chip-row">
-              <button class="chip" data-k="cuci" onclick="toggleChip(this)">Cuci AC</button>
-            </div>
-          </div>
-          <div class="chip-group">
-            <span class="chip-group-lbl">🔧 Service &amp; Perbaikan</span>
-            <div class="chip-row">
-              <button class="chip" data-k="periksa"    onclick="toggleChip(this)">Pengecekan</button>
-              <button class="chip" data-k="kapasitor"  onclick="toggleChip(this)">Ganti Kapasitor</button>
-              <button class="chip" data-k="termis"     onclick="toggleChip(this)">Ganti Termis</button>
-              <button class="chip" data-k="sensor"     onclick="toggleChip(this)">Ganti Sensor</button>
-              <button class="chip" data-k="overhaul"   onclick="toggleChip(this)">Overhaul</button>
-            </div>
-          </div>
-          <div class="chip-group">
-            <span class="chip-group-lbl">🧰 Bongkar / Pasang</span>
-            <div class="chip-row">
-              <button class="chip" data-k="bongkar" onclick="toggleChip(this)">Bongkar</button>
-              <button class="chip" data-k="pasang"   onclick="toggleChip(this)">Pasang</button>
-              <button class="chip" data-k="bongpas"  onclick="toggleChip(this)">Bongkar + Pasang</button>
-            </div>
-          </div>
-          <div class="chip-group">
-            <span class="chip-group-lbl">❄️ Freon</span>
-            <div class="chip-row">
-              <button class="chip" data-k="tambahR22" onclick="toggleChip(this)">Tambah Freon R22</button>
-              <button class="chip" data-k="tambahR32" onclick="toggleChip(this)">Tambah Freon R32</button>
-              <button class="chip" data-k="tambahR410" onclick="toggleChip(this)">Tambah Freon R410</button>
-              <button class="chip" data-k="isiR22"    onclick="toggleChip(this)">Isi Freon R22</button>
-              <button class="chip" data-k="isiR32"    onclick="toggleChip(this)">Isi Freon R32</button>
-              <button class="chip" data-k="isiR410"   onclick="toggleChip(this)">Isi Freon R410</button>
-            </div>
-          </div>
-        </div>
-        <span class="chip-err" id="err-svc">Pilih minimal satu layanan</span>
-      </div>
-
-      <!-- ORDER SUMMARY -->
-      <div class="order-summary" id="order-summary">
-        <div class="order-summary-title">🧾 Ringkasan Pesanan</div>
-        <div class="order-items" id="order-items"></div>
-      </div>
-
-      <!-- PRICE ESTIMATE -->
-      <div class="price-box" id="price-box">
-        <div class="price-lbl">💰 Estimasi Biaya</div>
-        <div class="price-val" id="p-val">Rp 0</div>
-        <div class="price-note">*Estimasi awal — harga final dikonfirmasi setelah pemeriksaan</div>
-        <div class="price-bk" id="p-bk"></div>
-      </div>
-
-      <!-- VOUCHER -->
-      <div class="fg">
-        <label class="fl">Kode Voucher <span style="font-weight:400;color:var(--soft)">(opsional)</span></label>
-        <div class="voucher-row">
-          <input type="text" class="voucher-input" id="v-code-input" placeholder="Contoh: ASLAN20" maxlength="20" oninput="this.value=this.value.toUpperCase()">
-          <button class="voucher-apply" id="v-apply-btn" onclick="applyVoucher()">Terapkan</button>
-        </div>
-        <p class="voucher-msg" id="v-msg"></p>
-        <div id="v-tag" style="display:none">
-          <span class="voucher-tag" id="v-tag-inner">
-            <span id="v-tag-text"></span>
-            <button class="voucher-tag-remove" onclick="removeVoucher()" title="Hapus voucher">✕</button>
-          </span>
-        </div>
-      </div>
-
-      <!-- HARGA SETELAH DISKON -->
-      <div class="price-after" id="price-after">
-        <div class="price-after-lbl">💚 Total Setelah Diskon</div>
-        <div class="price-after-val" id="pa-val"></div>
-        <div class="price-after-disc" id="pa-disc"></div>
-      </div>
-
-      <div class="fg">
-        <label class="fl">Pilih Tanggal *</label>
-        <div class="cal-wrap" id="cal-wrap">
-          <div class="cal-head">
-            <button class="cal-nav" onclick="chMon(-1)">&#8249;</button>
-            <span class="cal-mlbl" id="cal-lbl"></span>
-            <button class="cal-nav" onclick="chMon(1)">&#8250;</button>
-          </div>
-          <div class="cal-grid" id="cal-grid">
-            <div class="cdn">MIN</div><div class="cdn">SEN</div><div class="cdn">SEL</div>
-            <div class="cdn">RAB</div><div class="cdn">KAM</div><div class="cdn">JUM</div><div class="cdn">SAB</div>
-          </div>
-        </div>
-        <span class="err-msg" id="err-date">Pilih tanggal layanan</span>
-        <!-- Availability legend -->
-        <div class="avail-legend">
-          <span><span class="avail-dot-l" style="background:#e5e5e5;border:1.5px solid #ccc;"></span> Jumat libur</span>
-          <span><span class="avail-dot-l" style="background:#FEE2E2;border:1.5px solid #EF4444;"></span> Full booked — tidak bisa dipilih</span>
-        </div>
-        <!-- Warning banner for almost_full dates -->
-        <div class="avail-warn" id="avail-warn">
-          ⚠️ <strong>Jadwal ini hampir penuh.</strong> Konfirmasi akan lebih lama — pertimbangkan tanggal lain jika kamu butuh kepastian cepat.
-        </div>
-      </div>
-
-      <div class="fg">
-        <label class="fl">Catatan Tambahan</label>
-        <textarea class="fta" id="f-notes" placeholder="Contoh: AC berbunyi keras, bocor air, atau permintaan khusus lainnya..."></textarea>
-      </div>
-
-      <button class="wa-btn" id="wa-btn" onclick="sendWA()">
-        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Pesan Sekarang via WhatsApp
-      </button>
-      <p class="wa-hint">Detail pesanan terisi otomatis ke WhatsApp Anda.</p>
-      <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:14px;">
-        <span style="display:flex;align-items:center;gap:5px;font-size:0.72rem;color:var(--soft);">🔒 Data Anda aman</span>
-        <span style="display:flex;align-items:center;gap:5px;font-size:0.72rem;color:var(--soft);">🛡️ Garansi 14 hari</span>
-        <span style="display:flex;align-items:center;gap:5px;font-size:0.72rem;color:var(--soft);">💯 Tanpa biaya tersembunyi</span>
-        <span style="display:flex;align-items:center;gap:5px;font-size:0.72rem;color:var(--soft);">⭐ 5/5 rating</span>
-      </div>
+        <details class="nota-more">
+          <summary>Apa saja yang dikerjakan teknisi?</summary>
+          <ul>
+            <li>Pemeriksaan kondisi AC awal</li>
+            <li>Pembersihan filter dan evaporator</li>
+            <li>Pengecekan freon dan sirkulasi</li>
+            <li>Uji performa pendinginan</li>
+            <li>Laporan kondisi AC setelah servis</li>
+          </ul>
+        </details>
+      </aside>
     </div>
 
   </div>
 </section>
 
-<!-- GOOGLE BUSINESS PROFILE -->
-<section class="gbp-s" id="lokasi">
-  <div class="slbl">Lokasi Kami</div>
-  <div class="stitle">Temukan Kami di <em>Google Maps</em></div>
-  <div class="ssub">Kunjungi profil Google Business kami untuk lihat review, area layanan dan jam operasional.</div>
-  <div class="gbp-wrap">
-    <div class="gbp-map">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d253738.45479602998!2d106.60834772090013!3d-6.43726464121125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xaa380d44ed23b8b3%3A0xe917d44412c5981e!2sAslan%20Teknik!5e0!3m2!1sen!2sid!4v1775691767893!5m2!1sen!2sid" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-    <div class="gbp-info">
-      <h3>Aslan Teknik</h3>
-      <div class="gbp-detail"><span>📍</span><span>Jakarta Selatan, Depok, Bogor & Tangerang Selatan</span></div>
-      <div class="gbp-detail"><span>🕐</span><span>Senin – Minggu, 09.00 – 15.00 WIB (Jumat Libur)</span></div>
-      <div class="gbp-detail"><span>⭐</span><span>Lihat review pelanggan kami di Google</span></div>
-      <a class="gbp-link" href="https://maps.app.goo.gl/NJDap5rnooYU5uKLA" target="_blank" rel="noopener">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
-        Buka di Google Maps
-      </a>
+<!-- LOKASI -->
+<section class="sec" id="lokasi">
+  <div class="wrap">
+    <div class="sec-head"><h2>Lokasi dan jam buka</h2></div>
+    <div class="loc-grid">
+      <div class="loc-map">
+        <iframe title="Lokasi Aslan Teknik di Google Maps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d253738.45479602998!2d106.60834772090013!3d-6.43726464121125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xaa380d44ed23b8b3%3A0xe917d44412c5981e!2sAslan%20Teknik!5e0!3m2!1sen!2sid!4v1775691767893!5m2!1sen!2sid" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div class="loc-info">
+        <dl>
+          <div><dt>Area layanan</dt><dd>Jakarta Selatan, Depok, Bogor, dan Tangerang Selatan</dd></div>
+          <div><dt>Jam buka</dt><dd>Senin sampai Minggu, 09.00–15.00 WIB. Jumat libur.</dd></div>
+          <div><dt>Review</dt><dd>Lihat review pelanggan kami di Google.</dd></div>
+        </dl>
+        <a class="btn btn-ink" href="https://maps.app.goo.gl/NJDap5rnooYU5uKLA" target="_blank" rel="noopener">Buka di Google Maps</a>
+      </div>
     </div>
   </div>
 </section>
+
+</main>
 
 <!-- FOOTER -->
-<footer>
-  <div class="foot-g">
-    <div>
-      <span class="foot-logo">Aslan<span style="color:#FDDCCC">.</span>Teknik</span>
-      <p>Solusi perawatan dan perbaikan AC profesional untuk rumah, kantor, dan bisnis Anda di area Jakarta Selatan, Depok, Bogor & Tangerang Selatan.</p>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-g">
+      <div>
+        <span class="foot-logo">Aslan<span>.</span>Teknik</span>
+        <p>Perawatan dan perbaikan AC untuk rumah, kantor, dan tempat usaha di Jakarta Selatan, Depok, Bogor, dan Tangerang Selatan.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Layanan</h4>
+        <a href="#layanan">Cuci AC</a><a href="#layanan">Isi Freon</a>
+        <a href="#layanan">Bongkar Pasang</a><a href="#layanan">Perbaikan AC</a>
+        <a href="/pricelist/">Daftar harga</a>
+      </div>
+      <div class="foot-col">
+        <h4>Area layanan</h4>
+        <a href="/jakarta-selatan/">Jakarta Selatan</a><a href="/depok/">Depok</a>
+        <a href="/bogor/">Bogor</a><a href="/tangerang-selatan/">Tangerang Selatan</a>
+      </div>
+      <div class="foot-col">
+        <h4>Jam buka</h4>
+        <span>Senin sampai Minggu, 09.00–15.00</span>
+        <span>Jumat libur</span>
+      </div>
     </div>
-    <div class="foot-col">
-      <h4>Layanan</h4>
-      <a href="#layanan">Cuci AC</a><a href="#layanan">Isi Freon</a>
-      <a href="#layanan">Bongkar Pasang</a><a href="#layanan">Perbaikan AC</a>
-      <a href="#layanan">Perawatan Berkala</a>
+    <div class="foot-bot">
+      <span id="copyright-year"></span>
+      <span>Dibuat untuk pelanggan setia kami</span>
     </div>
-    <div class="foot-col">
-      <h4>Area dan Jadwal</h4>
-      <a href="#">Area: Jakarta Selatan, Depok, Bogor & Tangerang Selatan</a>
-      <a href="#">Senin–Minggu: 09.00–15.00 (Jumat Libur)</a>
-    </div>
-  </div>
-  <div class="foot-bot">
-    <span id="copyright-year"></span>
-    <span>Dibuat dengan ❤️ untuk pelanggan setia kami</span>
   </div>
 </footer>
+
+<!-- BAR TOTAL (HP) -->
+<div class="bk-bar" id="bk-bar" hidden>
+  <div class="bk-bar-info"><span class="bk-bar-lbl" id="bk-bar-lbl">Estimasi</span><strong id="bk-bar-total">Rp 0</strong></div>
+  <button type="button" class="bk-bar-btn" onclick="sendWA()">Pesan lewat WhatsApp</button>
+</div>
 
 <script>
 // ── STATE ──────────────────────────────────────────────
@@ -1449,7 +1000,7 @@ upd();
 <!-- REVIEW MODAL -->
 <div class="rv-overlay" id="rv-overlay" onclick="if(event.target===this)closeReviewModal()">
   <div class="rv-modal">
-    <div class="rv-modal-title">Tulis Review ✍️</div>
+    <div class="rv-modal-title">Tulis review</div>
     <p class="rv-modal-sub">Bagikan pengalamanmu menggunakan jasa Aslan Teknik. Review akan ditampilkan setelah diverifikasi admin.</p>
     <div class="rv-fg">
       <label class="rv-label">ID Order * <span style="font-weight:400;color:var(--soft)">(tercantum di pesan WhatsApp saat kamu order)</span></label>
@@ -1680,7 +1231,7 @@ function _buildCard(r) {
     '<div class="t-stars">'+_starsStr(stars)+'</div>'+
     '<p class="t-q">“'+q+'”</p>'+
     '<div class="t-au">'+
-      '<div class="t-av" style="background:'+bg+'">'+em+'</div>'+
+      '<div class="t-av" aria-hidden="true">'+(name.trim().charAt(0).toUpperCase()||'A')+'</div>'+
       '<div><div class="t-name">'+name+'</div>'+
       '<div class="t-loc">'+loc+'</div></div>'+
     '</div></div>';
@@ -1709,7 +1260,7 @@ async function _loadAndRenderReviews() {
   var all = (typeof PAGE_STATIC_REVIEWS !== 'undefined' ? PAGE_STATIC_REVIEWS : []).concat(dynamic);
   if (all.length === 0) return;
   // Duplicate for seamless loop (need ≥2 copies so translateX(-50%) works)
-  var copies = all.length < 4 ? 3 : 2;
+  var copies = 1; // baris review digeser manual (tanpa animasi), jadi tidak perlu digandakan
   var html = '';
   for (var i=0;i<copies;i++) html += all.map(_buildCard).join('');
   track.innerHTML = html;
@@ -1876,5 +1427,6 @@ window.addEventListener('beforeunload',saveDur);
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')saveDur();});
 </script>
 
+<script src="/assets/aslan.js?v=1"></script>
 </body>
 </html>
