@@ -388,3 +388,7 @@ body.has-bk-bar{padding-bottom:76px}
   html{scroll-behavior:auto}
   *{transition:none !important;animation:none !important}
 }
+
+/* Harga disembunyikan sampai jenis AC dipilih (kelas .no-ac dipasang oleh aslan.js) */
+.bk.no-ac .order-item-price,.bk.no-ac .order-item-sub,.bk.no-ac .price-box,.bk.no-ac .price-after{display:none !important}
+.nota-need-ac{margin-top:14px;padding:10px 12px;border-radius:10px;background:var(--warn-tint);color:var(--warn-ink);font-size:0.88rem;font-weight:600}

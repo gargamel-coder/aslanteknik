@@ -80,6 +80,12 @@
       chip.setAttribute('aria-pressed', String(chip.classList.contains('act')));
     });
 
+    // Harga baru ditampilkan setelah jenis AC dipilih
+    var bk = document.querySelector('.bk');
+    if (bk) bk.classList.toggle('no-ac', !ac);
+    var needAc = $('nota-need-ac');
+    if (needAc) needAc.hidden = !(keys.length > 0 && !ac);
+
     // Nota
     var empty = $('nota-empty');
     if (empty) empty.hidden = keys.length > 0;
@@ -99,7 +105,7 @@
     // Bar total (HP)
     if (bar) {
       var t = totals();
-      $('bk-bar-total').textContent = fmt(t.final);
+      $('bk-bar-total').textContent = ac ? fmt(t.final) : 'Pilih jenis AC';
       var miss = missingShown ? missingParts() : [];
       var lbl = $('bk-bar-lbl');
       lbl.textContent = miss.length ? 'Lengkapi: ' + miss.join(', ') : 'Estimasi untuk ' + keys.length + ' layanan';
