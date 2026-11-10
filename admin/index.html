@@ -103,7 +103,7 @@
   .empty-state{text-align:center;padding:48px 20px;color:var(--soft);font-size:0.88rem;}
   #toast{position:fixed;bottom:28px;right:28px;background:var(--charcoal);color:#fff;padding:12px 22px;border-radius:14px;font-size:0.85rem;font-weight:500;box-shadow:0 8px 32px rgba(0,0,0,0.2);opacity:0;transform:translateY(10px);transition:all 0.3s;pointer-events:none;z-index:999;}
   #toast.show{opacity:1;transform:translateY(0);}
-  .tabs{display:flex;gap:4px;margin-bottom:28px;background:rgba(0,0,0,0.04);padding:4px;border-radius:14px;width:fit-content;max-width:100%;}
+  .tabs{display:flex;gap:4px;margin-bottom:28px;background:rgba(0,0,0,0.04);padding:4px;border-radius:14px;width:fit-content;max-width:100%;overflow-x:auto;}
   .tab-btn{padding:8px 22px;border-radius:10px;border:none;background:transparent;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:500;color:var(--soft);transition:all 0.2s;}
   .tab-btn.act{background:var(--white);color:var(--charcoal);box-shadow:0 2px 8px rgba(0,0,0,0.08);}
   .tab-pane{display:none;}.tab-pane.act{display:block;}
@@ -302,7 +302,46 @@
   /* Tech ID badge */
   .tech-id-badge{font-family:monospace;font-size:0.82rem;font-weight:700;color:var(--accent);background:#EDE9FB;padding:2px 8px;border-radius:5px;letter-spacing:0.06em;}
 
+  /* ── PELANGGAN ── */
+  .cust-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px;}
+  .cust-insights{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:20px;}
+  .cust-ins{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:20px 22px;}
+  .cust-ins-title{font-size:0.85rem;font-weight:600;margin-bottom:14px;}
+  .cust-bar{display:grid;grid-template-columns:118px 1fr 30px;align-items:center;gap:10px;font-size:0.78rem;color:var(--mid);margin-bottom:8px;}
+  .cust-bar span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .cust-bar b{text-align:right;color:var(--charcoal);font-weight:600;}
+  .cust-bar-track{height:8px;background:rgba(0,0,0,0.06);border-radius:4px;overflow:hidden;}
+  .cust-bar-fill{height:100%;background:var(--accent);border-radius:4px;}
+  .cust-bar-fill.wk{background:var(--accent2);}
+  .cust-ins-empty{font-size:0.78rem;color:var(--soft);}
+  .cust-toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px;}
+  .cust-toolbar .search-bar{flex:1;min-width:200px;margin-bottom:0;}
+  .cust-select{padding:10px 13px;border:1.5px solid var(--border);border-radius:12px;font-family:'DM Sans',sans-serif;font-size:0.82rem;color:var(--charcoal);background:var(--cream);outline:none;max-width:100%;}
+  .cust-select:focus{border-color:var(--accent);background:#fff;}
+  .cust-export-btn{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:100px;border:1.5px solid var(--accent);background:rgba(91,79,217,0.07);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:600;color:var(--accent);transition:all 0.15s;}
+  .cust-export-btn:hover{background:var(--accent);color:#fff;}
+  .cust-sub{font-size:0.74rem;color:var(--soft);margin-top:2px;}
+  .cust-tag{display:inline-block;padding:2px 9px;border-radius:100px;font-size:0.68rem;font-weight:600;margin:4px 4px 0 0;white-space:nowrap;}
+  .cust-tag.loyal{background:#EDE9FB;color:var(--accent);}
+  .cust-tag.new{background:#F3F4F6;color:var(--mid);}
+  .cust-tag.weekend{background:#FCEEE7;color:#B4441F;}
+  .cust-tag.sleep{background:#FEF9C3;color:#854D0E;}
+  .cust-tag.next{background:#DCFCE7;color:#166534;}
+  .cust-count{font-size:0.78rem;color:var(--soft);margin-bottom:10px;}
+  .cm-name{font-family:'Instrument Serif',serif;font-size:1.5rem;color:var(--charcoal);}
+  .cm-facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0;}
+  .cm-fact{background:var(--cream);border-radius:12px;padding:10px 12px;}
+  .cm-fact-lbl{font-size:0.68rem;font-weight:600;color:var(--soft);text-transform:uppercase;letter-spacing:0.06em;}
+  .cm-fact-val{font-size:0.88rem;font-weight:600;color:var(--charcoal);margin-top:3px;}
+  .cm-sec{font-size:0.72rem;font-weight:600;color:var(--soft);text-transform:uppercase;letter-spacing:0.08em;margin:18px 0 10px;}
+  .cm-item{font-size:0.8rem;color:var(--mid);line-height:1.55;padding:8px 0;border-bottom:1px solid var(--border);}
+  .cm-item:last-child{border-bottom:none;}
+  .cm-item b{color:var(--charcoal);}
+  .cm-wa{display:inline-flex;align-items:center;gap:6px;background:#DCFCE7;color:#166534;padding:5px 12px;border-radius:100px;font-size:0.78rem;font-weight:600;text-decoration:none;border:1px solid #BBF7D0;margin-top:8px;}
+
   @media(max-width:800px){
+    .cust-stats{grid-template-columns:repeat(2,1fr)}
+    .cust-insights{grid-template-columns:1fr}
     .panels{grid-template-columns:1fr}
     .stat-row,.stat-row-orders{grid-template-columns:repeat(2,1fr)}
     header{padding:12px 16px}
@@ -328,7 +367,9 @@
     .cal-day{padding:6px 2px;font-size:0.75rem;}
   }
   @media(max-width:480px){
-    .stat-row,.stat-row-orders{grid-template-columns:repeat(2,1fr);gap:10px}
+    .stat-row,.stat-row-orders,.cust-stats{grid-template-columns:repeat(2,1fr);gap:10px}
+    .cm-facts{grid-template-columns:1fr}
+    .cust-export-btn{flex:1;justify-content:center}
     .tabs{border-radius:12px}
     .tab-btn{font-size:0.72rem;padding:7px 6px}
     .order-card{padding:14px}
@@ -425,6 +466,7 @@
       </button>
       <button class="tab-btn" id="tab-pendapatan" onclick="switchTab('pendapatan')">💰 Pendapatan</button>
       <button class="tab-btn" id="tab-teknisi" onclick="switchTab('teknisi')">👷 Teknisi</button>
+      <button class="tab-btn" id="tab-pelanggan" onclick="switchTab('pelanggan')">👥 Pelanggan</button>
     </div>
 
     <!-- PANE: VOUCHER -->
@@ -659,6 +701,60 @@
       </div>
     </div><!-- /pane-teknisi -->
 
+    <!-- PANE: PELANGGAN -->
+    <div id="pane-pelanggan" class="tab-pane">
+      <div class="cust-stats">
+        <div class="stat-c purple"><div class="s-num" id="cust-st-total">—</div><div class="s-lbl">Total Pelanggan</div></div>
+        <div class="stat-c green"><div class="s-num" id="cust-st-repeat">—</div><div class="s-lbl" id="cust-st-repeat-lbl">Langganan (order 2x+)</div></div>
+        <div class="stat-c amber"><div class="s-num" id="cust-st-weekend">—</div><div class="s-lbl">Pernah Servis Weekend</div></div>
+        <div class="stat-c"><div class="s-num" id="cust-st-avg" style="font-size:1.5rem">—</div><div class="s-lbl">Rata-rata Belanja / Pelanggan</div></div>
+      </div>
+
+      <div class="cust-insights" id="cust-insights"></div>
+
+      <div class="panel">
+        <div class="panel-title">👥 Data Pelanggan</div>
+        <div class="filter-row">
+          <button class="filter-pill act" id="cf-all"     onclick="window.filterCustomers('all')">Semua</button>
+          <button class="filter-pill"     id="cf-repeat"  onclick="window.filterCustomers('repeat')">🔁 Langganan</button>
+          <button class="filter-pill"     id="cf-new"     onclick="window.filterCustomers('new')">🆕 Baru 1x</button>
+          <button class="filter-pill"     id="cf-weekend" onclick="window.filterCustomers('weekend')">🏖️ Servis Weekend</button>
+          <button class="filter-pill"     id="cf-weekday" onclick="window.filterCustomers('weekday')">💼 Weekday Saja</button>
+          <button class="filter-pill"     id="cf-sleep"   onclick="window.filterCustomers('sleep')">😴 90+ Hari Tidak Order</button>
+        </div>
+        <div class="cust-toolbar">
+          <input type="text" class="search-bar" id="cust-search" placeholder="🔍  Cari nama, WhatsApp, kota, merk AC, keluhan...">
+          <select class="cust-select" id="cust-svc" aria-label="Filter layanan"><option value="">Semua layanan</option></select>
+          <select class="cust-select" id="cust-day" aria-label="Filter hari favorit">
+            <option value="">Semua hari favorit</option>
+            <option value="1">Senin</option><option value="2">Selasa</option><option value="3">Rabu</option>
+            <option value="4">Kamis</option><option value="5">Jumat</option><option value="6">Sabtu</option><option value="0">Minggu</option>
+          </select>
+          <select class="cust-select" id="cust-sort" aria-label="Urutkan">
+            <option value="recent">Urut: servis terbaru</option>
+            <option value="orders">Urut: order terbanyak</option>
+            <option value="spend">Urut: belanja terbesar</option>
+            <option value="name">Urut: nama A–Z</option>
+          </select>
+        </div>
+        <div class="cust-toolbar">
+          <div class="cust-count" id="cust-count" style="margin:0;flex:1;"></div>
+          <button class="cust-export-btn" onclick="window.exportCustomersCsv()" title="Satu baris per pelanggan, sesuai filter yang aktif">⬇️ Export Pelanggan (CSV)</button>
+          <button class="cust-export-btn" onclick="window.exportCustomerOrdersCsv()" title="Satu baris per order, sesuai filter yang aktif">⬇️ Export Riwayat Order (CSV)</button>
+        </div>
+        <div class="tbl-wrap">
+          <table>
+            <thead>
+              <tr><th>Pelanggan</th><th>Order</th><th>Hari Favorit</th><th>AC</th><th>Layanan</th><th>Servis Terakhir</th><th>Belanja</th><th></th></tr>
+            </thead>
+            <tbody id="cust-tbl-body">
+              <tr><td colspan="8"><div class="empty-state">Memuat data...</div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div><!-- /pane-pelanggan -->
+
   </div>
   <div class="foot-copy" id="admin-copyright"></div>
 </div>
@@ -704,6 +800,31 @@
   </div>
 </div>
 
+<!-- CUSTOMER DETAIL MODAL -->
+<div class="sched-modal-overlay" id="customer-modal" onclick="if(event.target===this)window.closeCustomerModal()">
+  <div class="sched-modal" style="max-width:600px;max-height:90vh;overflow-y:auto;">
+    <div id="customer-modal-body"></div>
+    <div class="cm-sec">Lengkapi profil</div>
+    <div class="sched-field">
+      <label>❄️ Merk AC <span style="font-weight:400;color:var(--soft)">(opsional)</span></label>
+      <input type="text" class="sched-input" id="cm-brand" list="ac-brand-list" maxlength="60" placeholder="Daikin, Panasonic, Sharp...">
+    </div>
+    <div class="sched-field">
+      <label>📝 Catatan tentang pelanggan <span style="font-weight:400;color:var(--soft)">(opsional)</span></label>
+      <textarea class="sched-input" id="cm-note" rows="3" maxlength="500" placeholder="Contoh: lebih suka dihubungi sore, rumah 2 lantai, AC kamar anak sering bocor"></textarea>
+    </div>
+    <div class="sched-foot">
+      <button class="sched-cancel-btn" onclick="window.closeCustomerModal()">Tutup</button>
+      <button class="sched-save-btn" id="cm-save-btn" onclick="window.saveCustomerProfile()">💾 Simpan Profil</button>
+    </div>
+  </div>
+</div>
+<datalist id="ac-brand-list">
+  <option value="Daikin"><option value="Panasonic"><option value="Sharp"><option value="LG"><option value="Samsung">
+  <option value="Gree"><option value="Midea"><option value="Polytron"><option value="Aqua"><option value="Mitsubishi">
+  <option value="Changhong"><option value="TCL"><option value="AUX"><option value="Toshiba"><option value="Hisense">
+</datalist>
+
 <!-- MANUAL BOOKING MODAL -->
 <div class="sched-modal-overlay" id="manual-booking-modal" onclick="if(event.target===this)window.closeManualBookingModal()">
   <div class="sched-modal" style="max-width:480px;max-height:90vh;overflow-y:auto;">
@@ -737,6 +858,10 @@
         <label class="fl">Jumlah Unit</label>
         <input type="number" class="fi" id="mb-unit-count" min="1" value="1">
       </div>
+    </div>
+    <div class="sched-field">
+      <label>Merk AC <span style="font-weight:400;color:var(--soft)">(opsional)</span></label>
+      <input type="text" class="sched-input" id="mb-ac-brand" list="ac-brand-list" maxlength="60" placeholder="Daikin, Panasonic, Sharp...">
     </div>
     <div class="sched-field">
       <label>Layanan <span style="font-weight:400;color:var(--soft)">(pisahkan dengan koma)</span></label>
@@ -1064,7 +1189,7 @@ window.deleteV = async function(id, code) {
 
 // ── TABS ───────────────────────────────────────────────
 window.switchTab = function(tab) {
-  ['voucher','orders','notifikasi','pendapatan','teknisi'].forEach(t => {
+  ['voucher','orders','notifikasi','pendapatan','teknisi','pelanggan'].forEach(t => {
     const pane = document.getElementById('pane-'+t);
     const btn  = document.getElementById('tab-'+t);
     if (pane) pane.classList.toggle('act', t===tab);
@@ -1215,6 +1340,7 @@ function listenOrders() {
     renderNotifications();
     renderCalendar(); // re-render dots
     renderIncome();
+    renderCustomers();
   });
 }
 
@@ -1714,6 +1840,7 @@ window.openManualBookingModal = function() {
   document.getElementById('mb-address').value = '';
   document.getElementById('mb-ac-type').value = '';
   document.getElementById('mb-unit-count').value = '1';
+  document.getElementById('mb-ac-brand').value = '';
   document.getElementById('mb-services').value = '';
   document.getElementById('mb-date').value = new Date().toISOString().split('T')[0];
   document.getElementById('mb-time').value = '';
@@ -1771,6 +1898,8 @@ window.saveManualBooking = async function() {
       source: 'manual',
       created_at: serverTimestamp()
     };
+    const acBrand = document.getElementById('mb-ac-brand').value.trim();
+    if (acBrand) payload.ac_brand = acBrand;
     if (status === 'confirmed') payload.confirmed_at = serverTimestamp();
     await addDoc(collection(db,'orders'), payload);
     showToast('Booking manual berhasil ditambahkan ✅');
@@ -1780,6 +1909,426 @@ window.saveManualBooking = async function() {
   }
   btn.disabled = false; btn.innerHTML = '💾 Simpan Booking';
 };
+
+// ── PELANGGAN (data & pola tiap customer) ──────────────
+// Semua angka di sini dihitung dari koleksi 'orders' yang sudah dimuat
+// (order yang ditolak tidak dihitung). Satu pelanggan = satu nomor WhatsApp.
+const CUST_DAYS      = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+const CUST_DAY_ORDER = [1,2,3,4,5,6,0]; // tampil Senin → Minggu
+const CUST_MONTHS    = {januari:0,jan:0,februari:1,feb:1,maret:2,mar:2,april:3,apr:3,mei:4,juni:5,jun:5,juli:6,jul:6,
+  agustus:7,agu:7,agt:7,ags:7,september:8,sep:8,sept:8,oktober:9,okt:9,november:10,nov:10,nop:10,desember:11,des:11};
+let custFilter  = 'all';
+let custAll     = [];   // semua pelanggan
+let custShown   = [];   // pelanggan sesuai filter aktif (dipakai export)
+let custOpenKey = null; // pelanggan yang sedang dibuka di modal
+
+function esc(s) {
+  return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function custYmd(d) {
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+function custFmtDate(ymd) {
+  return ymd ? new Date(ymd + 'T00:00:00').toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'}) : '—';
+}
+function custWa(raw) {
+  const d = String(raw || '').replace(/\D/g, '');
+  return d.replace(/^0/, '62').replace(/^8/, '628');
+}
+function custKey(o) {
+  const wa = custWa(o.wa_number);
+  if (wa.length >= 8) return 'wa:' + wa;
+  const n = String(o.name || '').trim().toLowerCase();
+  return n ? 'nm:' + n : 'id:' + o.id;
+}
+// Tanggal servis: jadwal fix > tanggal yang diminta customer > tanggal order dibuat.
+// Field 'date' dari form booking berbentuk "Senin, 10 November 2026".
+function custServiceDate(o) {
+  if (/^\d{4}-\d{2}-\d{2}/.test(o.scheduled_date || '')) return o.scheduled_date.slice(0,10);
+  const raw = String(o.date || '').trim();
+  if (/^\d{4}-\d{2}-\d{2}/.test(raw)) return raw.slice(0,10);
+  const m = raw.toLowerCase().match(/(\d{1,2})\s+([a-z]+)\s+(\d{4})/);
+  if (m && CUST_MONTHS[m[2]] !== undefined) return custYmd(new Date(+m[3], CUST_MONTHS[m[2]], +m[1]));
+  return getOrderDateStr(o);
+}
+function custServiceLabels(o) {
+  const list = Array.isArray(o.services) ? o.services : (o.services ? [o.services] : []);
+  return list.map(s => String(s).replace(/\s*\(\s*\d+\s*unit\s*\)\s*$/i, '').trim()).filter(Boolean);
+}
+function custNote(o) {
+  return String(o.notes || '').replace(/\(Booking manual oleh admin\)/gi, '').trim();
+}
+function custTop(counts) { // {label: n} → [[label, n], ...] terbanyak dulu
+  return Object.entries(counts).sort((a,b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+}
+function custInc(counts, k) { if (k !== '' && k != null) counts[k] = (counts[k] || 0) + 1; }
+
+function buildCustomers() {
+  const groups = new Map();
+  allOrders.forEach(o => {
+    if (o.status === 'rejected') return;
+    const k = custKey(o);
+    if (!groups.has(k)) groups.set(k, []);
+    groups.get(k).push(o);
+  });
+  const today = custYmd(new Date());
+  const todayMs = new Date(today + 'T00:00:00').getTime();
+
+  return Array.from(groups, ([key, orders]) => {
+    const rows = orders.map(o => {
+      const sd  = custServiceDate(o);
+      const d   = sd ? new Date(sd + 'T00:00:00') : null;
+      const dow = d && !isNaN(d) ? d.getDay() : null;
+      const hm  = String(o.scheduled_time || '').trim().match(/^(\d{1,2}):(\d{2})/);
+      return {
+        o, sd, dow,
+        weekend: dow === 0 || dow === 6,
+        done: o.task_status === 'selesai',
+        hour: hm ? String(parseInt(hm[1],10)).padStart(2,'0') + ':' + hm[2] : '',
+        services: custServiceLabels(o),
+        note: custNote(o)
+      };
+    }).sort((a,b) => (b.sd || '').localeCompare(a.sd || '')); // servis terbaru dulu
+
+    const latest = rows[0].o;
+    const dayCounts = [0,0,0,0,0,0,0], bookDayCounts = [0,0,0,0,0,0,0];
+    const svc = {}, ac = {}, hours = {}, vouchers = {};
+    let spend = 0, units = 0, weekendCount = 0, weekendDone = 0, doneCount = 0, brand = '', note = '';
+    rows.forEach(r => {
+      if (r.dow !== null) dayCounts[r.dow]++;
+      if (r.weekend) { weekendCount++; if (r.done) weekendDone++; }
+      if (r.done) doneCount++;
+      if (r.o.created_at && r.o.created_at.seconds) bookDayCounts[new Date(r.o.created_at.seconds*1000).getDay()]++;
+      if (r.o.status === 'confirmed') spend += getOrderRevenue(r.o);
+      units += parseInt(r.o.unit_count) || 0;
+      r.services.forEach(s => custInc(svc, s));
+      custInc(ac, String(r.o.ac_type || '').trim());
+      custInc(hours, r.hour);
+      custInc(vouchers, r.o.voucher_code);
+      if (!brand && r.o.ac_brand) brand = String(r.o.ac_brand).trim();
+      if (!note && r.o.customer_note) note = String(r.o.customer_note).trim();
+    });
+    // Hari favorit: hari dengan order terbanyak; kalau seri, pakai yang paling baru.
+    const favOf = counts => {
+      const max = Math.max(...counts);
+      if (!max) return null;
+      const recent = rows.find(r => r.dow !== null && counts[r.dow] === max);
+      return counts === dayCounts && recent ? recent.dow : counts.indexOf(max);
+    };
+    const past   = rows.filter(r => r.sd && r.sd <= today);
+    const future = rows.filter(r => r.sd && r.sd > today);
+    const lastDate  = past.length ? past[0].sd : null;
+    const nextDate  = future.length ? future[future.length-1].sd : null;
+    const daysSince = lastDate ? Math.round((todayMs - new Date(lastDate + 'T00:00:00').getTime()) / 86400000) : null;
+    const dated = rows.filter(r => r.sd);
+
+    return {
+      key, orders, rows,
+      name: String(latest.name || '').trim() || 'Customer',
+      wa: latest.wa_number || '', waIntl: custWa(latest.wa_number),
+      city: String(latest.city || '').trim(), address: String(latest.address || '').trim(),
+      orderCount: rows.length, doneCount, spend, units,
+      dayCounts, favDay: favOf(dayCounts), favBookDay: favOf(bookDayCounts),
+      weekendCount, weekendDone,
+      favHour: (custTop(hours)[0] || [''])[0],
+      services: custTop(svc), acTypes: custTop(ac), vouchers: custTop(vouchers),
+      brand, note,
+      complaints: rows.filter(r => r.note).map(r => ({ sd: r.sd, text: r.note })),
+      manualCount: rows.filter(r => r.o.source === 'manual').length,
+      firstDate: dated.length ? dated[dated.length-1].sd : null,
+      lastDate, nextDate, daysSince,
+      sleeping: !nextDate && daysSince !== null && daysSince > 90
+    };
+  });
+}
+
+function custBars(entries, max, opts = {}) {
+  if (!entries.length || !max) return '<div class="cust-ins-empty">Belum ada data.</div>';
+  return entries.map(([label, n, wk]) => `<div class="cust-bar">
+    <span title="${esc(label)}">${esc(label)}</span>
+    <div class="cust-bar-track"><div class="cust-bar-fill${wk ? ' wk' : ''}" style="width:${n ? Math.max(3, Math.round(n / max * 100)) : 0}%"></div></div>
+    <b>${n}</b>
+  </div>`).join('') + (opts.foot ? `<div class="cust-sub" style="margin-top:10px;">${opts.foot}</div>` : '');
+}
+
+function renderCustomerInsights() {
+  const el = document.getElementById('cust-insights');
+  if (!el) return;
+  const days = [0,0,0,0,0,0,0], svc = {}, ac = {}, city = {}, brand = {};
+  let weekendOrders = 0, totalOrders = 0;
+  custAll.forEach(c => {
+    c.rows.forEach(r => {
+      totalOrders++;
+      if (r.dow !== null) days[r.dow]++;
+      if (r.weekend) weekendOrders++;
+      r.services.forEach(s => custInc(svc, s));
+      custInc(ac, String(r.o.ac_type || '').trim());
+    });
+    custInc(city, c.city);
+    custInc(brand, c.brand);
+  });
+  const dayEntries = CUST_DAY_ORDER.map(i => [CUST_DAYS[i], days[i], i === 0 || i === 6]);
+  const card = (title, body) => `<div class="cust-ins"><div class="cust-ins-title">${title}</div>${body}</div>`;
+  const top = (counts, n) => { const t = custTop(counts).slice(0, n); return custBars(t, t.length ? t[0][1] : 0); };
+  const wkPct = totalOrders ? Math.round(weekendOrders / totalOrders * 100) : 0;
+  let html =
+    card('📅 Hari servis paling ramai', custBars(dayEntries, Math.max(...days), { foot: `${wkPct}% order jatuh di Sabtu–Minggu.` })) +
+    card('🧰 Layanan paling sering dipesan', top(svc, 7)) +
+    card('❄️ Jenis AC pelanggan', top(ac, 6)) +
+    card('📍 Kota pelanggan', top(city, 6));
+  if (Object.keys(brand).length) html += card('🏷️ Merk AC (yang sudah dicatat)', top(brand, 6));
+  el.innerHTML = html;
+}
+
+function renderCustomers() {
+  const tbody = document.getElementById('cust-tbl-body');
+  if (!tbody) return;
+  custAll = buildCustomers();
+
+  // Kartu ringkasan
+  const total   = custAll.length;
+  const repeat  = custAll.filter(c => c.orderCount >= 2).length;
+  const weekend = custAll.filter(c => c.weekendCount > 0).length;
+  const payers  = custAll.filter(c => c.spend > 0);
+  document.getElementById('cust-st-total').textContent   = total;
+  document.getElementById('cust-st-repeat').textContent  = repeat;
+  document.getElementById('cust-st-repeat-lbl').textContent =
+    'Langganan (order 2x+)' + (total ? ' · ' + Math.round(repeat / total * 100) + '%' : '');
+  document.getElementById('cust-st-weekend').textContent = weekend;
+  document.getElementById('cust-st-avg').textContent =
+    payers.length ? fmt(Math.round(payers.reduce((s,c) => s + c.spend, 0) / payers.length)) : 'Rp 0';
+  renderCustomerInsights();
+
+  // Isi pilihan layanan (pertahankan pilihan yang sedang aktif)
+  const svcSel = document.getElementById('cust-svc');
+  const svcNames = Array.from(new Set(custAll.flatMap(c => c.services.map(s => s[0])))).sort();
+  const curSvc = svcSel.value;
+  svcSel.innerHTML = '<option value="">Semua layanan</option>' +
+    svcNames.map(s => `<option value="${esc(s)}">${esc(s)}</option>`).join('');
+  svcSel.value = svcNames.includes(curSvc) ? curSvc : '';
+
+  // Filter
+  const q    = document.getElementById('cust-search').value.trim().toLowerCase();
+  const svcF = svcSel.value;
+  const dayF = document.getElementById('cust-day').value;
+  const sort = document.getElementById('cust-sort').value;
+  let list = custAll.filter(c => {
+    if (custFilter === 'repeat'  && c.orderCount < 2) return false;
+    if (custFilter === 'new'     && c.orderCount !== 1) return false;
+    if (custFilter === 'weekend' && !c.weekendCount) return false;
+    if (custFilter === 'weekday' && (c.weekendCount || c.favDay === null)) return false;
+    if (custFilter === 'sleep'   && !c.sleeping) return false;
+    if (svcF && !c.services.some(s => s[0] === svcF)) return false;
+    if (dayF !== '' && String(c.favDay) !== dayF) return false;
+    if (q) {
+      const hay = [c.name, c.wa, c.waIntl, c.city, c.address, c.brand, c.note,
+        c.acTypes.map(a => a[0]).join(' '), c.services.map(s => s[0]).join(' '),
+        c.complaints.map(k => k.text).join(' ')].join(' ').toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+  const lastKey = c => c.nextDate || c.lastDate || '';
+  list.sort(
+    sort === 'orders' ? (a,b) => b.orderCount - a.orderCount || b.spend - a.spend :
+    sort === 'spend'  ? (a,b) => b.spend - a.spend :
+    sort === 'name'   ? (a,b) => a.name.localeCompare(b.name, 'id') :
+                        (a,b) => lastKey(b).localeCompare(lastKey(a)));
+  custShown = list;
+
+  document.getElementById('cust-count').textContent =
+    `Menampilkan ${list.length} dari ${total} pelanggan` + (allOrders.length >= 1000 ? ' · dihitung dari 1.000 order terbaru' : '');
+
+  if (!list.length) {
+    tbody.innerHTML = `<tr><td colspan="8"><div class="empty-state">${total ? 'Tidak ada pelanggan yang cocok dengan filter ini.' : 'Belum ada data pelanggan.'}</div></td></tr>`;
+    return;
+  }
+  tbody.innerHTML = list.map(c => {
+    const tags =
+      (c.orderCount >= 2 ? '<span class="cust-tag loyal">🔁 Langganan</span>' : '<span class="cust-tag new">🆕 Baru</span>') +
+      (c.weekendCount ? '<span class="cust-tag weekend">🏖️ Weekend</span>' : '') +
+      (c.nextDate ? '<span class="cust-tag next">📅 Terjadwal</span>' : '') +
+      (c.sleeping ? '<span class="cust-tag sleep">😴 Lama tidak order</span>' : '');
+    const fav = c.favDay !== null ? CUST_DAYS[c.favDay] : '—';
+    const favSub = c.weekendCount
+      ? `Weekend ${c.weekendCount} dari ${c.orderCount} order` + (c.weekendDone ? ` · ${c.weekendDone} selesai` : '')
+      : (c.favDay !== null ? 'Belum pernah weekend' : '');
+    const acStr = c.acTypes.map(a => a[0]).join(', ') || '—';
+    const svcStr = c.services.map(s => s[0] + (s[1] > 1 ? ` (${s[1]}x)` : '')).join(', ') || '—';
+    const lastStr = c.lastDate ? custFmtDate(c.lastDate) : (c.nextDate ? custFmtDate(c.nextDate) : '—');
+    const lastSub = c.lastDate
+      ? (c.daysSince === 0 ? 'Hari ini' : c.daysSince + ' hari lalu') + (c.nextDate ? ' · berikutnya ' + custFmtDate(c.nextDate) : '')
+      : (c.nextDate ? 'Akan datang' : '');
+    return `<tr>
+      <td data-label="Pelanggan"><b style="color:var(--charcoal)">${esc(c.name)}</b>
+        <div class="cust-sub">${esc(c.wa || 'Tanpa nomor WA')}${c.city ? ' · ' + esc(c.city) : ''}</div>${tags}</td>
+      <td data-label="Order" style="white-space:nowrap"><b style="color:var(--charcoal)">${c.orderCount}x</b><div class="cust-sub">${c.doneCount} selesai</div></td>
+      <td data-label="Hari Favorit" style="white-space:nowrap"><b style="color:var(--charcoal)">${fav}</b>${c.favHour ? ' · ' + esc(c.favHour) : ''}<div class="cust-sub">${favSub}</div></td>
+      <td data-label="AC">${esc(acStr)}<div class="cust-sub">${c.brand ? 'Merk: ' + esc(c.brand) : 'Merk belum dicatat'}</div></td>
+      <td data-label="Layanan">${esc(svcStr)}${c.complaints.length ? `<div class="cust-sub">📝 ${c.complaints.length} catatan/keluhan</div>` : ''}</td>
+      <td data-label="Servis Terakhir" style="white-space:nowrap">${lastStr}<div class="cust-sub">${lastSub}</div></td>
+      <td data-label="Belanja" style="white-space:nowrap"><strong style="color:var(--green)">${fmt(c.spend)}</strong></td>
+      <td data-label=""><button class="act-btn" data-cust-key="${esc(c.key)}" style="margin:0">Detail</button></td>
+    </tr>`;
+  }).join('');
+}
+
+window.filterCustomers = function(f) {
+  custFilter = f;
+  ['all','repeat','new','weekend','weekday','sleep'].forEach(x => {
+    document.getElementById('cf-' + x).classList.toggle('act', x === f);
+  });
+  renderCustomers();
+};
+
+// ── Detail pelanggan ──
+window.openCustomer = function(key) {
+  const c = custAll.find(x => x.key === key);
+  if (!c) return;
+  custOpenKey = key;
+  const fact = (lbl, val) => `<div class="cm-fact"><div class="cm-fact-lbl">${lbl}</div><div class="cm-fact-val">${val}</div></div>`;
+  const dayEntries = CUST_DAY_ORDER.map(i => [CUST_DAYS[i], c.dayCounts[i], i === 0 || i === 6]).filter(e => e[1]);
+  const hello = `Halo kak ${c.name}, `;
+  const waBtn = c.waIntl
+    ? `<a class="cm-wa" href="https://wa.me/${c.waIntl}?text=${encodeURIComponent(hello)}" target="_blank" rel="noopener">💬 Chat WhatsApp ${esc(c.wa)}</a>`
+    : '<div class="cust-sub">Nomor WhatsApp belum tersedia</div>';
+  const statusLbl = r => r.o.status === 'pending' ? 'Menunggu konfirmasi'
+    : r.done ? 'Selesai' : r.o.task_status === 'skip' ? 'Di-skip' : 'Dikonfirmasi';
+
+  document.getElementById('customer-modal-body').innerHTML = `
+    <div class="cm-name">${esc(c.name)}</div>
+    <div class="cust-sub">${esc([c.city, c.address].filter(Boolean).join(' · ') || 'Alamat belum ada')}</div>
+    ${waBtn}
+    <div class="cm-facts">
+      ${fact('Total order', `${c.orderCount}x · ${c.doneCount} selesai`)}
+      ${fact('Total belanja', fmt(c.spend))}
+      ${fact('Hari servis favorit', c.favDay !== null ? CUST_DAYS[c.favDay] + (c.favHour ? ' · ' + esc(c.favHour) : '') : '—')}
+      ${fact('Servis di weekend', c.weekendCount ? `${c.weekendCount} order · ${c.weekendDone} selesai` : 'Belum pernah')}
+      ${fact('Biasa booking hari', c.favBookDay !== null ? CUST_DAYS[c.favBookDay] : '—')}
+      ${fact('Servis terakhir', c.lastDate ? `${custFmtDate(c.lastDate)} · ${c.daysSince} hari lalu` : '—')}
+      ${fact('Jenis AC', esc(c.acTypes.map(a => a[0]).join(', ') || '—') + (c.units ? ` · ${c.units} unit` : ''))}
+      ${fact('Voucher dipakai', esc(c.vouchers.map(v => v[0]).join(', ') || 'Tidak pernah'))}
+    </div>
+    ${dayEntries.length > 1 ? `<div class="cm-sec">Pola hari servis</div>${custBars(dayEntries, Math.max(...c.dayCounts))}` : ''}
+    <div class="cm-sec">Layanan yang pernah dipesan</div>
+    <div class="cm-item">${esc(c.services.map(s => `${s[0]} (${s[1]}x)`).join(', ') || '—')}</div>
+    <div class="cm-sec">Keluhan &amp; catatan dari order</div>
+    ${c.complaints.length
+      ? c.complaints.map(k => `<div class="cm-item"><b>${custFmtDate(k.sd)}</b> — ${esc(k.text)}</div>`).join('')
+      : '<div class="cm-item">Belum ada catatan atau keluhan.</div>'}
+    <div class="cm-sec">Riwayat order</div>
+    ${c.rows.map(r => `<div class="cm-item">
+      <b>${r.dow !== null ? CUST_DAYS[r.dow] + ', ' : ''}${custFmtDate(r.sd)}${r.hour ? ' · ' + esc(r.hour) : ''}</b> — ${statusLbl(r)}<br>
+      ${esc(r.services.join(', ') || '—')}${r.o.ac_type ? ' · ' + esc(r.o.ac_type) : ''} · ${fmt(getOrderRevenue(r.o))}${r.o.assigned_name ? ' · 👷 ' + esc(r.o.assigned_name) : ''}
+    </div>`).join('')}`;
+  document.getElementById('cm-brand').value = c.brand;
+  document.getElementById('cm-note').value  = c.note;
+  document.getElementById('customer-modal').classList.add('open');
+};
+
+window.closeCustomerModal = function() {
+  custOpenKey = null;
+  document.getElementById('customer-modal').classList.remove('open');
+};
+
+// Merk AC & catatan disimpan di semua order milik pelanggan itu,
+// supaya tetap terbaca walau order lama terhapus.
+window.saveCustomerProfile = async function() {
+  const c = custAll.find(x => x.key === custOpenKey);
+  if (!c) return;
+  const brand = document.getElementById('cm-brand').value.trim();
+  const note  = document.getElementById('cm-note').value.trim();
+  const btn = document.getElementById('cm-save-btn');
+  btn.disabled = true; btn.innerHTML = '<span class="spinner-sm"></span> Menyimpan...';
+  try {
+    await Promise.all(c.orders.map(o =>
+      updateDoc(doc(db, 'orders', o.id), { ac_brand: brand, customer_note: note })));
+    showToast('Profil ' + c.name + ' disimpan ✅');
+    window.closeCustomerModal();
+  } catch(e) {
+    showToast('Gagal menyimpan: ' + e.message);
+  }
+  btn.disabled = false; btn.innerHTML = '💾 Simpan Profil';
+};
+
+// ── Export CSV (pemisah titik koma + BOM supaya rapi di Excel Indonesia & Google Sheets) ──
+function custCsvCell(v) {
+  if (typeof v === 'number') return String(v);
+  let s = String(v ?? '');
+  if (/^[=+\-@\t\r]/.test(s)) s = "'" + s; // cegah teks dibaca sebagai rumus
+  return '"' + s.replace(/"/g, '""') + '"';
+}
+function custDownloadCsv(filename, header, rows) {
+  const body = [header, ...rows].map(r => r.map(custCsvCell).join(';')).join('\r\n');
+  const url = URL.createObjectURL(new Blob(['﻿' + body], { type: 'text/csv;charset=utf-8;' }));
+  const a = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+function custWaText(c) { // dipisah strip supaya Excel tidak mengubahnya jadi angka
+  const d = c.waIntl.replace(/^62/, '0');
+  return d ? d.slice(0,4) + '-' + d.slice(4,8) + (d.length > 8 ? '-' + d.slice(8) : '') : '';
+}
+
+window.exportCustomersCsv = function() {
+  if (!custShown.length) { showToast('Tidak ada pelanggan untuk di-export.'); return; }
+  const header = ['Nama','WhatsApp','Link WhatsApp','Kota','Alamat','Segmen','Jumlah Order','Order Selesai',
+    'Total Belanja (Rp)','Rata-rata per Order (Rp)','Order Pertama','Servis Terakhir','Hari Sejak Servis Terakhir','Jadwal Berikutnya',
+    'Hari Servis Favorit','Jam Favorit','Hari Biasa Booking',
+    ...CUST_DAY_ORDER.map(i => 'Order ' + CUST_DAYS[i]),
+    'Order di Weekend','Order Selesai di Weekend','Jenis AC','Merk AC','Total Unit','Layanan','Keluhan / Catatan Order',
+    'Voucher Dipakai','Order via Web','Order Manual','Catatan Admin'];
+  const rows = custShown.map(c => [
+    c.name, custWaText(c), c.waIntl ? 'https://wa.me/' + c.waIntl : '', c.city, c.address,
+    (c.orderCount >= 2 ? 'Langganan' : 'Baru') + (c.sleeping ? ', lama tidak order' : ''),
+    c.orderCount, c.doneCount, c.spend, c.orderCount ? Math.round(c.spend / c.orderCount) : 0,
+    c.firstDate || '', c.lastDate || '', c.daysSince ?? '', c.nextDate || '',
+    c.favDay !== null ? CUST_DAYS[c.favDay] : '', c.favHour, c.favBookDay !== null ? CUST_DAYS[c.favBookDay] : '',
+    ...CUST_DAY_ORDER.map(i => c.dayCounts[i]),
+    c.weekendCount, c.weekendDone,
+    c.acTypes.map(a => a[0]).join(', '), c.brand, c.units,
+    c.services.map(s => `${s[0]} (${s[1]}x)`).join(', '),
+    c.complaints.map(k => `${k.sd || ''}: ${k.text}`).join(' | '),
+    c.vouchers.map(v => v[0]).join(', '),
+    c.orderCount - c.manualCount, c.manualCount, c.note
+  ]);
+  custDownloadCsv('pelanggan-aslan-teknik-' + custYmd(new Date()) + '.csv', header, rows);
+  showToast(`${rows.length} pelanggan di-export 📄`);
+};
+
+window.exportCustomerOrdersCsv = function() {
+  if (!custShown.length) { showToast('Tidak ada order untuk di-export.'); return; }
+  const header = ['ID Order','Nama','WhatsApp','Kota','Tanggal Servis','Hari Servis','Weekend','Jam','Tanggal Booking','Hari Booking',
+    'Layanan','Jenis AC','Merk AC','Jumlah Unit','Keluhan / Catatan','Total (Rp)','Voucher','Status Order','Status Pengerjaan','Teknisi','Sumber'];
+  const rows = [];
+  custShown.forEach(c => c.rows.forEach(r => {
+    const o = r.o;
+    const made = o.created_at && o.created_at.seconds ? new Date(o.created_at.seconds * 1000) : null;
+    rows.push([
+      o.order_id || o.id.slice(0,8).toUpperCase(), c.name, custWaText(c), c.city,
+      r.sd || '', r.dow !== null ? CUST_DAYS[r.dow] : '', r.dow === null ? '' : (r.weekend ? 'Ya' : 'Tidak'), r.hour,
+      made ? custYmd(made) : '', made ? CUST_DAYS[made.getDay()] : '',
+      r.services.join(', '), o.ac_type || '', c.brand, parseInt(o.unit_count) || 0, r.note,
+      getOrderRevenue(o), o.voucher_code || '',
+      o.status === 'confirmed' ? 'Dikonfirmasi' : 'Menunggu',
+      o.status === 'confirmed' ? (o.task_status || 'belum') : '',
+      o.assigned_name || o.assigned_to || '', o.source === 'manual' ? 'Manual' : 'Web'
+    ]);
+  }));
+  rows.sort((a,b) => String(b[4]).localeCompare(String(a[4])));
+  custDownloadCsv('riwayat-order-aslan-teknik-' + custYmd(new Date()) + '.csv', header, rows);
+  showToast(`${rows.length} order di-export 📄`);
+};
+
+['cust-search','cust-svc','cust-day','cust-sort'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener(id === 'cust-search' ? 'input' : 'change', renderCustomers);
+});
+document.getElementById('cust-tbl-body')?.addEventListener('click', e => {
+  const btn = e.target.closest('[data-cust-key]');
+  if (btn) window.openCustomer(btn.dataset.custKey);
+});
 
 // ── SCHEDULE EDIT ──────────────────────────────────────
 const SCHEDULE_HOURS = ['09', '11', '14', '16'];
