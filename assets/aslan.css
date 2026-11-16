@@ -457,3 +457,7 @@ a.nav-cta{display:inline-flex;align-items:center;text-decoration:none}
   .ptable-card{break-inside:avoid}
 }
 .ptable th:not(:first-child),.ptable td:not(:first-child){width:13%}
+.article-body .highlight{background:var(--brand-tint);border-radius:14px;padding:16px 18px}
+.article-body .note{font-size:0.9rem;color:var(--ink-2)}
+.article-body td.num,.article-body th:last-child{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.article-body th{background:var(--ice);font-size:0.88rem}
