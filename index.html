@@ -11,11 +11,17 @@
 <link rel="manifest" href="/site.webmanifest?v=6">
 <meta name="theme-color" content="#4A3FE0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aslan Teknik — Spesialis AC Terpercaya</title>
+<title>Aslan Teknik — Servis AC Jakarta Selatan, Depok, Tangerang Selatan</title>
+<meta name="description" content="Jasa cuci AC, servis, isi freon, dan bongkar pasang AC ke rumah. Cuci AC mulai Rp110.000, garansi 14 hari. Melayani Jakarta Selatan, Depok, dan Tangerang Selatan.">
+<link rel="canonical" href="https://aslanteknik.id/">
+<meta property="og:title" content="Aslan Teknik — Servis AC ke rumah, harga jelas sejak awal">
+<meta property="og:description" content="Cuci AC mulai Rp110.000, garansi 14 hari. Melayani Jakarta Selatan, Depok, dan Tangerang Selatan.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aslanteknik.id/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/aslan.css?v=3">
+<link rel="stylesheet" href="/assets/aslan.css?v=4">
 
 <!-- FIREBASE -->
 <script type="module">
@@ -63,6 +69,7 @@ window.dispatchEvent(new Event('fbReady'));
       <a href="#testimoni">Testimoni</a>
       <a href="#booking" onclick="if(typeof window._atSectionClick==='function')window._atSectionClick('/#booking')">Booking</a>
       <a href="#lokasi">Lokasi dan jam buka</a>
+      <a href="/blog/">Blog</a>
     </div>
   </div>
 </header>
@@ -74,13 +81,13 @@ window.dispatchEvent(new Event('fbReady'));
   <div class="wrap hero-grid">
     <div>
       <h1>Servis AC ke rumah, harga jelas sejak awal.</h1>
-      <p class="hero-sub">Cuci, perbaikan, isi freon, dan bongkar pasang AC untuk rumah dan tempat usaha di Jakarta Selatan, Depok, Bogor, dan Tangerang Selatan.</p>
+      <p class="hero-sub">Cuci, perbaikan, isi freon, dan bongkar pasang AC untuk rumah dan tempat usaha di Jakarta Selatan, Depok, dan Tangerang Selatan.</p>
       <div class="hero-actions">
         <button class="btn btn-brand" type="button" onclick="goBook()">Booking servis</button>
         <a class="btn btn-line" href="#layanan">Lihat layanan dan harga</a>
       </div>
       <ul class="hero-points">
-        <li>Rating 5/5 dari pelanggan</li>
+        <li>Rating 5/5 di Google Maps</li>
         <li>Konfirmasi lewat WhatsApp</li>
       </ul>
     </div>
@@ -173,7 +180,7 @@ window.dispatchEvent(new Event('fbReady'));
   <div class="wrap">
     <div class="sec-head"><h2>Kata pelanggan</h2></div>
     <div class="testi-marquee-wrap">
-      <div class="testi-marquee-track" id="testi-track"><!-- loaded by JS --></div>
+      <div class="testi-marquee-track" id="testi-track"><p class="testi-empty">Belum ada review yang tampil di sini. Pernah servis di Aslan Teknik? Tulis review kamu.</p></div>
     </div>
     <div class="testi-actions">
       <button class="btn btn-line btn-sm write-review-btn" type="button" onclick="openReviewModal()">Tulis review</button>
@@ -265,7 +272,7 @@ window.dispatchEvent(new Event('fbReady'));
         <!-- 3. TANGGAL -->
         <div class="bk-step" id="step-date" role="group" aria-labelledby="step-date-t">
           <div class="bk-step-head"><span class="bk-num" aria-hidden="true">3</span><h3 class="bk-step-title" id="step-date-t">Mau dikerjakan kapan?</h3></div>
-          <p class="bk-help">Buka Senin sampai Minggu pukul 09.00–15.00, Jumat libur. Jam kedatangan kami konfirmasi lewat WhatsApp.</p>
+          <p class="bk-help">Buka Senin sampai Minggu pukul 09.00–16.00, Jumat libur. Jam kedatangan kami konfirmasi lewat WhatsApp.</p>
           <div class="cal-wrap" id="cal-wrap">
             <div class="cal-head">
               <button type="button" class="cal-nav" onclick="chMon(-1)" aria-label="Bulan sebelumnya">&#8249;</button>
@@ -403,8 +410,8 @@ window.dispatchEvent(new Event('fbReady'));
       </div>
       <div class="loc-info">
         <dl>
-          <div><dt>Area layanan</dt><dd>Jakarta Selatan, Depok, Bogor, dan Tangerang Selatan</dd></div>
-          <div><dt>Jam buka</dt><dd>Senin sampai Minggu, 09.00–15.00 WIB. Jumat libur.</dd></div>
+          <div><dt>Area layanan</dt><dd>Jakarta Selatan, Depok, dan Tangerang Selatan</dd></div>
+          <div><dt>Jam buka</dt><dd>Senin sampai Minggu, 09.00–16.00 WIB. Jumat libur.</dd></div>
           <div><dt>Review</dt><dd>Lihat review pelanggan kami di Google.</dd></div>
         </dl>
         <a class="btn btn-ink" href="https://maps.app.goo.gl/NJDap5rnooYU5uKLA" target="_blank" rel="noopener">Buka di Google Maps</a>
@@ -421,22 +428,23 @@ window.dispatchEvent(new Event('fbReady'));
     <div class="foot-g">
       <div>
         <span class="foot-logo">Aslan<span>.</span>Teknik</span>
-        <p>Perawatan dan perbaikan AC untuk rumah, kantor, dan tempat usaha di Jakarta Selatan, Depok, Bogor, dan Tangerang Selatan.</p>
+        <p>Perawatan dan perbaikan AC untuk rumah, kantor, dan tempat usaha di Jakarta Selatan, Depok, dan Tangerang Selatan.</p>
       </div>
       <div class="foot-col">
         <h4>Layanan</h4>
         <a href="#layanan">Cuci AC</a><a href="#layanan">Isi Freon</a>
         <a href="#layanan">Bongkar Pasang</a><a href="#layanan">Perbaikan AC</a>
         <a href="/pricelist/">Daftar harga</a>
+        <a href="/blog/">Blog</a>
       </div>
       <div class="foot-col">
         <h4>Area layanan</h4>
         <a href="/jakarta-selatan/">Jakarta Selatan</a><a href="/depok/">Depok</a>
-        <a href="/bogor/">Bogor</a><a href="/tangerang-selatan/">Tangerang Selatan</a>
+        <a href="/tangerang-selatan/">Tangerang Selatan</a>
       </div>
       <div class="foot-col">
         <h4>Jam buka</h4>
-        <span>Senin sampai Minggu, 09.00–15.00</span>
+        <span>Senin sampai Minggu, 09.00–16.00</span>
         <span>Jumat libur</span>
       </div>
     </div>

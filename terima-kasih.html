@@ -6,7 +6,9 @@
 <title>Terima Kasih — Aslan Teknik</title>
 <link rel="icon" href="/favicon.ico?v=2" type="image/x-icon">
 <meta name="robots" content="noindex, nofollow">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <!-- ══ GANTI DENGAN ID GOOGLE ADS KAMU ══ -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXXX"></script>
@@ -21,16 +23,16 @@
 
 <style>
   :root {
-    --mint: #C8F0E8; --lavender: #DDD6F3; --peach: #FDDCCC;
-    --sky: #C9E8F5; --cream: #FDF8F2; --charcoal: #1A1A2E;
-    --mid: #4A4A6A; --soft: #8888AA; --accent: #5B4FD9;
-    --accent2: #E8643A; --white: #FFFFFF; --border: rgba(0,0,0,0.08);
+    --mint:#DDF5EE; --lavender:#EEEDFF; --peach:#FFC940;
+    --sky:#EEEDFF; --cream:#F2F4FB; --charcoal:#16153A;
+    --mid:#51547A; --soft:#6F7191; --accent:#4A3FE0;
+    --accent2:#C2362B; --white: #FFFFFF; --border: rgba(0,0,0,0.08);
     --green: #22C55E;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior:smooth; }
   body {
-    font-family:'DM Sans',sans-serif;
+    font-family:'Plus Jakarta Sans',sans-serif;
     background:var(--cream);
     color:var(--charcoal);
     min-height:100vh;
@@ -53,12 +55,12 @@
     position:fixed; top:0; left:0; right:0; z-index:100;
     display:flex; align-items:center; justify-content:space-between;
     padding:18px 60px;
-    background:rgba(253,248,242,0.9);
+    background:rgba(255,255,255,0.9);
     backdrop-filter:blur(16px);
     border-bottom:1px solid var(--border);
   }
   .nav-logo {
-    font-family:'Instrument Serif',serif;
+    font-family:'Bricolage Grotesque',sans-serif;
     font-size:1.5rem; color:var(--charcoal);
     letter-spacing:-0.02em; text-decoration:none;
   }
@@ -105,7 +107,7 @@
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
 
   h1 {
-    font-family:'Instrument Serif',serif;
+    font-family:'Bricolage Grotesque',sans-serif;
     font-size:clamp(2rem,5vw,2.8rem);
     line-height:1.1;
     letter-spacing:-0.03em;
@@ -183,6 +185,12 @@
     h1 { font-size:2rem; }
     .steps { padding:18px 18px; }
   }
+
+/* Selaras dengan tampilan beranda (assets/aslan.css) */
+h1,h2,h3,.stitle,.brand,.nav-logo,.foot-logo{font-weight:800 !important;letter-spacing:-0.03em}
+h1 em,h2 em,h3 em,.stitle em{font-style:normal !important;color:inherit !important}
+.blob{display:none !important}
+nav{background:#fff !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important}
 </style>
 </head>
 <body>
@@ -192,7 +200,7 @@
 <div class="blob b3"></div>
 
 <nav>
-  <a class="nav-logo" href="/">Aslan<span>Teknik</span></a>
+  <a class="nav-logo" href="/">Aslan<span>.</span>Teknik</a>
 </nav>
 
 <div class="card">
