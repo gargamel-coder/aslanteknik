@@ -461,3 +461,6 @@ a.nav-cta{display:inline-flex;align-items:center;text-decoration:none}
 .article-body .note{font-size:0.9rem;color:var(--ink-2)}
 .article-body td.num,.article-body th:last-child{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 .article-body th{background:var(--ice);font-size:0.88rem}
+.article-body .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.article-body td:not(:first-child),.article-body th:not(:first-child){white-space:nowrap}
+.article-body .table-scroll table{min-width:100%}
