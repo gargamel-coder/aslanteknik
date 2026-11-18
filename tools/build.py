@@ -104,7 +104,6 @@ def build_cities():
         s = rep(s, 'autocomplete="address-level2" placeholder="Depok"',
                 f'autocomplete="address-level2" placeholder="{name}"')
         # Halaman kota hanya menampilkan review asli dari database (tanpa contoh bawaan).
-        s = re.sub(r'var PAGE_STATIC_REVIEWS = \[.*?\];', 'var PAGE_STATIC_REVIEWS = [];', s, count=1, flags=re.S)
         (ROOT / slug).mkdir(exist_ok=True)
         (ROOT / slug / 'index.html').write_text(s, encoding='utf-8')
         print('kota   :', f'/{slug}/')

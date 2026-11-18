@@ -196,6 +196,7 @@ window.dispatchEvent(new Event('fbReady'));
       <div class="testi-marquee-track" id="testi-track"><p class="testi-empty">Belum ada review yang tampil di sini. Pernah servis di Aslan Teknik? Tulis review kamu.</p></div>
     </div>
     <div class="testi-actions">
+      <a class="btn btn-ink btn-sm" href="https://maps.app.goo.gl/NJDap5rnooYU5uKLA" target="_blank" rel="noopener">Semua ulasan di Google Maps</a>
       <button class="btn btn-line btn-sm write-review-btn" type="button" onclick="openReviewModal()">Tulis review</button>
     </div>
   </div>
@@ -425,7 +426,7 @@ window.dispatchEvent(new Event('fbReady'));
         <dl>
           <div><dt>Area layanan</dt><dd>Jakarta Selatan, Depok, dan Tangerang Selatan</dd></div>
           <div><dt>Jam buka</dt><dd>Senin sampai Minggu, 09.00–16.00 WIB. Jumat libur.</dd></div>
-          <div><dt>Review</dt><dd>Lihat review pelanggan kami di Google.</dd></div>
+          <div><dt>Review</dt><dd>Rating 5/5 dari pelanggan di Google Maps.</dd></div>
         </dl>
         <a class="btn btn-ink" href="https://maps.app.goo.gl/NJDap5rnooYU5uKLA" target="_blank" rel="noopener">Buka di Google Maps</a>
       </div>
@@ -1051,7 +1052,38 @@ upd();
   </div>
 </div>
 <script>
-var PAGE_STATIC_REVIEWS = [];
+var PAGE_STATIC_REVIEWS = [
+ {
+  "name": "Ghaldy Baldy Glend",
+  "stars": 5,
+  "loc": "Google Maps · Bocor & cuci AC",
+  "q": "Sebelumnya sudah 3x ganti teknisi, tapi masalahnya nggak kunjung beres. … Alhamdulillah, kali ini ketemu teknisi yang jujur, amanah, dan benar-benar paham masalahnya. Nggak asal ganti atau menyarankan ini itu, tapi dicek dulu sampai ketemu sumber masalahnya."
+ },
+ {
+  "name": "Denis Setianto",
+  "stars": 5,
+  "loc": "Google Maps · Pasang AC baru & cuci 2 AC",
+  "q": "Mas teknisinya ramah, tepat waktu, sebelum jamnya malah udah sampai. Pemasangannya rapi banget, perkabelan dan perpipaan rapi terpasang. … Mas-nya gak ngerokok. … Harga juga oke."
+ },
+ {
+  "name": "Ibnu Habibie",
+  "stars": 5,
+  "loc": "Google Maps · Perbaikan AC",
+  "q": "Teknisi telaten. Unit dicek secara menyeluruh agar solusi yang ditawarkan benar-benar yang memang diperlukan."
+ },
+ {
+  "name": "Kunthi",
+  "stars": 5,
+  "loc": "Google Maps · Cuci AC",
+  "q": "Servis bagus dan cepat. Hasilnya juga bersih, tidak ada hasil pencucian yang tercecer."
+ },
+ {
+  "name": "Fitri Uplah",
+  "stars": 5,
+  "loc": "Google Maps · Cuci AC",
+  "q": "Baru pertama kali coba cuci AC di Aslan karena lihat rekomen di Threads, pelayanan memuaskan. Terima kasih Aslan Teknik."
+ }
+];
 var PAGE_AREA_FILTER = null;
 </script>
 <script>
@@ -1281,7 +1313,7 @@ async function _loadAndRenderReviews() {
 
 var _domReady=false, _fbReady=false;
 function _maybeRender(){ if(_domReady&&_fbReady) _loadAndRenderReviews(); }
-document.addEventListener('DOMContentLoaded', function(){ _domReady=true; _maybeRender(); });
+document.addEventListener('DOMContentLoaded', function(){ _domReady=true; if(!_fbReady) _loadAndRenderReviews(); _maybeRender(); });
 window.addEventListener('fbReady', function(){
   _fbReady=true;
   _maybeRender();
