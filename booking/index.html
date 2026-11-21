@@ -1040,5 +1040,11 @@ document.addEventListener('visibilitychange',()=>{if(document.visibilityState===
 </script>
 
 <script src="/assets/aslan.js?v=3"></script>
+<script>
+// Pilih otomatis layanan dari tautan /booking?layanan=<kode> (dipakai halaman layanan per kota)
+(function(){try{var k=new URLSearchParams(location.search).get('layanan');if(!k)return;
+var b=document.querySelector('.chip[data-k="'+k.replace(/[^a-z0-9_-]/gi,'')+'"]');
+if(b&&!b.classList.contains('act')&&typeof toggleChip==='function')toggleChip(b);}catch(e){}})();
+</script>
 </body>
 </html>

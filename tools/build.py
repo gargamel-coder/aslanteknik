@@ -7,6 +7,8 @@ Yang dibuat ulang:
   - /jakarta-selatan/, /depok/, /tangerang-selatan/  (turunan dari /index.html,
     jadi tampilan, harga, dan form selalu sama dengan beranda)
   - daftar artikel di /blog/index.html (dibaca dari tiap /blog/<slug>/index.html)
+  - /<kota>/<layanan>/  (15 halaman layanan × kota, lihat tools/layanan.py)
+  - schema HVACBusiness di beranda
   - /sitemap.xml
 
 Jalankan lagi setiap kali beranda berubah atau ada artikel blog baru.
@@ -16,6 +18,8 @@ import html
 import pathlib
 import re
 import subprocess
+
+import layanan
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = 'https://aslanteknik.id'
@@ -65,6 +69,20 @@ def rep(s, old, new, n=1):
     return s.replace(old, new)
 
 
+def build_home_schema():
+    """Schema bisnis (HVACBusiness) di beranda; ikut tersalin ke halaman kota."""
+    p = ROOT / 'index.html'
+    s = p.read_text(encoding='utf-8')
+    block = '<!-- SCHEMA:START -->\n' + layanan.ld(layanan.business_schema()) + '\n<!-- SCHEMA:END -->'
+    if '<!-- SCHEMA:START -->' in s:
+        s = re.sub(r'<!-- SCHEMA:START -->.*?<!-- SCHEMA:END -->', lambda m: block, s, count=1, flags=re.S)
+    else:
+        m = re.search(r'<meta property="og:url"[^>]*>', s)
+        assert m, 'og:url di beranda tidak ditemukan'
+        s = s[:m.end()] + '\n' + block + s[m.end():]
+    p.write_text(s, encoding='utf-8')
+
+
 def build_cities():
     home = (ROOT / 'index.html').read_text(encoding='utf-8')
     for slug, c in CITIES.items():
@@ -101,6 +119,8 @@ def build_cities():
 </section>
 
 <!-- CARA KERJA -->''')
+        s = rep(s, '<ul class="area-chips">' + chips + '</ul>',
+                '<ul class="area-chips">' + chips + '</ul>\n      ' + layanan.city_links_section(slug))
         s = rep(s, 'autocomplete="address-level2" placeholder="Depok"',
                 f'autocomplete="address-level2" placeholder="{name}"')
         # Halaman kota hanya menampilkan review asli dari database (tanpa contoh bawaan).
@@ -157,11 +177,12 @@ def lastmod(path):
     return datetime.date.today().isoformat()
 
 
-def build_sitemap(posts):
+def build_sitemap(posts, extra=()):
     pages = [('/', 'index.html', '1.0'), ('/booking', 'booking/index.html', '0.9'),
              ('/pricelist/', 'pricelist/index.html', '0.8'), ('/acfinder/', 'acfinder/index.html', '0.6'),
              ('/jakarta-selatan/', 'jakarta-selatan/index.html', '0.8'), ('/depok/', 'depok/index.html', '0.8'),
              ('/tangerang-selatan/', 'tangerang-selatan/index.html', '0.8'), ('/blog/', 'blog/index.html', '0.7')]
+    pages += [(u, f, '0.7') for u, f in extra]
     pages += [(f'/blog/{a["slug"]}/', f'blog/{a["slug"]}/index.html', '0.6') for a in posts]
     rows = ''.join(f'  <url><loc>{SITE}{u}</loc><lastmod>{lastmod(f)}</lastmod><priority>{pr}</priority></url>\n'
                    for u, f, pr in pages)
@@ -172,7 +193,9 @@ def build_sitemap(posts):
 
 
 if __name__ == '__main__':
+    build_home_schema()
     build_cities()
+    svc_pages = layanan.build(ROOT)
     posts = read_posts()
     build_blog_list(posts)
-    build_sitemap(posts)
+    build_sitemap(posts, svc_pages)
