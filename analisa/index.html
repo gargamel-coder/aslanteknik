@@ -3,339 +3,344 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Analisa Trafik — Aslan Teknik</title>
+<meta name="robots" content="noindex, nofollow">
+<title>Analisa Marketing — Aslan Teknik</title>
 <link rel="icon" href="/favicon.ico?v=2" type="image/x-icon">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --mint:#C8F0E8;--lavender:#DDD6F3;--peach:#FDDCCC;
-  --sky:#C9E8F5;--cream:#FDF8F2;--charcoal:#1A1A2E;
-  --mid:#4A4A6A;--soft:#8888AA;--accent:#5B4FD9;
-  --accent2:#E8643A;--white:#FFFFFF;--border:rgba(0,0,0,0.08);
-  --green:#22C55E;--red:#EF4444;--yellow:#F59E0B;
+  --paper:#fff;--ice:#F2F4FB;--ink:#16153A;--ink-2:#51547A;--ink-3:#6F7191;
+  --line:#E2E5F0;--line-strong:#C6CADD;--brand:#4A3FE0;--brand-ink:#372CC0;--brand-tint:#EEEDFF;
+  --mint:#DDF5EE;--mint-ink:#0B6B57;--sun:#FFC940;--wa:#128C4B;
+  --danger:#C2362B;--danger-tint:#FDECEA;--warn-tint:#FFF4D6;--warn-ink:#7A5200;
+  --display:'Bricolage Grotesque','Plus Jakarta Sans',system-ui,sans-serif;
+  --text:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
 }
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{font-family:'DM Sans',sans-serif;background:#F4F1EC;color:var(--charcoal);min-height:100vh;}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--text);background:var(--ice);color:var(--ink);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:var(--brand-ink)}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+.hide{display:none!important}
+h1,h2,h3{font-family:var(--display);letter-spacing:-0.02em;line-height:1.15}
 
-/* ── LOGIN ── */
-#login-screen{
-  display:flex;align-items:center;justify-content:center;
-  min-height:100vh;padding:20px;
-  background:linear-gradient(135deg,var(--cream) 0%,#EDE8E0 100%);
-}
-.login-card{
-  background:var(--white);border-radius:24px;padding:48px 40px;
-  max-width:400px;width:100%;box-shadow:0 8px 40px rgba(0,0,0,0.08);
-  border:1px solid var(--border);
-}
-.login-logo{font-family:'Instrument Serif',serif;font-size:1.8rem;color:var(--charcoal);text-align:center;letter-spacing:-0.02em;margin-bottom:4px;}
-.login-logo span{color:var(--accent);}
-.login-sub{text-align:center;color:var(--soft);font-size:0.82rem;margin-bottom:32px;}
-.l-label{display:block;font-size:0.75rem;font-weight:600;color:var(--mid);margin-bottom:6px;margin-top:16px;text-transform:uppercase;letter-spacing:0.04em;}
-.l-input{
-  width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:12px;
-  font-size:0.9rem;font-family:'DM Sans',sans-serif;background:var(--cream);
-  outline:none;transition:border 0.2s;
-}
-.l-input:focus{border-color:var(--accent);}
-.l-btn{
-  width:100%;margin-top:24px;padding:14px;border:none;border-radius:100px;
-  background:var(--charcoal);color:#fff;font-size:0.9rem;font-weight:600;
-  cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;
-}
-.l-btn:hover{background:var(--accent);}
-.l-err{color:var(--red);font-size:0.8rem;text-align:center;margin-top:12px;min-height:20px;}
-.spinner-sm{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin 0.6s linear infinite;vertical-align:middle;}
+/* Login */
+#login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px}
+.login-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:32px 26px;width:100%;max-width:380px;box-shadow:0 18px 40px rgba(22,21,58,.08)}
+.logo{font-family:var(--display);font-weight:800;font-size:1.25rem;letter-spacing:-0.03em;color:var(--ink);text-decoration:none}
+.logo span{color:var(--brand)}
+.login-card .logo{display:block;text-align:center;font-size:1.6rem}
+.login-sub{text-align:center;color:var(--ink-3);font-size:.88rem;margin:4px 0 22px}
+.lbl{display:block;font-size:.8rem;font-weight:700;color:var(--ink-2);margin:14px 0 6px}
+.inp{width:100%;min-height:44px;padding:10px 14px;border:1px solid var(--line-strong);border-radius:12px;background:#fff;font-size:.95rem}
+.inp:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-tint)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:40px;padding:8px 14px;border-radius:10px;border:1px solid var(--line-strong);background:#fff;font-weight:700;font-size:.85rem;cursor:pointer;text-decoration:none;color:var(--ink);white-space:nowrap}
+.btn:hover{border-color:var(--ink-3)}
+.btn-ink{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn-ink:hover{background:var(--brand);border-color:var(--brand)}
+.btn-block{width:100%;min-height:48px;margin-top:20px;border-radius:12px;font-size:.95rem}
+.err{color:var(--danger);font-size:.85rem;text-align:center;margin-top:10px;min-height:20px}
 
-/* ── TOPBAR ── */
-.topbar{
-  position:sticky;top:0;z-index:100;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:16px 40px;background:rgba(244,241,236,0.85);
-  backdrop-filter:blur(20px);border-bottom:1px solid var(--border);
-}
-.topbar-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;color:var(--charcoal);text-decoration:none;letter-spacing:-0.02em;}
-.topbar-logo span{color:var(--accent);}
-.topbar-right{display:flex;align-items:center;gap:12px;}
-.topbar-email{font-size:0.75rem;color:var(--soft);}
-.topbar-badge{display:inline-flex;align-items:center;gap:6px;background:var(--white);border:1px solid var(--border);padding:5px 14px;border-radius:100px;font-size:0.75rem;font-weight:500;color:var(--mid);}
-.live-dot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
-.btn-sm{background:var(--charcoal);color:#fff;border:none;padding:8px 18px;border-radius:100px;font-size:0.78rem;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;}
-.btn-sm:hover{background:var(--accent);}
-.btn-logout{background:transparent;color:var(--soft);border:1px solid var(--border);padding:7px 16px;border-radius:100px;font-size:0.75rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;}
-.btn-logout:hover{border-color:var(--red);color:var(--red);}
-.btn-export{
-  display:inline-flex;align-items:center;gap:6px;
-  background:transparent;color:var(--mid);
-  border:1px solid var(--border);padding:7px 16px;border-radius:100px;
-  font-size:0.75rem;font-weight:500;cursor:pointer;
-  font-family:'DM Sans',sans-serif;transition:all 0.2s;
-}
-.btn-export:hover{background:#16A34A;color:#fff;border-color:#16A34A;}
-.btn-export:disabled{opacity:0.5;cursor:not-allowed;}
+/* Kerangka */
+header{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px solid var(--line);min-height:56px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 16px}
+.tag{font-family:var(--text);font-size:.72rem;font-weight:700;color:var(--brand);background:var(--brand-tint);padding:3px 8px;border-radius:6px;margin-left:8px;letter-spacing:0;vertical-align:middle}
+.hdr-r{display:flex;align-items:center;gap:8px}
+.hdr-email{font-size:.8rem;color:var(--ink-3);display:none}
+.tabs{position:sticky;top:56px;z-index:50;background:var(--ice);border-bottom:1px solid var(--line);display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:8px 16px}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;border:0;background:transparent;padding:8px 12px;border-radius:10px;font-weight:700;font-size:.88rem;color:var(--ink-2);cursor:pointer;min-height:40px}
+.tab.act{background:#fff;color:var(--ink);box-shadow:0 1px 0 var(--line),0 0 0 1px var(--line)}
+main{max-width:1160px;margin:0 auto;padding:18px 16px 64px}
+@media(min-width:760px){header{padding:0 28px}.tabs{padding:8px 28px}main{padding:22px 28px 72px}.hdr-email{display:inline}}
 
-/* ── LAYOUT ── */
-.dashboard{max-width:1280px;margin:0 auto;padding:32px 40px 80px;display:none;}
-.dash-header{margin-bottom:24px;}
-.dash-header h1{font-family:'Instrument Serif',serif;font-size:2.2rem;letter-spacing:-0.03em;line-height:1.2;}
-.dash-header h1 em{font-style:italic;color:var(--accent);}
-.dash-header p{color:var(--soft);font-size:0.9rem;margin-top:6px;}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:16px}
+.seg{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:12px;padding:3px;gap:2px;flex-wrap:wrap}
+.seg button{border:0;background:transparent;border-radius:9px;padding:6px 11px;font-weight:700;font-size:.82rem;color:var(--ink-2);cursor:pointer;min-height:34px}
+.seg button.act{background:var(--ink);color:#fff}
+.period-note{font-size:.8rem;color:var(--ink-3)}
+.pane-title{font-size:1.4rem;margin-bottom:4px}
+.pane-sub{color:var(--ink-2);font-size:.9rem;margin-bottom:16px;max-width:70ch}
 
-/* ── PAGE TABS ── */
-.page-tabs{display:flex;gap:6px;margin-bottom:20px;background:var(--white);border:1px solid var(--border);border-radius:14px;padding:5px;width:fit-content;}
-.page-tab{
-  padding:8px 20px;border-radius:10px;font-size:0.8rem;font-weight:600;
-  cursor:pointer;transition:all 0.2s;color:var(--mid);border:none;
-  background:transparent;font-family:'DM Sans',sans-serif;
-}
-.page-tab.active{background:var(--charcoal);color:#fff;}
-.page-tab:hover:not(.active){background:rgba(0,0,0,0.04);}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:1fr}
+.g3{grid-template-columns:1fr}
+@media(min-width:860px){.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;min-width:0}
+.card h3{font-size:1.05rem;margin-bottom:4px}
+.card .hint{font-size:.8rem;color:var(--ink-3);margin-bottom:12px}
+.mt{margin-top:14px}
 
-/* ── DATE FILTER ── */
-.filter-row{display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap;}
-.filter-btn{background:var(--white);border:1px solid var(--border);padding:7px 18px;border-radius:100px;font-size:0.78rem;font-weight:500;color:var(--mid);cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif;}
-.filter-btn.active,.filter-btn:hover{background:var(--charcoal);color:#fff;border-color:var(--charcoal);}
+.kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:14px}
+@media(min-width:760px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:1060px){.kpis{grid-template-columns:repeat(6,minmax(0,1fr))}}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px}
+.kpi .k-l{font-size:.76rem;font-weight:700;color:var(--ink-2)}
+.kpi .k-v{font-family:var(--display);font-weight:800;font-size:1.6rem;letter-spacing:-0.03em;margin-top:2px}
+.kpi .k-d{font-size:.75rem;font-weight:700;margin-top:2px;color:var(--ink-3)}
+.up{color:var(--mint-ink)!important}.down{color:var(--danger)!important}
 
-/* ── STAT CARDS ── */
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:14px;margin-bottom:28px;}
-.stat-card{background:var(--white);border-radius:16px;padding:22px;border:1px solid var(--border);position:relative;overflow:hidden;transition:transform 0.2s;}
-.stat-card:hover{transform:translateY(-2px);}
-.stat-card .label{font-size:0.7rem;font-weight:600;color:var(--soft);text-transform:uppercase;letter-spacing:0.06em;}
-.stat-card .value{font-family:'JetBrains Mono',monospace;font-size:1.8rem;font-weight:500;margin-top:5px;letter-spacing:-0.03em;}
-.stat-card .sub{font-size:0.7rem;color:var(--soft);margin-top:3px;}
-.stat-card .accent-bar{position:absolute;top:0;left:0;right:0;height:3px;}
-.c-mint .accent-bar{background:var(--mint);}
-.c-lavender .accent-bar{background:var(--lavender);}
-.c-peach .accent-bar{background:var(--peach);}
-.c-sky .accent-bar{background:var(--sky);}
-.c-accent .accent-bar{background:var(--accent);}
-.c-green .accent-bar{background:var(--green);}
-.c-yellow .accent-bar{background:var(--yellow);}
-.c-red .accent-bar{background:var(--red);}
-.c-orange .accent-bar{background:#F97316;}
-.c-teal .accent-bar{background:#14B8A6;}
-.c-purple .accent-bar{background:#8B5CF6;}
+/* Funnel */
+.funnel{display:grid;gap:8px}
+.f-row{display:grid;grid-template-columns:minmax(120px,190px) 1fr 74px;gap:10px;align-items:center}
+.f-lbl{font-size:.85rem;font-weight:700}
+.f-lbl small{display:block;font-weight:500;color:var(--ink-3);font-size:.74rem}
+.f-bar{height:26px;background:var(--ice);border-radius:8px;overflow:hidden}
+.f-bar i{display:block;height:100%;background:var(--brand);border-radius:8px;min-width:3px}
+.f-n{text-align:right;font-family:var(--display);font-weight:800;font-size:1.05rem}
+.f-n small{display:block;font-family:var(--text);font-weight:600;font-size:.72rem;color:var(--ink-3)}
 
-/* ── PANELS ── */
-.panels{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
-.panel{background:var(--white);border-radius:16px;padding:28px;border:1px solid var(--border);}
-.panel-full{grid-column:1/-1;}
-.panel h3{font-size:0.85rem;font-weight:600;color:var(--charcoal);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
-.panel h3 .icon{font-size:1rem;}
+/* Tabel */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:.84rem}
+th{text-align:left;font-size:.72rem;font-weight:700;color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+.mini{display:inline-block;height:6px;border-radius:3px;background:var(--brand);vertical-align:middle;margin-left:6px}
+.pill{display:inline-block;font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--ice);color:var(--ink-2)}
+.pill.ai{background:var(--brand-tint);color:var(--brand-ink)}
+.pill.ok{background:var(--mint);color:var(--mint-ink)}
+.pill.warn{background:var(--warn-tint);color:var(--warn-ink)}
+.empty{color:var(--ink-3);font-size:.85rem;padding:14px 0}
+.chart-box{position:relative;height:240px}
+.chart-box.sm{height:200px}
 
-canvas{width:100%!important;max-height:260px;}
+.note{background:var(--warn-tint);color:var(--warn-ink);border-radius:12px;padding:10px 14px;font-size:.84rem;margin-bottom:14px}
+.note.info{background:var(--brand-tint);color:var(--brand-ink)}
+.insights{display:grid;gap:8px}
+.insights li{list-style:none;background:var(--ice);border-radius:10px;padding:10px 12px;font-size:.88rem}
 
-/* ── TABLE ── */
-.data-table{width:100%;border-collapse:collapse;font-size:0.82rem;}
-.data-table th{text-align:left;color:var(--soft);font-weight:500;padding:8px 12px;border-bottom:1px solid var(--border);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.05em;}
-.data-table td{padding:10px 12px;border-bottom:1px solid rgba(0,0,0,0.04);color:var(--mid);}
-.data-table tr:last-child td{border:none;}
-.bar-cell{display:flex;align-items:center;gap:10px;}
-.bar-fill{height:6px;border-radius:3px;opacity:0.7;min-width:4px;}
-.bar-label{font-family:'JetBrains Mono',monospace;font-size:0.75rem;min-width:36px;text-align:right;}
+/* Alat */
+.form-grid{display:grid;gap:10px;grid-template-columns:1fr}
+@media(min-width:640px){.form-grid{grid-template-columns:1fr 1fr}}
+.out{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.8rem;background:var(--ice);border:1px solid var(--line);border-radius:10px;padding:10px 12px;word-break:break-all;margin-top:12px;white-space:pre-wrap}
+textarea.out{width:100%;min-height:260px;resize:vertical;word-break:normal}
+.row-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.switch{display:flex;align-items:center;gap:10px;font-weight:700;font-size:.9rem;cursor:pointer}
+.switch input{width:20px;height:20px;accent-color:var(--brand)}
 
-/* ── FUNNEL ── */
-.funnel{display:flex;align-items:center;justify-content:center;gap:0;padding:20px 0;}
-.funnel-step{text-align:center;flex:1;}
-.funnel-num{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:500;}
-.funnel-label{font-size:0.75rem;color:var(--soft);margin-top:4px;}
-.funnel-bar{height:8px;border-radius:4px;margin:10px auto 0;}
-.funnel-arrow{color:var(--soft);font-size:1.2rem;padding:0 8px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;}
-.funnel-rate{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--accent);font-weight:600;margin-top:2px;}
-
-/* ── LOADING ── */
-.loading-overlay{position:fixed;inset:0;background:rgba(244,241,236,0.95);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999;transition:opacity 0.4s;}
-.loading-overlay.hide{opacity:0;pointer-events:none;}
-.spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;}
-@keyframes spin{to{transform:rotate(360deg)}}
-.loading-text{margin-top:14px;font-size:0.85rem;color:var(--soft);}
-.empty-state{text-align:center;padding:40px 20px;color:var(--soft);}
-.empty-state .big{font-size:2.5rem;margin-bottom:8px;}
-
-/* ── RECENT TABLE TOOLBAR ── */
-.recent-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap;}
-.recent-search{
-  flex:1;min-width:180px;max-width:320px;
-  padding:8px 14px;border:1px solid var(--border);border-radius:100px;
-  font-size:0.8rem;font-family:'DM Sans',sans-serif;background:var(--cream);
-  outline:none;transition:border 0.2s;
-}
-.recent-search:focus{border-color:var(--accent);}
-.recent-info{font-size:0.75rem;color:var(--soft);}
-
-/* ── PAGINATION ── */
-.pagination{
-  display:flex;align-items:center;justify-content:center;
-  gap:6px;margin-top:18px;flex-wrap:wrap;
-}
-.page-num{
-  width:34px;height:34px;border-radius:8px;border:1px solid var(--border);
-  background:var(--white);font-size:0.8rem;font-weight:500;color:var(--mid);
-  cursor:pointer;display:inline-flex;align-items:center;justify-content:center;
-  font-family:'DM Sans',sans-serif;transition:all 0.15s;flex-shrink:0;
-}
-.page-num:hover:not(.active):not(.disabled){background:rgba(91,79,217,0.08);border-color:var(--accent);color:var(--accent);}
-.page-num.active{background:var(--charcoal);color:#fff;border-color:var(--charcoal);}
-.page-num.disabled{opacity:0.3;cursor:default;pointer-events:none;}
-.page-num.wide{width:auto;padding:0 12px;}
-.page-ellipsis{font-size:0.8rem;color:var(--soft);padding:0 2px;line-height:34px;}
-
-@media(max-width:768px){
-  .topbar{padding:14px 20px;flex-wrap:wrap;gap:10px;}
-  .dashboard{padding:20px 16px 60px;}
-  .panels{grid-template-columns:1fr;}
-  .stats-grid{grid-template-columns:1fr 1fr;}
-  .dash-header h1{font-size:1.6rem;}
-  .funnel{flex-direction:column;gap:12px;}
-  .funnel-arrow{transform:rotate(90deg);}
-  .login-card{padding:36px 24px;}
-  .topbar-email{display:none;}
-}
-@media(max-width:480px){.stats-grid{grid-template-columns:1fr;}}
+#loader{position:fixed;inset:0;background:rgba(242,244,251,.8);display:flex;align-items:center;justify-content:center;z-index:100;font-weight:700;color:var(--ink-2)}
+.spin{width:28px;height:28px;border:3px solid var(--line);border-top-color:var(--brand);border-radius:50%;animation:sp .7s linear infinite;margin-right:10px}
+@keyframes sp{to{transform:rotate(360deg)}}
+.search{min-height:38px;padding:6px 12px;border:1px solid var(--line-strong);border-radius:10px;width:100%;max-width:280px}
+.pager{display:flex;gap:6px;justify-content:flex-end;margin-top:10px;align-items:center;font-size:.82rem;color:var(--ink-3)}
 </style>
 </head>
 <body>
 
-<div class="loading-overlay hide" id="loader">
-  <div class="spinner"></div>
-  <div class="loading-text">Memuat data analitik...</div>
-</div>
+<div id="loader" class="hide"><div class="spin"></div>Memuat data…</div>
 
-<!-- ════════ LOGIN ════════ -->
+<!-- LOGIN -->
 <div id="login-screen">
   <div class="login-card">
-    <div class="login-logo">Aslan<span>.</span>Teknik</div>
-    <p class="login-sub">Analisa Trafik — Masuk dengan akun admin</p>
-    <label class="l-label">Email</label>
-    <input type="email" class="l-input" id="l-email" placeholder="admin@email.com">
-    <label class="l-label">Password</label>
-    <input type="password" class="l-input" id="l-pass" placeholder="••••••••">
-    <button class="l-btn" id="btn-login" onclick="doLogin()">Masuk</button>
-    <p class="l-err" id="l-err"></p>
+    <span class="logo">Aslan<span>.</span>Teknik</span>
+    <p class="login-sub">Analisa marketing — masuk dengan akun admin</p>
+    <label class="lbl" for="l-email">Email</label>
+    <input class="inp" type="email" id="l-email" autocomplete="username">
+    <label class="lbl" for="l-pass">Password</label>
+    <input class="inp" type="password" id="l-pass" autocomplete="current-password">
+    <button class="btn btn-ink btn-block" id="btn-login" type="button">Masuk</button>
+    <p class="err" id="l-err"></p>
   </div>
 </div>
 
-<!-- ════════ DASHBOARD ════════ -->
-<div class="topbar" id="topbar" style="display:none;">
-  <a href="/" class="topbar-logo">Aslan<span>Teknik</span> <span style="font-family:'DM Sans';font-size:0.72rem;color:var(--soft);font-weight:400;margin-left:6px;">Analisa</span></a>
-  <div class="topbar-right">
-    <span class="topbar-email" id="hdr-email"></span>
-    <div class="topbar-badge"><div class="live-dot"></div> Live</div>
-    <button class="btn-sm" onclick="loadData()">↻ Refresh</button>
-    <button class="btn-export" id="btn-export" onclick="exportToExcel()" title="Export semua data ke Excel">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      Export .xlsx
-    </button>
-    <button class="btn-logout" onclick="doLogout()">Keluar</button>
-  </div>
-</div>
-
-<div class="dashboard" id="dashboard">
-  <div class="dash-header">
-    <h1>Dashboard <em>Analisa</em></h1>
-    <p>Pantau trafik, UTM campaign, dan konversi WhatsApp</p>
-  </div>
-
-  <!-- PAGE TABS -->
-  <div class="page-tabs">
-    <button class="page-tab active" data-page="all">Semua</button>
-    <button class="page-tab" data-page="home">Web Utama</button>
-    <button class="page-tab" data-page="booking">Booking</button>
-  </div>
-
-  <!-- DATE FILTER -->
-  <div class="filter-row">
-    <button class="filter-btn active" data-range="today">Hari Ini</button>
-    <button class="filter-btn" data-range="7d">7 Hari</button>
-    <button class="filter-btn" data-range="30d">30 Hari</button>
-    <button class="filter-btn" data-range="all">Semua</button>
-  </div>
-
-  <!-- STAT CARDS — Row 1 -->
-  <div class="stats-grid">
-    <div class="stat-card c-accent"><div class="accent-bar"></div><div class="label">Total Kunjungan</div><div class="value" id="totalVisits">—</div><div class="sub" id="totalSub"></div></div>
-    <div class="stat-card c-mint"><div class="accent-bar"></div><div class="label">Pengunjung Unik</div><div class="value" id="uniqueVisitors">—</div><div class="sub" id="uniqueSub"></div></div>
-    <div class="stat-card c-sky"><div class="accent-bar"></div><div class="label">Total Sesi</div><div class="value" id="totalSessions">—</div><div class="sub" id="sessionSub"></div></div>
-    <div class="stat-card c-orange"><div class="accent-bar"></div><div class="label">Avg Hal/Sesi</div><div class="value" id="avgPages">—</div><div class="sub">halaman per sesi</div></div>
-    <div class="stat-card c-teal"><div class="accent-bar"></div><div class="label">Klik Tombol Booking</div><div class="value" id="bookingClicks">—</div><div class="sub" id="bookingClicksSub"></div></div>
-    <div class="stat-card c-purple"><div class="accent-bar"></div><div class="label">Submit Form WA</div><div class="value" id="pesanClicks">—</div><div class="sub" id="pesanClicksSub"></div></div>
-    <div class="stat-card c-lavender"><div class="accent-bar"></div><div class="label">Halaman /booking</div><div class="value" id="bookingVisits">—</div><div class="sub" id="bookingSub"></div></div>
-    <div class="stat-card c-green"><div class="accent-bar"></div><div class="label">Klik WhatsApp</div><div class="value" id="waClicks">—</div><div class="sub" id="waSub"></div></div>
-    <div class="stat-card c-yellow"><div class="accent-bar"></div><div class="label">Conversion Rate</div><div class="value" id="convRate">—</div><div class="sub">Kunjungan → WA</div></div>
-    <div class="stat-card c-peach"><div class="accent-bar"></div><div class="label">Bounce Rate</div><div class="value" id="bounceRate">—</div><div class="sub">1 halaman saja</div></div>
-    <div class="stat-card c-red"><div class="accent-bar"></div><div class="label">Avg. Durasi</div><div class="value" id="avgDuration">—</div><div class="sub">Waktu di halaman</div></div>
-  </div>
-
-  <!-- FUNNEL -->
-  <div class="panels"><div class="panel panel-full"><h3><span class="icon">🔄</span> Funnel Konversi</h3><div class="funnel" id="funnelView"></div></div></div>
-
-  <!-- SECTION CLICKS -->
-  <div class="panels"><div class="panel panel-full">
-    <h3><span class="icon">🎯</span> Section Clicks <span style="font-weight:400;color:var(--soft);font-size:0.75rem;margin-left:6px;">— klik tombol /#booking &amp; /#pesan-sekarang</span></h3>
-    <div id="sectionClicksErr" style="display:none;background:#FEF2F2;border:1px solid #FECACA;border-radius:10px;padding:12px 16px;margin-bottom:14px;font-size:0.8rem;color:#991B1B;">
-      ⚠️ <strong>Firestore Rules belum mengizinkan read.</strong>
-      Tambahkan <code style="background:#FEE2E2;padding:1px 5px;border-radius:4px;">allow read: if isAdmin();</code> ke collection <code style="background:#FEE2E2;padding:1px 5px;border-radius:4px;">section_clicks</code> di Firebase Console.
-      <span id="sectionClicksErrMsg" style="display:block;margin-top:4px;color:#B91C1C;font-family:monospace;font-size:0.75rem;"></span>
+<!-- DASHBOARD -->
+<div id="app" class="hide">
+  <header>
+    <a class="logo" href="/">Aslan<span>.</span>Teknik<b class="tag">Analisa</b></a>
+    <div class="hdr-r">
+      <span class="hdr-email" id="hdr-email"></span>
+      <a class="btn" href="/admin/">Admin</a>
+      <button class="btn" type="button" id="btn-logout">Keluar</button>
     </div>
-    <div id="sectionClicksPanel"></div>
-  </div></div>
+  </header>
+  <nav class="tabs" role="tablist">
+    <button class="tab act" data-tab="ringkasan">Ringkasan</button>
+    <button class="tab" data-tab="channel">Channel</button>
+    <button class="tab" data-tab="konten">Konten &amp; SEO</button>
+    <button class="tab" data-tab="pelanggan">Pelanggan</button>
+    <button class="tab" data-tab="alat">Alat</button>
+    <button class="tab" data-tab="data">Data mentah</button>
+  </nav>
 
-  <!-- DAILY -->
-  <div class="panels"><div class="panel panel-full"><h3><span class="icon">📈</span> Kunjungan Harian</h3><canvas id="chartDaily"></canvas></div></div>
-
-  <!-- HOURS + DEVICE -->
-  <div class="panels">
-    <div class="panel"><h3><span class="icon">🕐</span> Jam Kunjungan</h3><canvas id="chartHours"></canvas></div>
-    <div class="panel"><h3><span class="icon">📱</span> Device</h3><canvas id="chartDevice"></canvas></div>
-  </div>
-
-  <!-- OS + BROWSER -->
-  <div class="panels">
-    <div class="panel"><h3><span class="icon">💻</span> Sistem Operasi</h3><canvas id="chartOs"></canvas></div>
-    <div class="panel"><h3><span class="icon">🌐</span> Browser</h3><canvas id="chartBrowser"></canvas></div>
-  </div>
-
-  <!-- UTM SOURCE + MEDIUM -->
-  <div class="panels">
-    <div class="panel"><h3><span class="icon">🏷️</span> UTM Source</h3><div id="utmSourceTable"></div></div>
-    <div class="panel"><h3><span class="icon">📡</span> UTM Medium</h3><div id="utmMediumTable"></div></div>
-  </div>
-
-  <!-- UTM CAMPAIGN + CONTENT -->
-  <div class="panels">
-    <div class="panel"><h3><span class="icon">🎯</span> UTM Campaign</h3><div id="utmCampaignTable"></div></div>
-    <div class="panel"><h3><span class="icon">📝</span> UTM Content</h3><div id="utmContentTable"></div></div>
-  </div>
-
-  <!-- UTM TERM -->
-  <div class="panels">
-    <div class="panel"><h3><span class="icon">🔍</span> UTM Term <span style="font-weight:400;color:var(--soft);margin-left:4px;font-size:0.75rem;">(keyword dari iklan)</span></h3><div id="utmTermTable"></div></div>
-    <div class="panel"><h3><span class="icon">📍</span> Lokasi Pengunjung</h3><div id="locationTable"></div></div>
-  </div>
-
-  <!-- REFERRER + PAGES -->
-  <div class="panels">
-    <div class="panel"><h3><span class="icon">🔗</span> Sumber Trafik</h3><div id="referrerTable"></div></div>
-    <div class="panel"><h3><span class="icon">📄</span> Halaman Terpopuler</h3><div id="pagesTable"></div></div>
-  </div>
-
-  <!-- WA PER CAMPAIGN -->
-  <div class="panels"><div class="panel panel-full"><h3><span class="icon">💬</span> Konversi WhatsApp per Campaign</h3><div id="waCampaignTable"></div></div></div>
-
-  <!-- RECENT -->
-  <div class="panels">
-    <div class="panel panel-full">
-      <h3><span class="icon">🕑</span> Kunjungan Terakhir</h3>
-      <div class="recent-toolbar">
-        <input type="text" class="recent-search" id="recentSearch" placeholder="Cari halaman, kota, UTM…" oninput="onRecentSearch()">
-        <span class="recent-info" id="recentInfo"></span>
+  <main>
+    <div class="toolbar" id="period-bar">
+      <div class="seg" id="range-seg">
+        <button data-range="today">Hari ini</button>
+        <button data-range="7d" class="act">7 hari</button>
+        <button data-range="30d">30 hari</button>
+        <button data-range="90d">90 hari</button>
+        <button data-range="all">Semua</button>
       </div>
-      <div style="overflow-x:auto;" id="recentTable"></div>
-      <div class="pagination" id="recentPagination"></div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <span class="period-note" id="period-note"></span>
+        <button class="btn" type="button" id="btn-refresh">Muat ulang</button>
+        <button class="btn" type="button" id="btn-export">Export .xlsx</button>
+      </div>
     </div>
-  </div>
+    <div class="note hide" id="internal-note"></div>
+
+    <!-- RINGKASAN -->
+    <section class="pane" id="pane-ringkasan">
+      <div class="kpis" id="kpis"></div>
+      <div class="grid g2">
+        <div class="card">
+          <h3>Funnel</h3>
+          <p class="hint">Dihitung per sesi. Persen = dibanding jumlah sesi.</p>
+          <div class="funnel" id="funnel"></div>
+        </div>
+        <div class="card">
+          <h3>Yang perlu diperhatikan</h3>
+          <p class="hint">Dibaca otomatis dari angka periode ini. Cek dulu sebelum mengambil keputusan.</p>
+          <ul class="insights" id="insights"></ul>
+        </div>
+      </div>
+      <div class="card mt">
+        <h3>Tren harian</h3>
+        <p class="hint">Sesi, klik WhatsApp, dan order dari web per hari.</p>
+        <div class="chart-box"><canvas id="ch-trend"></canvas></div>
+      </div>
+    </section>
+
+    <!-- CHANNEL -->
+    <section class="pane hide" id="pane-channel">
+      <h2 class="pane-title">Channel</h2>
+      <p class="pane-sub">Channel ditentukan dari halaman pertama tiap sesi: UTM kalau ada, kalau tidak dari referrer. Order dihubungkan ke channel lewat ID order di pesan WhatsApp.</p>
+      <div class="card">
+        <h3>Performa per channel</h3>
+        <div class="tw" id="tbl-channel"></div>
+      </div>
+      <div class="grid g2 mt">
+        <div class="card"><h3>UTM campaign</h3><p class="hint">Sesi dan klik WA per campaign.</p><div class="tw" id="tbl-campaign"></div></div>
+        <div class="card"><h3>UTM content</h3><p class="hint">Untuk membandingkan posting atau versi iklan.</p><div class="tw" id="tbl-content"></div></div>
+      </div>
+      <div class="card mt"><h3>Referrer lengkap</h3><p class="hint">Situs asal sebelum dikelompokkan.</p><div class="tw" id="tbl-ref"></div></div>
+    </section>
+
+    <!-- KONTEN -->
+    <section class="pane hide" id="pane-konten">
+      <h2 class="pane-title">Konten &amp; SEO</h2>
+      <p class="pane-sub">Halaman mana yang membawa orang masuk, dan mana yang berujung ke booking. Data kata kunci Google ada di Search Console.</p>
+      <div class="card">
+        <h3>Halaman masuk (landing page)</h3>
+        <p class="hint">Halaman pertama yang dibuka di tiap sesi.</p>
+        <div class="tw" id="tbl-landing"></div>
+      </div>
+      <div class="card mt">
+        <h3>Artikel blog</h3>
+        <p class="hint">Semua kunjungan ke /blog/, termasuk dari dalam situs.</p>
+        <div class="tw" id="tbl-blog"></div>
+      </div>
+      <div class="grid g2 mt">
+        <div class="card">
+          <h3>Trafik dari mesin pencari &amp; AI</h3>
+          <p class="hint">Sesi dari Google, Bing, dan asisten AI (ChatGPT, Gemini, Perplexity, Claude).</p>
+          <div class="tw" id="tbl-search"></div>
+        </div>
+        <div class="card">
+          <h3>Pintasan</h3>
+          <p class="hint">Data yang tidak bisa dibaca dari halaman ini.</p>
+          <div class="row-actions">
+            <a class="btn" href="https://search.google.com/search-console/performance/search-analytics?resource_id=https%3A%2F%2Faslanteknik.id%2F" target="_blank" rel="noopener">Search Console: kata kunci</a>
+            <a class="btn" href="https://business.google.com/" target="_blank" rel="noopener">Google Business Profile</a>
+            <a class="btn" href="/blog/">Daftar artikel</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PELANGGAN -->
+    <section class="pane hide" id="pane-pelanggan">
+      <h2 class="pane-title">Pelanggan &amp; retensi</h2>
+      <p class="pane-sub">Dari data order (semua waktu, kecuali yang ditolak). Pelanggan dikenali dari nomor WhatsApp.</p>
+      <div class="kpis" id="kpis-cust"></div>
+      <div class="grid g2">
+        <div class="card">
+          <h3>Pelanggan baru vs kembali per bulan</h3>
+          <div class="chart-box"><canvas id="ch-cust"></canvas></div>
+        </div>
+        <div class="card">
+          <h3>Sumber order per bulan</h3>
+          <p class="hint">Web = form booking. Manual = input admin (biasanya chat WhatsApp langsung).</p>
+          <div class="chart-box"><canvas id="ch-src"></canvas></div>
+        </div>
+      </div>
+      <div class="grid g2 mt">
+        <div class="card"><h3>Area (periode terpilih)</h3><div class="tw" id="tbl-area"></div></div>
+        <div class="card"><h3>Layanan (periode terpilih)</h3><div class="tw" id="tbl-svc"></div></div>
+      </div>
+    </section>
+
+    <!-- ALAT -->
+    <section class="pane hide" id="pane-alat">
+      <h2 class="pane-title">Alat</h2>
+      <p class="pane-sub">Pembuat link ber-UTM, laporan mingguan siap kirim, dan pengaturan perangkat ini.</p>
+      <div class="grid g2">
+        <div class="card">
+          <h3>Pembuat link UTM</h3>
+          <p class="hint">Konvensi: semua huruf kecil, pakai tanda hubung. Pakai link ini di setiap posting supaya channel-nya terbaca.</p>
+          <div class="form-grid">
+            <div><label class="lbl" for="u-page">Halaman tujuan</label>
+              <select class="inp" id="u-page">
+                <option value="/">Beranda</option><option value="/booking">Booking</option><option value="/pricelist">Daftar harga</option>
+                <option value="/jakarta-selatan">Jakarta Selatan</option><option value="/depok">Depok</option><option value="/tangerang-selatan">Tangerang Selatan</option>
+                <option value="/blog/">Blog</option><option value="/acfinder">AC Finder</option>
+              </select></div>
+            <div><label class="lbl" for="u-preset">Tempat posting</label>
+              <select class="inp" id="u-preset">
+                <option value="threads|social">Threads</option><option value="instagram|social">Instagram (bio / story)</option>
+                <option value="facebook|social">Facebook</option><option value="tiktok|social">TikTok</option>
+                <option value="gbp|local">Google Business Profile</option><option value="whatsapp|broadcast">WhatsApp broadcast / status</option>
+                <option value="custom|">Lainnya…</option>
+              </select></div>
+            <div><label class="lbl" for="u-source">utm_source</label><input class="inp" id="u-source" value="threads"></div>
+            <div><label class="lbl" for="u-medium">utm_medium</label><input class="inp" id="u-medium" value="social"></div>
+            <div><label class="lbl" for="u-campaign">utm_campaign</label><input class="inp" id="u-campaign" placeholder="cuci-ac-desember"></div>
+            <div><label class="lbl" for="u-content">utm_content (opsional)</label><input class="inp" id="u-content" placeholder="hook-ac-bau"></div>
+          </div>
+          <div class="out" id="u-out">—</div>
+          <div class="row-actions">
+            <button class="btn btn-ink" type="button" id="u-copy">Salin link</button>
+            <button class="btn" type="button" id="u-save">Simpan ke daftar</button>
+          </div>
+          <div class="tw mt" id="u-list"></div>
+        </div>
+        <div class="card">
+          <h3>Laporan mingguan</h3>
+          <p class="hint">Ringkasan 7 hari terakhir dibanding 7 hari sebelumnya, siap ditempel ke WhatsApp atau catatan.</p>
+          <textarea class="out" id="report-out" readonly></textarea>
+          <div class="row-actions"><button class="btn btn-ink" type="button" id="report-copy">Salin laporan</button></div>
+        </div>
+      </div>
+      <div class="card mt">
+        <h3>Perangkat ini</h3>
+        <p class="hint">Kunjunganmu sendiri ikut terhitung dan bisa mengacaukan angka. Centang ini di setiap HP/laptop yang kamu pakai untuk membuka aslanteknik.id.</p>
+        <label class="switch"><input type="checkbox" id="internal-toggle"> Jangan catat kunjungan dari perangkat ini</label>
+        <p class="hint mt" id="internal-info"></p>
+      </div>
+    </section>
+
+    <!-- DATA -->
+    <section class="pane hide" id="pane-data">
+      <h2 class="pane-title">Data mentah</h2>
+      <div class="grid g3">
+        <div class="card"><h3>Perangkat</h3><div class="chart-box sm"><canvas id="ch-dev"></canvas></div></div>
+        <div class="card"><h3>Jam kunjungan</h3><div class="chart-box sm"><canvas id="ch-hour"></canvas></div></div>
+        <div class="card"><h3>Kota</h3><div class="tw" id="tbl-city"></div></div>
+      </div>
+      <div class="card mt">
+        <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:10px">
+          <h3>Kunjungan terakhir</h3>
+          <input class="search" id="recent-q" placeholder="Cari halaman, kota, sumber…">
+        </div>
+        <div class="tw" id="tbl-recent"></div>
+        <div class="pager" id="recent-pager"></div>
+      </div>
+    </section>
+  </main>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
@@ -343,588 +348,421 @@ canvas{width:100%!important;max-height:260px;}
 <script type="module">
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
-import { getFirestore, collection, query, where, getDocs, orderBy, Timestamp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+import { getFirestore, collection, query, where, getDocs, orderBy, limit, Timestamp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
 const app=initializeApp({apiKey:"AIzaSyAd_HmgX5djmePrHpYHxsydSErTPSjcBdY",authDomain:"aslan-teknik.firebaseapp.com",projectId:"aslan-teknik",storageBucket:"aslan-teknik.firebasestorage.app",messagingSenderId:"372303552922",appId:"1:372303552922:web:5b61d3cd2c590ff1381a23"});
-const auth=getAuth(app);
-const db=getFirestore(app);
+const auth=getAuth(app), db=getFirestore(app);
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=n=>Number(n||0).toLocaleString('id-ID');
+const pct=(a,b)=>b>0?(a/b*100):0;
+const pctS=(a,b)=>b>0?(a/b*100).toFixed(1).replace('.',',')+'%':'—';
+const DAY=864e5;
+const C={brand:'#4A3FE0',wa:'#128C4B',sun:'#E0A100',ink:'#16153A',ink3:'#6F7191',line:'#E2E5F0',mint:'#0B6B57',tint:'#C9C4F7'};
 
-// ════════════════════════════════════════
-// AUTH
-// ════════════════════════════════════════
-onAuthStateChanged(auth,user=>{
-  if(user){
-    document.getElementById('login-screen').style.display='none';
-    document.getElementById('topbar').style.display='flex';
-    document.getElementById('dashboard').style.display='block';
-    document.getElementById('hdr-email').textContent=user.email;
-    loadData();
-  }else{
-    document.getElementById('login-screen').style.display='flex';
-    document.getElementById('topbar').style.display='none';
-    document.getElementById('dashboard').style.display='none';
-  }
+/* ── Auth ── */
+onAuthStateChanged(auth,u=>{
+  $('login-screen').classList.toggle('hide',!!u);
+  $('app').classList.toggle('hide',!u);
+  if(u){ $('hdr-email').textContent=u.email; loadAll(); }
 });
+async function doLogin(){
+  const e=$('l-email').value.trim(),p=$('l-pass').value,btn=$('btn-login');
+  $('l-err').textContent='';
+  if(!e||!p){$('l-err').textContent='Email dan password wajib diisi.';return;}
+  btn.disabled=true;btn.textContent='Masuk…';
+  try{await signInWithEmailAndPassword(auth,e,p);}
+  catch(err){$('l-err').textContent=/invalid-credential|wrong-password|user-not-found/.test(err.code||'')?'Email atau password salah.':'Gagal: '+err.message;}
+  btn.disabled=false;btn.textContent='Masuk';
+}
+$('btn-login').onclick=doLogin;
+$('l-pass').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+$('btn-logout').onclick=()=>signOut(auth);
 
-window.doLogin=async function(){
-  const email=document.getElementById('l-email').value.trim();
-  const pass=document.getElementById('l-pass').value;
-  const err=document.getElementById('l-err');
-  const btn=document.getElementById('btn-login');
-  err.textContent='';
-  if(!email||!pass){err.textContent='Email dan password wajib diisi.';return;}
-  btn.disabled=true;btn.innerHTML='<span class="spinner-sm"></span> Masuk...';
-  try{await signInWithEmailAndPassword(auth,email,pass);}
-  catch(e){err.textContent=e.code==='auth/invalid-credential'||e.code==='auth/wrong-password'||e.code==='auth/user-not-found'?'Email atau password salah.':'Gagal: '+e.message;btn.disabled=false;btn.textContent='Masuk';}
-};
-window.doLogout=async function(){await signOut(auth);};
-
-document.getElementById('l-pass').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
-
-// ════════════════════════════════════════
-// STATE
-// ════════════════════════════════════════
-let allVisits=[],allWa=[],allSectionClicks=[];
-let currentRange='today',currentPage='all';
-let chartDaily,chartHours,chartDevice,chartBrowser,chartOs;
-
-// ── Recent table pagination state ──
-const RECENT_PER_PAGE=20;
-let recentCurrentPage=1;
-let recentFilteredData=[];  // currently filtered+searched visits
-let recentSearchQuery='';
-
-// Page tabs
-document.querySelectorAll('.page-tab').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.page-tab').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    currentPage=btn.dataset.page;
-    renderFiltered();
-  });
+/* ── Tab & periode ── */
+let tab='ringkasan';
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
+  tab=b.dataset.tab;
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('act',x===b));
+  document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('hide',p.id!=='pane-'+tab));
+  $('period-bar').classList.toggle('hide',tab==='alat');
+  renderTab();
 });
-
-// Date filter
-document.querySelectorAll('.filter-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    currentRange=btn.dataset.range;
-    loadData();
-  });
+let range='7d';
+document.querySelectorAll('#range-seg button').forEach(b=>b.onclick=()=>{
+  range=b.dataset.range;
+  document.querySelectorAll('#range-seg button').forEach(x=>x.classList.toggle('act',x===b));
+  computeAndRender();
 });
+$('btn-refresh').onclick=()=>loadAll();
 
-function getStart(r){
-  const n=new Date();
-  if(r==='today')return new Date(n.getFullYear(),n.getMonth(),n.getDate());
-  if(r==='7d')return new Date(n.getTime()-7*864e5);
-  if(r==='30d')return new Date(n.getTime()-30*864e5);
-  return new Date(2024,0,1);
+/* ── Data ── */
+let RAW={visits:[],wa:[],sc:[],orders:[]};
+const toD=ts=>ts&&ts.toDate?ts.toDate():(ts&&ts.seconds?new Date(ts.seconds*1000):new Date(ts||0));
+const myVid=()=>{try{return localStorage.getItem('at_vid')||'';}catch(e){return '';}};
+const isInternal=()=>{try{return localStorage.getItem('at_internal')==='1';}catch(e){return false;}};
+
+async function fetchCol(name,since){
+  const q=since?query(collection(db,name),where('timestamp','>=',Timestamp.fromDate(since)),orderBy('timestamp','desc'))
+               :query(collection(db,name),orderBy('timestamp','desc'));
+  const s=await getDocs(q);const out=[];s.forEach(d=>out.push({id:d.id,...d.data()}));return out;
+}
+async function loadAll(){
+  $('loader').classList.remove('hide');
+  const since=new Date(Date.now()-200*DAY); // cukup untuk 90 hari + pembanding
+  const errs=[];
+  const [v,w,s,o]=await Promise.all([
+    fetchCol('site_visits',range==='all'?null:since).catch(e=>{errs.push('kunjungan');return [];}),
+    fetchCol('wa_clicks',range==='all'?null:since).catch(e=>{errs.push('klik WA');return [];}),
+    fetchCol('section_clicks',range==='all'?null:since).catch(e=>{errs.push('klik booking');return [];}),
+    getDocs(query(collection(db,'orders'),orderBy('created_at','desc'),limit(2000))).then(s=>{const a=[];s.forEach(d=>a.push({id:d.id,...d.data()}));return a;}).catch(e=>{errs.push('order');return [];})
+  ]);
+  const vid=myVid();
+  const notMe=r=>!(vid&&r.visitorId===vid);
+  RAW={visits:v.filter(notMe),wa:w.filter(notMe),sc:s.filter(notMe),orders:o.filter(x=>x.status!=='rejected')};
+  RAW.loadedAll=range==='all';
+  $('internal-note').classList.toggle('hide',!errs.length);
+  if(errs.length) $('internal-note').textContent='Sebagian data gagal dimuat ('+errs.join(', ')+'). Coba Muat ulang.';
+  computeAndRender();
+  $('loader').classList.add('hide');
 }
 
-// ════════════════════════════════════════
-// LOAD DATA
-// ════════════════════════════════════════
-window.loadData=async function(){
-  document.getElementById('loader').classList.remove('hide');
-  recentSearchQuery='';
-  document.getElementById('recentSearch').value='';
-  const startTs=Timestamp.fromDate(getStart(currentRange));
-  allVisits=[];allWa=[];allSectionClicks=[];
-  try{
-    const s1=await getDocs(query(collection(db,'site_visits'),where('timestamp','>=',startTs),orderBy('timestamp','desc')));
-    s1.forEach(d=>allVisits.push({id:d.id,...d.data()}));
-  }catch(e){console.error('[analisa] Gagal baca site_visits:',e);}
-  try{
-    const s2=await getDocs(query(collection(db,'wa_clicks'),where('timestamp','>=',startTs),orderBy('timestamp','desc')));
-    s2.forEach(d=>allWa.push({id:d.id,...d.data()}));
-  }catch(e){console.error('[analisa] Gagal baca wa_clicks:',e);}
-  try{
-    const s3=await getDocs(query(collection(db,'section_clicks'),where('timestamp','>=',startTs),orderBy('timestamp','desc')));
-    s3.forEach(d=>allSectionClicks.push({id:d.id,...d.data()}));
-    document.getElementById('sectionClicksErr').style.display='none';
-  }catch(e){
-    console.error('[analisa] Gagal baca section_clicks:',e);
-    document.getElementById('sectionClicksErr').style.display='block';
-    document.getElementById('sectionClicksErrMsg').textContent=e.code||e.message||String(e);
+/* ── Klasifikasi channel ── */
+function chanOf(r){
+  const s=(r.utm_source||'').toLowerCase().trim();
+  if(s){
+    if(/thread/.test(s))return 'Threads';
+    if(/^ig$|insta/.test(s))return 'Instagram';
+    if(/^fb$|facebook|meta/.test(s))return 'Facebook';
+    if(/tiktok/.test(s))return 'TikTok';
+    if(/gbp|gmb|maps|business/.test(s))return 'Google Business Profile';
+    if(/whatsapp|^wa$/.test(s))return 'WhatsApp';
+    if(/google/.test(s))return (r.utm_medium||'').toLowerCase().includes('cpc')?'Google Ads':'Google (organik)';
+    return 'UTM: '+s;
   }
-  renderFiltered();
-  setTimeout(()=>document.getElementById('loader').classList.add('hide'),300);
+  let ref=r.referrer||'';
+  if(!ref||ref==='Direct'||ref==='null')return 'Langsung';
+  let h='';try{h=new URL(ref).hostname.replace(/^www\./,'');}catch(e){return 'Langsung';}
+  if(/aslanteknik\.id$/.test(h))return 'Internal';
+  if(/(^|\.)google\./.test(h))return 'Google (organik)';
+  if(/bing\.com|duckduckgo|yahoo|ecosia|yandex/.test(h))return 'Mesin pencari lain';
+  if(/chatgpt\.com|openai\.com|perplexity|gemini\.google|claude\.ai|copilot\.microsoft/.test(h))return 'Asisten AI';
+  if(/threads\.(net|com)/.test(h))return 'Threads';
+  if(/instagram\.com/.test(h))return 'Instagram';
+  if(/facebook\.com|fb\.com|fb\.me/.test(h))return 'Facebook';
+  if(/tiktok\.com/.test(h))return 'TikTok';
+  if(/(^|\.)(t\.co|x\.com|twitter\.com)$/.test(h))return 'X';
+  if(/whatsapp|wa\.me/.test(h))return 'WhatsApp';
+  return 'Situs lain: '+h;
+}
+const isSearchOrAI=c=>/Google \(organik\)|Mesin pencari lain|Asisten AI/.test(c);
+
+/* ── Periode ── */
+function periodBounds(){
+  const now=new Date(), sod=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  if(range==='today')return {start:sod,end:now,pStart:new Date(sod-DAY),pEnd:new Date(now-DAY),label:'hari ini vs kemarin di jam yang sama'};
+  const n={'7d':7,'30d':30,'90d':90}[range];
+  if(n){const start=new Date(sod-(n-1)*DAY);return {start,end:now,pStart:new Date(start-n*DAY),pEnd:start,label:n+' hari terakhir vs '+n+' hari sebelumnya'};}
+  return {start:new Date(2024,0,1),end:now,pStart:null,pEnd:null,label:'semua data'};
+}
+const inR=(d,a,b)=>d>=a&&d<b;
+
+function sessionsOf(visits){
+  const m=new Map();
+  visits.slice().sort((a,b)=>toD(a.timestamp)-toD(b.timestamp)).forEach(v=>{
+    const k=v.sessionId||v.id;
+    if(!m.has(k))m.set(k,{id:k,visits:[],first:v,visitor:v.visitorId||k});
+    m.get(k).visits.push(v);
+  });
+  m.forEach(s=>{s.chan=chanOf(s.first);s.landing=normPage(s.first.page);s.t=toD(s.first.timestamp);});
+  return m;
+}
+function normPage(p){p=(p||'/').split('?')[0].replace(/index\.html$/,'');if(p.length>1&&!p.endsWith('/')&&!/\.html$/.test(p))p+='/';return p||'/';}
+
+function orderSource(o){return o.source==='manual'?'manual':'web';}
+function orderDate(o){return o.created_at?toD(o.created_at):null;}
+
+/* Hubungkan order web ke klik WA (ID order ada di teks pesan) lalu ke sesi */
+function attachOrders(orders,wa,sessMap){
+  const byOid=new Map();
+  wa.forEach(w=>{let u='';try{u=decodeURIComponent(w.waUrl||'');}catch(e){u=w.waUrl||'';}
+    const m=u.match(/ID Order:\*?\s*([A-Z0-9-]+)/i);if(m&&!byOid.has(m[1]))byOid.set(m[1],w);});
+  orders.forEach(o=>{
+    o._chan=null;
+    if(orderSource(o)!=='web')return;
+    const w=o.order_id&&byOid.get(o.order_id);
+    if(!w){o._chan='Tidak terlacak';return;}
+    const s=sessMap.get(w.sessionId);
+    o._chan=s?s.chan:chanOf(w);
+    o._session=w.sessionId;
+  });
+}
+
+function metrics(a,b){
+  const visits=RAW.visits.filter(v=>inR(toD(v.timestamp),a,b));
+  const wa=RAW.wa.filter(v=>inR(toD(v.timestamp),a,b));
+  const sc=RAW.sc.filter(v=>inR(toD(v.timestamp),a,b));
+  const orders=RAW.orders.filter(o=>{const d=orderDate(o);return d&&inR(d,a,b);});
+  const sess=sessionsOf(visits);
+  // tandai aktivitas per sesi
+  sess.forEach(s=>{s.interest=s.visits.some(v=>(v.page||'').includes('booking'));s.form=false;s.wa=false;});
+  sc.forEach(x=>{const s=sess.get(x.sessionId);if(!s)return;if(x.hash==='/#pesan-sekarang')s.form=true;else s.interest=true;});
+  wa.forEach(x=>{const s=sess.get(x.sessionId);if(s)s.wa=true;});
+  sess.forEach(s=>{if(s.form||s.wa)s.interest=true;});
+  attachOrders(orders,wa,sess);
+  const S=[...sess.values()];
+  const web=orders.filter(o=>orderSource(o)==='web');
+  return {visits,wa,sc,orders,web,sess,S,
+    sessions:S.length,
+    visitors:new Set(visits.map(v=>v.visitorId||v.sessionId||v.id)).size,
+    interest:S.filter(s=>s.interest).length,
+    form:S.filter(s=>s.form).length,
+    waSess:S.filter(s=>s.wa).length,
+    waClicks:wa.length,
+    bounce:pct(S.filter(s=>s.visits.length===1).length,S.length),
+    confirmed:orders.filter(o=>o.status==='confirmed').length};
+}
+
+let CUR=null,PREV=null,P=null;
+function computeAndRender(){
+  if(range==='all'&&!RAW.loadedAll){loadAll();return;}
+  P=periodBounds();
+  CUR=metrics(P.start,P.end);
+  PREV=P.pStart?metrics(P.pStart,P.pEnd):null;
+  $('period-note').textContent=P.label;
+  updateInternalUI();
+  renderTab();
+}
+function renderTab(){
+  if(!CUR&&tab!=='alat')return;
+  ({ringkasan:renderRingkasan,channel:renderChannel,konten:renderKonten,pelanggan:renderPelanggan,alat:renderAlat,data:renderData})[tab]();
+}
+
+/* ── Helpers tampilan ── */
+function delta(cur,prev,invert){
+  if(prev==null)return '';
+  if(!prev&&!cur)return '<span class="k-d">sama</span>';
+  if(!prev)return '<span class="k-d up">baru</span>';
+  const d=(cur-prev)/prev*100, good=invert?d<0:d>0;
+  const cls=Math.abs(d)<1?'':(good?'up':'down');
+  return `<span class="k-d ${cls}">${d>0?'▲':d<0?'▼':''} ${Math.abs(d).toFixed(0)}% vs sebelumnya</span>`;
+}
+function kpi(label,val,prev,disp,invert){
+  return `<div class="kpi"><div class="k-l">${label}</div><div class="k-v">${disp!=null?disp:fmt(val)}</div>${PREV?delta(val,prev,invert):'<span class="k-d">&nbsp;</span>'}</div>`;
+}
+function table(head,rows,numCols){
+  if(!rows.length)return '<p class="empty">Belum ada data di periode ini.</p>';
+  numCols=numCols||[];
+  return '<table><thead><tr>'+head.map((h,i)=>`<th class="${numCols.includes(i)?'n':''}">${h}</th>`).join('')+'</tr></thead><tbody>'+
+    rows.map(r=>'<tr>'+r.map((c,i)=>`<td class="${numCols.includes(i)?'n':''}">${c}</td>`).join('')+'</tr>').join('')+'</tbody></table>';
+}
+const charts={};
+function chart(id,cfg){if(charts[id])charts[id].destroy();const el=$(id);if(!el||!window.Chart)return;
+  cfg.options=Object.assign({responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{font:{family:'Plus Jakarta Sans',size:11},boxWidth:12}}},
+    scales:cfg.type==='doughnut'?undefined:{x:{grid:{display:false},ticks:{font:{size:10},color:C.ink3}},y:{beginAtZero:true,grid:{color:C.line},ticks:{precision:0,font:{size:10},color:C.ink3}}}},cfg.options||{});
+  charts[id]=new Chart(el,cfg);}
+function dayKey(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+
+/* ── RINGKASAN ── */
+function renderRingkasan(){
+  const c=CUR,p=PREV;
+  $('kpis').innerHTML=
+    kpi('Sesi',c.sessions,p&&p.sessions)+
+    kpi('Pengunjung unik',c.visitors,p&&p.visitors)+
+    kpi('Sesi klik WhatsApp',c.waSess,p&&p.waSess)+
+    kpi('Konversi sesi → WA',pct(c.waSess,c.sessions),p&&pct(p.waSess,p.sessions),pctS(c.waSess,c.sessions))+
+    kpi('Order dari web',c.web.length,p&&p.web.length)+
+    kpi('Order manual',c.orders.length-c.web.length,p&&(p.orders.length-p.web.length));
+  const steps=[
+    ['Sesi','semua kunjungan',c.sessions],
+    ['Minat booking','buka form / halaman booking',c.interest],
+    ['Kirim form','tekan tombol pesan',c.form],
+    ['Klik WhatsApp','form atau tombol WA',c.waSess],
+    ['Order tercatat','order web di database',c.web.length],
+    ['Terkonfirmasi','status dikonfirmasi admin',c.web.filter(o=>o.status==='confirmed').length]];
+  $('funnel').innerHTML=steps.map(s=>`<div class="f-row"><div class="f-lbl">${s[0]}<small>${s[1]}</small></div>
+    <div class="f-bar"><i style="width:${Math.min(100,pct(s[2],c.sessions||1))}%"></i></div>
+    <div class="f-n">${fmt(s[2])}<small>${s[0]==='Sesi'?'100%':pctS(s[2],c.sessions)}</small></div></div>`).join('');
+  $('insights').innerHTML=insights().map(t=>`<li>${t}</li>`).join('')||'<li>Belum cukup data.</li>';
+  // tren
+  const days=[];const end=new Date();let d=new Date(P.start);d.setHours(0,0,0,0);
+  if(range==='all'){const f=c.visits.length?toD(c.visits[c.visits.length-1].timestamp):new Date();d=new Date(Math.max(f,Date.now()-180*DAY));d.setHours(0,0,0,0);}
+  while(d<=end){days.push(dayKey(d));d=new Date(+d+DAY);}
+  const cnt=(arr,f)=>{const m={};arr.forEach(x=>{const k=dayKey(f(x));m[k]=(m[k]||0)+1;});return days.map(k=>m[k]||0);};
+  chart('ch-trend',{type:'line',data:{labels:days.map(k=>k.slice(8)+'/'+k.slice(5,7)),datasets:[
+    {label:'Sesi',data:cnt(c.S,s=>s.t),borderColor:C.brand,backgroundColor:'rgba(74,63,224,.08)',fill:true,tension:.3,pointRadius:days.length>40?0:2},
+    {label:'Klik WA',data:cnt(c.wa,w=>toD(w.timestamp)),borderColor:C.wa,tension:.3,pointRadius:days.length>40?0:2},
+    {label:'Order web',data:cnt(c.web,o=>orderDate(o)),borderColor:C.sun,borderDash:[5,4],tension:.3,pointRadius:days.length>40?0:2}]}});
+}
+function chanStats(m){
+  const t={};
+  m.S.forEach(s=>{if(s.chan==='Internal')return;const r=t[s.chan]||(t[s.chan]={chan:s.chan,sess:0,vis:new Set(),interest:0,wa:0,orders:0,bounce:0});
+    r.sess++;r.vis.add(s.visitor);if(s.interest)r.interest++;if(s.wa)r.wa++;if(s.visits.length===1)r.bounce++;});
+  m.web.forEach(o=>{const k=o._chan||'Tidak terlacak';const r=t[k]||(t[k]={chan:k,sess:0,vis:new Set(),interest:0,wa:0,orders:0,bounce:0});r.orders++;});
+  return Object.values(t).sort((a,b)=>b.sess-a.sess||b.orders-a.orders);
+}
+function insights(){
+  const c=CUR,p=PREV,out=[];
+  if(!c.sessions)return ['Belum ada kunjungan di periode ini.'];
+  const cs=chanStats(c).filter(r=>r.sess>=5);
+  if(cs.length){
+    const best=cs.slice().sort((a,b)=>pct(b.wa,b.sess)-pct(a.wa,a.sess))[0];
+    out.push(`Channel dengan konversi WA tertinggi: <b>${esc(best.chan)}</b> (${pctS(best.wa,best.sess)} dari ${fmt(best.sess)} sesi).`);
+    const top=cs[0];out.push(`Sumber sesi terbanyak: <b>${esc(top.chan)}</b>, ${pctS(top.sess,c.sessions)} dari semua sesi.`);
+  }
+  if(c.interest&&c.form/c.interest<0.35)out.push(`Hanya ${pctS(c.form,c.interest)} dari yang membuka form booking yang menekan tombol pesan. Cek bagian form yang paling sering membuat orang berhenti.`);
+  const untracked=c.web.filter(o=>o._chan==='Tidak terlacak').length;
+  if(c.web.length&&untracked/c.web.length>0.3)out.push(`${untracked} dari ${c.web.length} order web tidak bisa dihubungkan ke channel. Biasanya karena pelanggan menutup WhatsApp sebelum pesan terkirim, atau adblock.`);
+  const noUtm=c.S.filter(s=>s.chan==='Langsung').length;
+  if(pct(noUtm,c.sessions)>40)out.push(`${pctS(noUtm,c.sessions)} sesi tercatat "Langsung" (tanpa sumber). Pakai link ber-UTM dari tab Alat di setiap posting supaya sumbernya terbaca.`);
+  const ai=c.S.filter(s=>s.chan==='Asisten AI').length;
+  if(ai)out.push(`${fmt(ai)} sesi datang dari asisten AI (ChatGPT, Gemini, dll.).`);
+  if(p&&p.sessions){const d=(c.sessions-p.sessions)/p.sessions*100;if(Math.abs(d)>=25)out.push(`Sesi ${d>0?'naik':'turun'} ${Math.abs(d).toFixed(0)}% dibanding periode sebelumnya.`);}
+  return out;
+}
+
+/* ── CHANNEL ── */
+function renderChannel(){
+  const rows=chanStats(CUR);
+  const max=Math.max(1,...rows.map(r=>r.sess));
+  $('tbl-channel').innerHTML=table(['Channel','Sesi','Pengunjung','Minat booking','Klik WA','Konv. WA','Order web','Bounce'],
+    rows.map(r=>[`<b>${esc(r.chan)}</b>${r.chan==='Asisten AI'?' <span class="pill ai">AEO</span>':''}`,
+      fmt(r.sess)+`<span class="mini" style="width:${Math.round(r.sess/max*50)}px"></span>`,fmt(r.vis.size),fmt(r.interest),fmt(r.wa),pctS(r.wa,r.sess),fmt(r.orders),pctS(r.bounce,r.sess)]),[1,2,3,4,5,6,7]);
+  const byKey=(field)=>{const t={};CUR.S.forEach(s=>{const k=(s.first[field]||'').trim();if(!k)return;const r=t[k]||(t[k]={k,s:0,wa:0});r.s++;if(s.wa)r.wa++;});
+    return Object.values(t).sort((a,b)=>b.s-a.s).slice(0,30).map(r=>[esc(r.k),fmt(r.s),fmt(r.wa),pctS(r.wa,r.s)]);};
+  $('tbl-campaign').innerHTML=table(['Campaign','Sesi','Sesi WA','Konv.'],byKey('utm_campaign'),[1,2,3]);
+  $('tbl-content').innerHTML=table(['Content','Sesi','Sesi WA','Konv.'],byKey('utm_content'),[1,2,3]);
+  const rf={};CUR.S.forEach(s=>{let r=s.first.referrer||'';let h='(langsung)';try{if(r&&r!=='Direct')h=new URL(r).hostname.replace(/^www\./,'');}catch(e){}rf[h]=(rf[h]||0)+1;});
+  $('tbl-ref').innerHTML=table(['Referrer','Sesi'],Object.entries(rf).sort((a,b)=>b[1]-a[1]).slice(0,30).map(([h,n])=>[esc(h),fmt(n)]),[1]);
+}
+
+/* ── KONTEN ── */
+function renderKonten(){
+  const t={};
+  CUR.S.forEach(s=>{const r=t[s.landing]||(t[s.landing]={p:s.landing,s:0,b:0,wa:0,dur:0,dn:0,seo:0});r.s++;if(s.visits.length===1)r.b++;if(s.wa)r.wa++;if(isSearchOrAI(s.chan))r.seo++;
+    const d=s.visits.reduce((a,v)=>a+(v.duration||0),0);if(d>0){r.dur+=d;r.dn++;}});
+  const fmtDur=x=>x?Math.floor(x/60)+'m '+String(Math.round(x%60)).padStart(2,'0')+'d':'—';
+  $('tbl-landing').innerHTML=table(['Halaman','Sesi','Dari Google/AI','Bounce','Lama sesi','Konv. WA'],
+    Object.values(t).sort((a,b)=>b.s-a.s).slice(0,40).map(r=>[`<a href="${esc(r.p)}" target="_blank" rel="noopener">${esc(r.p)}</a>`,fmt(r.s),fmt(r.seo),pctS(r.b,r.s),fmtDur(r.dn?r.dur/r.dn:0),pctS(r.wa,r.s)]),[1,2,3,4,5]);
+  const b={};
+  CUR.visits.forEach(v=>{const p=normPage(v.page);if(!p.startsWith('/blog/')||p==='/blog/')return;const r=b[p]||(b[p]={p,n:0,u:new Set(),dur:0,dn:0,sess:new Set()});r.n++;r.u.add(v.visitorId);if(v.duration>0){r.dur+=v.duration;r.dn++;}r.sess.add(v.sessionId);});
+  $('tbl-blog').innerHTML=table(['Artikel','Kunjungan','Pengunjung','Waktu baca','Lanjut klik WA'],
+    Object.values(b).sort((a,c)=>c.n-a.n).map(r=>{const waS=[...r.sess].filter(id=>{const s=CUR.sess.get(id);return s&&s.wa;}).length;
+      return [`<a href="${esc(r.p)}" target="_blank" rel="noopener">${esc(r.p.replace('/blog/','').replace(/\/$/,''))}</a>`,fmt(r.n),fmt(r.u.size),fmtDur(r.dn?r.dur/r.dn:0),`${fmt(waS)} (${pctS(waS,r.sess.size)})`];}),[1,2,3,4]);
+  const se={};CUR.S.filter(s=>isSearchOrAI(s.chan)).forEach(s=>{let h=s.chan;try{h=new URL(s.first.referrer).hostname.replace(/^www\./,'');}catch(e){}const r=se[h]||(se[h]={h,c:s.chan,s:0,wa:0});r.s++;if(s.wa)r.wa++;});
+  $('tbl-search').innerHTML=table(['Sumber','Jenis','Sesi','Sesi WA'],Object.values(se).sort((a,c)=>c.s-a.s).map(r=>[esc(r.h),`<span class="pill ${r.c==='Asisten AI'?'ai':''}">${esc(r.c)}</span>`,fmt(r.s),fmt(r.wa)]),[2,3]);
+}
+
+/* ── PELANGGAN ── */
+function custKey(o){const w=String(o.wa_number||'').replace(/\D/g,'').replace(/^0/,'62').replace(/^8/,'628');if(w.length>=8)return 'wa:'+w;const n=String(o.name||'').trim().toLowerCase();return n?'nm:'+n:'id:'+o.id;}
+function isCuci(o){return JSON.stringify(o.services||o.services_detail||'').toLowerCase().includes('cuci');}
+function renderPelanggan(){
+  const all=RAW.orders.filter(o=>orderDate(o)).sort((a,b)=>orderDate(a)-orderDate(b));
+  const first={},last={},count={};
+  all.forEach(o=>{const k=custKey(o),d=orderDate(o);if(!first[k])first[k]=d;last[k]=o;count[k]=(count[k]||0)+1;});
+  const custs=Object.keys(first);
+  const returned=custs.filter(k=>{const f=first[k];return all.some(o=>custKey(o)===k&&orderDate(o)-f>30*DAY);}).length;
+  const now=Date.now();
+  const due=custs.filter(k=>{const o=last[k];if(!isCuci(o))return false;const age=(now-orderDate(o))/DAY;return age>=90&&age<=150;}).length;
+  const inP=all.filter(o=>inR(orderDate(o),P.start,P.end));
+  const newInP=inP.filter(o=>+first[custKey(o)]===+orderDate(o)).length;
+  $('kpis-cust').innerHTML=
+    `<div class="kpi"><div class="k-l">Total pelanggan</div><div class="k-v">${fmt(custs.length)}</div><span class="k-d">${fmt(all.length)} order</span></div>`+
+    `<div class="kpi"><div class="k-l">Pernah kembali</div><div class="k-v">${pctS(returned,custs.length)}</div><span class="k-d">${fmt(returned)} pelanggan, &gt;30 hari</span></div>`+
+    `<div class="kpi"><div class="k-l">Waktunya cuci lagi</div><div class="k-v">${fmt(due)}</div><span class="k-d"><a href="/admin/">3–5 bulan sejak cuci → Pengingat</a></span></div>`+
+    `<div class="kpi"><div class="k-l">Order periode ini</div><div class="k-v">${fmt(inP.length)}</div><span class="k-d">${fmt(newInP)} pelanggan baru</span></div>`+
+    `<div class="kpi"><div class="k-l">Order dari web</div><div class="k-v">${pctS(inP.filter(o=>orderSource(o)==='web').length,inP.length)}</div><span class="k-d">periode ini</span></div>`+
+    `<div class="kpi"><div class="k-l">Rata-rata unit/order</div><div class="k-v">${inP.length?(inP.reduce((a,o)=>a+(+o.unit_count||1),0)/inP.length).toFixed(1).replace('.',','):'—'}</div><span class="k-d">periode ini</span></div>`;
+  const months=[];const mm={};
+  all.forEach(o=>{const d=orderDate(o),k=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');if(!mm[k]){mm[k]={n:0,r:0,web:0,man:0};months.push(k);}
+    if(+first[custKey(o)]===+d)mm[k].n++;else mm[k].r++;if(orderSource(o)==='web')mm[k].web++;else mm[k].man++;});
+  const ms=months.slice(-12),lab=ms.map(k=>['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'][+k.slice(5)-1]+' '+k.slice(2,4));
+  const stack={x:{stacked:true,grid:{display:false}},y:{stacked:true,beginAtZero:true,ticks:{precision:0}}};
+  chart('ch-cust',{type:'bar',data:{labels:lab,datasets:[{label:'Baru',data:ms.map(k=>mm[k].n),backgroundColor:C.brand,borderRadius:4},{label:'Kembali',data:ms.map(k=>mm[k].r),backgroundColor:C.wa,borderRadius:4}]},options:{scales:stack}});
+  chart('ch-src',{type:'bar',data:{labels:lab,datasets:[{label:'Web',data:ms.map(k=>mm[k].web),backgroundColor:C.brand,borderRadius:4},{label:'Manual',data:ms.map(k=>mm[k].man),backgroundColor:C.tint,borderRadius:4}]},options:{scales:stack}});
+  const ar={};inP.forEach(o=>{const k=(o.city||'—').trim()||'—';ar[k]=(ar[k]||0)+1;});
+  $('tbl-area').innerHTML=table(['Area','Order','Porsi'],Object.entries(ar).sort((a,b)=>b[1]-a[1]).map(([k,n])=>[esc(k),fmt(n),pctS(n,inP.length)]),[1,2]);
+  const sv={};inP.forEach(o=>(o.services_detail||[]).forEach(s=>{const k=s.service||s.key;sv[k]=(sv[k]||0)+(+s.qty||1);}));
+  if(!Object.keys(sv).length)inP.forEach(o=>(o.services||[]).forEach(s=>{const k=String(s).replace(/\s*\(.*$/,'');sv[k]=(sv[k]||0)+1;}));
+  $('tbl-svc').innerHTML=table(['Layanan','Unit'],Object.entries(sv).sort((a,b)=>b[1]-a[1]).map(([k,n])=>[esc(k),fmt(n)]),[1]);
+}
+
+/* ── ALAT ── */
+const UKEY='at_utm_links';
+function slug(s){return String(s||'').toLowerCase().trim().replace(/\s+/g,'-').replace(/[^a-z0-9\-_.]/g,'');}
+function buildUtm(){
+  const u=new URL('https://aslanteknik.id'+$('u-page').value);
+  [['utm_source','u-source'],['utm_medium','u-medium'],['utm_campaign','u-campaign'],['utm_content','u-content']].forEach(([k,id])=>{const v=slug($(id).value);if(v)u.searchParams.set(k,v);});
+  $('u-out').textContent=u.toString();return u.toString();
+}
+$('u-preset').onchange=()=>{const [s,m]=$('u-preset').value.split('|');if(s!=='custom'){$('u-source').value=s;$('u-medium').value=m;}else{$('u-source').value='';$('u-medium').value='';$('u-source').focus();}buildUtm();};
+['u-page','u-source','u-medium','u-campaign','u-content'].forEach(id=>$(id).addEventListener('input',buildUtm));
+function copy(text,btn){const ok=()=>{const t=btn.textContent;btn.textContent='Tersalin';setTimeout(()=>btn.textContent=t,1500);};
+  if(navigator.clipboard)navigator.clipboard.writeText(text).then(ok,()=>prompt('Salin:',text));else prompt('Salin:',text);}
+$('u-copy').onclick=e=>copy(buildUtm(),e.target);
+function getLinks(){try{return JSON.parse(localStorage.getItem(UKEY)||'[]');}catch(e){return [];}}
+function setLinks(a){try{localStorage.setItem(UKEY,JSON.stringify(a));}catch(e){}}
+$('u-save').onclick=()=>{const url=buildUtm();if(!$('u-campaign').value.trim()){$('u-campaign').focus();return;}const a=getLinks();a.unshift({url,at:new Date().toISOString().slice(0,10)});setLinks(a.slice(0,50));renderLinks();};
+function renderLinks(){const a=getLinks();
+  $('u-list').innerHTML=a.length?table(['Tanggal','Link',''],a.map((l,i)=>[l.at,`<span style="word-break:break-all">${esc(l.url.replace('https://aslanteknik.id',''))}</span>`,`<button class="btn" data-cp="${i}">Salin</button>`])):'<p class="hint">Link yang disimpan muncul di sini (hanya di browser ini).</p>';
+  $('u-list').querySelectorAll('[data-cp]').forEach(b=>b.onclick=()=>copy(a[+b.dataset.cp].url,b));}
+function weeklyReport(){
+  const now=new Date(),sod=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  const a=new Date(sod-6*DAY),c=metrics(a,now),p=metrics(new Date(a-7*DAY),a);
+  const d=(x,y)=>y?` (${x>=y?'+':''}${((x-y)/y*100).toFixed(0)}%)`:'';
+  const f=x=>x.toLocaleDateString('id-ID',{day:'numeric',month:'short'});
+  const top=chanStats(c).filter(r=>r.chan!=='Tidak terlacak').slice(0,4).map(r=>`• ${r.chan}: ${r.sess} sesi, ${r.wa} klik WA, ${r.orders} order`).join('\n')||'• (belum ada)';
+  const blog={};c.visits.forEach(v=>{const pg=normPage(v.page);if(pg.startsWith('/blog/')&&pg!=='/blog/')blog[pg]=(blog[pg]||0)+1;});
+  const tb=Object.entries(blog).sort((x,y)=>y[1]-x[1]).slice(0,3).map(([k,n])=>`• ${k.replace('/blog/','').replace(/\/$/,'')}: ${n}`).join('\n')||'• (belum ada kunjungan blog)';
+  const ins=(()=>{const save={CUR,PREV};CUR=c;PREV=p;const r=insights();CUR=save.CUR;PREV=save.PREV;return r;})().map(t=>'• '+t.replace(/<[^>]+>/g,'')).join('\n');
+  return `*Laporan mingguan aslanteknik.id*\n${f(a)} – ${f(now)} (dibanding 7 hari sebelumnya)\n\n`+
+    `Sesi: ${c.sessions}${d(c.sessions,p.sessions)}\nPengunjung unik: ${c.visitors}${d(c.visitors,p.visitors)}\n`+
+    `Sesi klik WhatsApp: ${c.waSess}${d(c.waSess,p.waSess)}\nKonversi sesi → WA: ${pctS(c.waSess,c.sessions)} (sebelumnya ${pctS(p.waSess,p.sessions)})\n`+
+    `Order web: ${c.web.length}${d(c.web.length,p.web.length)}\nOrder manual: ${c.orders.length-c.web.length}\n\n`+
+    `*Channel teratas*\n${top}\n\n*Artikel blog terbanyak dibaca*\n${tb}\n\n*Catatan*\n${ins||'• -'}`;
+}
+$('report-copy').onclick=e=>copy($('report-out').value,e.target);
+function updateInternalUI(){
+  const on=isInternal();$('internal-toggle').checked=on;
+  $('internal-info').textContent=on?'Aktif: kunjungan dari browser ini tidak dicatat, dan data lama dari browser ini disembunyikan dari dashboard.':'Belum aktif di browser ini.';
+}
+$('internal-toggle').onchange=e=>{try{if(e.target.checked)localStorage.setItem('at_internal','1');else localStorage.removeItem('at_internal');}catch(err){}updateInternalUI();};
+function renderAlat(){buildUtm();renderLinks();updateInternalUI();if(RAW.visits)$('report-out').value=weeklyReport();}
+
+/* ── DATA ── */
+let recentPage=1;
+$('recent-q').addEventListener('input',()=>{recentPage=1;renderRecent();});
+function renderData(){
+  const v=CUR.visits;const dv={};v.forEach(x=>{const k=x.device||'—';dv[k]=(dv[k]||0)+1;});
+  chart('ch-dev',{type:'doughnut',data:{labels:Object.keys(dv),datasets:[{data:Object.values(dv),backgroundColor:[C.brand,C.wa,C.sun,C.tint],borderWidth:0}]},options:{cutout:'62%'}});
+  const hr=Array(24).fill(0);v.forEach(x=>hr[toD(x.timestamp).getHours()]++);
+  chart('ch-hour',{type:'bar',data:{labels:hr.map((_,i)=>String(i).padStart(2,'0')),datasets:[{label:'Kunjungan',data:hr,backgroundColor:C.brand,borderRadius:3}]},options:{plugins:{legend:{display:false}}}});
+  const ct={};v.forEach(x=>{const k=x.city||'—';ct[k]=(ct[k]||0)+1;});
+  $('tbl-city').innerHTML=table(['Kota','Kunjungan'],Object.entries(ct).sort((a,b)=>b[1]-a[1]).slice(0,12).map(([k,n])=>[esc(k),fmt(n)]),[1]);
+  renderRecent();
+}
+function renderRecent(){
+  const q=$('recent-q').value.toLowerCase().trim();
+  const rows=CUR.visits.filter(x=>!q||[x.page,x.city,x.utm_source,x.utm_campaign,x.referrer,x.device].join(' ').toLowerCase().includes(q));
+  const per=25,pages=Math.max(1,Math.ceil(rows.length/per));recentPage=Math.min(recentPage,pages);
+  $('tbl-recent').innerHTML=table(['Waktu','Halaman','Channel','Kota','Perangkat','Durasi'],rows.slice((recentPage-1)*per,recentPage*per).map(x=>[
+    toD(x.timestamp).toLocaleString('id-ID',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}),esc(x.page||'/'),esc(chanOf(x)),esc(x.city||'—'),esc(x.device||'—'),x.duration?x.duration+' dtk':'—']),[5]);
+  $('recent-pager').innerHTML=`${fmt(rows.length)} kunjungan · hal ${recentPage}/${pages} <button class="btn" ${recentPage<=1?'disabled':''} id="rp-prev">‹</button><button class="btn" ${recentPage>=pages?'disabled':''} id="rp-next">›</button>`;
+  $('rp-prev').onclick=()=>{recentPage--;renderRecent();};$('rp-next').onclick=()=>{recentPage++;renderRecent();};
+}
+
+/* ── EXPORT ── */
+$('btn-export').onclick=()=>{
+  if(!CUR||!window.XLSX){alert('Data belum siap.');return;}
+  const wb=XLSX.utils.book_new(),ts=x=>toD(x.timestamp).toLocaleString('id-ID');
+  const add=(name,rows)=>XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(rows.length?rows:[{Info:'Tidak ada data'}]),name);
+  add('Channel',chanStats(CUR).map(r=>({Channel:r.chan,Sesi:r.sess,Pengunjung:r.vis.size,'Minat booking':r.interest,'Sesi klik WA':r.wa,'Order web':r.orders,'Bounce %':+pct(r.bounce,r.sess).toFixed(1)})));
+  add('Sesi',CUR.S.map(s=>({Mulai:s.t.toLocaleString('id-ID'),Channel:s.chan,Landing:s.landing,Halaman:s.visits.length,'Minat booking':s.interest?1:0,'Kirim form':s.form?1:0,'Klik WA':s.wa?1:0,utm_source:s.first.utm_source||'',utm_medium:s.first.utm_medium||'',utm_campaign:s.first.utm_campaign||'',utm_content:s.first.utm_content||'',Referrer:s.first.referrer||'',Kota:s.first.city||'',Perangkat:s.first.device||''})));
+  add('Order web',CUR.web.map(o=>({'ID order':o.order_id||'',Masuk:orderDate(o).toLocaleString('id-ID'),Channel:o._chan||'',Area:o.city||'',Unit:o.unit_count||'',Status:o.status||''})));
+  add('Kunjungan',CUR.visits.map(v=>({Waktu:ts(v),Halaman:v.page||'/',Channel:chanOf(v),Kota:v.city||'',Perangkat:v.device||'',Durasi:v.duration||0,utm_source:v.utm_source||'',utm_campaign:v.utm_campaign||'',Referrer:v.referrer||''})));
+  add('Klik WA',CUR.wa.map(w=>({Waktu:ts(w),Halaman:w.page||'',utm_source:w.utm_source||'',utm_campaign:w.utm_campaign||''})));
+  XLSX.writeFile(wb,'aslanteknik-analisa-'+new Date().toISOString().slice(0,10)+'.xlsx');
 };
-
-function filterByPage(arr){
-  if(currentPage==='all')return arr;
-  if(currentPage==='home')return arr.filter(v=>{const p=v.page||v.hash||'/';return p==='/'||p==='/index.html'||(!p.includes('/booking')&&!p.includes('pesan'));});
-  if(currentPage==='booking')return arr.filter(v=>{const p=v.page||v.hash||'';return p.includes('booking')||p.includes('pesan');});
-  return arr;
-}
-
-function renderFiltered(){
-  render(filterByPage(allVisits),filterByPage(allWa),filterByPage(allSectionClicks));
-}
-
-// Recent search handler (exposed to global scope)
-window.onRecentSearch=function(){
-  recentSearchQuery=document.getElementById('recentSearch').value.toLowerCase().trim();
-  recentCurrentPage=1;
-  applyRecentFilter(filterByPage(allVisits));
-};
-
-function applyRecentFilter(visits){
-  if(!recentSearchQuery){
-    recentFilteredData=[...visits];
-  }else{
-    recentFilteredData=visits.filter(v=>{
-      const q=recentSearchQuery;
-      return (v.page||'').toLowerCase().includes(q)||
-             (v.city||'').toLowerCase().includes(q)||
-             (v.utm_source||'').toLowerCase().includes(q)||
-             (v.utm_medium||'').toLowerCase().includes(q)||
-             (v.utm_campaign||'').toLowerCase().includes(q)||
-             (v.utm_term||'').toLowerCase().includes(q)||
-             (v.device||'').toLowerCase().includes(q)||
-             (v.referrer||'').toLowerCase().includes(q);
-    });
-  }
-  renderRecentPage();
-}
-
-// ════════════════════════════════════════
-// RENDER
-// ════════════════════════════════════════
-const C={accent:'#5B4FD9',accent20:'rgba(91,79,217,0.15)',mint:'#34D399',mint20:'rgba(52,211,153,0.15)',peach:'#F97316',sky:'#38BDF8',lavender:'#A78BFA',red:'#EF4444',yellow:'#F59E0B'};
-const opts={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}};
-
-function render(visits,waEvents,sectionClicks){
-  sectionClicks=sectionClicks||[];
-  const total=visits.length;
-  const uniq=new Set(visits.map(v=>v.visitorId||'?')).size;
-  const bookingCount=visits.filter(v=>(v.page||'').includes('booking')).length;
-  const waTotal=waEvents.length;
-  const convPct=total>0?((waTotal/total)*100).toFixed(1):0;
-
-  // Section clicks breakdown
-  const scBooking=sectionClicks.filter(s=>s.hash==='/#booking').length;
-  const scPesan=sectionClicks.filter(s=>s.hash==='/#pesan-sekarang').length;
-  const scTotal=sectionClicks.length; // semua tombol booking (/#booking + /#pesan-sekarang)
-
-  // Sessions
-  const sess={};
-  visits.forEach(v=>{const s=v.sessionId||v.id;if(!sess[s])sess[s]=[];sess[s].push(v);});
-  const sC=Object.keys(sess).length;
-  const bounces=Object.values(sess).filter(s=>s.length===1).length;
-  const bR=sC>0?Math.round((bounces/sC)*100):0;
-  const avgPagesPerSess=sC>0?(total/sC).toFixed(1):0;
-
-  const durs=visits.filter(v=>v.duration>0).map(v=>v.duration);
-  const avgD=durs.length?Math.round(durs.reduce((a,b)=>a+b,0)/durs.length):0;
-
-  document.getElementById('totalVisits').textContent=total.toLocaleString('id-ID');
-  document.getElementById('uniqueVisitors').textContent=uniq.toLocaleString('id-ID');
-  document.getElementById('totalSessions').textContent=sC.toLocaleString('id-ID');
-  document.getElementById('avgPages').textContent=avgPagesPerSess;
-  document.getElementById('bookingClicks').textContent=scTotal.toLocaleString('id-ID');
-  document.getElementById('bookingClicksSub').textContent=total>0?`${((scTotal/total)*100).toFixed(1)}% dari kunjungan`:'';
-  document.getElementById('pesanClicks').textContent=scPesan.toLocaleString('id-ID');
-  document.getElementById('pesanClicksSub').textContent=scTotal>0?`${((scPesan/scTotal)*100).toFixed(1)}% submit form`:'dari total klik booking';
-  document.getElementById('bookingVisits').textContent=bookingCount.toLocaleString('id-ID');
-  document.getElementById('waClicks').textContent=waTotal.toLocaleString('id-ID');
-  document.getElementById('convRate').textContent=convPct+'%';
-  document.getElementById('bounceRate').textContent=bR+'%';
-  document.getElementById('avgDuration').textContent=avgD>0?`${Math.floor(avgD/60)}m ${avgD%60}s`:'—';
-  document.getElementById('bookingSub').textContent=total>0?`${((bookingCount/total)*100).toFixed(1)}% dari total`:'';
-  document.getElementById('uniqueSub').textContent=total>0?`${((uniq/total)*100).toFixed(0)}% unique`:'';
-  document.getElementById('waSub').textContent=`dari ${total} kunjungan`;
-  document.getElementById('sessionSub').textContent=`${bounces} bounce session`;
-
-  renderFunnel(total,scTotal,scPesan,waTotal);
-  renderSectionClicksPanel(sectionClicks);
-  renderDailyChart(visits,waEvents);
-  renderHoursChart(visits);
-  renderDeviceChart(visits);
-  renderBrowserChart(visits);
-  renderOsChart(visits);
-  renderLocationTable(visits);
-  renderReferrerTable(visits);
-  renderPagesTable(visits);
-  renderUtmTable('utmSourceTable',visits,'utm_source');
-  renderUtmTable('utmMediumTable',visits,'utm_medium');
-  renderUtmTable('utmCampaignTable',visits,'utm_campaign');
-  renderUtmTable('utmContentTable',visits,'utm_content');
-  renderUtmTable('utmTermTable',visits,'utm_term');
-  renderWaCampaignTable(visits,waEvents);
-
-  // Recent table
-  recentCurrentPage=1;
-  applyRecentFilter(visits);
-}
-
-function renderFunnel(total,scTotal,scPesan,wa){
-  // scTotal = semua klik tombol booking (goBook + form submit)
-  // waTotal = hanya form submit yang buka WA
-  const pct=(a,b)=>b>0?((a/b)*100).toFixed(1):'0.0';
-  document.getElementById('funnelView').innerHTML=`
-    <div class="funnel-step">
-      <div class="funnel-num">${total}</div>
-      <div class="funnel-label">Kunjungan</div>
-      <div class="funnel-bar" style="width:100%;background:${C.accent}"></div>
-    </div>
-    <div class="funnel-arrow">→<br><span class="funnel-rate">${pct(scTotal,total)}%</span></div>
-    <div class="funnel-step">
-      <div class="funnel-num">${scTotal}</div>
-      <div class="funnel-label">Klik Tombol Booking</div>
-      <div class="funnel-bar" style="width:${Math.max(4,total>0?(scTotal/total)*100:0)}%;background:#14B8A6"></div>
-    </div>
-    <div class="funnel-arrow">→<br><span class="funnel-rate">${pct(wa,scTotal||total)}%</span></div>
-    <div class="funnel-step">
-      <div class="funnel-num">${wa}</div>
-      <div class="funnel-label">Klik WhatsApp ✅</div>
-      <div class="funnel-bar" style="width:${Math.max(4,total>0?(wa/total)*100:0)}%;background:${C.peach}"></div>
-    </div>`;
-}
-
-function renderSectionClicksPanel(sectionClicks){
-  const el=document.getElementById('sectionClicksPanel');
-  if(!sectionClicks.length){
-    el.innerHTML='<div class="empty-state" style="padding:24px"><div class="big">📭</div><p>Belum ada section click. Pastikan tombol di web utama dan /booking sudah di-deploy.</p></div>';
-    return;
-  }
-  // Group by hash + page source
-  const rows={};
-  sectionClicks.forEach(s=>{
-    const key=s.hash||'unknown';
-    if(!rows[key])rows[key]={count:0,sources:{},cities:{},devices:{}};
-    rows[key].count++;
-    const src=s.utm_source||'(direct)';
-    rows[key].sources[src]=(rows[key].sources[src]||0)+1;
-    const city=s.city||'—';
-    rows[key].cities[city]=(rows[key].cities[city]||0)+1;
-    const dev=s.device||'—';
-    rows[key].devices[dev]=(rows[key].devices[dev]||0)+1;
-  });
-  const sorted=Object.entries(rows).sort((a,b)=>b[1].count-a[1].count);
-  const total=sectionClicks.length;
-  let h='<table class="data-table"><thead><tr><th>Hash / Section</th><th>Klik</th><th>% Total</th><th>Top UTM Source</th><th>Top Kota</th><th>Top Device</th></tr></thead><tbody>';
-  sorted.forEach(([hash,d])=>{
-    const pct=total>0?((d.count/total)*100).toFixed(1):0;
-    const topSrc=Object.entries(d.sources).sort((a,b)=>b[1]-a[1])[0]?.[0]||'—';
-    const topCity=Object.entries(d.cities).sort((a,b)=>b[1]-a[1])[0]?.[0]||'—';
-    const topDev=Object.entries(d.devices).sort((a,b)=>b[1]-a[1])[0]?.[0]||'—';
-    const color=hash==='/#booking'?'#14B8A6':hash==='/#pesan-sekarang'?'#8B5CF6':C.accent;
-    h+=`<tr>
-      <td><span style="font-family:'JetBrains Mono',monospace;font-size:0.8rem;font-weight:600;color:${color}">${hash}</span></td>
-      <td><span style="font-family:'JetBrains Mono',monospace;font-weight:600">${d.count}</span></td>
-      <td style="color:var(--soft);font-size:0.78rem">${pct}%</td>
-      <td style="font-size:0.8rem">${topSrc}</td>
-      <td style="font-size:0.8rem">${topCity}</td>
-      <td style="font-size:0.8rem">${topDev}</td>
-    </tr>`;
-  });
-  el.innerHTML=h+'</tbody></table>';
-}
-
-function renderDailyChart(visits,waEvents){
-  const days={},wDays={};
-  visits.forEach(v=>{const k=toD(v.timestamp).toISOString().slice(0,10);days[k]=(days[k]||0)+1;});
-  waEvents.forEach(v=>{const k=toD(v.timestamp).toISOString().slice(0,10);wDays[k]=(wDays[k]||0)+1;});
-  const keys=[...new Set([...Object.keys(days),...Object.keys(wDays)])].sort();
-  const labels=keys.map(k=>new Date(k).toLocaleDateString('id-ID',{day:'numeric',month:'short'}));
-  if(chartDaily)chartDaily.destroy();
-  chartDaily=new Chart(document.getElementById('chartDaily'),{
-    type:'line',data:{labels,datasets:[
-      {label:'Kunjungan',data:keys.map(k=>days[k]||0),fill:true,borderColor:C.accent,backgroundColor:C.accent20,borderWidth:2,tension:0.4,pointRadius:3,pointBackgroundColor:C.accent},
-      {label:'Klik WA',data:keys.map(k=>wDays[k]||0),fill:true,borderColor:C.mint,backgroundColor:C.mint20,borderWidth:2,tension:0.4,pointRadius:3,pointBackgroundColor:C.mint}
-    ]},options:{...opts,plugins:{legend:{display:true,position:'top',labels:{font:{size:11,family:'DM Sans'},usePointStyle:true,pointStyle:'circle',padding:16}}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}},x:{grid:{display:false}}}}
-  });
-}
-
-function renderHoursChart(visits){
-  const h=Array(24).fill(0);visits.forEach(v=>h[toD(v.timestamp).getHours()]++);
-  if(chartHours)chartHours.destroy();
-  chartHours=new Chart(document.getElementById('chartHours'),{type:'bar',data:{labels:h.map((_,i)=>`${String(i).padStart(2,'0')}:00`),datasets:[{data:h,backgroundColor:C.accent20,borderColor:C.accent,borderWidth:1,borderRadius:4}]},options:{...opts,scales:{y:{beginAtZero:true,ticks:{stepSize:1}},x:{grid:{display:false},ticks:{font:{size:9},maxRotation:0,autoSkip:true,maxTicksLimit:12}}}}});
-}
-
-function mkDoughnut(id,dataObj,colors,ref){
-  const labels=Object.keys(dataObj),data=Object.values(dataObj);
-  if(ref)ref.destroy();
-  return new Chart(document.getElementById(id),{type:'doughnut',data:{labels,datasets:[{data,backgroundColor:colors.slice(0,labels.length),borderWidth:0}]},options:{...opts,plugins:{legend:{display:true,position:'bottom',labels:{font:{size:11,family:'DM Sans'},padding:12,usePointStyle:true,pointStyle:'circle'}}},cutout:'65%'}});
-}
-
-function renderDeviceChart(v){const d={};v.forEach(x=>{const k=x.device||devUA(x.userAgent||'');d[k]=(d[k]||0)+1;});chartDevice=mkDoughnut('chartDevice',d,[C.accent,C.mint,C.peach,C.sky],chartDevice);}
-function renderBrowserChart(v){const b={};v.forEach(x=>{const k=x.browser||brUA(x.userAgent||'');b[k]=(b[k]||0)+1;});chartBrowser=mkDoughnut('chartBrowser',b,[C.sky,C.lavender,C.peach,C.mint,C.yellow],chartBrowser);}
-function renderOsChart(v){
-  const o={};
-  v.forEach(x=>{const k=x.os||osUA(x.userAgent||'');o[k]=(o[k]||0)+1;});
-  chartOs=mkDoughnut('chartOs',o,['#6366F1','#34D399','#F97316','#38BDF8','#A78BFA','#F59E0B'],chartOs);
-}
-
-function renderBarTable(id,dataObj,color=C.accent){
-  const sorted=Object.entries(dataObj).sort((a,b)=>b[1]-a[1]).slice(0,10);
-  if(!sorted.length){document.getElementById(id).innerHTML='<div class="empty-state"><div class="big">📭</div><p>Belum ada data</p></div>';return;}
-  const max=sorted[0][1],tot=sorted.reduce((a,[,v])=>a+v,0);
-  let h='<table class="data-table"><tbody>';
-  sorted.forEach(([name,count])=>{const pct=tot>0?((count/tot)*100).toFixed(1):0;h+=`<tr><td style="width:40%">${name}</td><td><div class="bar-cell"><div class="bar-fill" style="width:${(count/max)*100}%;background:${color}"></div><span class="bar-label">${count}</span></div></td><td style="width:50px;text-align:right;color:var(--soft);font-size:0.75rem">${pct}%</td></tr>`;});
-  document.getElementById(id).innerHTML=h+'</tbody></table>';
-}
-
-function renderLocationTable(v){const d={};v.forEach(x=>{const k=x.city||x.location||'—';d[k]=(d[k]||0)+1;});renderBarTable('locationTable',d,C.mint);}
-function renderReferrerTable(v){const d={};v.forEach(x=>{let r=x.referrer||'Direct';if(!r||r==='null')r='Direct';try{r=new URL(r).hostname;}catch(e){}d[r]=(d[r]||0)+1;});renderBarTable('referrerTable',d,C.accent);}
-function renderPagesTable(v){const d={};v.forEach(x=>{d[x.page||'/']=(d[x.page||'/']||0)+1;});renderBarTable('pagesTable',d,C.peach);}
-
-function renderUtmTable(id,visits,field){
-  const d={};visits.forEach(v=>{const val=v[field];if(val)d[val]=(d[val]||0)+1;});
-  if(!Object.keys(d).length){document.getElementById(id).innerHTML='<div class="empty-state" style="padding:24px"><p style="font-size:0.8rem">Belum ada data UTM</p></div>';return;}
-  renderBarTable(id,d,C.lavender);
-}
-
-function renderWaCampaignTable(visits,waEvents){
-  const camps={};
-  visits.forEach(v=>{const c=v.utm_campaign||'(tanpa campaign)';if(!camps[c])camps[c]={v:0,w:0};camps[c].v++;});
-  waEvents.forEach(w=>{const c=w.utm_campaign||'(tanpa campaign)';if(!camps[c])camps[c]={v:0,w:0};camps[c].w++;});
-  const sorted=Object.entries(camps).sort((a,b)=>b[1].v-a[1].v).slice(0,10);
-  if(!sorted.length){document.getElementById('waCampaignTable').innerHTML='<div class="empty-state" style="padding:24px"><p style="font-size:0.8rem">Belum ada data</p></div>';return;}
-  let h='<table class="data-table"><thead><tr><th>Campaign</th><th>Kunjungan</th><th>Klik WA</th><th>Conv. Rate</th></tr></thead><tbody>';
-  sorted.forEach(([name,{v:vis,w:wa}])=>{const rate=vis>0?((wa/vis)*100).toFixed(1):0;h+=`<tr><td style="font-weight:500">${name}</td><td><span style="font-family:'JetBrains Mono',monospace">${vis}</span></td><td><span style="font-family:'JetBrains Mono',monospace;color:var(--green)">${wa}</span></td><td><span style="font-family:'JetBrains Mono',monospace;color:var(--accent);font-weight:600">${rate}%</span></td></tr>`;});
-  document.getElementById('waCampaignTable').innerHTML=h+'</tbody></table>';
-}
-
-// ════════════════════════════════════════
-// RECENT TABLE + PAGINATION
-// ════════════════════════════════════════
-function renderRecentPage(){
-  const total=recentFilteredData.length;
-  const totalPages=Math.max(1,Math.ceil(total/RECENT_PER_PAGE));
-  if(recentCurrentPage>totalPages)recentCurrentPage=totalPages;
-
-  const start=(recentCurrentPage-1)*RECENT_PER_PAGE;
-  const end=Math.min(start+RECENT_PER_PAGE,total);
-  const slice=recentFilteredData.slice(start,end);
-
-  // Info label
-  const infoEl=document.getElementById('recentInfo');
-  if(total===0){
-    infoEl.textContent='Tidak ada hasil';
-  }else{
-    infoEl.textContent=`Menampilkan ${start+1}–${end} dari ${total.toLocaleString('id-ID')} kunjungan`;
-  }
-
-  // Table
-  const tbl=document.getElementById('recentTable');
-  if(!slice.length){
-    tbl.innerHTML='<div class="empty-state"><div class="big">📭</div><p>Belum ada kunjungan</p></div>';
-    document.getElementById('recentPagination').innerHTML='';
-    return;
-  }
-  let h='<table class="data-table"><thead><tr><th>Waktu</th><th>Halaman</th><th>Lokasi</th><th>Device / OS</th><th>UTM Source</th><th>Campaign</th><th>Term</th><th>Sumber</th></tr></thead><tbody>';
-  slice.forEach(v=>{
-    const d=toD(v.timestamp);
-    const time=d.toLocaleString('id-ID',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
-    let ref=v.referrer||'Direct';try{ref=new URL(ref).hostname;}catch(e){}
-    const os=v.os||osUA(v.userAgent||'');
-    const dev=v.device||devUA(v.userAgent||'');
-    h+=`<tr>
-      <td style="white-space:nowrap">${time}</td>
-      <td style="font-family:'JetBrains Mono',monospace;font-size:0.73rem">${v.page||'/'}</td>
-      <td>${v.city||'—'}</td>
-      <td><span style="font-size:0.78rem">${dev}</span><br><span style="font-size:0.7rem;color:var(--soft)">${os}</span></td>
-      <td>${v.utm_source||'—'}</td>
-      <td>${v.utm_campaign||'—'}</td>
-      <td style="font-size:0.78rem;color:var(--soft)">${v.utm_term||'—'}</td>
-      <td>${ref}</td>
-    </tr>`;
-  });
-  tbl.innerHTML=h+'</tbody></table>';
-
-  // Pagination
-  renderPagination(totalPages);
-}
-
-function renderPagination(totalPages){
-  const el=document.getElementById('recentPagination');
-  if(totalPages<=1){el.innerHTML='';return;}
-
-  const cur=recentCurrentPage;
-  let html='';
-
-  // Prev
-  html+=`<button class="page-num${cur===1?' disabled':''}" onclick="goRecentPage(${cur-1})">‹</button>`;
-
-  // Page numbers with ellipsis
-  const pages=getPageRange(cur,totalPages);
-  let prev=null;
-  pages.forEach(p=>{
-    if(prev!==null&&p-prev>1)html+=`<span class="page-ellipsis">…</span>`;
-    html+=`<button class="page-num${p===cur?' active':''}" onclick="goRecentPage(${p})">${p}</button>`;
-    prev=p;
-  });
-
-  // Next
-  html+=`<button class="page-num${cur===totalPages?' disabled':''}" onclick="goRecentPage(${cur+1})">›</button>`;
-
-  el.innerHTML=html;
-}
-
-function getPageRange(cur,total){
-  if(total<=7)return Array.from({length:total},(_,i)=>i+1);
-  const pages=new Set([1,2,total-1,total]);
-  for(let i=Math.max(1,cur-1);i<=Math.min(total,cur+1);i++)pages.add(i);
-  return [...pages].sort((a,b)=>a-b);
-}
-
-window.goRecentPage=function(p){
-  const total=recentFilteredData.length;
-  const totalPages=Math.max(1,Math.ceil(total/RECENT_PER_PAGE));
-  if(p<1||p>totalPages)return;
-  recentCurrentPage=p;
-  renderRecentPage();
-  // Scroll to recent panel top
-  document.getElementById('recentTable').scrollIntoView({behavior:'smooth',block:'start'});
-};
-
-// ════════════════════════════════════════
-// EXPORT TO EXCEL
-// ════════════════════════════════════════
-window.exportToExcel=function(){
-  if(!allVisits.length&&!allWa.length&&!allSectionClicks.length){
-    alert('Belum ada data. Klik Refresh terlebih dahulu.');return;
-  }
-  const btn=document.getElementById('btn-export');
-  btn.disabled=true;btn.textContent='⏳ Menyiapkan...';
-
-  try{
-    const wb=XLSX.utils.book_new();
-    const rangeLabel=document.querySelector('.filter-btn.active')?.textContent||'Semua';
-    const pageLabel=document.querySelector('.page-tab.active')?.textContent||'Semua';
-    const now=new Date().toLocaleString('id-ID');
-
-    // ── Sheet 1: Ringkasan ──────────────────────────────
-    const total=allVisits.length;
-    const uniq=new Set(allVisits.map(v=>v.visitorId||'?')).size;
-    const sess={};
-    allVisits.forEach(v=>{const s=v.sessionId||v.id;if(!sess[s])sess[s]=[];sess[s].push(v);});
-    const sC=Object.keys(sess).length;
-    const bounces=Object.values(sess).filter(s=>s.length===1).length;
-    const bR=sC>0?Math.round((bounces/sC)*100):0;
-    const durs=allVisits.filter(v=>v.duration>0).map(v=>v.duration);
-    const avgD=durs.length?Math.round(durs.reduce((a,b)=>a+b,0)/durs.length):0;
-    const waTotal=allWa.length;
-    const scTotal=allSectionClicks.length;
-    const scPesan=allSectionClicks.filter(s=>s.hash==='/#pesan-sekarang').length;
-
-    const summaryData=[
-      ['Aslan Teknik — Ringkasan Analisa'],
-      ['Diekspor pada',now],
-      ['Filter Tanggal',rangeLabel],
-      ['Filter Halaman',pageLabel],
-      [''],
-      ['Metrik','Nilai'],
-      ['Total Kunjungan',total],
-      ['Pengunjung Unik',uniq],
-      ['Total Sesi',sC],
-      ['Bounce Rate (%)',bR],
-      ['Avg Durasi (detik)',avgD],
-      ['Klik Tombol Booking (section_clicks)',scTotal],
-      ['Submit Form WA (/#pesan-sekarang)',scPesan],
-      ['Klik WhatsApp (wa_clicks)',waTotal],
-      ['Conversion Rate (%)',total>0?+((waTotal/total)*100).toFixed(2):0],
-    ];
-    const wsSum=XLSX.utils.aoa_to_sheet(summaryData);
-    wsSum['!cols']=[{wch:38},{wch:20}];
-    XLSX.utils.book_append_sheet(wb,wsSum,'Ringkasan');
-
-    // ── Sheet 2: Kunjungan (site_visits) ────────────────
-    const visitRows=allVisits.map(v=>({
-      'Timestamp':v.timestamp?.toDate?v.timestamp.toDate().toLocaleString('id-ID'):new Date(v.timestamp).toLocaleString('id-ID'),
-      'Halaman':v.page||'/',
-      'Kota':v.city||'—',
-      'Region':v.region||'—',
-      'Device':v.device||devUA(v.userAgent||''),
-      'OS':v.os||osUA(v.userAgent||''),
-      'Browser':v.browser||brUA(v.userAgent||''),
-      'Durasi (dtk)':v.duration||0,
-      'UTM Source':v.utm_source||'',
-      'UTM Medium':v.utm_medium||'',
-      'UTM Campaign':v.utm_campaign||'',
-      'UTM Content':v.utm_content||'',
-      'UTM Term':v.utm_term||'',
-      'Referrer':v.referrer||'Direct',
-      'Visitor ID':v.visitorId||'',
-      'Session ID':v.sessionId||'',
-      'Screen W':v.screenWidth||'',
-      'Screen H':v.screenHeight||'',
-      'Bahasa':v.language||'',
-    }));
-    const wsVisit=XLSX.utils.json_to_sheet(visitRows);
-    wsVisit['!cols']=[{wch:20},{wch:16},{wch:14},{wch:14},{wch:10},{wch:10},{wch:10},{wch:12},{wch:14},{wch:12},{wch:18},{wch:14},{wch:14},{wch:24},{wch:24},{wch:18},{wch:8},{wch:8},{wch:8}];
-    XLSX.utils.book_append_sheet(wb,wsVisit,'Kunjungan');
-
-    // ── Sheet 3: WA Clicks ──────────────────────────────
-    const waRows=allWa.map(w=>({
-      'Timestamp':w.timestamp?.toDate?w.timestamp.toDate().toLocaleString('id-ID'):new Date(w.timestamp).toLocaleString('id-ID'),
-      'Halaman':w.page||'/',
-      'WA URL':w.waUrl||'',
-      'Kota':w.city||'—',
-      'Region':w.region||'—',
-      'Device':w.device||'—',
-      'OS':w.os||'—',
-      'Browser':w.browser||'—',
-      'UTM Source':w.utm_source||'',
-      'UTM Medium':w.utm_medium||'',
-      'UTM Campaign':w.utm_campaign||'',
-      'UTM Content':w.utm_content||'',
-      'UTM Term':w.utm_term||'',
-      'Visitor ID':w.visitorId||'',
-      'Session ID':w.sessionId||'',
-    }));
-    const wsWa=XLSX.utils.json_to_sheet(waRows.length?waRows:[{'Info':'Belum ada data wa_clicks'}]);
-    wsWa['!cols']=[{wch:20},{wch:14},{wch:50},{wch:14},{wch:14},{wch:10},{wch:10},{wch:10},{wch:14},{wch:12},{wch:18},{wch:14},{wch:14},{wch:24},{wch:18}];
-    XLSX.utils.book_append_sheet(wb,wsWa,'Klik WA');
-
-    // ── Sheet 4: Section Clicks ─────────────────────────
-    const scRows=allSectionClicks.map(s=>({
-      'Timestamp':s.timestamp?.toDate?s.timestamp.toDate().toLocaleString('id-ID'):new Date(s.timestamp).toLocaleString('id-ID'),
-      'Hash':s.hash||'—',
-      'Halaman':s.page||'/',
-      'Kota':s.city||'—',
-      'Region':s.region||'—',
-      'Device':s.device||'—',
-      'OS':s.os||'—',
-      'Browser':s.browser||'—',
-      'UTM Source':s.utm_source||'',
-      'UTM Medium':s.utm_medium||'',
-      'UTM Campaign':s.utm_campaign||'',
-      'UTM Content':s.utm_content||'',
-      'UTM Term':s.utm_term||'',
-      'Visitor ID':s.visitorId||'',
-      'Session ID':s.sessionId||'',
-    }));
-    const wsSc=XLSX.utils.json_to_sheet(scRows.length?scRows:[{'Info':'Belum ada data section_clicks'}]);
-    wsSc['!cols']=[{wch:20},{wch:20},{wch:14},{wch:14},{wch:14},{wch:10},{wch:10},{wch:10},{wch:14},{wch:12},{wch:18},{wch:14},{wch:14},{wch:24},{wch:18}];
-    XLSX.utils.book_append_sheet(wb,wsSc,'Section Clicks');
-
-    // ── Download ────────────────────────────────────────
-    const dateStr=new Date().toISOString().slice(0,10);
-    XLSX.writeFile(wb,`AslanTeknik_Analisa_${dateStr}.xlsx`);
-
-  }catch(err){
-    console.error('Export error:',err);
-    alert('Gagal export: '+err.message);
-  }finally{
-    btn.disabled=false;
-    btn.innerHTML=`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Export .xlsx`;
-  }
-};
-function toD(ts){return ts?.toDate?ts.toDate():new Date(ts);}
-function devUA(ua){return/Mobile|iPhone/i.test(ua)?'Mobile':/iPad|Tablet/i.test(ua)?'Tablet':'Desktop';}
-function brUA(ua){return/Edg/i.test(ua)?'Edge':/Chrome/i.test(ua)&&!/Edg/i.test(ua)?'Chrome':/Firefox/i.test(ua)?'Firefox':/Safari/i.test(ua)&&!/Chrome/i.test(ua)?'Safari':'Lainnya';}
-function osUA(ua){
-  if(/Windows NT/i.test(ua))return'Windows';
-  if(/Macintosh|Mac OS X/i.test(ua))return'macOS';
-  if(/iPhone|iPad/i.test(ua))return'iOS';
-  if(/Android/i.test(ua))return'Android';
-  if(/Linux/i.test(ua))return'Linux';
-  return'Lainnya';
-}
 </script>
 </body>
 </html>

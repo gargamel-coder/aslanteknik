@@ -854,7 +854,7 @@ function sendWA() {
   // 2. Track klik WA — langsung pakai window._fbAddDoc (main Firebase instance)
   var waUrl = 'https://wa.me/62895326105290?text='+encodeURIComponent(msg);
   if(typeof window._atSectionClick==='function') window._atSectionClick('/#pesan-sekarang');
-  if(window._fbDb && window._fbAddDoc){
+  if(window._fbDb && window._fbAddDoc && localStorage.getItem('at_internal')!=='1'){
     var _vid=localStorage.getItem('at_vid')||'?';
     var _sid=sessionStorage.getItem('at_sid')||'?';
     var _ua=navigator.userAgent;
@@ -1356,6 +1356,7 @@ const device=/Mobile|iPhone/i.test(ua)?'Mobile':/iPad|Tablet/i.test(ua)?'Tablet'
 const browser=/Edg/i.test(ua)?'Edge':/Chrome/i.test(ua)&&!/Edg/i.test(ua)?'Chrome':/Firefox/i.test(ua)?'Firefox':/Safari/i.test(ua)&&!/Chrome/i.test(ua)?'Safari':'Lainnya';
 const os=/Windows NT/i.test(ua)?'Windows':/Macintosh|Mac OS X/i.test(ua)?'macOS':/iPhone|iPad/i.test(ua)?'iOS':/Android/i.test(ua)?'Android':/Linux/i.test(ua)?'Linux':'Lainnya';
 
+const AT_INTERNAL=(()=>{try{return localStorage.getItem('at_internal')==='1';}catch(e){return false;}})(); // dicentang di /analisa → Alat
 let visitorId=localStorage.getItem('at_vid');
 if(!visitorId){visitorId='v_'+Math.random().toString(36).slice(2,14)+Date.now().toString(36);localStorage.setItem('at_vid',visitorId);}
 let sessionId=sessionStorage.getItem('at_sid');
@@ -1390,7 +1391,7 @@ let city='—',region='';
 
 window._atSectionClick=async function(hash){
   try{
-    await addDoc(collection(db,'section_clicks'),{
+    if(!AT_INTERNAL)await addDoc(collection(db,'section_clicks'),{
       visitorId,sessionId,
       hash,
       page:location.pathname||'/',
@@ -1403,7 +1404,7 @@ window._atSectionClick=async function(hash){
 
 window._atWaClick=async function(waUrl){
   try{
-    await addDoc(collection(db,'wa_clicks'),{
+    if(!AT_INTERNAL)await addDoc(collection(db,'wa_clicks'),{
       visitorId,sessionId,
       page:location.pathname||'/',
       waUrl,
@@ -1419,7 +1420,7 @@ document.addEventListener('click',async(e)=>{
   const link=e.target.closest('a[href*="wa.me"],a[href*="whatsapp.com"],a[href*="whatsapp"]');
   if(!link) return;
   try{
-    await addDoc(collection(db,'wa_clicks'),{
+    if(!AT_INTERNAL)await addDoc(collection(db,'wa_clicks'),{
       visitorId,sessionId,
       page:location.pathname||'/',
       waUrl:link.href,
@@ -1434,7 +1435,7 @@ document.addEventListener('click',async(e)=>{
   const el=e.target.closest('[onclick*="wa.me"],[onclick*="whatsapp"],[data-wa]');
   if(!el||el.tagName==='A') return;
   try{
-    await addDoc(collection(db,'wa_clicks'),{
+    if(!AT_INTERNAL)await addDoc(collection(db,'wa_clicks'),{
       visitorId,sessionId,
       page:location.pathname||'/',
       waUrl:el.getAttribute('data-wa')||'onclick',
@@ -1451,7 +1452,7 @@ try{const g=await(await fetch('https://ipapi.co/json/')).json();city=g.city||'�
 const t0=Date.now();
 let docRef;
 try{
-  docRef=await addDoc(collection(db,'site_visits'),{
+  if(!AT_INTERNAL)docRef=await addDoc(collection(db,'site_visits'),{
     visitorId,sessionId,
     page:location.pathname||'/',
     referrer:document.referrer||'Direct',
