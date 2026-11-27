@@ -114,6 +114,11 @@
   .notif-status{display:inline-block;padding:3px 9px;border-radius:100px;font-size:0.74rem;font-weight:600;margin-bottom:5px;}
   .notif-status-done{background:#DCFCE7;color:#166534;}
   .notif-status-pending{background:#FEF9C3;color:#854D0E;}
+  .notif-tags{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 8px;}
+  .notif-tags .notif-status{margin:0;}
+  .notif-tag{display:inline-block;padding:3px 9px;border-radius:100px;font-size:0.74rem;font-weight:700;background:#F2F4FB;color:#51547A;}
+  .notif-tag.wk-always{background:#EEEDFF;color:#372CC0;}
+  .notif-tag.wk-once{background:#E0F2FE;color:#075985;}
   .notif-meta{font-size:0.8rem;color:var(--mid);line-height:1.7;margin-bottom:12px;}
   .notif-wa{display:inline-flex;align-items:center;gap:6px;padding:9px 15px;border-radius:10px;background:#25D366;color:#fff;text-decoration:none;font-size:0.8rem;font-weight:600;transition:background 0.2s;}
   .notif-wa:hover{background:#16A34A;}
@@ -602,7 +607,7 @@
     <div id="pane-notifikasi" class="tab-pane">
       <div class="panel">
         <div class="panel-title">Pengingat Perawatan AC</div>
-        <div class="notif-summary">Menampilkan customer dengan booking layanan <b>cuci</b> atau <b>pasang</b> yang tanggal layanannya sudah 90–100 hari lalu. Klik tombol WhatsApp untuk mengirim pengingat dan menawarkan jadwal pekan ini.</div>
+        <div class="notif-summary" id="notif-summary"></div>
         <div id="notifications-list"><div class="orders-empty">Memuat notifikasi...</div></div>
       </div>
     </div>
@@ -1431,7 +1436,7 @@ function renderOrderStats() {
   document.title = (pending ? '(' + pending + ') ' : '') + 'Aslan Teknik — Admin Dashboard';
 }
 
-// ── NOTIFIKASI PERAWATAN 90 HARI ───────────────────────
+// ── PENGINGAT CUCI: BULAN KE-3 ───────────────────────
 function notificationDate(o) {
   const sd = custServiceDate(o);
   if (!sd) return null;
@@ -1448,56 +1453,86 @@ function notificationWaNumber(raw) {
   return digits.replace(/^0/, '62');
 }
 
+const ID_MONTHS = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+function isWeekendDate(d) { const g = d.getDay(); return g === 0 || g === 6; }
+
+// Tampilkan customer yang cuci/pasang TERAKHIRNYA jatuh di bulan (bulan ini − 3).
+// Contoh: bulan Desember → yang terakhir cuci di bulan September.
 function renderNotifications() {
   const el = document.getElementById('notifications-list');
   const badge = document.getElementById('notifications-badge');
   if (!el) return;
   const now = new Date();
-  const todayDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  const daysSince = date => date
-    ? Math.floor((todayDate - new Date(date.getFullYear(), date.getMonth(), date.getDate())) / (24 * 60 * 60 * 1000))
-    : null;
-  const eligible = allOrders
-    .filter(o => {
-      if (o.status === 'rejected' || !notificationServices(o).length) return false;
-      const age = daysSince(notificationDate(o));
-      return age !== null && age >= 90 && age <= 100;
-    })
-    .map(o => ({ order: o, date: notificationDate(o), ageDays: daysSince(notificationDate(o)) }))
-    .sort((a,b) => a.date - b.date);
+  const target = new Date(now.getFullYear(), now.getMonth() - 3, 1);
+  const tY = target.getFullYear(), tM = target.getMonth();
+  const monthName = ID_MONTHS[now.getMonth()], targetName = ID_MONTHS[tM] + ' ' + tY;
+  const sumEl = document.getElementById('notif-summary');
+  if (sumEl) sumEl.innerHTML = `Bulan <b>${monthName}</b>: customer yang terakhir cuci/pasang AC di bulan <b>${targetName}</b> dan belum order lagi sejak itu.`;
+
+  // kelompokkan order per customer
+  const byCust = new Map();
+  allOrders.forEach(o => {
+    if (o.status === 'rejected') return;
+    const d = notificationDate(o);
+    if (!d) return;
+    const k = custKey(o);
+    if (!byCust.has(k)) byCust.set(k, []);
+    byCust.get(k).push({ o, d, care: notificationServices(o).length > 0 });
+  });
+
+  const eligible = [];
+  byCust.forEach(list => {
+    list.sort((a, b) => a.d - b.d);
+    const latest = list[list.length - 1];               // order apa pun yang paling akhir (termasuk jadwal ke depan)
+    if (!latest.care) return;                            // order terakhirnya bukan cuci/pasang
+    if (latest.d.getFullYear() !== tY || latest.d.getMonth() !== tM) return;
+    const cares = list.filter(x => x.care);
+    const wkn = cares.filter(x => isWeekendDate(x.d)).length;
+    const pattern = cares.length >= 2 && wkn === cares.length ? 'always' : (wkn === 1 ? 'once' : '');
+    eligible.push({ order: latest.o, date: latest.d, total: cares.length, wkn, pattern });
+  });
+  eligible.sort((a, b) => (a.pattern === 'always' ? 0 : 1) - (b.pattern === 'always' ? 0 : 1) || a.date - b.date);
 
   notifPendingCount = eligible.filter(e => !e.order.maintenance_reminder_sent_at).length;
-  if (eligible.length) {
-    badge.textContent = eligible.length;
-    badge.style.display = 'inline-block';
-  } else {
-    badge.style.display = 'none';
-  }
+  badge.textContent = notifPendingCount;
+  badge.style.display = notifPendingCount ? 'inline-block' : 'none';
   if (!eligible.length) {
-    el.innerHTML = '<div class="orders-empty">Belum ada customer yang perlu diingatkan. ✅</div>';
+    el.innerHTML = `<div class="orders-empty">Tidak ada customer yang terakhir cuci di ${targetName}. ✅</div>`;
     return;
   }
 
-  el.innerHTML = eligible.map(({order:o, date:lastDate, ageDays}) => {
-    const lastDateStr = lastDate.toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
+  el.innerHTML = eligible.map(({ order: o, date: lastDate, total, wkn, pattern }) => {
+    const lastDateStr = lastDate.toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
     const wa = notificationWaNumber(o.wa_number);
     const services = Array.isArray(o.services) ? o.services.join(', ') : (o.services || 'layanan AC');
-    const message = `Hallo kak, ${o.name || ''}!
+    const firstName = String(o.name || '').trim().split(/\s+/)[0] || '';
+    const link = 'https://aslanteknik.id/booking/?utm_source=whatsapp&utm_medium=reminder&utm_campaign=cuci-3-bulan';
+    let message = `Halo kak ${firstName} 👋
 
-Mau mengingatkan kalau AC kakak sudah 90 hari sejak terakhir dicuci. Untuk menjaga AC tetap bersih, dingin, dan tidak cepat bermasalah, kami ingin menawarkan jadwal cuci AC rutin.
+Mau mengingatkan, bulan ini AC kakak sudah masuk bulan ke-3 sejak terakhir dicuci (${lastDate.toLocaleDateString('id-ID', { day: 'numeric', month: 'long' })}).
 
-Kalau Kakak berkenan, kami bisa bantu jadwalkan kunjungan teknisi sesuai waktu yang nyaman.`;
+Secara teknis AC sebaiknya dicuci tiap ±600 jam pemakaian. Kalau AC kakak rutin nyala 6–8 jam per hari, sebaiknya dijadwalkan cuci bulan ini supaya tetap dingin dan awet.`;
+    if (pattern === 'always') message += `
+
+Karena kakak biasanya booking di akhir pekan, jadwal weekend kami biasanya cepat penuh. Kami sarankan booking dari sekarang, nanti H-2 kami ingatkan kembali 🙏`;
+    message += `
+
+Mau dijadwalkan tanggal berapa kak? Bisa balas chat ini atau booking di ${link}`;
     const href = wa ? `https://wa.me/${wa}?text=${encodeURIComponent(message)}` : '';
     const reminded = !!o.maintenance_reminder_sent_at;
-    const statusHtml = reminded
-      ? '<span class="notif-status notif-status-done">✅ Sudah diingatkan</span>'
-      : '<span class="notif-status notif-status-pending">🔔 Belum diingatkan</span>';
+    const tags = [
+      reminded ? '<span class="notif-status notif-status-done">✅ Sudah diingatkan</span>' : '<span class="notif-status notif-status-pending">🔔 Belum diingatkan</span>',
+      pattern === 'always' ? `<span class="notif-tag wk-always">📅 Selalu weekend (${total}×)</span>` : '',
+      pattern === 'once' ? '<span class="notif-tag wk-once">Weekend 1×</span>' : '',
+      total > 1 && pattern !== 'always' ? `<span class="notif-tag">Cuci ${total}×</span>` : ''
+    ].filter(Boolean).join(' ');
     const action = href
-      ? `<a class="notif-wa" href="${href}" target="_blank" rel="noopener" onclick="window.markMaintenanceReminder('${o.id}')">💬 ${reminded ? 'Kirim Lagi via WhatsApp' : 'Kirim Pengingat WhatsApp'}</a>`
+      ? `<a class="notif-wa" href="${href}" target="_blank" rel="noopener" onclick="window.markMaintenanceReminder('${o.id}')">💬 ${reminded ? 'Kirim lagi' : 'Kirim pengingat'}</a>`
       : '<span style="font-size:0.78rem;color:var(--red);">Nomor WhatsApp belum tersedia</span>';
     return `<div class="notif-card">
-      <div class="notif-head"><div class="notif-name">${custNameLink(o, 'Customer')}</div><span class="notif-age">${ageDays} hari sejak layanan</span></div>
-      <div class="notif-meta">${statusHtml}<br>📅 Layanan terakhir: <b>${lastDateStr}</b><br>🧰 ${services}<br>📱 ${o.wa_number || '—'}${o.city ? '<br>📍 ' + o.city : ''}</div>
+      <div class="notif-head"><div class="notif-name">${custNameLink(o, 'Customer')}</div></div>
+      <div class="notif-tags">${tags}</div>
+      <div class="notif-meta">📅 Terakhir: <b>${lastDateStr}</b><br>🧰 ${services}${o.city ? '<br>📍 ' + o.city : ''}</div>
       ${action}
     </div>`;
   }).join('');
