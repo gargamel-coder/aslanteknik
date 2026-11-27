@@ -1506,7 +1506,7 @@ function renderNotifications() {
     const wa = notificationWaNumber(o.wa_number);
     const services = Array.isArray(o.services) ? o.services.join(', ') : (o.services || 'layanan AC');
     const firstName = String(o.name || '').trim().split(/\s+/)[0] || '';
-    const link = 'https://aslanteknik.id/booking/?utm_source=whatsapp&utm_medium=reminder&utm_campaign=cuci-3-bulan';
+    const link = 'aslanteknik.id/cuci'; // link pendek → /cuci/ meneruskan ke booking + UTM
     let message = `Halo kak ${firstName} 👋
 
 Mau mengingatkan, bulan ini AC kakak sudah masuk bulan ke-3 sejak terakhir dicuci (${lastDate.toLocaleDateString('id-ID', { day: 'numeric', month: 'long' })}).
